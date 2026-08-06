@@ -1,0 +1,40 @@
+﻿@model List<ResultBannerDto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int count = 0;
+}
+
+<h1>Banner Alanı</h1>
+
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>#</th>
+        <th>Görsel</th>
+        <th>Başlık</th>
+        <th>Açıklama</th>
+        <th>İşlemler</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <th>@count</th>
+            <td><img style="width:300px; height:150px; display:flex; justify-content:center; align-items:center; " src="@item.ImageUrl" class="img-thumbnail" alt="@item.Title" /></td>
+            <td>@item.Title</td>
+            <td>
+                @(item.Description != null && item.Description.Length > 50
+        ? item.Description.Substring(0, 50) + "..."
+        : item.Description)
+            </td>
+            <td>
+                <a href="#" class="btn btn-outline-danger">Sil</a>
+                <a href="#" class="btn btn-outline-primary">Güncelle</a>
+            </td>
+        </tr>
+    }
+
+</table>
+
+<a href="/Admin/Banner/Create" class="btn btn-outline-success">Yeni Banner Alanı Ekle</a>

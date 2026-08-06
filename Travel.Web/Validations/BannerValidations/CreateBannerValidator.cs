@@ -1,0 +1,22 @@
+﻿using FluentValidation;
+using Travel.Web.DTOs.BannerDtos;
+
+namespace Travel.Web.Validations.BannerValidations
+{
+    public class CreateBannerValidator : AbstractValidator<CreateBannerDto>
+    {
+        public CreateBannerValidator()
+        {
+            RuleFor(x => x.Title)
+                .NotEmpty().WithMessage("Başlık boş bırakılamaz.")
+                .MinimumLength(3).WithMessage("Başlık en az 3 karakterden oluşmalıdır.");
+
+            RuleFor(x => x.Description)
+                .NotEmpty().WithMessage("Açıklama boş bırakılamaz.")
+                .MaximumLength(250).WithMessage("Açıklama en fazla 250 karakter olmalıdır.");
+
+            RuleFor(x => x.ImageUrl)
+              .NotEmpty().WithMessage("Görselin URL yolu boş bırakılamaz.");
+        }
+    }
+}
