@@ -1,0 +1,41 @@
+﻿@model List<ResultRouteDto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int count = 0;
+}
+
+<h1>Rotalar</h1>
+
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>#</th>
+        <th>Görsel</th>
+        <th>Ülke</th>
+        <th>Şehir</th>
+        <th>Tur Süresi</th>
+        <th>Fiyat</th>
+        <th>İşlemler</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        count++;
+        <tr>
+            <th>@count</th>
+            <td><img style="width:300px; height:150px; display:flex; justify-content:center; align-items:center; " src="@item.ImageUrl" class="img-thumbnail" alt="@item.ImageUrl" /></td>
+            <td>@item.Country</td>
+            <td>@item.City</td>
+            <td>@item.Duration</td>
+            <td>@item.Price ₺</td>
+            <td>
+                <a asp-action="Delete" asp-controller="Route" asp-route-id="@item.Id" class="btn btn-outline-danger">Sil</a>
+                <a href="/Admin/Route/Update/@item.Id" class="btn btn-outline-primary">Güncelle</a>
+            </td>
+        </tr>
+    }
+
+</table>
+
+<a href="/Admin/Route/Create" class="btn btn-outline-success">Yeni Rota Ekle</a>

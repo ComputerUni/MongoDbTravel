@@ -29,8 +29,8 @@
         : item.Description)
             </td>
             <td>
-                <a href="#" class="btn btn-outline-danger">Sil</a>
-                <a href="#" class="btn btn-outline-primary">Güncelle</a>
+                <a asp-action="Delete" asp-controller="Banner" asp-route-id="@item.Id" class="btn btn-outline-danger">Sil</a>
+                <a href="/Admin/Banner/Update/@item.Id" class="btn btn-outline-primary">Güncelle</a>
             </td>
         </tr>
     }
