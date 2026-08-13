@@ -14,6 +14,20 @@ namespace Travel.Web.Areas.Admin.Controllers
             return View(routes);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Index(string city)
+        {
+            var routes = await _routeService.GetAllAsync();
+
+            if (string.IsNullOrEmpty(city))
+            {
+                return View(routes);
+            }
+
+            var routesByCity = await _routeService.GetAllByCityAsync(city);
+            return View(routesByCity);
+        }
+
         [HttpGet]
         public IActionResult Create()
         {
@@ -30,6 +44,31 @@ namespace Travel.Web.Areas.Admin.Controllers
 
             await _routeService.CreateAsync(createRouteDto);
             return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Update(string id)
+        {
+            var route = await _routeService.GetByIdAsync(id);
+            var updateRoute = _mapper.Map<UpdateRouteDto>(route);
+            return View(updateRoute);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(UpdateRouteDto routeDto)
+        {
+            if(!ModelState.IsValid)
+            {
+                return View(routeDto);
+            }
+
+            await _routeService.UpdateAsync(routeDto);
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> Delete(string id)
+        {
+            await _routeService.DeleteAsync(id);
+            return RedirectToAction("Index");
         }
 
 

@@ -41,7 +41,7 @@ namespace Travel.Web.Services.RouteServices
 
         public async Task<List<ResultRouteDto>> GetAllByCityAsync(string city)
         {
-            var routes = await _routeCollection.Find(x => x.City == city).ToListAsync();
+            var routes = await _routeCollection.Find(x => x.City.ToLower().Contains(city.ToLower())).ToListAsync();
             return _mapper.Map<List<ResultRouteDto>>(routes);
         }
 

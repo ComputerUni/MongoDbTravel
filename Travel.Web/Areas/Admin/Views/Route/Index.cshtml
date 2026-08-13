@@ -8,6 +8,11 @@
 
 <h1>Rotalar</h1>
 
+<form method="post" asp-action="Index" asp-controller="Route">
+    <input type="text" name="city" placeholder="Şehir İsmini Buraya Yazınız..." />
+    <button type="submit" class="btn btn-outline-dark"><i class="bi bi-filter"></i>Ara</button>
+</form>
+
 <table class="table table-bordered table-hover">
     <tr>
         <th>#</th>
@@ -30,7 +35,7 @@
             <td>@item.Duration</td>
             <td>@item.Price ₺</td>
             <td>
-                <a asp-action="Delete" asp-controller="Route" asp-route-id="@item.Id" class="btn btn-outline-danger">Sil</a>
+                <a href="/Admin/Route/Delete/@item.Id" onclick="return confirm('Silmek istediğinize emin misiniz?')" class="btn btn-outline-danger">Sil</a>
                 <a href="/Admin/Route/Update/@item.Id" class="btn btn-outline-primary">Güncelle</a>
             </td>
         </tr>
