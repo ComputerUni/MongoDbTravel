@@ -1,0 +1,29 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+
+@await Component.InvokeAsync("_Head")
+
+<body>
+
+    @await Component.InvokeAsync("_Sidebar")
+
+    <div class="main">
+
+        @await Component.InvokeAsync("_Topbar")
+
+        <div class="content">
+            @RenderBody()
+        </div>
+
+        @await Component.InvokeAsync("_Footer")
+
+    </div>
+
+    @await Component.InvokeAsync("_Script")
+
+</body>
+</html>

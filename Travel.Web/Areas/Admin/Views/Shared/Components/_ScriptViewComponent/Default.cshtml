@@ -1,0 +1,140 @@
+﻿<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+    /* ---- sidebar mobile ---- */
+    function toggleSidebar(show) {
+        document.getElementById("sidebar").classList.toggle("show", show);
+        document.getElementById("sbOverlay").classList.toggle("show", show);
+    }
+
+    /* ---- data ---- */
+    const IMG = {
+        roma: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=200&q=80",
+        paris: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=200&q=80",
+        barcelona: "https://images.unsplash.com/photo-1583422409516-2895a77efded?auto=format&fit=crop&w=200&q=80",
+        prag: "https://images.unsplash.com/photo-1541849546-216549ae216d?auto=format&fit=crop&w=200&q=80",
+        swiss: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?auto=format&fit=crop&w=200&q=80"
+    };
+
+    const popular = [
+        { name: "Roma & Toskana Keşfi", res: 186, img: IMG.roma },
+        { name: "Paris & Disneyland", res: 172, img: IMG.paris },
+        { name: "Barselona Akdeniz Turu", res: 148, img: IMG.barcelona },
+        { name: "Prag & Viyana", res: 139, img: IMG.prag },
+        { name: "İsviçre Alpleri", res: 126, img: IMG.swiss }
+    ];
+    document.getElementById("popularTours").innerHTML = popular.map((t, i) => `
+                  <div class="pt-item">
+                    <span class="rank">${i + 1}</span>
+                    <img src="${t.img}" alt="${t.name}">
+                    <div class="nm"><b>${t.name}</b><span>${t.res} rezervasyon</span></div>
+                  </div>`).join("");
+
+    const bookings = [
+        { no: "TRV-30291", guest: "Zeynep Demir", tour: "Roma & Toskana Keşfi", date: "12 Ekim 2026", pax: "2 kişi", amount: "85.000 TL", status: "ok" },
+        { no: "TRV-30290", guest: "Mehmet Kaya", tour: "Paris & Disneyland", date: "18 Eylül 2026", pax: "3 kişi", amount: "116.700 TL", status: "wait" },
+        { no: "TRV-30289", guest: "Elif Yılmaz", tour: "Tokyo & Kyoto", date: "7 Kasım 2026", pax: "2 kişi", amount: "159.800 TL", status: "ok" },
+        { no: "TRV-30288", guest: "Burak Şahin", tour: "İsviçre Alpleri", date: "21 Eylül 2026", pax: "1 kişi", amount: "58.200 TL", status: "cancel" },
+        { no: "TRV-30287", guest: "Ayşe Arslan", tour: "Prag & Viyana", date: "3 Ekim 2026", pax: "2 kişi", amount: "72.800 TL", status: "ok" }
+    ];
+    const initials = n => n.split(" ").map(w => w[0]).slice(0, 2).join("").toUpperCase();
+    const stBadge = { ok: ['b-ok', 'Onaylandı'], wait: ['b-wait', 'Bekliyor'], cancel: ['b-cancel', 'İptal Edildi'] };
+    document.getElementById("bookingRows").innerHTML = bookings.map(b => `
+                  <tr>
+                    <td><span class="res-no">${b.no}</span></td>
+                    <td><div class="guest"><span class="av">${initials(b.guest)}</span>${b.guest}</div></td>
+                    <td>${b.tour}</td>
+                    <td>${b.date}</td>
+                    <td>${b.pax}</td>
+                    <td><span class="amount">${b.amount}</span></td>
+                    <td><span class="badge-x ${stBadge[b.status][0]}">${stBadge[b.status][1]}</span></td>
+                  </tr>`).join("");
+
+    const reviews = [
+        { name: "Elif Yılmaz", tour: "Roma & Toskana", stars: 5, text: "Tur organizasyonu gerçekten çok başarılıydı, her detay düşünülmüştü." },
+        { name: "Mert Kaya", tour: "Amsterdam Kanalları", stars: 4, text: "Rehber ve program oldukça iyiydi, keyifli bir seyahatti." },
+        { name: "Zeynep Demir", tour: "İsviçre Alpleri", stars: 5, text: "Muhteşem bir deneyimdi, manzaralar beklentimin ötesindeydi." }
+    ];
+    const starStr = n => { let s = ""; for (let i = 1; i <= 5; i++) s += i <= n ? "★" : "<span class='off'>★</span>"; return s; };
+    document.getElementById("recentReviews").innerHTML = reviews.map(r => `
+                  <div class="rv">
+                    <div class="h">
+                      <span class="av">${initials(r.name)}</span>
+                      <div><b>${r.name}</b><span>${r.tour}</span></div>
+                      <span class="stars">${starStr(r.stars)}</span>
+                    </div>
+                    <p>${r.text}</p>
+                  </div>`).join("");
+
+    const questions = [
+        { tour: "Kuzey Işıkları Norveç", q: "Termal kıyafet sağlanıyor mu?", time: "2 saat önce" },
+        { tour: "Tokyo & Kyoto", q: "Japonya vizesi konusunda destek veriliyor mu?", time: "5 saat önce" },
+        { tour: "Roma & Toskana", q: "Havalimanı transferi fiyata dahil mi?", time: "1 gün önce" }
+    ];
+    document.getElementById("pendingQuestions").innerHTML = questions.map(q => `
+                  <div class="qz">
+                    <div class="body">
+                      <div class="tour">${q.tour}</div>
+                      <div class="q">${q.q}</div>
+                      <div class="time">${q.time}</div>
+                    </div>
+                    <button class="btn-soft">Cevapla</button>
+                  </div>`).join("");
+
+    const actions = [
+        { t: "Yeni Tur Ekle", ic: '<path d="M12 5v14M5 12h14"/>' },
+        { t: "Rezervasyonları Gör", ic: '<path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>' },
+        { t: "Soruları Yanıtla", ic: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>' },
+        { t: "Yeni Destinasyon Ekle", ic: '<path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>' }
+    ];
+    document.getElementById("quickActions").innerHTML = actions.map(a => `
+                  <a href="#" class="qa-link">
+                    <span class="qa-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${a.ic}</svg></span>
+                    ${a.t}
+                    <span class="arr"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+                  </a>`).join("");
+
+    /* ---- chart ---- */
+    const ctx = document.getElementById("resChart");
+    const grad = ctx.getContext("2d").createLinearGradient(0, 0, 0, 280);
+    grad.addColorStop(0, "rgba(15,163,163,.28)");
+    grad.addColorStop(1, "rgba(15,163,163,0)");
+
+    const chart = new Chart(ctx, {
+        type: "line",
+        data: {
+            labels: ["Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos"],
+            datasets: [{
+                label: "Rezervasyon",
+                data: [142, 176, 204, 239, 267, 256],
+                borderColor: "#0fa3a3",
+                backgroundColor: grad,
+                borderWidth: 3,
+                fill: true,
+                tension: .38,
+                pointBackgroundColor: "#fff",
+                pointBorderColor: "#0fa3a3",
+                pointBorderWidth: 2.5,
+                pointRadius: 4,
+                pointHoverRadius: 6
+            }]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    backgroundColor: "#0e2a3b", padding: 12, cornerRadius: 10, titleFont: { family: "Sora" }, displayColors: false,
+                    callbacks: { label: c => c.parsed.y + " rezervasyon" }
+                }
+            },
+            scales: {
+                y: { beginAtZero: false, grid: { color: "#eef0ef" }, border: { display: false }, ticks: { color: "#6a7c88", font: { size: 11 } } },
+                x: { grid: { display: false }, border: { display: false }, ticks: { color: "#6a7c88", font: { size: 12 } } }
+            }
+        }
+    });
+
+    /* demo: range select just re-animates */
+    document.getElementById("rangeSelect").addEventListener("change", () => chart.update());
+</script>

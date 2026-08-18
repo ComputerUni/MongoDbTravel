@@ -58,3 +58,12 @@ wwwroot\lib\jquery\dist\jquery.js
 wwwroot\lib\jquery\dist\jquery.min.js
 wwwroot\lib\jquery\dist\jquery.min.map
 wwwroot\lib\jquery\LICENSE.txt
+wwwroot\theme\1 index.html
+wwwroot\theme\2 tours.html
+wwwroot\theme\3 tour-detail.html
+wwwroot\theme\4 profile.html
+wwwroot\theme\5 register.html
+wwwroot\theme\6 admin-dashboard.html
+wwwroot\theme\7 admin-tour-create.html
+wwwroot\theme\8 admin-tours.html
+wwwroot\theme\Travelio_AspNetCore_MongoDB_Case.pdf
