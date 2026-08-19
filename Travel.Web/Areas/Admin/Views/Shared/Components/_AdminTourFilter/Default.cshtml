@@ -1,0 +1,49 @@
+﻿<div class="card-x filter-bar mb-3">
+    <div class="row g-2 align-items-center">
+        <div class="col-lg-4 col-md-6">
+            <div class="f-search">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
+                <input type="text" id="fSearch" placeholder="Tur adı veya destinasyon ara...">
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <select class="f-select" id="fDest">
+                <option value="">Tüm Destinasyonlar</option>
+                <option>Fransa</option>
+                <option>İtalya</option>
+                <option>İspanya</option>
+                <option>Hollanda</option>
+                <option>Avusturya</option>
+                <option>İsviçre</option>
+                <option>Norveç</option>
+                <option>Japonya</option>
+                <option>Portekiz</option>
+            </select>
+        </div>
+        <div class="col-lg-2 col-md-4">
+            <select class="f-select" id="fCat">
+                <option value="">Tüm Kategoriler</option>
+                <option>Kültür Turu</option>
+                <option>Şehir Turu</option>
+                <option>Doğa & Macera</option>
+                <option>Romantik Rota</option>
+                <option>Gastronomi</option>
+                <option>Kış & Kuzey Işıkları</option>
+                <option>Uzak Doğu</option>
+            </select>
+        </div>
+        <div class="col-lg-2 col-md-4">
+            <select class="f-select" id="fStatus">
+                <option value="">Tüm Durumlar</option>
+                <option value="Aktif">Aktif</option>
+                <option value="Pasif">Pasif</option>
+                <option value="Taslak">Taslak</option>
+            </select>
+        </div>
+        <div class="col-lg-1 col-md-4">
+            <button class="btn-clear" onclick="clearFilters()">Temizle</button>
+        </div>
+    </div>
+</div>
+
+<div class="result-line"><b id="resultCount">12</b> tur listeleniyor</div>

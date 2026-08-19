@@ -3,7 +3,8 @@ using FluentValidation.AspNetCore;
 using Microsoft.Extensions.Options;
 using System.Reflection;
 using Travel.Web.Services.BannerServices;
-using Travel.Web.Services.RouteServices;
+using Travel.Web.Services.DestinationServices;
+using Travel.Web.Services.TourServices;
 using Travel.Web.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,8 +20,10 @@ builder.Services.AddFluentValidationAutoValidation()
 builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection(nameof(DatabaseSettings)));
 
 builder.Services.AddScoped<IBannerService, BannerService>();
+builder.Services.AddScoped<ITourService, TourService>();
+builder.Services.AddScoped<IDestinationService, DestinationService>();
 
-builder.Services.AddScoped<IRouteService, RouteService>();
+//builder.Services.AddScoped<IRouteService, RouteService>();
 
 builder.Services.AddSingleton<IDatabaseSettings>(sp =>
 {

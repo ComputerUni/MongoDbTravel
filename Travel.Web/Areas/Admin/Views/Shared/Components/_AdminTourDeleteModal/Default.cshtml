@@ -1,0 +1,18 @@
+﻿<div class="modal fade" id="delModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body text-center p-4">
+                <div style="width:56px;height:56px;border-radius:16px;background:var(--cancel-bg);color:var(--cancel-fg);display:grid;place-items:center;margin:0 auto 1rem">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6" /><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" /><path d="M10 11v6M14 11v6" /><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" /></svg>
+                </div>
+                <h5 style="font-family:'Sora';font-weight:700;color:var(--navy)">Turu Sil</h5>
+                <p style="color:var(--muted);font-size:.92rem;margin-bottom:.2rem" id="delMsg"></p>
+                <p style="color:var(--muted);font-size:.82rem">Bu işlem geri alınamaz.</p>
+                <div class="d-flex gap-2 justify-content-center mt-3">
+                    <button class="btn-clear" style="width:auto;padding:.6rem 1.3rem" data-bs-dismiss="modal">Vazgeç</button>
+                    <button class="btn-teal" style="background:var(--cancel-fg)" onclick="confirmDelete()">Turu Sil</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

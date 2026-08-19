@@ -1,0 +1,50 @@
+﻿@model List<ResultTourDto>
+
+<div class="card-x mb-3">
+    <div class="tbl-wrap">
+        <table class="tx">
+            <thead>
+                <tr>
+                    <th style="width:36px"><input type="checkbox" class="chk" id="checkAll" onchange="toggleAll(this)"></th>
+                    <th class="sortable" onclick="sortBy('title')">Tur <span class="sar">↕</span></th>
+                    <th>Kategori</th>
+                    <th>Süre</th>
+                    <th class="sortable" onclick="sortBy('price')">Fiyat <span class="sar">↕</span></th>
+                    <th class="sortable" onclick="sortBy('date')">Yaklaşan Tarih <span class="sar">↕</span></th>
+                    <th>Kontenjan</th>
+                    <th class="sortable" onclick="sortBy('res')">Rezervasyon <span class="sar">↕</span></th>
+                    <th>Durum</th>
+                    <th style="width:56px">İşlemler</th>
+                </tr>
+            </thead>
+            <tbody id="tourRows">
+                @foreach(var tour in Model)
+                {
+                    
+                }
+            </tbody>
+        </table>
+    </div>
+    <div id="emptyState" style="display:none">
+        <div class="empty">
+            <div class="eic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg></div>
+            <h3>Tur bulunamadı</h3>
+            <p>Arama veya filtre kriterlerinizi değiştirerek tekrar deneyebilirsiniz.</p>
+            <button class="btn-teal" style="margin:0 auto" onclick="clearFilters()">Filtreleri Temizle</button>
+        </div>
+    </div>
+    <div class="pager-row" id="pagerRow">
+        <div class="per-page">
+            Sayfa başına
+            <select id="perPage"><option>10</option><option>25</option><option>50</option></select>
+        </div>
+        <div class="pager">
+            <a href="#" class="disabled">Önceki</a>
+            <a href="#" class="active">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">Sonraki</a>
+        </div>
+    </div>
+</div>
