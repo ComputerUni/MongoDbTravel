@@ -1,0 +1,33 @@
+﻿@model CreateCategoryDto
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.TopbarTitle = "Kategori Yönetimi";
+}
+
+<div class="crumb"><a href="#">Kategoriler</a> / <span class="cur">Kategori Ekleme</span></div>
+<div class="page-intro">
+    <div>
+        <h1>Yeni Kategori</h1>
+        <p>Yeni bir kategori ekleyin.</p>
+    </div>
+</div>
+
+<form method="post" asp-action="Create" asp-controller="Category">
+    <div class="sec">
+        <div class="sec-head">
+            <h2>Temel Bilgiler</h2>
+            <p>Kategorinin görünen bilgilerini girin.</p>
+        </div>
+
+        <div class="field">
+            <label asp-for="CategoryName">Destinasyon Adı <span class="req">*</span></label>
+            <input class="ctrl" asp-for="CategoryName" placeholder="Örn: Kültür">
+        </div>
+
+        <button type="submit" class="btn-teal">Kaydet</button>
+
+    </div>
+
+</form>
+

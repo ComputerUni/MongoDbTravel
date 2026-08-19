@@ -1,0 +1,51 @@
+﻿@model UpdateDestinationDto
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.TopbarTitle = "Tur Yönetimi";
+}
+
+<div class="crumb"><a href="#">Dashboard</a> / <span class="cur">Turlar</span></div>
+<div class="page-intro">
+    <div>
+        <h1>Destinasyon Güncelle</h1>
+        <p>Mevcut destinasyonunuzu güncelleyin.</p>
+    </div>
+</div>
+
+<form method="post" asp-action="Update" asp-controller="Destination">
+    <input type="hidden" asp-for="Id" />
+    <div class="sec">
+        <div class="sec-head">
+            <h2>Temel Bilgiler</h2>
+            <p>Destinasyonun görünen bilgilerini girin.</p>
+        </div>
+
+        <div class="field">
+            <label asp-for="Name">Destinasyon Adı <span class="req">*</span></label>
+            <input class="ctrl" asp-for="Name" placeholder="Örn. Roma & Toskana Keşfi">
+        </div>
+        <div class="field">
+            <label asp-for="Country">Ülke Adı <span class="req">*</span></label>
+            <input class="ctrl" asp-for="Country" placeholder="Örn: İtalya">
+        </div>
+        <div class="field">
+            <label asp-for="ImageUrl">Resim Yolu <span class="req">*</span></label>
+            <input class="ctrl" asp-for="ImageUrl" placeholder="https://...">
+        </div>
+        <div class="field">
+            <label asp-for="Description">Açıklama</label>
+            <textarea asp-for="Description" class="ctrl" rows="4" placeholder="Destinasyon hakkında kısa bilgi..."></textarea>
+        </div>
+        <div class="field form-check">
+            <input type="checkbox" class="form-check-input" asp-for="IsPopular">
+            <label class="form-check-label" asp-for="IsPopular">Popüler destinasyon olarak işaretle</label>
+        </div>
+
+        <button type="submit" class="btn-teal">Kaydet</button>
+
+    </div>
+
+</form>
+
+
