@@ -1,6 +1,47 @@
 ﻿<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <script>
+
+    function addDate() { dateList.insertAdjacentHTML("beforeend", dateRowHTML()); refreshDateDelState(); }
+    function refreshDateDelState() {
+        const rows = dateList.querySelectorAll(".drow");
+        rows.forEach(r => r.querySelector(".del-mini").disabled = rows.length <= 1);
+    }
+    // seed one example
+    refreshDateDelState();
+
+    function renumberDays() {
+        dayList.querySelectorAll(".day").forEach((d, i) => {
+            d.querySelector(".day-tag").textContent = (i + 1) + ". GÜN";
+            // first day delete disabled
+            d.querySelector(".del-mini").disabled = dayList.querySelectorAll(".day").length <= 1 || i === 0;
+        });
+    }
+    function addDay() {
+        if (!dayList) return;
+        const index = dayList.querySelectorAll(".day").length;
+        dayList.insertAdjacentHTML("beforeend", dayHTML(index, true));
+
+        // Yeni eklenen günün açılması için max-height değerini dinamik olarak veriyoruz
+        const last = dayList.lastElementChild;
+        const body = last.querySelector(".day-body");
+        body.style.maxHeight = "500px"; // İçeriğin rahat sığması için sabit bir yükseklik verelim
+
+        renumberDays();
+    }
+    function toggleDay(head) {
+        const day = head.closest(".day"); const body = day.querySelector(".day-body");
+        if (day.classList.contains("open")) { day.classList.remove("open"); body.style.maxHeight = "0"; }
+        else { day.classList.add("open"); body.style.maxHeight = body.scrollHeight + 80 + "px"; }
+    }
+    function removeDay(e, btn) { e.stopPropagation(); btn.closest(".day").remove(); renumberDays(); }
+    function syncDayName(inp) {
+        const day = inp.closest(".day");
+        const idx = [...dayList.children].indexOf(day) + 1;
+        day.querySelector(".day-name").textContent = inp.value.trim() ? inp.value : (idx + ". gün");
+    }
+
+
     /* ---- sidebar mobile ---- */
     function toggleSidebar(show) {
         document.getElementById("sidebar").classList.toggle("show", show);
@@ -24,11 +65,11 @@
         { name: "İsviçre Alpleri", res: 126, img: IMG.swiss }
     ];
     document.getElementById("popularTours").innerHTML = popular.map((t, i) => `
-                  <div class="pt-item">
-                    <span class="rank">${i + 1}</span>
-                    <img src="${t.img}" alt="${t.name}">
-                    <div class="nm"><b>${t.name}</b><span>${t.res} rezervasyon</span></div>
-                  </div>`).join("");
+                      <div class="pt-item">
+                        <span class="rank">${i + 1}</span>
+                        <img src="${t.img}" alt="${t.name}">
+                        <div class="nm"><b>${t.name}</b><span>${t.res} rezervasyon</span></div>
+                      </div>`).join("");
 
     const bookings = [
         { no: "TRV-30291", guest: "Zeynep Demir", tour: "Roma & Toskana Keşfi", date: "12 Ekim 2026", pax: "2 kişi", amount: "85.000 TL", status: "ok" },
@@ -40,15 +81,15 @@
     const initials = n => n.split(" ").map(w => w[0]).slice(0, 2).join("").toUpperCase();
     const stBadge = { ok: ['b-ok', 'Onaylandı'], wait: ['b-wait', 'Bekliyor'], cancel: ['b-cancel', 'İptal Edildi'] };
     document.getElementById("bookingRows").innerHTML = bookings.map(b => `
-                  <tr>
-                    <td><span class="res-no">${b.no}</span></td>
-                    <td><div class="guest"><span class="av">${initials(b.guest)}</span>${b.guest}</div></td>
-                    <td>${b.tour}</td>
-                    <td>${b.date}</td>
-                    <td>${b.pax}</td>
-                    <td><span class="amount">${b.amount}</span></td>
-                    <td><span class="badge-x ${stBadge[b.status][0]}">${stBadge[b.status][1]}</span></td>
-                  </tr>`).join("");
+                      <tr>
+                        <td><span class="res-no">${b.no}</span></td>
+                        <td><div class="guest"><span class="av">${initials(b.guest)}</span>${b.guest}</div></td>
+                        <td>${b.tour}</td>
+                        <td>${b.date}</td>
+                        <td>${b.pax}</td>
+                        <td><span class="amount">${b.amount}</span></td>
+                        <td><span class="badge-x ${stBadge[b.status][0]}">${stBadge[b.status][1]}</span></td>
+                      </tr>`).join("");
 
     const reviews = [
         { name: "Elif Yılmaz", tour: "Roma & Toskana", stars: 5, text: "Tur organizasyonu gerçekten çok başarılıydı, her detay düşünülmüştü." },
@@ -57,14 +98,14 @@
     ];
     const starStr = n => { let s = ""; for (let i = 1; i <= 5; i++) s += i <= n ? "★" : "<span class='off'>★</span>"; return s; };
     document.getElementById("recentReviews").innerHTML = reviews.map(r => `
-                  <div class="rv">
-                    <div class="h">
-                      <span class="av">${initials(r.name)}</span>
-                      <div><b>${r.name}</b><span>${r.tour}</span></div>
-                      <span class="stars">${starStr(r.stars)}</span>
-                    </div>
-                    <p>${r.text}</p>
-                  </div>`).join("");
+                      <div class="rv">
+                        <div class="h">
+                          <span class="av">${initials(r.name)}</span>
+                          <div><b>${r.name}</b><span>${r.tour}</span></div>
+                          <span class="stars">${starStr(r.stars)}</span>
+                        </div>
+                        <p>${r.text}</p>
+                      </div>`).join("");
 
     const questions = [
         { tour: "Kuzey Işıkları Norveç", q: "Termal kıyafet sağlanıyor mu?", time: "2 saat önce" },
@@ -72,14 +113,14 @@
         { tour: "Roma & Toskana", q: "Havalimanı transferi fiyata dahil mi?", time: "1 gün önce" }
     ];
     document.getElementById("pendingQuestions").innerHTML = questions.map(q => `
-                  <div class="qz">
-                    <div class="body">
-                      <div class="tour">${q.tour}</div>
-                      <div class="q">${q.q}</div>
-                      <div class="time">${q.time}</div>
-                    </div>
-                    <button class="btn-soft">Cevapla</button>
-                  </div>`).join("");
+                      <div class="qz">
+                        <div class="body">
+                          <div class="tour">${q.tour}</div>
+                          <div class="q">${q.q}</div>
+                          <div class="time">${q.time}</div>
+                        </div>
+                        <button class="btn-soft">Cevapla</button>
+                      </div>`).join("");
 
     const actions = [
         { t: "Yeni Tur Ekle", ic: '<path d="M12 5v14M5 12h14"/>' },
@@ -88,11 +129,11 @@
         { t: "Yeni Destinasyon Ekle", ic: '<path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>' }
     ];
     document.getElementById("quickActions").innerHTML = actions.map(a => `
-                  <a href="#" class="qa-link">
-                    <span class="qa-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${a.ic}</svg></span>
-                    ${a.t}
-                    <span class="arr"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-                  </a>`).join("");
+                      <a href="#" class="qa-link">
+                        <span class="qa-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${a.ic}</svg></span>
+                        ${a.t}
+                        <span class="arr"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+                      </a>`).join("");
 
     /* ---- chart ---- */
     const ctx = document.getElementById("resChart");
@@ -137,4 +178,179 @@
 
     /* demo: range select just re-animates */
     document.getElementById("rangeSelect").addEventListener("change", () => chart.update());
-</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function toggleSidebar(show){
+          document.getElementById("sidebar").classList.toggle("show", show);
+          document.getElementById("sbOverlay").classList.toggle("show", show);
+        }
+        function toast(msg){ const t=document.getElementById("toast"); document.getElementById("toastMsg").textContent=msg; t.classList.add("show"); setTimeout(()=>t.classList.remove("show"),2600); }
+
+        /* ---------- TUR TARİHLERİ ---------- */
+        const dateList=document.getElementById("dateList");
+        function dateRowHTML(index = 0, start="", end="", cap="", status="Aktif"){
+          return `
+          <div class="drow">
+            <div class="field"><label>Başlangıç Tarihi</label><input type="date" class="ctrl d-start" name="Tour.Dates[${index}].StartDate" value="${start}" /></div>
+            <div class="field"><label>Bitiş Tarihi</label><input type="date" class="ctrl d-end" name="Tour.Dates[${index}].EndDate" value="${end}" /></div>
+            <div class="field" style="max-width:120px"><label>Kontenjan</label><input type="number" min="1" class="ctrl d-cap" name="Tour.Dates[${index}].Quota" value="${cap}" placeholder="28"></div>
+            <div class="field" style="max-width:130px"><label>Durum</label>
+              <select class="ctrl d-status" name="Tour.Dates[${index}].Status"><option ${status==='Aktif'?'selected':''}>Aktif</option><option ${status==='Pasif'?'selected':''}>Pasif</option></select>
+            </div>
+            <button class="del-mini" onclick="removeRow(this,'.drow')" aria-label="Sil">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>
+            </button>
+          </div>`;
+        }
+        function addDate(){ dateList.insertAdjacentHTML("beforeend", dateRowHTML()); refreshDateDelState(); }
+        function refreshDateDelState(){
+          const rows=dateList.querySelectorAll(".drow");
+          rows.forEach(r=> r.querySelector(".del-mini").disabled = rows.length<=1);
+        }
+        // seed one example
+        dateList.insertAdjacentHTML("beforeend", dateRowHTML("2026-10-12","2026-10-17","28","Aktif"));
+        refreshDateDelState();
+
+        /* ---------- GÜN GÜN PROGRAM ---------- */
+        const dayList=document.getElementById("dayList");
+        function dayHTML(index = 0, open = true, title="", desc = "", acc = "", trans = "", meal = ""){
+          return `
+          <div class="day ${open?'open':''}">
+            <div class="day-head" onclick="toggleDay(this)">
+              <span class="day-tag">${index + 1}. GÜN</span>
+              <span class="day-name">${title||"Yeni gün"}</span>
+              <div class="day-actions">
+                <button class="del-mini" onclick="removeDay(event,this)" aria-label="Günü sil"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg></button>
+                <span class="day-chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+              </div>
+            </div>
+            <div class="day-body">
+              <div class="day-inner">
+                <div class="field"><label>Gün Başlığı</label><input class="ctrl day-title" name="Tour.DayPrograms[${index}].Title" value="${title}" placeholder="Örn. İstanbul → Roma" oninput="syncDayName(this)"></div>
+                <div class="field"><label>Program Açıklaması</label><textarea class="ctrl" rows="3" name="Tour.DayPrograms[${index}].Description" placeholder="Günün programını, gezilecek yerleri ve önemli notları yazın...">${desc}</textarea></div>
+                <div class="row g-2">
+                  <div class="col-md-4 field" style="margin-bottom:0"><label>Konaklama</label><input class="ctrl" name="Tour.DayPrograms[${index}].Accommodation" value="${acc}" placeholder="Roma" /></div>
+                  <div class="col-md-4 field" style="margin-bottom:0"><label>Ulaşım</label><input class="ctrl" name="Tour.DayPrograms[${index}].Transport" value="${trans}" placeholder="Uçak + Transfer" /></div>
+                  <div class="col-md-4 field" style="margin-bottom:0"><label>Öğün</label><input class="ctrl" name="Tour.DayPrograms[${index}].Meal" value="${meal}" placeholder="Kahvaltı" /></div>
+                </div>
+              </div>
+            </div>
+          </div>`;
+        }
+        function renumberDays(){
+          dayList.querySelectorAll(".day").forEach((d,i)=>{
+            d.querySelector(".day-tag").textContent = (i+1)+". GÜN";
+            // first day delete disabled
+            d.querySelector(".del-mini").disabled = dayList.querySelectorAll(".day").length<=1 || i===0;
+          });
+        }
+        function addDay(){
+    if(!dayList) return;
+    const index = dayList.querySelectorAll(".day").length;
+    dayList.insertAdjacentHTML("beforeend", dayHTML(index, true));
+    
+    const last = dayList.lastElementChild;
+    const body = last.querySelector(".day-body"); 
+    if(body) {
+        body.style.maxHeight = "500px"; // veya body.scrollHeight + 80 + "px"
+    }
+    renumberDays();
+}
+        function toggleDay(head){
+          const day=head.closest(".day"); const body=day.querySelector(".day-body");
+          if(day.classList.contains("open")){ day.classList.remove("open"); body.style.maxHeight="0"; }
+          else{ day.classList.add("open"); body.style.maxHeight=body.scrollHeight+80+"px"; }
+        }
+        function removeDay(e,btn){ e.stopPropagation(); btn.closest(".day").remove(); renumberDays(); }
+        function syncDayName(inp){
+          const day=inp.closest(".day");
+          const idx=[...dayList.children].indexOf(day)+1;
+          day.querySelector(".day-name").textContent = inp.value.trim() ? inp.value : (idx+". gün");
+        }
+        // seed first day (open, not deletable)
+        // dayList.insertAdjacentHTML("beforeend", dayHTML(true,"İstanbul → Roma"));
+        // (function(){
+        //   const first=dayList.firstElementChild;
+        //   first.querySelector(".day-title").value="İstanbul → Roma";
+        //   first.querySelector("textarea").value="İstanbul Havalimanı'nda buluşma, Roma uçuşu, havalimanı transferi ve otele yerleşme. Akşam serbest zaman.";
+        //   const inputs=first.querySelectorAll(".row .ctrl"); inputs[0].value="Roma"; inputs[1].value="Uçak + Transfer"; inputs[2].value="Kahvaltı";
+        //   const body=first.querySelector(".day-body"); body.style.maxHeight=body.scrollHeight+80+"px";
+        //   renumberDays();
+        // })();
+
+        /* ---------- DİNAMİK LİSTELER ---------- */
+        function itemHTML(ph,val=""){
+          return `<div class="litem">
+            <input class="ctrl" placeholder="${ph}" value="${val}">
+            <button class="del-mini" onclick="removeRow(this,'.litem')" aria-label="Sil"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg></button>
+          </div>`;
+        }
+        function addItem(listId,ph){ document.getElementById(listId).insertAdjacentHTML("beforeend", itemHTML(ph)); }
+        function removeRow(btn,sel){ btn.closest(sel).remove(); if(sel==='.drow') refreshDateDelState(); }
+
+      
+
+        /* ---------- STATUS PILLS ---------- */
+        document.querySelectorAll(".status-pill").forEach(p=>{
+          p.addEventListener("click",()=>{
+            document.querySelectorAll(".status-pill").forEach(x=>x.classList.remove("sel"));
+            p.classList.add("sel"); p.querySelector("input").checked=true;
+          });
+        });
+        /* only one of best/new badge */
+        function oneBadge(me,otherId){ if(me.checked) document.getElementById(otherId).checked=false; }
+
+        /* ---------- UPLOAD PREVIEWS ---------- */
+        function previewCover(inp){
+          if(!inp.files||!inp.files[0]) return;
+          const url=URL.createObjectURL(inp.files[0]);
+          document.getElementById("coverImg").src=url;
+          document.getElementById("coverPreview").style.display="block";
+        }
+        function previewGallery(inp){
+          const wrap=document.getElementById("galleryPreviews"); wrap.innerHTML="";
+          [...inp.files].slice(0,8).forEach(f=>{
+            const img=document.createElement("img"); img.className="thumb"; img.src=URL.createObjectURL(f); wrap.appendChild(img);
+          });
+        }
+
+        /* ---------- SAVE / PUBLISH ---------- */
+        function markErr(el,on){ el.classList.toggle("err",on); }
+        function saveDraft(){
+          document.getElementById("savedInfo").innerHTML='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Son kaydedilme: Az önce (taslak)';
+          toast("Tur taslak olarak kaydedildi.");
+        }
+        function publish(){
+          const banner=document.getElementById("valBanner");
+          const list=document.getElementById("valList");
+          const errs=[];
+          const name=document.getElementById("tName");
+          const cat=document.getElementById("tCat");
+          const dest=document.getElementById("tDest");
+          const price=document.getElementById("tPrice");
+          const days=document.getElementById("tDays");
+
+          [name,cat,dest,price,days].forEach(el=>markErr(el,false));
+
+          if(!name.value.trim()){ errs.push("Tur adı gerekli."); markErr(name,true); }
+          if(!cat.value){ errs.push("Kategori seçilmeli."); markErr(cat,true); }
+          if(!dest.value){ errs.push("Destinasyon seçilmeli."); markErr(dest,true); }
+          if(!price.value.trim()){ errs.push("Kişi başı fiyat girilmeli."); markErr(price,true); }
+          if(!days.value){ errs.push("Tur süresi (gün) girilmeli."); markErr(days,true); }
+          if(dateList.querySelectorAll(".drow").length<1) errs.push("En az bir tur tarihi eklenmeli.");
+          if(dayList.querySelectorAll(".day").length<1) errs.push("En az bir günlük program eklenmeli.");
+
+          if(errs.length){
+            list.innerHTML=errs.map(e=>`<li>${e}</li>`).join("");
+            banner.classList.add("show");
+            banner.scrollIntoView({behavior:"smooth",block:"center"});
+            return;
+          }
+          banner.classList.remove("show");
+          document.getElementById("savedInfo").innerHTML='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Son kaydedilme: Az önce (yayınlandı)';
+          toast("Tur başarıyla oluşturuldu.");
+        }
+
+    </script>

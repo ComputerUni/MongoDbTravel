@@ -1,7 +1,7 @@
 ﻿@model CreateTourViewModel
 
 
-<form asp-action="Create" asp-controller="Tour" asp-area="Admin" method="post">
+<form asp-action="Create" asp-controller="Tour" asp-area="Admin" method="post" enctype="multipart/form-data">
 
     <div class="crumb"><a href="admin-dashboard.html">Dashboard</a> / <a href="admin-tours.html">Turlar</a> / <span class="cur">Yeni Tur Ekle</span></div>
     <div class="page-intro">
@@ -130,7 +130,7 @@
             <p>Aynı tur için birden fazla kalkış tarihi ekleyebilirsiniz.</p>
         </div>
         <div id="dateList"></div>
-        <button class="btn-add" onclick="addDate()">
+        <button type="button" class="btn-add" onclick="addDate()">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg>
             Yeni Tarih Ekle
         </button>
@@ -143,7 +143,7 @@
             <p>Misafirlerin tur detay sayfasında göreceği günlük programı oluşturun.</p>
         </div>
         <div id="dayList"></div>
-        <button class="btn-add" onclick="addDay()">
+        <button type="button" class="btn-add" onclick="addDay()">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg>
             Yeni Gün Ekle
         </button>
@@ -159,21 +159,21 @@
             <div class="col-lg-6">
                 <label style="font-size:.8rem;font-weight:600;color:var(--navy);margin-bottom:.6rem;display:block">Fiyata Dahil Olanlar</label>
                 <div id="incList"></div>
-                <button class="btn-add" onclick="addItem('incList','Yeni hizmet')">
+                <button type="button" class="btn-add" onclick="addItem('incList','Yeni hizmet')">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg> Yeni Hizmet Ekle
                 </button>
             </div>
             <div class="col-lg-6">
                 <label style="font-size:.8rem;font-weight:600;color:var(--navy);margin-bottom:.6rem;display:block">Fiyata Dahil Olmayanlar</label>
                 <div id="excList"></div>
-                <button class="btn-add" onclick="addItem('excList','Yeni madde')">
+                <button type="button" class="btn-add" onclick="addItem('excList','Yeni madde')">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg> Yeni Madde Ekle
                 </button>
             </div>
             <div class="col-12">
                 <label style="font-size:.8rem;font-weight:600;color:var(--navy);margin-bottom:.6rem;display:block">Turun Öne Çıkanları</label>
                 <div id="hlList"></div>
-                <button class="btn-add" onclick="addItem('hlList','Öne çıkan özellik')">
+                <button type="button" class="btn-add" onclick="addItem('hlList','Öne çıkan özellik')">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg> Öne Çıkan Özellik Ekle
                 </button>
             </div>
@@ -240,11 +240,11 @@
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
             Son kaydedilme: Henüz kaydedilmedi
         </div>
-        <div class="btns">
-            <a href="admin-tours.html" class="btn-ghost">İptal</a>
-            <button class="btn-navy" onclick="saveDraft()">Taslak Kaydet</button>
-            <button class="btn-teal" onclick="publish()">Turu Yayınla</button>
-        </div>
+       <div class="btns">
+    <a href="admin-tours.html" class="btn-ghost">İptal</a>
+    <button type="button" class="btn-navy" onclick="saveDraft()">Taslak Kaydet</button>
+    <button type="submit" class="btn-teal">Turu Yayınla</button>
+</div>
     </div>
 
     <!-- TOAST -->
