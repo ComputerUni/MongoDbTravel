@@ -1,0 +1,40 @@
+﻿@model CreateLookupDto
+
+
+<form asp-action="Create" asp-controller="LookupItem" asp-area="Admin" method="post">
+    <div class="page-intro">
+        <div>
+            <h1>Yeni Seçenek Ekle</h1>
+            <p>Sisteme yeni bir vize, ulaşım veya şehir türü tanımlayın.</p>
+        </div>
+        <a asp-action="Index" asp-controller="LookupItem" asp-area="Admin" class="btn-ghost">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" /></svg>
+            Listeye Dön
+        </a>
+    </div>
+
+    <!-- VALIDATION BANNER -->
+    <div class="val-banner" id="valBanner">
+        <b>Lütfen eksik alanları tamamlayın:</b>
+        <ul id="valList"></ul>
+    </div>
+
+
+    <div class="sec">
+        <div class="sec-head">
+            <h2><span class="sec-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /></svg></span> Temel Bilgiler</h2>
+            <p>Turun kullanıcı tarafında görünen temel bilgilerini girin.</p>
+        </div>
+        <div class="col-md-4 field">
+            <label>Seçenek Türü</label>
+            <select class="ctrl" asp-for="Type" asp-items="Html.GetEnumSelectList<LookupType>()">
+                <option value="">Tur Tipi Seçiniz</option>
+            </select>
+        </div>
+        <div class="field mb-3">
+            <label class="form-label">Değer / İsim (Name) <span class="req">*</span></label>
+            <input class="ctrl form-control" asp-for="Name" placeholder="Örn: Uçak, Schengen Vizesi, İstanbul">
+        </div>
+        <button type="submit" class="btn-teal">Kaydet</button>
+    </div>
+</form>

@@ -1,8 +1,13 @@
 ﻿using AutoMapper;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
+using Travel.Web.Areas.Admin.Models;
 using Travel.Web.DTOs.TourDtos;
 using Travel.Web.Entities;
+using Travel.Web.Entities.Enums;
+using Travel.Web.Services.CategoryServices;
+using Travel.Web.Services.DestinationServices;
+using Travel.Web.Services.LookupServices;
 using Travel.Web.Settings;
 
 namespace Travel.Web.Services.TourServices
@@ -11,12 +16,18 @@ namespace Travel.Web.Services.TourServices
     {
         private readonly IMongoCollection<Tour> _tourCollection;
         private readonly IMapper _mapper;
+        private readonly ICategoryService _categoryService;
+        private readonly IDestinationService _destinationService;
+        private readonly ILookupService _lookupService;
 
-        public TourService(IDatabaseSettings databaseSettings, IMapper mapper)
+        public TourService(ICategoryService categoryService, IDestinationService destinationService, ILookupService lookupService, IDatabaseSettings databaseSettings, IMapper mapper)
         {
             var client = new MongoClient(databaseSettings.ConnectionString);
             var database = client.GetDatabase(databaseSettings.DatabaseName);
             _tourCollection = database.GetCollection<Tour>(databaseSettings.TourCollectionName);
+            _categoryService = categoryService;
+            _destinationService = destinationService;
+            _lookupService = lookupService;
             _mapper = mapper;
         }
 

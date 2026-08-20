@@ -13,6 +13,8 @@
         public string CommentCollectionName { get; set; }
         public string QuestionCollectionName { get; set; }
         public string FavoriteCollectionName { get; set; }
-        
+        public string LookupItemCollectionName { get; set; }
+
+
     }
 }

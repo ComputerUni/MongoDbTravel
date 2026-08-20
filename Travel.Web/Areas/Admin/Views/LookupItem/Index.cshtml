@@ -1,0 +1,60 @@
+﻿@model List<ResultLookupDto>
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.TopbarTitle = "Kategori Yönetimi";
+    int count = 0;
+}
+
+<div class="crumb"><a href="#">Seçenekler</a> / <span class="cur">Seçenek Listesi</span></div>
+<div class="page-intro">
+    <div>
+        <h1>Seçenekler</h1>
+        <p>Seçenek ile ilgili işlemlerinizi buradan yürütebilirsiniz.</p>
+    </div>
+</div>
+
+<div class="card-x mb-3">
+    <div class="tbl-wrap">
+        <table class="tx">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Türü</th>
+                    <th>Adı</th>
+                    <th>Aktif mi?</th>
+                    <th>İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    count++;
+                    <tr>
+                        <td>@count</td>
+                        <td>@item.TypeDisplayName</td>
+                        <td>@item.Name</td>
+                        <td>
+                            @if (item.IsActive)
+                            {
+                                <span class="badge-x b-ok">Evet</span>
+                            }
+                            else
+                            {
+                                <span class="badge-x b-cancel">Hayır</span>
+                            }
+                        </td>
+                        <td>
+                            <a asp-action="Delete" asp-controller="LookupItem"
+                               asp-route-id="@item.Id" class="btn-soft">Sil</a>
+                            <a href="/Admin/LookupItem/Update/@item.Id"
+                               class="btn-soft">Güncelle</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<a href="/Admin/LookupItem/Create" class="btn-teal">Yeni Seçenek</a>

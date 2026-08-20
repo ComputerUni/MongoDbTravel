@@ -1,4 +1,5 @@
-﻿using Travel.Web.DTOs.TourDtos;
+﻿using Travel.Web.Areas.Admin.Models;
+using Travel.Web.DTOs.TourDtos;
 
 namespace Travel.Web.Services.TourServices
 {

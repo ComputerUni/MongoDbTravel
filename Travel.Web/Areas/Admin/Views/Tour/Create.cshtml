@@ -1,0 +1,258 @@
+﻿@model CreateTourViewModel
+
+
+<form asp-action="Create" asp-controller="Tour" asp-area="Admin" method="post">
+
+    <div class="crumb"><a href="admin-dashboard.html">Dashboard</a> / <a href="admin-tours.html">Turlar</a> / <span class="cur">Yeni Tur Ekle</span></div>
+    <div class="page-intro">
+        <div>
+            <h1>Yeni Tur Ekle</h1>
+            <p>Yeni bir tur oluşturmak için genel bilgileri, rota detaylarını ve satış seçeneklerini belirleyin.</p>
+        </div>
+        <a href="admin-tours.html" class="btn-ghost">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" /></svg>
+            Turlara Dön
+        </a>
+    </div>
+
+    <!-- VALIDATION BANNER -->
+    <div class="val-banner" id="valBanner">
+        <b>Lütfen eksik alanları tamamlayın:</b>
+        <ul id="valList"></ul>
+    </div>
+
+    <!-- 1. TEMEL BİLGİLER -->
+    <div class="sec">
+        <div class="sec-head">
+            <h2><span class="sec-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /></svg></span> Temel Bilgiler</h2>
+            <p>Turun kullanıcı tarafında görünen temel bilgilerini girin.</p>
+        </div>
+        <div class="field">
+            <label>Tur Adı <span class="req">*</span></label>
+            <input class="ctrl" asp-for="Tour.Name" placeholder="Örn. Roma & Toskana Keşfi">
+        </div>
+        <div class="field">
+            <label>Kısa Açıklama</label>
+            <textarea class="ctrl" asp-for="Tour.ShortDescription" rows="2" placeholder="Turun öne çıkan özelliklerini birkaç cümleyle anlatın."></textarea>
+        </div>
+        <div class="field">
+            <label>Tur Açıklaması</label>
+            <textarea class="ctrl" asp-for="Tour.Description" rows="4" placeholder="Turun konsepti, deneyimi ve önemli detayları..."></textarea>
+        </div>
+        <div class="row g-3">
+            <div class="col-md-6 field">
+                <label>Kategori <span class="req">*</span></label>
+                <select class="ctrl" asp-for="Tour.CategoryId" asp-items="@(new SelectList(Model.Categories, "Id", "CategoryName"))">
+                    <option value="">Kategori Seçiniz</option>
+                </select>
+            </div>
+            <div class="col-md-6 field">
+                <label>Destinasyon <span class="req">*</span></label>
+                <select class="ctrl" asp-for="Tour.DestinationId" asp-items="@(new SelectList(Model.Destinations, "Id", "Name"))">
+                    <option value="">Destinasyon Seçiniz</option>
+                </select>
+            </div>
+            <div class="col-md-8 field">
+                <label>Tur Rotası</label>
+                <input class="ctrl" asp-for="Tour.Route" placeholder="Roma · Vatikan · Floransa · Pisa · Toskana">
+            </div>
+            <div class="col-md-4 field">
+                <label>Tur Tipi</label>
+                <select class="ctrl" asp-for="Tour.TourType" asp-items="@(new SelectList(Model.TourTypes, "Id", "Name"))">
+                    <option value="">Tur Tipi Seçiniz</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. FİYAT & KONTENJAN -->
+    <div class="sec">
+        <div class="sec-head">
+            <h2><span class="sec-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23" /><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" /></svg></span> Fiyat & Kontenjan</h2>
+            <p>Satış fiyatı, süre ve katılımcı limitlerini belirleyin.</p>
+        </div>
+        <div class="row g-3">
+            <div class="col-6 col-lg-3 field">
+                <label>Kişi Başı Fiyat <span class="req">*</span></label>
+                <div class="input-group-x"><input class="ctrl" asp-for="Tour.Price" inputmode="numeric" placeholder="42.500" style="padding-right:2.6rem"><span class="suffix">TL</span></div>
+            </div>
+            <div class="col-3 col-lg-2 field">
+                <label>Gün <span class="req">*</span></label>
+                <input class="ctrl" asp-for="Tour.Duration" type="number" min="1" placeholder="6">
+            </div>
+            <div class="col-3 col-lg-2 field">
+                <label>Gece</label>
+                <input class="ctrl" asp-for="Tour.Night" type="number" min="0" placeholder="5">
+            </div>
+            <div class="col-6 col-lg-2 field">
+                <label>Maks. Kontenjan</label>
+                <input class="ctrl" asp-for="Tour.GroupSize" type="number" min="1" placeholder="28">
+            </div>
+            <div class="col-6 col-lg-3 field">
+                <label>Min. Katılımcı</label>
+                <input class="ctrl" asp-for="Tour.MinParticipant" type="number" min="1" placeholder="12">
+            </div>
+        </div>
+        <div class="row g-3">
+            <div class="col-md-6 col-lg-3 field">
+                <label>Başlangıç Şehri</label>
+                <select class="ctrl" asp-for="Tour.DepartureCity" asp-items="@(new SelectList(Model.Cities, "Id", "Name"))">
+                    <option value="">Şehir Seçiniz</option>
+                </select>
+            </div>
+            <div class="col-md-6 col-lg-3 field">
+                <label>Ulaşım</label>
+                <select class="ctrl" asp-for="Tour.Transport" asp-items="@(new SelectList(Model.Transports, "Id", "Name"))"><option value="">Ulaşım Aracı Seçiniz</option></select>
+            </div>
+            <div class="col-md-6 col-lg-3 field">
+                <label>Konaklama</label>
+                <input class="ctrl" asp-for="Tour.Accommodation" placeholder="4 Yıldızlı Oteller">
+            </div>
+            <div class="col-md-6 col-lg-3 field">
+                <label>Rehber Bilgisi</label>
+                <select class="ctrl" asp-for="Tour.GuideLanguage" asp-items="@(new SelectList(Model.GuideLanguages, "Id", "Name"))">
+                    <option value="">Dil Seçiniz</option>
+                </select>
+            </div>
+            <div class="col-md-6 col-lg-3 field">
+                <label>Vize Bilgisi</label>
+                <select class="ctrl" asp-for="Tour.VisaInfo" asp-items="@(new SelectList(Model.VisaInfos, "Id", "Name"))">
+                    <option value="">Vize Türü Seçiniz</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. TUR TARİHLERİ -->
+    <div class="sec">
+        <div class="sec-head">
+            <h2><span class="sec-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" /></svg></span> Tur Tarihleri <span class="req">*</span></h2>
+            <p>Aynı tur için birden fazla kalkış tarihi ekleyebilirsiniz.</p>
+        </div>
+        <div id="dateList"></div>
+        <button class="btn-add" onclick="addDate()">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg>
+            Yeni Tarih Ekle
+        </button>
+    </div>
+
+    <!-- 4. GÜN GÜN PROGRAM -->
+    <div class="sec">
+        <div class="sec-head">
+            <h2><span class="sec-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6" /></svg></span> Gün Gün Tur Programı <span class="req">*</span></h2>
+            <p>Misafirlerin tur detay sayfasında göreceği günlük programı oluşturun.</p>
+        </div>
+        <div id="dayList"></div>
+        <button class="btn-add" onclick="addDay()">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg>
+            Yeni Gün Ekle
+        </button>
+    </div>
+
+    <!-- 5. HİZMETLER -->
+    <div class="sec">
+        <div class="sec-head">
+            <h2><span class="sec-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4" /><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" /></svg></span> Hizmetler & Öne Çıkanlar</h2>
+            <p>Fiyata dahil olan / olmayan hizmetleri ve turun öne çıkan özelliklerini yönetin.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-6">
+                <label style="font-size:.8rem;font-weight:600;color:var(--navy);margin-bottom:.6rem;display:block">Fiyata Dahil Olanlar</label>
+                <div id="incList"></div>
+                <button class="btn-add" onclick="addItem('incList','Yeni hizmet')">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg> Yeni Hizmet Ekle
+                </button>
+            </div>
+            <div class="col-lg-6">
+                <label style="font-size:.8rem;font-weight:600;color:var(--navy);margin-bottom:.6rem;display:block">Fiyata Dahil Olmayanlar</label>
+                <div id="excList"></div>
+                <button class="btn-add" onclick="addItem('excList','Yeni madde')">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg> Yeni Madde Ekle
+                </button>
+            </div>
+            <div class="col-12">
+                <label style="font-size:.8rem;font-weight:600;color:var(--navy);margin-bottom:.6rem;display:block">Turun Öne Çıkanları</label>
+                <div id="hlList"></div>
+                <button class="btn-add" onclick="addItem('hlList','Öne çıkan özellik')">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg> Öne Çıkan Özellik Ekle
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6. GÖRSELLER & YAYIN -->
+    <div class="sec">
+        <div class="sec-head">
+            <h2><span class="sec-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.5" /><polyline points="21 15 16 10 5 21" /></svg></span> Görseller & Yayın Ayarları</h2>
+            <p>Kapak görselini, galeriyi ve turun yayın durumunu belirleyin.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-6">
+                <label style="font-size:.8rem;font-weight:600;color:var(--navy);margin-bottom:.5rem;display:block">Ana Kapak Görseli</label>
+                <label class="upload" for="coverInput">
+                    <div class="uic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="17 8 12 3 7 8" /><line x1="12" y1="3" x2="12" y2="15" /></svg></div>
+                    <b>Ana tur görselini buraya sürükleyin veya seçin.</b>
+                    <span>JPG, PNG · Önerilen 1600x900</span>
+                </label>
+                <input type="file" id="coverInput" accept="image/*" hidden onchange="previewCover(this)">
+                <div class="cover-preview" id="coverPreview" style="display:none"><img id="coverImg" alt="Kapak önizleme"></div>
+            </div>
+            <div class="col-lg-6">
+                <label style="font-size:.8rem;font-weight:600;color:var(--navy);margin-bottom:.5rem;display:block">Galeri Görselleri</label>
+                <label class="upload" for="galleryInput">
+                    <div class="uic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.5" /><polyline points="21 15 16 10 5 21" /></svg></div>
+                    <b>Galeri görsellerini seçin.</b>
+                    <span>Tur galerisi için en fazla 8 görsel ekleyebilirsiniz.</span>
+                </label>
+                <input type="file" id="galleryInput" accept="image/*" multiple hidden onchange="previewGallery(this)">
+                <div class="previews" id="galleryPreviews"></div>
+            </div>
+
+            <div class="col-lg-7">
+                <label style="font-size:.8rem;font-weight:600;color:var(--navy);margin-bottom:.5rem;display:block">Tur Durumu</label>
+                <div class="status-pills">
+                    <label class="status-pill" data-status="Aktif"><input type="radio" asp-for="Tour.Status" value="Aktif"><b>Aktif</b><span>Sitede yayında</span></label>
+                    <label class="status-pill" data-status="Pasif"><input type="radio" asp-for="Tour.Status" value="Pasif"><b>Pasif</b><span>Gizli</span></label>
+                    <label class="status-pill sel" data-status="Taslak"><input type="radio" asp-for="Tour.Status" value="Taslak" checked><b>Taslak</b><span>Yayınlanmadı</span></label>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <label style="font-size:.8rem;font-weight:600;color:var(--navy);margin-bottom:.2rem;display:block">Rozetler</label>
+                <div class="switch-row">
+                    <div class="sl"><b>Ana sayfada öne çıkar</b><span>Öne çıkan tur</span></div>
+                    <div class="form-check form-switch m-0"><input class="form-check-input" type="checkbox" role="switch" asp-for="Tour.IsFeatured"></div>
+                </div>
+                <div class="switch-row">
+                    <div class="sl"><b>Çok Satan etiketi göster</b><span>"Çok Satan" rozeti</span></div>
+                    <div class="form-check form-switch m-0"><input class="form-check-input" type="checkbox" role="switch" asp-for="Tour.IsBest" onchange="oneBadge(this,'swNew')"></div>
+                </div>
+                <div class="switch-row">
+                    <div class="sl"><b>Yeni etiketi göster</b><span>"Yeni" rozeti</span></div>
+                    <div class="form-check form-switch m-0"><input class="form-check-input" type="checkbox" role="switch" asp-for="Tour.IsNew" onchange="oneBadge(this,'swBest')"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ACTION BAR -->
+    <div class="action-bar">
+        <div class="saved" id="savedInfo">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
+            Son kaydedilme: Henüz kaydedilmedi
+        </div>
+        <div class="btns">
+            <a href="admin-tours.html" class="btn-ghost">İptal</a>
+            <button class="btn-navy" onclick="saveDraft()">Taslak Kaydet</button>
+            <button class="btn-teal" onclick="publish()">Turu Yayınla</button>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast-ok" id="toast">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+        <span id="toastMsg">Kaydedildi.</span>
+    </div>
+</form>
+
+
+
