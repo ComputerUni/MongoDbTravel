@@ -190,14 +190,15 @@
 
         /* ---------- TUR TARİHLERİ ---------- */
         const dateList=document.getElementById("dateList");
-        function dateRowHTML(index = 0, start="", end="", cap="", status="Aktif"){
+        function dateRowHTML(start="", end="", cap="", status="Aktif"){
+            const index = dateList.querySelectorAll(".drow").length;
           return `
           <div class="drow">
             <div class="field"><label>Başlangıç Tarihi</label><input type="date" class="ctrl d-start" name="Tour.Dates[${index}].StartDate" value="${start}" /></div>
             <div class="field"><label>Bitiş Tarihi</label><input type="date" class="ctrl d-end" name="Tour.Dates[${index}].EndDate" value="${end}" /></div>
             <div class="field" style="max-width:120px"><label>Kontenjan</label><input type="number" min="1" class="ctrl d-cap" name="Tour.Dates[${index}].Quota" value="${cap}" placeholder="28"></div>
             <div class="field" style="max-width:130px"><label>Durum</label>
-              <select class="ctrl d-status" name="Tour.Dates[${index}].Status"><option ${status==='Aktif'?'selected':''}>Aktif</option><option ${status==='Pasif'?'selected':''}>Pasif</option></select>
+              <select class="ctrl d-status" name="Tour.Dates[${index}].IsActive"><option ${status==='Aktif'?'selected':''}>Aktif</option><option ${status==='Pasif'?'selected':''}>Pasif</option></select>
             </div>
             <button class="del-mini" onclick="removeRow(this,'.drow')" aria-label="Sil">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>
@@ -233,7 +234,7 @@
                 <div class="row g-2">
                   <div class="col-md-4 field" style="margin-bottom:0"><label>Konaklama</label><input class="ctrl" name="Tour.DayPrograms[${index}].Accommodation" value="${acc}" placeholder="Roma" /></div>
                   <div class="col-md-4 field" style="margin-bottom:0"><label>Ulaşım</label><input class="ctrl" name="Tour.DayPrograms[${index}].Transport" value="${trans}" placeholder="Uçak + Transfer" /></div>
-                  <div class="col-md-4 field" style="margin-bottom:0"><label>Öğün</label><input class="ctrl" name="Tour.DayPrograms[${index}].Meal" value="${meal}" placeholder="Kahvaltı" /></div>
+                  <div class="col-md-4 field" style="margin-bottom:0"><label>Öğün</label><input class="ctrl" name="Tour.DayPrograms[${index}].Meals" value="${meal}" placeholder="Kahvaltı" /></div>
                 </div>
               </div>
             </div>
@@ -281,13 +282,23 @@
         // })();
 
         /* ---------- DİNAMİK LİSTELER ---------- */
-        function itemHTML(ph,val=""){
+        function itemHTML(namePrefix, index, ph, val=""){
           return `<div class="litem">
-            <input class="ctrl" placeholder="${ph}" value="${val}">
+            <input class="ctrl" name="${namePrefix}[${index}]" placeholder="${ph}" value="${val}">
             <button class="del-mini" onclick="removeRow(this,'.litem')" aria-label="Sil"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg></button>
           </div>`;
         }
-        function addItem(listId,ph){ document.getElementById(listId).insertAdjacentHTML("beforeend", itemHTML(ph)); }
+        function addItem(listId,ph){ 
+            const container = document.getElementById(listId);
+            let prefix = "";
+            if(listId == 'incList') prefix = "Tour.Included";
+            else if(listId == 'excList') prefix = "Tour.NotIncluded";
+            else if(listId == 'hlList') prefix = "Tour.Features";
+
+            const index = container.querySelectorAll('.litem').length;
+
+            container.insertAdjacentHTML('beforeend', itemHTML(prefix, index, ph));
+        }
         function removeRow(btn,sel){ btn.closest(sel).remove(); if(sel==='.drow') refreshDateDelState(); }
 
       

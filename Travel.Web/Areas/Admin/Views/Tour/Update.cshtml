@@ -1,8 +1,13 @@
-﻿@model CreateTourViewModel
+﻿@model UpdateTourViewModel
 
 
-<form asp-action="Create" asp-controller="Tour" asp-area="Admin" method="post" enctype="multipart/form-data">
-
+<form asp-action="Update" asp-controller="Tour" asp-area="Admin" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="Tour.ExistingCoverImage" />
+    <input type="hidden" asp-for="Tour.Id" />
+    @for (int i = 0; i < Model.Tour.ExistingGallery.Count; i++)
+    {
+        <input type="hidden" name="Tour.ExistingGallery[@i]" value="@Model.Tour.ExistingGallery[i]" />
+    }
     <div class="crumb"><a href="admin-dashboard.html">Dashboard</a> / <a href="/Admin/Tour/Index">Turlar</a> / <span class="cur">Yeni Tur Ekle</span></div>
     <div class="page-intro">
         <div>
@@ -195,6 +200,18 @@
                     <span>JPG, PNG · Önerilen 1600x900</span>
                 </label>
                 <input type="file" id="coverInput" name="Tour.CoverImage" accept="image/*" hidden onchange="previewCover(this)">
+                @if (!string.IsNullOrEmpty(Model.Tour.ExistingCoverImage))
+                {
+                    <div class="cover-preview" style="display:block">
+                        <img id="coverImg" src="@Model.Tour.ExistingCoverImage" alt="Mevcut kapak">
+                    </div>
+                }
+                else
+                {
+                    <div class="cover-preview" id="coverPreview" style="display:none">
+                        <img id="coverImg" alt="Kapak önizleme">
+                    </div>
+                }
                 <div class="cover-preview" id="coverPreview" style="display:none"><img id="coverImg" alt="Kapak önizleme"></div>
             </div>
             <div class="col-lg-6">
@@ -204,8 +221,17 @@
                     <b>Galeri görsellerini seçin.</b>
                     <span>Tur galerisi için en fazla 8 görsel ekleyebilirsiniz.</span>
                 </label>
-                <input type="file" name="Tour.Gallery"  id="galleryInput" accept="image/*" multiple hidden onchange="previewGallery(this)">
-                <div class="previews" id="galleryPreviews"></div>
+                <input type="file" name="Tour.Gallery" id="galleryInput" accept="image/*" multiple hidden onchange="previewGallery(this)">
+
+                <div class="previews" id="galleryPreviews">
+                    @if (Model.Tour.ExistingGallery != null)
+                    {
+                        foreach (var img in Model.Tour.ExistingGallery)
+                        {
+                            <img class="thumb" src="@img" alt="Galeri görseli" style="width:60px; height:60px; object-fit:cover; border-radius:6px; margin-right:5px;" />
+                        }
+                    }
+                </div>
             </div>
 
             <div class="col-lg-7">
@@ -240,11 +266,11 @@
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
             Son kaydedilme: Henüz kaydedilmedi
         </div>
-       <div class="btns">
-    <a href="/Admin/Tour/Index" class="btn-ghost">İptal</a>
-    <button type="button" class="btn-navy" onclick="saveDraft()">Taslak Kaydet</button>
-    <button type="submit" class="btn-teal">Turu Yayınla</button>
-</div>
+        <div class="btns">
+            <a href="/Admin/Tour/Index" class="btn-ghost">İptal</a>
+            <button type="button" class="btn-navy" onclick="saveDraft()">Taslak Kaydet</button>
+            <button type="submit" class="btn-teal">Turu Yayınla</button>
+        </div>
     </div>
 
     <!-- TOAST -->
@@ -254,5 +280,5 @@
     </div>
 </form>
 
-
+@await Component.InvokeAsync("_AdminTourUpdateScript")
 

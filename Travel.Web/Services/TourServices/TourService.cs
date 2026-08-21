@@ -34,6 +34,20 @@ namespace Travel.Web.Services.TourServices
         public async Task CreateAsync(CreateTourDto createTourDto)
         {
             var tour = _mapper.Map<Tour>(createTourDto);
+            if(createTourDto.CoverImage != null)
+            {
+                tour.CoverImage = await SaveFileAsync(createTourDto.CoverImage);
+            }
+
+            if(createTourDto.Gallery != null && createTourDto.Gallery.Any())
+            {
+                tour.Gallery = new List<string>();
+                foreach(var file in createTourDto.Gallery)
+                {
+                    tour.Gallery.Add(await SaveFileAsync(file));
+                }
+            }
+
             await _tourCollection.InsertOneAsync(tour);
         }
 
@@ -45,7 +59,16 @@ namespace Travel.Web.Services.TourServices
         public async Task<List<ResultTourDto>> GetAllAsync()
         {
             var tours = await _tourCollection.AsQueryable().ToListAsync();
-            return _mapper.Map<List<ResultTourDto>>(tours);
+            var categories = await _categoryService.GetAllAsync();
+
+            var dtos = _mapper.Map<List<ResultTourDto>>(tours);
+
+            foreach(var dto in dtos)
+            {
+                dto.CategoryName = categories.FirstOrDefault(c => c.Id == dto.CategoryId)?.CategoryName ?? "-";
+            }
+
+            return dtos;
         }
 
         public async Task<ResultTourDto> GetByIdAsync(string id)
@@ -57,7 +80,37 @@ namespace Travel.Web.Services.TourServices
         public async Task UpdateAsync(UpdateTourDto updateTourDto)
         {
             var tour = _mapper.Map<Tour>(updateTourDto);
+
+            tour.CoverImage = updateTourDto.CoverImage != null ? await SaveFileAsync(updateTourDto.CoverImage) : updateTourDto.ExistingCoverImage;
+
+            if(updateTourDto.Gallery != null && updateTourDto.Gallery.Any())
+            {
+                tour.Gallery = new List<string>();
+                foreach(var file in updateTourDto.Gallery)
+                {
+                    tour.Gallery.Add(await SaveFileAsync(file));
+                }
+            }
+            else
+            {
+                tour.Gallery = updateTourDto.ExistingGallery;
+            }
+
             await _tourCollection.FindOneAndReplaceAsync(x => x.Id == tour.Id, tour);
+        }
+
+        private async Task<string> SaveFileAsync(IFormFile file)
+        {
+            var folderPath = Path.Combine("wwwroot", "uploads", "tours");
+            Directory.CreateDirectory(folderPath);
+
+            var fileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
+            var fullPath = Path.Combine(folderPath, fileName);
+
+            using var stream = new FileStream(fullPath, FileMode.Create);
+            await file.CopyToAsync(stream);
+
+            return "/uploads/tours/" + fileName;
         }
     }
 }

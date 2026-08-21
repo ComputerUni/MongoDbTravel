@@ -67,3 +67,12 @@ wwwroot\theme\6 admin-dashboard.html
 wwwroot\theme\7 admin-tour-create.html
 wwwroot\theme\8 admin-tours.html
 wwwroot\theme\Travelio_AspNetCore_MongoDB_Case.pdf
+wwwroot\uploads\tours\11ecb752-b657-42d3-b13f-6848a0e12549.jpg
+wwwroot\uploads\tours\1a8eb2c1-9a08-4eca-9a8e-9f93c213d4d6.png
+wwwroot\uploads\tours\26c949d7-a59e-49b7-acdf-ce45cd4ee5ca.jpg
+wwwroot\uploads\tours\5786d965-24bd-4808-be59-8fe9f968fddf.png
+wwwroot\uploads\tours\613523e3-2a5c-4579-83b7-ac390dbfd117.jpg
+wwwroot\uploads\tours\6c47f2da-bef3-4115-ac08-b3d41d35d933.jpg
+wwwroot\uploads\tours\990e5dec-d8b0-4a6a-9de3-d9af7f05139f.jpg
+wwwroot\uploads\tours\ca487677-72a7-4a1e-9e4d-7c21076dd54b.jpeg
+wwwroot\uploads\tours\d591740a-8249-4298-977a-e2eddc4354bc.jpg

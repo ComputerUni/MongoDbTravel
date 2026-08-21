@@ -21,20 +21,20 @@ namespace Travel.Web.DTOs.TourDtos
         public bool IsFeatured { get; set; }
         public bool IsBest { get; set; }
         public bool IsNew { get; set; }
-        public string Status { get; set; }
-        public List<string> Included { get; set; }
-        public List<string> NotIncluded { get; set; }
+        public List<string> Included { get; set; } = new();
+        public List<string> NotIncluded { get; set; } = new();
+
         public decimal Price { get; set; }
-        public string Country { get; set; }
-        public string City { get; set; }
+        //public string Country { get; set; }
+        //public string City { get; set; }
         public string CategoryId { get; set; }
         public string DestinationId { get; set; }
         public int Duration { get; set; }
-        public string CoverImage { get; set; }
-        public bool IsActive { get; set; }
-        public List<string> Gallery { get; set; }
-        public List<string> Features { get; set; }
-        public List<TourDateDto> Dates { get; set; }
-        public List<DayProgramDto> DayPrograms { get; set; }
+        public IFormFile? CoverImage { get; set; }
+        public string? IsActive { get; set; }
+        public List<IFormFile> Gallery { get; set; } = new();
+        public List<string> Features { get; set; } = new();
+        public List<TourDateDto> Dates { get; set; } = new();
+        public List<DayProgramDto> DayPrograms { get; set; } = new();
     }
 }

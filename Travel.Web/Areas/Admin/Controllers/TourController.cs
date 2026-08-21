@@ -31,7 +31,7 @@ namespace Travel.Web.Areas.Admin.Controllers
                 Cities = await _lookupService.GetByTypeAsync(((int)LookupType.City).ToString()),
                 Transports = await _lookupService.GetByTypeAsync(((int)LookupType.Transport).ToString()),
                 GuideLanguages = await _lookupService.GetByTypeAsync(((int)LookupType.GuideLanguage).ToString()),
-                VisaInfos = await _lookupService.GetByTypeAsync(((int)LookupType.VisaInfo).ToString())  
+                VisaInfos = await _lookupService.GetByTypeAsync(((int)LookupType.VisaInfo).ToString())
             };
             return View(viewModel);
         }
@@ -46,8 +46,8 @@ namespace Travel.Web.Areas.Admin.Controllers
                 createTourViewModel.Transports = await _lookupService.GetByTypeAsync("Transport");
                 createTourViewModel.GuideLanguages = await _lookupService.GetByTypeAsync("GuideLanguage");
                 createTourViewModel.VisaInfos = await _lookupService.GetByTypeAsync("VisaInfo");
-                createTourViewModel.Categories = await _categoryService.GetAllAsync();     
-                createTourViewModel.Destinations = await _destinationService.GetAllAsync(); 
+                createTourViewModel.Categories = await _categoryService.GetAllAsync();
+                createTourViewModel.Destinations = await _destinationService.GetAllAsync();
                 return View(createTourViewModel);
             }
             await _tourService.CreateAsync(createTourViewModel.Tour);
@@ -59,18 +59,42 @@ namespace Travel.Web.Areas.Admin.Controllers
         {
             var tour = await _tourService.GetByIdAsync(id);
             var updateTour = _mapper.Map<UpdateTourDto>(tour);
-            return View(updateTour);
+
+            updateTour.ExistingCoverImage = tour.CoverImage;
+            updateTour.ExistingGallery = tour.Gallery;
+
+            var viewModel = new UpdateTourViewModel
+            {
+                Tour = updateTour,
+                Categories = await _categoryService.GetAllAsync(),
+                Destinations = await _destinationService.GetAllAsync(),
+                TourTypes = await _lookupService.GetByTypeAsync(((int)LookupType.TourType).ToString()),
+                Cities = await _lookupService.GetByTypeAsync(((int)LookupType.City).ToString()),
+                Transports = await _lookupService.GetByTypeAsync(((int)LookupType.Transport).ToString()),
+                GuideLanguages = await _lookupService.GetByTypeAsync(((int)LookupType.GuideLanguage).ToString()),
+                VisaInfos = await _lookupService.GetByTypeAsync(((int)LookupType.VisaInfo).ToString())
+            };
+
+            return View(viewModel);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Update(UpdateTourDto updateTourDto)
+        public async Task<IActionResult> Update(UpdateTourViewModel updateTourViewModel)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                return View(updateTourDto);
+                updateTourViewModel.TourTypes = await _lookupService.GetByTypeAsync("TourType");
+                updateTourViewModel.Cities = await _lookupService.GetByTypeAsync("City");
+                updateTourViewModel.Transports = await _lookupService.GetByTypeAsync("Transport");
+                updateTourViewModel.GuideLanguages = await _lookupService.GetByTypeAsync("GuideLanguage");
+                updateTourViewModel.VisaInfos = await _lookupService.GetByTypeAsync("VisaInfo");
+                updateTourViewModel.Categories = await _categoryService.GetAllAsync();
+                updateTourViewModel.Destinations = await _destinationService.GetAllAsync();
+
+                return View(updateTourViewModel);
             }
 
-            await _tourService.UpdateAsync(updateTourDto);
+            await _tourService.UpdateAsync(updateTourViewModel.Tour);
             return RedirectToAction("Index");
         }
 

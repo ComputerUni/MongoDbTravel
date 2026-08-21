@@ -5,36 +5,6 @@
         document.getElementById("sbOverlay").classList.toggle("show", show);
     }
 
-    const IMG = {
-        roma: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=160&q=80",
-        paris: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=160&q=80",
-        amsterdam: "https://images.unsplash.com/photo-1534351590666-13e3e96b5017?auto=format&fit=crop&w=160&q=80",
-        prag: "https://images.unsplash.com/photo-1541849546-216549ae216d?auto=format&fit=crop&w=160&q=80",
-        barcelona: "https://images.unsplash.com/photo-1583422409516-2895a77efded?auto=format&fit=crop&w=160&q=80",
-        swiss: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?auto=format&fit=crop&w=160&q=80",
-        norway: "https://images.unsplash.com/photo-1483347756197-71ef80e95f73?auto=format&fit=crop&w=160&q=80",
-        tokyo: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=160&q=80",
-        lisbon: "https://images.unsplash.com/photo-1585208798174-6cedd86e019a?auto=format&fit=crop&w=160&q=80",
-        alsace: "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=160&q=80",
-        amalfi: "https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=160&q=80",
-        salzburg: "https://images.unsplash.com/photo-1516466723877-e4ec1d736c8a?auto=format&fit=crop&w=160&q=80"
-    };
-
-    let TOURS = [
-        { id: 1, title: "Roma & Toskana Keşfi", country: "İtalya", cat: "Kültür Turu", dur: "6 Gün / 5 Gece", price: 42500, date: "12 Ekim 2026", ds: "2026-10-12", cap: 28, res: 21, status: "Aktif", img: IMG.roma },
-        { id: 2, title: "Paris & Disneyland", country: "Fransa", cat: "Şehir Turu", dur: "5 Gün / 4 Gece", price: 38900, date: "18 Eylül 2026", ds: "2026-09-18", cap: 32, res: 29, status: "Aktif", img: IMG.paris },
-        { id: 3, title: "Amsterdam Kanalları", country: "Hollanda", cat: "Şehir Turu", dur: "4 Gün / 3 Gece", price: 29900, date: "5 Ekim 2026", ds: "2026-10-05", cap: 24, res: 18, status: "Aktif", img: IMG.amsterdam },
-        { id: 4, title: "Prag & Viyana Kültür Turu", country: "Çekya · Avusturya", cat: "Kültür Turu", dur: "6 Gün / 5 Gece", price: 36400, date: "3 Ekim 2026", ds: "2026-10-03", cap: 30, res: 26, status: "Aktif", img: IMG.prag },
-        { id: 5, title: "Barselona Akdeniz Turu", country: "İspanya", cat: "Şehir Turu", dur: "5 Gün / 4 Gece", price: 34700, date: "25 Eylül 2026", ds: "2026-09-25", cap: 28, res: 24, status: "Aktif", img: IMG.barcelona },
-        { id: 6, title: "İsviçre Alpleri", country: "İsviçre", cat: "Doğa & Macera", dur: "7 Gün / 6 Gece", price: 58200, date: "21 Eylül 2026", ds: "2026-09-21", cap: 22, res: 20, status: "Aktif", img: IMG.swiss },
-        { id: 7, title: "Kuzey Işıkları Norveç", country: "Norveç", cat: "Kış & Kuzey Işıkları", dur: "6 Gün / 5 Gece", price: 64900, date: "8 Ocak 2027", ds: "2027-01-08", cap: 20, res: 17, status: "Aktif", img: IMG.norway },
-        { id: 8, title: "Tokyo & Kyoto", country: "Japonya", cat: "Uzak Doğu", dur: "8 Gün / 7 Gece", price: 79900, date: "7 Kasım 2026", ds: "2026-11-07", cap: 24, res: 16, status: "Aktif", img: IMG.tokyo },
-        { id: 9, title: "Lizbon & Porto", country: "Portekiz", cat: "Gastronomi", dur: "6 Gün / 5 Gece", price: 39500, date: "14 Kasım 2026", ds: "2026-11-14", cap: 26, res: 11, status: "Aktif", img: IMG.lisbon },
-        { id: 10, title: "Paris & Alsace", country: "Fransa", cat: "Romantik Rota", dur: "7 Gün / 6 Gece", price: 47900, date: "12 Aralık 2026", ds: "2026-12-12", cap: 24, res: 9, status: "Taslak", img: IMG.alsace },
-        { id: 11, title: "Amalfi & Napoli", country: "İtalya", cat: "Romantik Rota", dur: "6 Gün / 5 Gece", price: 49500, date: "19 Ekim 2026", ds: "2026-10-19", cap: 24, res: 22, status: "Aktif", img: IMG.amalfi },
-        { id: 12, title: "Salzburg & Hallstatt", country: "Avusturya", cat: "Doğa & Macera", dur: "5 Gün / 4 Gece", price: 44900, date: "26 Kasım 2026", ds: "2026-11-26", cap: 26, res: 0, status: "Pasif", img: IMG.salzburg }
-    ];
-
     let sortKey = null, sortDir = 1;
     const fmt = n => n.toLocaleString("tr-TR");
     const statusClass = { Aktif: "b-ok", Pasif: "b-pasif", Taslak: "b-taslak" };

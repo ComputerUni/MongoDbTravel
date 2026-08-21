@@ -1,12 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Travel.Web.Services.TourServices;
 
 namespace Travel.Web.Areas.Admin.ViewComponents.AdminTourViewComponent
 {
-    public class _AdminTourTableViewComponent : ViewComponent
+    public class _AdminTourTableViewComponent(ITourService _tourService) : ViewComponent
     {
-        public IViewComponentResult Invoke()
+        public async Task<IViewComponentResult> InvokeAsync()
         {
-            return View();
+            var tours = await _tourService.GetAllAsync();
+            return View(tours);
         }
     }
 }

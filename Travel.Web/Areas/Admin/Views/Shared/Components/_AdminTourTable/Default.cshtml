@@ -20,7 +20,57 @@
             <tbody id="tourRows">
                 @foreach(var tour in Model)
                 {
-                    
+                    <tr>
+                        <td><input type="checkbox" class="chk row-chk" value="@tour.Id" /></td>
+                        <td>
+                            <div style="display:flex; align-items:center; gap:10px;">
+                                @if (!string.IsNullOrEmpty(tour.CoverImage))
+                                {
+                                    <img src="@tour.CoverImage" alt="@tour.Name" style="width:36px; height:36px; border-radius:6px; object-fit:cover;" />
+                                }
+                                <div>
+                                    <b>@tour.Name</b>
+                                    <span style="display:block; font-size:11px; color:#6a7c88;">@tour.Route</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>@tour.CategoryName</td>
+                        <td>@tour.Duration gün / @tour.Night gece</td>
+                        <td><span style="font-weight:600; color:var(--navy);">@tour.Price.ToString("N0") TL</span></td>
+                            <td>
+                            @if(tour.Dates != null && tour.Dates.Any())
+                            {
+                                @tour.Dates.Min(d => d.StartDate).ToString("dd MMM yyyy", new System.Globalization.CultureInfo("tr-TR"))
+                            }
+                            else
+                            {
+                                <span style="color:#999;">Tarih Yok</span>
+                            }
+                        </td>
+                        <td>@tour.GroupSize kişi</td>
+                        <td>-</td>
+                        <td>
+                            @if (tour.IsActive == "Aktif")
+                            {
+                                <span class="badge-x b-ok">Aktif</span>
+                            }
+                            else if (tour.IsActive == "Pasif")
+                            {
+                                <span class="badge-x b-cancel">Pasif</span>
+                            }
+                            else
+                            {
+                                <span class="badge-x b-wait">Taslak</span>
+                            }
+                        </td>
+                
+                        <td>
+                            <div style="display:flex; gap:6px;">
+                                <a href="@Url.Action("Update", "Tour", new { id = tour.Id, area = "Admin" })" class="btn-mini" title="Düzenle">✏️</a>
+                                <a href="@Url.Action("Delete", "Tour", new { id = tour.Id, area = "Admin" })" class="btn-mini text-danger" title="Sil" onclick="return confirm('Bu turu silmek istediğinize emin misiniz?');">🗑️</a>
+                            </div>
+                        </td>
+                    </tr>
                 }
             </tbody>
         </table>
