@@ -1,0 +1,277 @@
+﻿@model List<ResultTourDto>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    /* ---------- DATA ---------- */
+    const TOURS = @Html.Raw(Json.Serialize(Model.Select(t => new
+        {
+            id = t.Id,
+            title = t.Name,
+            country = t.DestinationName,
+            ctry = t.DestinationName.ToLower(),
+            dur = t.Duration,
+            durLabel = t.Duration + "Gün",
+            price = t.Price,
+            cat = t.CategoryName,
+            catLabel = t.CategoryName,
+            badge = t.IsFeatured ? "Popüler" : "",
+            img = t.CoverImage ?? "",
+            rating = 0.0,
+            reviews = 0
+        })));
+  
+
+    /* ---------- FILTER OPTIONS ---------- */
+    const DEST_OPTS = [
+        { key: "fransa", label: "Fransa" }, { key: "italya", label: "İtalya" }, { key: "ispanya", label: "İspanya" },
+        { key: "hollanda", label: "Hollanda" }, { key: "avusturya", label: "Avusturya" }, { key: "isvicre", label: "İsviçre" },
+        { key: "norvec", label: "Norveç" }, { key: "japonya", label: "Japonya" }, { key: "portekiz", label: "Portekiz" }
+    ];
+    const DUR_OPTS = [
+        { key: "1-3", label: "1 - 3 Gün", min: 1, max: 3 },
+        { key: "4-5", label: "4 - 5 Gün", min: 4, max: 5 },
+        { key: "6-7", label: "6 - 7 Gün", min: 6, max: 7 },
+        { key: "8+", label: "8 Gün ve Üzeri", min: 8, max: 99 }
+    ];
+    const PRICE_OPTS = [
+        { key: "p1", label: "0 - 25.000 ₺", min: 0, max: 25000 },
+        { key: "p2", label: "25.000 - 40.000 ₺", min: 25000, max: 40000 },
+        { key: "p3", label: "40.000 - 60.000 ₺", min: 40000, max: 60000 },
+        { key: "p4", label: "60.000 ₺ ve üzeri", min: 60000, max: 9999999 }
+    ];
+    const TYPE_OPTS = ["Kültür Turları", "Şehir Turları", "Doğa & Macera", "Romantik Rotalar", "Gastronomi", "Kış & Kuzey Işıkları", "Uzak Doğu"];
+    const RATING_OPTS = [
+        { key: "r45", label: "4.5 ve üzeri", val: 4.5, stars: 5 },
+        { key: "r40", label: "4.0 ve üzeri", val: 4.0, stars: 4 },
+        { key: "r35", label: "3.5 ve üzeri", val: 3.5, stars: 3 }
+    ];
+
+    /* ---------- STATE ---------- */
+    const state = { q: "", dest: [], dur: [], price: [], type: [], rating: null, sort: "onerilen" };
+
+    /* ---------- BUILD SIDEBAR HTML ---------- */
+    function destCount(key) { return TOURS.filter(t => t.ctry === key).length; }
+    function starsMarkup(n) { let s = ""; for (let i = 1; i <= 5; i++) { s += i <= n ? "★" : "<span class='off'>★</span>"; } return s; }
+
+    function sidebarHTML() {
+        return `
+                      <h2>Turları Filtrele</h2>
+                      <p class="filter-sub">Sana en uygun rotayı bulmak için daralt.</p>
+
+                      <div class="filter-group">
+                        <h3>Tur Ara</h3>
+                        <div class="search-wrap">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                          <input type="text" class="f-search" placeholder="Tur veya destinasyon ara" />
+                        </div>
+                      </div>
+
+                      <div class="filter-group">
+                        <h3>Destinasyon</h3>
+                        ${DEST_OPTS.map(o => `
+                          <label class="fcheck">
+                            <span class="lbl"><input type="checkbox" class="f-dest" value="${o.key}"> ${o.label}</span>
+                            <span class="cnt">(${destCount(o.key)})</span>
+                          </label>`).join("")}
+                      </div>
+
+                      <div class="filter-group">
+                        <h3>Tur Süresi</h3>
+                        ${DUR_OPTS.map(o => `
+                          <label class="fcheck">
+                            <span class="lbl"><input type="checkbox" class="f-dur" value="${o.key}"> ${o.label}</span>
+                          </label>`).join("")}
+                      </div>
+
+                      <div class="filter-group">
+                        <h3>Fiyat Aralığı</h3>
+                        ${PRICE_OPTS.map(o => `
+                          <label class="fcheck">
+                            <span class="lbl"><input type="checkbox" class="f-price" value="${o.key}"> ${o.label}</span>
+                          </label>`).join("")}
+                      </div>
+
+                      <div class="filter-group">
+                        <h3>Tur Tipi</h3>
+                        ${TYPE_OPTS.map(o => `
+                          <label class="fcheck">
+                            <span class="lbl"><input type="checkbox" class="f-type" value="${o}"> ${o}</span>
+                          </label>`).join("")}
+                      </div>
+
+                      <div class="filter-group">
+                        <h3>Değerlendirme</h3>
+                        ${RATING_OPTS.map(o => `
+                          <label class="fcheck">
+                            <span class="lbl"><input type="radio" name="f-rating" class="f-rating" value="${o.key}"> <span class="stars-opt">${starsMarkup(o.stars)}</span></span>
+                            <span class="cnt">${o.label}</span>
+                          </label>`).join("")}
+                      </div>
+
+                      <div class="filter-actions">
+                        <button class="btn-teal" onclick="applyFromButton()">Filtreleri Uygula</button>
+                        <button class="clear-link" onclick="clearFilters()">Filtreleri Temizle</button>
+                      </div>`;
+    }
+
+    document.getElementById("filterCardDesktop").innerHTML = sidebarHTML();
+    document.getElementById("filterCardMobile").innerHTML = sidebarHTML();
+
+    /* ---------- READ INPUTS -> STATE ---------- */
+    function syncState() {
+        const q = document.querySelector(".f-search")?.value.trim().toLowerCase() || "";
+        state.q = q;
+        state.dest = [...document.querySelectorAll(".f-dest:checked")].map(i => i.value);
+        state.dur = [...document.querySelectorAll(".f-dur:checked")].map(i => i.value);
+        state.price = [...document.querySelectorAll(".f-price:checked")].map(i => i.value);
+        state.type = [...document.querySelectorAll(".f-type:checked")].map(i => i.value);
+        const r = document.querySelector(".f-rating:checked");
+        state.rating = r ? r.value : null;
+        // de-dupe across desktop+mobile: use Set
+        state.dest = [...new Set(state.dest)];
+        state.dur = [...new Set(state.dur)];
+        state.price = [...new Set(state.price)];
+        state.type = [...new Set(state.type)];
+    }
+
+    /* ---------- FILTER + SORT ---------- */
+    function getFiltered() {
+        let list = TOURS.filter(t => {
+            if (state.q) {
+                const hay = (t.title + " " + t.country).toLowerCase();
+                if (!hay.includes(state.q)) return false;
+            }
+            if (state.dest.length && !state.dest.includes(t.ctry)) return false;
+            if (state.dur.length) {
+                const ok = state.dur.some(k => { const o = DUR_OPTS.find(d => d.key === k); return t.dur >= o.min && t.dur <= o.max; });
+                if (!ok) return false;
+            }
+            if (state.price.length) {
+                const ok = state.price.some(k => { const o = PRICE_OPTS.find(p => p.key === k); return t.price >= o.min && t.price < o.max; });
+                if (!ok) return false;
+            }
+            if (state.type.length && !state.type.includes(t.cat)) return false;
+            if (state.rating) {
+                const o = RATING_OPTS.find(r => r.key === state.rating);
+                if (t.rating < o.val) return false;
+            }
+            return true;
+        });
+
+        switch (state.sort) {
+            case "puan": list.sort((a, b) => b.rating - a.rating); break;
+            case "fiyat-artan": list.sort((a, b) => a.price - b.price); break;
+            case "fiyat-azalan": list.sort((a, b) => b.price - a.price); break;
+            case "yeni": list.sort((a, b) => b.added - a.added); break;
+            default: break;
+        }
+        return list;
+    }
+
+    /* ---------- RENDER CARDS ---------- */
+    function fmt(n) { return n.toLocaleString("tr-TR"); }
+
+    function cardHTML(t) {
+        return `
+                      <div class="col-md-6">
+                        <article class="tour-card">
+                          <div class="tour-media">
+                            <img src="${t.img}" alt="${t.title}" loading="lazy" />
+                            ${t.badge ? `<span class="tour-badge">${t.badge}</span>` : ''}
+                            <button class="fav" aria-label="Favorilere ekle" onclick="this.classList.toggle('on')">
+                              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+                            </button>
+                          </div>
+                          <div class="tour-body">
+                            <div class="tour-topline">
+                              <span class="tour-country">${t.country}</span>
+                              <span class="tour-cat">${t.catLabel}</span>
+                            </div>
+                            <h3 class="tour-title">${t.title}</h3>
+                            <div class="tour-meta">
+                              <span>🗓️ ${t.durLabel}</span>
+                              <span class="rating"><span class="star">★</span> ${t.rating.toFixed(1)} <span style="color:var(--muted);font-weight:400">(${fmt(t.reviews)})</span></span>
+                            </div>
+                            <div class="tour-foot">
+                              <div class="price"><small>Kişi başı</small><b>${fmt(t.price)} <span>TL</span></b></div>
+                              <button class="btn-incele">Turu İncele</button>
+                            </div>
+                          </div>
+                        </article>
+                      </div>`;
+    }
+
+    /* ---------- ACTIVE CHIPS ---------- */
+    function chipsHTML() {
+        const chips = [];
+        state.dest.forEach(k => { const o = DEST_OPTS.find(d => d.key === k); chips.push({ t: o.label, kind: "dest", v: k }); });
+        state.dur.forEach(k => { const o = DUR_OPTS.find(d => d.key === k); chips.push({ t: o.label, kind: "dur", v: k }); });
+        state.price.forEach(k => { const o = PRICE_OPTS.find(p => p.key === k); chips.push({ t: o.label, kind: "price", v: k }); });
+        state.type.forEach(v => chips.push({ t: v, kind: "type", v }));
+        if (state.rating) { const o = RATING_OPTS.find(r => r.key === state.rating); chips.push({ t: o.label + " ★", kind: "rating", v: state.rating }); }
+        if (state.q) chips.push({ t: '"' + state.q + '"', kind: "q", v: state.q });
+        return chips.map(c => `<span class="chip" onclick="removeChip('${c.kind}','${(c.v + '').replace(/'/g, "")}')">${c.t} <span class="x">×</span></span>`).join("");
+    }
+
+    function removeChip(kind, v) {
+        const uncheck = (sel, val) => document.querySelectorAll(sel).forEach(i => { if (i.value === val) i.checked = false; });
+        if (kind === "dest") uncheck(".f-dest", v);
+        if (kind === "dur") uncheck(".f-dur", v);
+        if (kind === "price") uncheck(".f-price", v);
+        if (kind === "type") uncheck(".f-type", v);
+        if (kind === "rating") document.querySelectorAll(".f-rating").forEach(i => i.checked = false);
+        if (kind === "q") document.querySelectorAll(".f-search").forEach(i => i.value = "");
+        syncState(); render();
+    }
+
+    /* ---------- MAIN RENDER ---------- */
+    function render() {
+        const list = getFiltered();
+        const grid = document.getElementById("tourGrid");
+        const empty = document.getElementById("emptyState");
+        const pager = document.getElementById("pager");
+
+        document.getElementById("resultCount").textContent = list.length;
+        document.getElementById("activeChips").innerHTML = chipsHTML();
+
+        if (list.length === 0) {
+            grid.innerHTML = "";
+            empty.style.display = "block";
+            pager.style.display = "none";
+        } else {
+            grid.innerHTML = list.map(cardHTML).join("");
+            empty.style.display = "none";
+            pager.style.display = list.length > 6 ? "flex" : "none";
+        }
+    }
+
+    /* ---------- EVENTS ---------- */
+    // live filtering on any change / typing
+    document.addEventListener("input", (e) => {
+        if (e.target.matches(".f-search, .f-dest, .f-dur, .f-price, .f-type, .f-rating")) {
+            syncState(); render();
+        }
+    });
+    document.getElementById("sortSelect").addEventListener("change", (e) => {
+        state.sort = e.target.value; render();
+    });
+
+    function applyFromButton() {
+        syncState(); render();
+        const oc = document.getElementById("filterOffcanvas");
+        const inst = bootstrap.Offcanvas.getInstance(oc);
+        if (inst) inst.hide();
+    }
+
+    function clearFilters() {
+        document.querySelectorAll(".f-search").forEach(i => i.value = "");
+        document.querySelectorAll(".f-dest,.f-dur,.f-price,.f-type").forEach(i => i.checked = false);
+        document.querySelectorAll(".f-rating").forEach(i => i.checked = false);
+        state.sort = "onerilen";
+        document.getElementById("sortSelect").value = "onerilen";
+        syncState(); render();
+    }
+
+    // initial
+    render();
+</script>

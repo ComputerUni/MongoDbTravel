@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+
+@await Component.InvokeAsync("_TourDetailHead")
+
+<body>
+
+    <!-- NAV -->
+    @await Component.InvokeAsync("_TourDetailNavbar")
+
+    <div class="container">
+        <!-- BREADCRUMB -->
+        <div class="crumb">
+            <a href="index.html">Ana Sayfa</a> / <a href="tours.html">Turlar</a> / <span class="cur">Roma & Toskana Keşfi</span>
+        </div>
+
+        <!-- DETAIL HEADER -->
+        @await Component.InvokeAsync("_TourDetailHeader")
+
+        <!-- GALLERY -->
+        @await Component.InvokeAsync("_TourDetailGallery")
+
+    </div>
+
+    <!-- BODY -->
+    <div class="container body-section">
+        <div class="row g-4">
+            <!-- LEFT -->
+            @await Component.InvokeAsync("_TourDetailLeft")
+
+            <!-- RIGHT: BOOKING -->
+            @await Component.InvokeAsync("_TourDetailRight")
+
+        </div>
+
+        <!-- SIMILAR TOURS -->
+        <div class="mt-4">
+            <h2 style="font-family:'Sora';font-weight:700;font-size:1.6rem;color:var(--navy);margin-bottom:1.4rem">Bunları da Beğenebilirsin</h2>
+            <div class="row g-4" id="similarGrid"></div>
+        </div>
+    </div>
+
+    <!-- REVIEW MODAL -->
+    <div class="modal fade" id="reviewModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title" style="font-family:'Sora';font-weight:700;color:var(--navy)">Deneyimini Paylaş</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="book-label" style="margin-top:0">Puanın</div>
+                    <div id="starPicker" class="mb-3">
+                        <span class="star-pick" data-v="1">★</span><span class="star-pick" data-v="2">★</span><span class="star-pick" data-v="3">★</span><span class="star-pick" data-v="4">★</span><span class="star-pick" data-v="5">★</span>
+                    </div>
+                    <div class="book-label" style="margin-top:0">Yorumun</div>
+                    <textarea id="reviewText" class="form-control" style="border-radius:14px;border-color:var(--line);min-height:110px" placeholder="Tur deneyimini birkaç cümleyle anlat..."></textarea>
+                </div>
+                <div class="modal-footer border-0">
+                    <button class="btn-teal" onclick="submitReview()">Yorumu Gönder</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    @await Component.InvokeAsync("_TourDetailFooter")
+
+
+    @await Component.InvokeAsync("_TourDetailScript")
+
+</body>
+</html>

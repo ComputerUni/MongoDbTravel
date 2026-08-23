@@ -1,4 +1,6 @@
-﻿<section id="destinasyonlar" class="dest-section">
+﻿@model List<ResultDestinationDto>
+
+<section id="destinasyonlar" class="dest-section">
     <div class="container">
         <div class="section-head mb-5">
             <div class="eyebrow">İlham veren şehirler</div>
@@ -6,34 +8,48 @@
             <p>Milyonlarca gezginin tekrar tekrar dönmek istediği rüya şehirler.</p>
         </div>
         <div class="row g-4">
-            <div class="col-lg-6">
-                <a class="dest-card tall" href="#">
-                    <img src="https://images.unsplash.com/photo-1522093007474-d86e9bf7ba6f?auto=format&fit=crop&w=1200&q=80" alt="Paris" />
-                    <div class="dest-cap"><h3>Paris</h3><span>Fransa · Işıklar Şehri</span></div>
-                </a>
-            </div>
-            <div class="col-lg-6">
-                <div class="row g-4">
-                    <div class="col-12">
-                        <a class="dest-card" href="#">
-                            <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=1200&q=80" alt="Roma" />
-                            <div class="dest-cap"><h3>Roma</h3><span>İtalya · Antik Başkent</span></div>
-                        </a>
-                    </div>
-                    <div class="col-md-6">
-                        <a class="dest-card" href="#">
-                            <img src="https://images.unsplash.com/photo-1534351590666-13e3e96b5017?auto=format&fit=crop&w=900&q=80" alt="Amsterdam" />
-                            <div class="dest-cap"><h3>Amsterdam</h3><span>Hollanda · Kanallar</span></div>
-                        </a>
-                    </div>
-                    <div class="col-md-6">
-                        <a class="dest-card" href="#">
-                            <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=900&q=80" alt="Tokyo" />
-                            <div class="dest-cap"><h3>Tokyo</h3><span>Japonya · Uzak Doğu</span></div>
-                        </a>
+            @if (Model.Count > 0)
+            {
+                <div class="col-lg-6">
+                    <a class="dest-card tall" href="#">
+                        <img src="@Model[0].ImageUrl" alt="@Model[0].Country" />
+                        <div class="dest-cap"><h3>@Model[0].Country</h3><span>@Model[0].Name</span></div>
+                    </a>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row g-4">
+                        @if (Model.Count > 1)
+                        {
+                            <div class="col-12">
+                                <a class="dest-card" href="#">
+                                    <img src="@Model[1].ImageUrl" alt="@Model[1].Country" />
+                                    <div class="dest-cap"><h3>@Model[1].Country</h3><span>@Model[1].Name</span></div>
+                                </a>
+                            </div>
+                        }
+                        @if (Model.Count > 2)
+                        {
+                            <div class="col-md-6">
+                                <a class="dest-card" href="#">
+                                    <img src="@Model[2].ImageUrl" alt="@Model[2].Country" />
+                                    <div class="dest-cap"><h3>@Model[2].Country</h3><span>@Model[2].Name</span></div>
+                                </a>
+                            </div>
+                        }
+                        @if (Model.Count > 3)
+                        {
+                            <div class="col-md-6">
+                                <a class="dest-card" href="#">
+                                    <img src="@Model[3].ImageUrl" alt="@Model[3].Country" />
+                                    <div class="dest-cap"><h3>@Model[3].Country</h3><span>@Model[3].Name</span></div>
+                                </a>
+                            </div>
+                        }
+
                     </div>
                 </div>
-            </div>
+            }
+
         </div>
     </div>
 </section>

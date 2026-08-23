@@ -1,0 +1,101 @@
+﻿@model List<ResultTourDto>
+
+<!DOCTYPE html>
+<html lang="tr">
+
+@await Component.InvokeAsync("_TourListHead")
+
+<body>
+
+    <!-- NAV -->
+    @await Component.InvokeAsync("_TourListNavbar")
+
+    <!-- PAGE HEADER -->
+    @await Component.InvokeAsync("_TourListHeader")
+
+    <!-- LISTING -->
+    <section class="listing">
+        <div class="container">
+            <div class="row g-4">
+
+                <!-- SIDEBAR (desktop) -->
+                <div class="col-lg-3 d-none d-lg-block">
+                    <div class="sticky-side">
+                        <div class="filter-card" id="filterCardDesktop"></div>
+                    </div>
+                </div>
+
+                <!-- RESULTS -->
+                <div class="col-lg-9">
+                    <!-- toolbar -->
+                    <div class="toolbar">
+                        <div>
+                            <h2>Turlar</h2>
+                            <div class="count"><span id="resultCount">12</span> tur bulundu</div>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <button class="btn-filter-mobile d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#filterOffcanvas">
+                                Filtrele
+                            </button>
+                            <div class="sort-wrap">
+                                <label for="sortSelect" class="d-none d-sm-block">Sırala:</label>
+                                <select id="sortSelect">
+                                    <option value="onerilen">Önerilen</option>
+                                    <option value="puan">En Yüksek Puan</option>
+                                    <option value="fiyat-artan">Fiyat: Düşükten Yükseğe</option>
+                                    <option value="fiyat-azalan">Fiyat: Yüksekten Düşüğe</option>
+                                    <option value="yeni">En Yeni Turlar</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- active chips -->
+                    <div class="active-chips" id="activeChips"></div>
+
+                    <div class="row g-4" id="tourGrid"></div>
+                    <!-- grid -->
+                    <!-- empty -->
+                    <div id="emptyState" style="display:none">
+                        <div class="empty-state">
+                            <div class="ico">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
+                            </div>
+                            <h3>Aradığın kriterlere uygun tur bulunamadı.</h3>
+                            <p>Filtreleri biraz gevşetmeyi dene ya da tümünü temizleyerek yeniden başla.</p>
+                            <button class="btn-teal" onclick="clearFilters()">Filtreleri Temizle</button>
+                        </div>
+                    </div>
+
+                    <!-- pagination -->
+                    <nav class="pager" id="pager">
+                        <a href="#" class="nav-arrow" aria-label="Önceki">←</a>
+                        <a href="#" class="active">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#">4</a>
+                        <a href="#" class="nav-arrow" aria-label="Sonraki">→</a>
+                    </nav>
+
+                    <!-- mini cta -->
+                    <div class="mini-cta">
+                        <div class="eyebrow">Yardımcı olalım</div>
+                        <h2>Aradığın Rotayı Bulamadın mı?</h2>
+                        <p>Hayalindeki destinasyonu bize söyle, sana uygun seyahat seçeneklerini birlikte bulalım.</p>
+                        <a href="index.html#iletisim" class="btn-teal">Bize Ulaş</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OFFCANVAS FILTERS (mobile) -->
+    @await Component.InvokeAsync("_TourListOffcanvas")
+
+    <!-- FOOTER -->
+    @await Component.InvokeAsync("_TourListFooter")
+
+    @await Component.InvokeAsync("_TourListScript", Model)
+
+</body>
+</html>
