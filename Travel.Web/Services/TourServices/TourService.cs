@@ -60,12 +60,14 @@ namespace Travel.Web.Services.TourServices
         {
             var tours = await _tourCollection.AsQueryable().ToListAsync();
             var categories = await _categoryService.GetAllAsync();
+            var destinations = await _destinationService.GetAllAsync();
 
             var dtos = _mapper.Map<List<ResultTourDto>>(tours);
 
             foreach(var dto in dtos)
             {
                 dto.CategoryName = categories.FirstOrDefault(c => c.Id == dto.CategoryId)?.CategoryName ?? "-";
+                dto.DestinationName = destinations.FirstOrDefault(d => d.Id == dto.DestinationId)?.Name ?? "-";
             }
 
             return dtos;

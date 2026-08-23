@@ -32,6 +32,7 @@ namespace Travel.Web.DTOs.TourDtos
         public string CategoryId { get; set; }
         public string CategoryName { get; set; }
         public string DestinationId { get; set; }
+        public string DestinationName { get; set; }
         public int Duration { get; set; }
         public string? CoverImage { get; set; }
         public string? IsActive { get; set; }

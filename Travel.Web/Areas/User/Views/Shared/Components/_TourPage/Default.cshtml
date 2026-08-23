@@ -1,0 +1,46 @@
+﻿@model List<ResultTourDto>
+
+<section id="turlar">
+    <div class="container">
+        <div class="d-flex flex-wrap justify-content-between align-items-end mb-5">
+            <div class="section-head">
+                <div class="eyebrow">Popüler rotalar</div>
+                <h2>En Çok Tercih Edilen Turlar</h2>
+                <p>Gezginlerin en çok rezervasyon yaptığı, özenle planlanmış rotalar.</p>
+            </div>
+            <a href="#" class="btn btn-teal d-none d-md-inline-block mt-3">Tüm turları gör</a>
+        </div>
+
+        <div class="row g-4" id="tourGrid">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-6 col-lg-4">
+                    <article class="tour-card">
+                        <div class="tour-media">
+                            <img src="@item.CoverImage" alt="@item.Name" />
+                            <span class="tour-badge">Popüler</span>
+                            <button class="fav" aria-label="Favorilere ekle">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z" /></svg>
+                            </button>
+                        </div>
+                        <div class="tour-body">
+                            <div class="tour-country">@item.DestinationName</div>
+                            <h3 class="tour-title">@item.Name</h3>
+                            <div class="tour-meta">
+                                <span>🗓️ @item.Duration gün</span>
+                            </div>
+                            <div class="tour-foot">
+                                <div class="price">
+                                    <small>Kişi başı</small>
+                                    <b>@item.Price.ToString("N0") <span>TL</span></b>
+                                </div>
+                                <a href="/Tour/Detail/@item.Id" class="btn-incele">Turu İncele</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            }
+        </div>
+
+    </div>
+</section>

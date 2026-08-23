@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Travel.Web.DTOs.AccountDtos;
 using Travel.Web.Entities;
@@ -84,7 +85,17 @@ namespace Travel.Web.Areas.User.Controllers
                 return View(loginDto);
             }
 
-            return View("Index", "Home");
+            if (await _userManager.IsInRoleAsync(user, "Admin"))
+                return RedirectToAction("Index", "Tour", new { area = "Admin" });
+            else
+                return RedirectToAction("Index", "Home", new { area = "User" });
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Logout()
+        {
+            await _signManager.SignOutAsync();
+            return RedirectToAction("Login");
         }
 
 

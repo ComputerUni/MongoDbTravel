@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+
+@await Component.InvokeAsync("_HeadPage")
+
+<body>
+
+    <!-- NAV -->
+    @await Component.InvokeAsync("_NavbarPage")
+
+    <!-- HERO -->
+    @await Component.InvokeAsync("_HeroPage")
+
+    <!-- TOURS -->
+    @await Component.InvokeAsync("_TourPage")
+
+    <!-- DESTINATIONS -->
+    @await Component.InvokeAsync("_DestinationsPage")
+
+    <!-- WHY -->
+    @await Component.InvokeAsync("_WhyPage")
+
+    <!-- REVIEWS -->
+    @await Component.InvokeAsync("_ReviewsPage")
+
+    <!-- CTA -->
+    @await Component.InvokeAsync("_CTAPage")
+
+    <!-- FOOTER -->
+    @await Component.InvokeAsync("_FooterPage")
+
+    @await Component.InvokeAsync("_ScriptPage")
+
+</body>
+</html>

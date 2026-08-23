@@ -1,0 +1,37 @@
+﻿
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // const tours = [
+    //     { t: "Paris & Disneyland", c: "Fransa", d: "5 gün", r: 4.9, n: 2134, p: "38.900", img: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=80", badge: "Çok satan" },
+    //     { t: "Roma & Toskana", c: "İtalya", d: "6 gün", r: 4.8, n: 1687, p: "42.500", img: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=800&q=80", badge: "Popüler" },
+    //     { t: "Amsterdam Kanalları", c: "Hollanda", d: "4 gün", r: 4.7, n: 1203, p: "29.900", img: "https://images.unsplash.com/photo-1534351590666-13e3e96b5017?auto=format&fit=crop&w=800&q=80", badge: "" },
+    //     { t: "Prag & Viyana", c: "Çekya · Avusturya", d: "6 gün", r: 4.8, n: 1421, p: "36.400", img: "https://images.unsplash.com/photo-1541849546-216549ae216d?auto=format&fit=crop&w=800&q=80", badge: "" },
+    //     { t: "Barselona", c: "İspanya", d: "5 gün", r: 4.9, n: 1955, p: "34.700", img: "https://images.unsplash.com/photo-1583422409516-2895a77efded?auto=format&fit=crop&w=800&q=80", badge: "Yeni" },
+    //     { t: "İsviçre Alpleri", c: "İsviçre", d: "7 gün", r: 5.0, n: 842, p: "58.200", img: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?auto=format&fit=crop&w=800&q=80", badge: "Premium" }
+    // ];
+    const grid = document.getElementById('tourGrid');
+    grid.innerHTML = tours.map(o => `
+                    <div class="col-md-6 col-lg-4">
+                      <article class="tour-card">
+                        <div class="tour-media">
+                          <img src="${o.img}" alt="${o.t}" loading="lazy" />
+                          ${o.badge ? `<span class="tour-badge">${o.badge}</span>` : ''}
+                          <button class="fav" aria-label="Favorilere ekle">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+                          </button>
+                        </div>
+                        <div class="tour-body">
+                          <div class="tour-country">${o.c}</div>
+                          <h3 class="tour-title">${o.t}</h3>
+                          <div class="tour-meta">
+                            <span>🗓️ ${o.d}</span>
+                            <span class="rating"><span class="star">★</span> ${o.r} <span style="color:var(--muted);font-weight:400">(${o.n})</span></span>
+                          </div>
+                          <div class="tour-foot">
+                            <div class="price"><small>Kişi başı</small><b>${o.p} <span>TL</span></b></div>
+                            <button class="btn-incele">Turu İncele</button>
+                          </div>
+                        </div>
+                      </article>
+                    </div>`).join('');
+</script>
