@@ -47,3 +47,5 @@ C:\Users\BURHAN\Desktop\MongoDbProject\Travel.Web\bin\Debug\net8.0\FluentValidat
 C:\Users\BURHAN\Desktop\MongoDbProject\Travel.Web\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll
 C:\Users\BURHAN\Desktop\MongoDbProject\Travel.Web\bin\Debug\net8.0\FluentValidation.AspNetCore.dll
 C:\Users\BURHAN\Desktop\MongoDbProject\Travel.Web\obj\Debug\net8.0\Travel.Web.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\BURHAN\Desktop\MongoDbProject\Travel.Web\bin\Debug\net8.0\AspNetCore.Identity.MongoDbCore.dll
+C:\Users\BURHAN\Desktop\MongoDbProject\Travel.Web\bin\Debug\net8.0\MongoDbGenericRepository.dll

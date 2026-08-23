@@ -1,7 +1,9 @@
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using System.Reflection;
+using Travel.Web.Entities;
 using Travel.Web.Services.BannerServices;
 using Travel.Web.Services.CategoryServices;
 using Travel.Web.Services.DestinationServices;
@@ -34,6 +36,13 @@ builder.Services.AddSingleton<IDatabaseSettings>(sp =>
     return sp.GetRequiredService<IOptions<DatabaseSettings>>().Value;
 });
 
+builder.Services.AddIdentity<AppUser, AppRole>()
+    .AddMongoDbStores<AppUser, AppRole, Guid>(
+        builder.Configuration["DatabaseSettings:ConnectionString"],
+        builder.Configuration["DatabaseSettings:DatabaseName"]
+    ).AddDefaultTokenProviders();
+
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -52,6 +61,8 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.MapControllerRoute(
@@ -63,5 +74,20 @@ app.MapControllerRoute(
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+using (var scope = app.Services.CreateScope())
+{
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<AppRole>>();
+    string[] roles = { "Admin", "User" };
+
+    foreach (var role in roles)
+    {
+        if (!await roleManager.RoleExistsAsync(role))
+        {
+            await roleManager.CreateAsync(new AppRole { Name = role });
+        }
+    }
+
+}
 
 app.Run();

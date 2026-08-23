@@ -143,6 +143,30 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/BURHAN/Desktop/MongoDbProject/Travel.Web/Areas/User/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlclxWaWV3c1xBY2NvdW50XExvZ2luLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/BURHAN/Desktop/MongoDbProject/Travel.Web/Areas/User/Views/Account/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlclxWaWV3c1xBY2NvdW50XFJlZ2lzdGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/BURHAN/Desktop/MongoDbProject/Travel.Web/Areas/User/Views/Shared/Components/_AuthHead/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlclxWaWV3c1xTaGFyZWRcQ29tcG9uZW50c1xfQXV0aEhlYWRcRGVmYXVsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/BURHAN/Desktop/MongoDbProject/Travel.Web/Areas/User/Views/Shared/_AuthLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlclxWaWV3c1xTaGFyZWRcX0F1dGhMYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/BURHAN/Desktop/MongoDbProject/Travel.Web/Areas/User/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlclxWaWV3c1xfVmlld0ltcG9ydHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/BURHAN/Desktop/MongoDbProject/Travel.Web/Areas/User/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlclxWaWV3c1xfVmlld1N0YXJ0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/BURHAN/Desktop/MongoDbProject/Travel.Web/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
