@@ -1,9 +1,8 @@
-﻿using Travel.Web.Entities.Common;
-using Travel.Web.Entities.Enums;
+﻿using Travel.Web.Entities.Enums;
 
-namespace Travel.Web.Entities
+namespace Travel.Web.DTOs.ReservationDtos
 {
-    public class Reservation : BaseEntity
+    public class CreateReservationDto
     {
         public string UserId { get; set; }
         public string TourId { get; set; }
