@@ -15,10 +15,9 @@
         </div>
 
         <!-- DETAIL HEADER -->
-        @await Component.InvokeAsync("_TourDetailHeader")
-
+        @await Component.InvokeAsync("_TourDetailHeader", new { tour = Model })
         <!-- GALLERY -->
-        @await Component.InvokeAsync("_TourDetailGallery")
+        @await Component.InvokeAsync("_TourDetailGallery", new { tour = Model })
 
     </div>
 
@@ -26,10 +25,10 @@
     <div class="container body-section">
         <div class="row g-4">
             <!-- LEFT -->
-            @await Component.InvokeAsync("_TourDetailLeft")
+            @await Component.InvokeAsync("_TourDetailLeft", new { tour = Model })
 
             <!-- RIGHT: BOOKING -->
-            @await Component.InvokeAsync("_TourDetailRight")
+            @await Component.InvokeAsync("_TourDetailRight", new { tour = Model })
 
         </div>
 

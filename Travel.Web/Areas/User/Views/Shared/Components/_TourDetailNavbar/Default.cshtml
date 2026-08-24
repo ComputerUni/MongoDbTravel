@@ -1,19 +1,29 @@
 ﻿<nav class="navbar navbar-expand-lg sticky-top">
     <div class="container">
-        <a class="brand" href="index.html"><span class="dot"></span>Travelio</a>
+        <a class="brand" href="#"><span class="dot"></span>Travelio</a>
         <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="nav">
             <ul class="navbar-nav mx-auto">
-                <li class="nav-item"><a class="nav-link" href="index.html">Ana Sayfa</a></li>
-                <li class="nav-item"><a class="nav-link active" href="tours.html">Turlar</a></li>
-                <li class="nav-item"><a class="nav-link" href="index.html#destinasyonlar">Destinasyonlar</a></li>
-                <li class="nav-item"><a class="nav-link" href="index.html#yorumlar">Yorumlar</a></li>
-                <li class="nav-item"><a class="nav-link" href="index.html#hakkimizda">Hakkımızda</a></li>
-                <li class="nav-item"><a class="nav-link" href="index.html#iletisim">İletişim</a></li>
+                <li class="nav-item"><a class="nav-link" href="/User/Home/Index">Ana Sayfa</a></li>
+                <li class="nav-item"><a class="nav-link active" href="/User/Tour/Index">Turlar</a></li>
+                <li class="nav-item"><a class="nav-link" href="#destinasyonlar">Destinasyonlar</a></li>
+                <li class="nav-item"><a class="nav-link" href="#yorumlar">Yorumlar</a></li>
+                <li class="nav-item"><a class="nav-link" href="#hakkimizda">Hakkımızda</a></li>
+                <li class="nav-item"><a class="nav-link" href="#iletisim">İletişim</a></li>
             </ul>
-            <a href="#" class="profile-pill"><span>Profilim</span><span class="avatar">EY</span></a>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a href="#" class="profile-pill">
+                    <span>@User.Identity.Name</span>
+                    <span class="avatar">@User.Identity.Name[0] @User.Identity.Name[1]</span>
+                </a>
+            }
+            else
+            {
+                <a href="/User/Account/Login" class="btn-teal">Giriş Yap</a>
+            }
         </div>
     </div>
 </nav>

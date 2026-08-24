@@ -1,18 +1,27 @@
-﻿<div class="col-lg-4">
+﻿@model ResultTourDto
+
+<div class="col-lg-4">
     <div class="book-sticky">
         <div class="book-card">
             <div class="price-top">
                 <small>Kişi başı</small>
-                <div class="big" id="unitPrice">42.500 <span>TL</span></div>
+                <div class="big" id="unitPrice">@Model.Price <span>TL</span></div>
                 <div class="price-note">Vergiler ve belirtilen hizmetler dahildir.</div>
             </div>
 
             <div class="book-label">Tur Tarihi</div>
             <div id="dateOptions">
-                <label class="date-opt sel"><span class="d">12 - 17 Ekim 2026</span><input type="radio" name="tourDate" checked><span class="left">Son 4 Kontenjan</span></label>
-                <label class="date-opt"><span class="d">9 - 14 Kasım 2026</span><input type="radio" name="tourDate"></label>
-                <label class="date-opt"><span class="d">7 - 12 Aralık 2026</span><input type="radio" name="tourDate"><span class="left">Son 6 Kontenjan</span></label>
-                <label class="date-opt"><span class="d">14 - 19 Mart 2027</span><input type="radio" name="tourDate"></label>
+                @foreach (var (date, i) in Model.Dates.Select((d, i) => (d, i)))
+                {
+                    <label class="date-opt @(i == 0 ? "sel" : "")">
+                        <span class="d">@date.StartDate.ToString("dd") - @date.EndDate.ToString("dd MMM yyyy")</span>
+                        <input type="radio" name="tourDate" value="@date.StartDate" @(i == 0 ? "checked" : "") />
+                        @if(date.Quota <= 5 && date.Quota > 0)
+                        {
+                            <span class="left">Son @date.Quota Kontenjan</span>
+                        }
+                    </label>
+                }
             </div>
 
             <div class="book-label">Kişi Sayısı</div>

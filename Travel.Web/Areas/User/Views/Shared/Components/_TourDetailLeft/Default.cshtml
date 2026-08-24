@@ -1,29 +1,59 @@
-﻿<div class="col-lg-8">
+﻿@model ResultTourDto
+
+<div class="col-lg-8">
 
     <!-- ABOUT -->
     <div class="content-block">
         <h2>Tur Hakkında</h2>
-        <p>Roma'nın tarihi sokaklarından Toskana'nın üzüm bağlarına uzanan bu özel rota; İtalya'nın kültürünü, mimarisini ve gastronomisini bir arada keşfetmek isteyen gezginler için hazırlandı. Kolezyum'un gölgesinde başlayan yolculuk, Vatikan'ın sanat hazineleriyle derinleşiyor ve Floransa'nın Rönesans atmosferiyle bambaşka bir renk kazanıyor.</p>
-        <p>Pisa'nın ikonik kulesi ve Toskana'nın panoramik kasabalarıyla tamamlanan program, rehberli geziler ile serbest zamanı dengeli biçimde harmanlıyor. Böylece hem İtalya'nın en önemli noktalarını görüyor hem de şehirleri kendi ritminde keşfetmeye vakit buluyorsun.</p>
+        <p>@Model.Description</p>
+        <p>@Model.ShortDescription</p>
     </div>
 
     <!-- HIGHLIGHTS -->
     <div class="content-block">
         <h2>Turun Öne Çıkanları</h2>
         <ul class="hl-list">
-            <li><span class="hl-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg></span>Kolezyum ve tarihi Roma turu</li>
-            <li><span class="hl-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg></span>Vatikan ve Aziz Petrus Bazilikası</li>
-            <li><span class="hl-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg></span>Floransa şehir turu</li>
-            <li><span class="hl-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg></span>Pisa Kulesi ve Mucizeler Meydanı</li>
-            <li><span class="hl-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg></span>Toskana kasabaları ve üzüm bağları</li>
-            <li><span class="hl-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg></span>Profesyonel Türkçe rehber</li>
+            @foreach (var feature in Model.Features)
+            {
+                <li><span class="hl-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg></span>@feature</li>
+            }
         </ul>
     </div>
 
     <!-- ITINERARY -->
     <div class="content-block">
         <h2>Gün Gün Tur Programı</h2>
-        <div id="itinerary"></div>
+        @foreach (var (day, i) in Model.DayPrograms.Select((d, i) => (d, i)))
+        {
+            <div class="itin-item @(i == 0 ? "open" : "")">
+                <div class="itin-head" onclick="toggleDay(this)">
+                    <span class="day-tag">@(i + 1). Gün</span>
+                    <span class="itin-title">@day.Title</span>
+                    <span class="itin-toggle">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg>
+                    </span>
+                </div>
+                <div class="itin-body" style="@(i == 0 ? "max-height:600px" : "max-height:0")">
+                    <div class="itin-inner">
+                        <p>@day.Description</p>
+                        <div class="itin-tags">
+                            @if (!string.IsNullOrEmpty(day.Accommodation))
+                            {
+                                <span>🏨 @day.Accommodation</span>
+                            }
+                            @if (!string.IsNullOrEmpty(day.Transport))
+                            {
+                                <span>🚌 @day.Transport</span>
+                            }
+                            @if (!string.IsNullOrEmpty(day.Meals))
+                            {
+                                <span>🍽️ @day.Meals</span>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
     </div>
 
     <!-- INCLUDES -->
@@ -32,24 +62,19 @@
             <div class="col-md-6">
                 <h2>Fiyata Dahil Olanlar</h2>
                 <ul class="inc-list">
-                    <li><span class="inc-yes"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg></span>Gidiş-dönüş uçak bileti</li>
-                    <li><span class="inc-yes"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg></span>5 gece otel konaklaması</li>
-                    <li><span class="inc-yes"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg></span>Kahvaltılar</li>
-                    <li><span class="inc-yes"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg></span>Havalimanı transferleri</li>
-                    <li><span class="inc-yes"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg></span>Şehirler arası ulaşım</li>
-                    <li><span class="inc-yes"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg></span>Profesyonel Türkçe rehberlik</li>
-                    <li><span class="inc-yes"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg></span>Panoramik şehir turları</li>
+                    @foreach(var include in Model.Included)
+                    {
+                        <li><span class="inc-yes"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg></span>@include</li>
+                    }
                 </ul>
             </div>
             <div class="col-md-6">
                 <h2>Fiyata Dahil Olmayanlar</h2>
                 <ul class="inc-list">
-                    <li><span class="inc-no"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg></span>Müze ve ören yeri giriş ücretleri</li>
-                    <li><span class="inc-no"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg></span>Öğle ve akşam yemekleri</li>
-                    <li><span class="inc-no"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg></span>Kişisel harcamalar</li>
-                    <li><span class="inc-no"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg></span>Yurt dışı çıkış harcı</li>
-                    <li><span class="inc-no"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg></span>Seyahat sağlık sigortası</li>
-                    <li><span class="inc-no"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg></span>Opsiyonel etkinlikler</li>
+                    @foreach(var notinc in Model.NotIncluded)
+                    {
+                        <li><span class="inc-no"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg></span>@notinc</li>
+                    }
                 </ul>
             </div>
         </div>
@@ -59,17 +84,17 @@
     <div class="content-block">
         <h2>Tur Bilgileri</h2>
         <div class="info-grid">
-            <div class="info-cell"><div class="k">Tur Süresi</div><div class="v">6 Gün / 5 Gece</div></div>
-            <div class="info-cell"><div class="k">Başlangıç Şehri</div><div class="v">İstanbul</div></div>
-            <div class="info-cell"><div class="k">Ulaşım</div><div class="v">Uçak + Otobüs</div></div>
-            <div class="info-cell"><div class="k">Konaklama</div><div class="v">4 Yıldızlı Oteller</div></div>
-            <div class="info-cell"><div class="k">Rehber Dili</div><div class="v">Türkçe</div></div>
-            <div class="info-cell"><div class="k">Grup Büyüklüğü</div><div class="v">Maks. 28 Kişi</div></div>
-            <div class="info-cell"><div class="k">Vize</div><div class="v">Schengen Vizesi</div></div>
+            <div class="info-cell"><div class="k">Tur Süresi</div><div class="v">@Model.Duration Gün / @Model.Night Gece</div></div>
+            <div class="info-cell"><div class="k">Başlangıç Şehri</div><div class="v">@Model.DepartureCity</div></div>
+            <div class="info-cell"><div class="k">Ulaşım</div><div class="v">@Model.Transport</div></div>
+            <div class="info-cell"><div class="k">Konaklama</div><div class="v">@Model.Accommodation</div></div>
+            <div class="info-cell"><div class="k">Rehber Dili</div><div class="v">@Model.GuideLanguage</div></div>
+            <div class="info-cell"><div class="k">Grup Büyüklüğü</div><div class="v">Maks. @Model.GroupSize kişi</div></div>
+            <div class="info-cell"><div class="k">Vize</div><div class="v">@Model.VisaInfo</div></div>
         </div>
         <div class="meet-note">
             <b>Buluşma Noktası</b>
-            <p>İstanbul Havalimanı Dış Hatlar Terminali. Tur başlangıcından 3 saat önce rehberimizle buluşma yapılır.</p>
+            <p>@Model.MeetingPoint</p>
         </div>
     </div>
 

@@ -24,6 +24,10 @@ namespace Travel.Web.Services.DestinationServices
         public async Task CreateAsync(CreateDestinationDto createDestinationDto)
         {
             var destination = _mapper.Map<Destination>(createDestinationDto);
+            if(createDestinationDto.ImageUrl != null)
+            {
+                destination.ImageUrl = await SaveFileAsync(createDestinationDto.ImageUrl);
+            }
             await _destinationCollection.InsertOneAsync(destination);
         }
 
@@ -47,7 +51,24 @@ namespace Travel.Web.Services.DestinationServices
         public async Task UpdateAsync(UpdateDestinationDto updateDestinationDto)
         {
             var destination = _mapper.Map<Destination>(updateDestinationDto);
+
+            destination.ImageUrl = updateDestinationDto.ImageUrl != null ? await SaveFileAsync(updateDestinationDto.ImageUrl) : updateDestinationDto.ExistingImage;
+
             await _destinationCollection.FindOneAndReplaceAsync(x => x.Id == destination.Id, destination);
+        }
+
+        private async Task<string> SaveFileAsync(IFormFile file)
+        {
+            var folderPath = Path.Combine("wwwroot", "uploads", "destinations");
+            Directory.CreateDirectory(folderPath);
+
+            var fileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
+            var fullPath = Path.Combine(folderPath, fileName);
+
+            using var stream = new FileStream(fullPath, FileMode.Create);
+            await file.CopyToAsync(stream);
+
+            return "/uploads/destinations/" + fileName;
         }
     }
 }

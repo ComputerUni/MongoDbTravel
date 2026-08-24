@@ -13,7 +13,7 @@
     </div>
 </div>
 
-<form method="post" asp-action="Create" asp-controller="Destination">
+<form asp-action="Create" asp-controller="Destination" method="post" enctype="multipart/form-data">
     <div class="sec">
         <div class="sec-head">
             <h2>Temel Bilgiler</h2>
@@ -29,8 +29,18 @@
             <input class="ctrl" asp-for="Country" placeholder="Örn: İtalya">
         </div>
         <div class="field">
-            <label asp-for="ImageUrl">Resim Yolu <span class="req">*</span></label>
-            <input class="ctrl" asp-for="ImageUrl" placeholder="https://...">
+            <label>Görsel</label>
+            <label class="upload" for="imageInput">
+                <div class="uic">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="17 8 12 3 7 8" /><line x1="12" y1="3" x2="12" y2="15" /></svg>
+                </div>
+                <b>Görsel buraya sürükleyin veya seçin.</b>
+                <span>JPG, PNG</span>
+            </label>
+            <input type="file" id="imageInput" asp-for="ImageUrl" accept="image/*" hidden onchange="previewCover(this)">
+            <div class="cover-preview" id="coverPreview" style="display:none">
+                <img id="coverImg" alt="Önizleme">
+            </div>
         </div>
         <div class="field">
             <label asp-for="Description">Açıklama</label>

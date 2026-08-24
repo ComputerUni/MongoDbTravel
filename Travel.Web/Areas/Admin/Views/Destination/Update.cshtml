@@ -13,8 +13,9 @@
     </div>
 </div>
 
-<form method="post" asp-action="Update" asp-controller="Destination">
+<form method="post" asp-action="Update" asp-controller="Destination" enctype="multipart/form-data">
     <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="ExistingImage" />
     <div class="sec">
         <div class="sec-head">
             <h2>Temel Bilgiler</h2>
@@ -30,10 +31,28 @@
             <input class="ctrl" asp-for="Country" placeholder="Örn: İtalya">
         </div>
         <div class="field">
-            <label asp-for="ImageUrl">Resim Yolu <span class="req">*</span></label>
-            <input class="ctrl" asp-for="ImageUrl" placeholder="https://...">
-        </div>
-        <div class="field">
+            <label style="font-size:.8rem;font-weight:600;color:var(--navy);margin-bottom:.5rem;display:block">Destinasyon Görseli</label>
+            <label class="upload" for="coverInput">
+                <div class="uic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="17 8 12 3 7 8" /><line x1="12" y1="3" x2="12" y2="15" /></svg></div>
+                <b>Destinasyon görselini buraya sürükleyin veya seçin.</b>
+                <span>JPG, PNG</span>
+            </label>
+
+            <input type="file" id="coverInput" asp-for="ImageUrl" accept="image/*" hidden onchange="previewCover(this)">
+
+            @if (!string.IsNullOrEmpty(Model.ExistingImage))
+            {
+                <div class="cover-preview" id="coverPreview" style="display:block">
+                    <img id="coverImg" src="@Model.ExistingImage" alt="Mevcut görsel">
+                </div>
+            }
+            else
+            {
+                <div class="cover-preview" id="coverPreview" style="display:none">
+                    <img id="coverImg" alt="Görsel önizleme">
+                </div>
+            }
+        </div>        <div class="field">
             <label asp-for="Description">Açıklama</label>
             <textarea asp-for="Description" class="ctrl" rows="4" placeholder="Destinasyon hakkında kısa bilgi..."></textarea>
         </div>

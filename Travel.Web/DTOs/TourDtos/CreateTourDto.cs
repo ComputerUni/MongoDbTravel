@@ -17,16 +17,14 @@ namespace Travel.Web.DTOs.TourDtos
         public string Accommodation { get; set; }
         public string GuideLanguage { get; set; }
         public string VisaInfo { get; set; }
+        public string MeetingPoint { get; set; }
         public decimal ChildPrice { get; set; }
         public bool IsFeatured { get; set; }
         public bool IsBest { get; set; }
         public bool IsNew { get; set; }
         public List<string> Included { get; set; } = new();
         public List<string> NotIncluded { get; set; } = new();
-
         public decimal Price { get; set; }
-        //public string Country { get; set; }
-        //public string City { get; set; }
         public string CategoryId { get; set; }
         public string DestinationId { get; set; }
         public int Duration { get; set; }

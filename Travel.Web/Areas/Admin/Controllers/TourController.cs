@@ -41,6 +41,13 @@ namespace Travel.Web.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
+                foreach (var (key, value) in ModelState)
+                {
+                    foreach (var error in value.Errors)
+                    {
+                        Console.WriteLine($"KEY: {key} | ERROR: {error.ErrorMessage}");
+                    }
+                }
                 createTourViewModel.TourTypes = await _lookupService.GetByTypeAsync("TourType");
                 createTourViewModel.Cities = await _lookupService.GetByTypeAsync("City");
                 createTourViewModel.Transports = await _lookupService.GetByTypeAsync("Transport");
@@ -57,7 +64,7 @@ namespace Travel.Web.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Update(string id)
         {
-            var tour = await _tourService.GetByIdAsync(id);
+            var tour = await _tourService.GetByIdAsync(id, false);
             var updateTour = _mapper.Map<UpdateTourDto>(tour);
 
             updateTour.ExistingCoverImage = tour.CoverImage;

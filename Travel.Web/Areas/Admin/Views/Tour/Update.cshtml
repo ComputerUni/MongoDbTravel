@@ -44,6 +44,10 @@
             <label>Tur Açıklaması</label>
             <textarea class="ctrl" asp-for="Tour.Description" rows="4" placeholder="Turun konsepti, deneyimi ve önemli detayları..."></textarea>
         </div>
+        <div class="field">
+            <label>Buluşma Noktası</label>
+            <input class="ctrl" asp-for="Tour.MeetingPoint" placeholder="İstanbul Havalimanı Dış Hatlar Terminali" />
+        </div>
         <div class="row g-3">
             <div class="col-md-6 field">
                 <label>Kategori <span class="req">*</span></label>
@@ -124,6 +128,13 @@
                 <select class="ctrl" asp-for="Tour.VisaInfo" asp-items="@(new SelectList(Model.VisaInfos, "Id", "Name"))">
                     <option value="">Vize Türü Seçiniz</option>
                 </select>
+            </div>
+            <div class="col-6 col-lg-3 field">
+                <label>Çocuk Fiyatı</label>
+                <div class="input-group-x">
+                    <input class="ctrl" asp-for="Tour.ChildPrice" inputmode="numeric" placeholder="25.000" style="padding-right:2.6rem">
+                    <span class="suffix">TL</span>
+                </div>
             </div>
         </div>
     </div>
@@ -239,7 +250,7 @@
                 <div class="status-pills">
                     <label class="status-pill" data-status="Aktif"><input type="radio" asp-for="Tour.IsActive" value="Aktif"><b>Aktif</b><span>Sitede yayında</span></label>
                     <label class="status-pill" data-status="Pasif"><input type="radio" asp-for="Tour.IsActive" value="Pasif"><b>Pasif</b><span>Gizli</span></label>
-                    <label class="status-pill sel" data-status="Taslak"><input type="radio" asp-for="Tour.IsActive" value="Taslak" checked><b>Taslak</b><span>Yayınlanmadı</span></label>
+                    <label class="status-pill sel" data-status="Taslak"><input type="radio" asp-for="Tour.IsActive" value="Taslak"><b>Taslak</b><span>Yayınlanmadı</span></label>
                 </div>
             </div>
             <div class="col-lg-5">

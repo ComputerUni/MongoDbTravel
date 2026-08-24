@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Travel.Web.DTOs.CommonDtos;
 using Travel.Web.DTOs.TourDtos;
 using Travel.Web.Entities;
 

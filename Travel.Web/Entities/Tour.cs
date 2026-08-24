@@ -18,6 +18,7 @@ namespace Travel.Web.Entities
         public string Accommodation { get; set; }
         public string GuideLanguage { get; set; }
         public string VisaInfo { get; set; }
+        public string MeetingPoint { get; set; }
         public decimal ChildPrice { get; set; }
         public bool IsFeatured { get; set; }
         public bool IsBest { get; set; }

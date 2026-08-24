@@ -37,6 +37,9 @@ namespace Travel.Web.Areas.Admin.Controllers
         {
             var destination = await _destinationService.GetByIdAsync(id);
             var updateDestination = _mapper.Map<UpdateDestinationDto>(destination);
+
+            updateDestination.ExistingImage = destination.ImageUrl;
+
             return View(updateDestination);
         }
 

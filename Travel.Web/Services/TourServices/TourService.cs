@@ -73,10 +73,32 @@ namespace Travel.Web.Services.TourServices
             return dtos;
         }
 
-        public async Task<ResultTourDto> GetByIdAsync(string id)
+        public async Task<ResultTourDto> GetByIdAsync(string id, bool resolveName = true)
         {
             var tour = await _tourCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
-            return _mapper.Map<ResultTourDto>(tour);
+            var dto = _mapper.Map<ResultTourDto>(tour);
+
+            var category = await _categoryService.GetByIdAsync(dto.CategoryId);
+            dto.CategoryName = category?.CategoryName ?? "-";
+
+            var destination = await _destinationService.GetByIdAsync(dto.DestinationId);
+            dto.DestinationName = destination?.Name ?? "-";
+
+            if(resolveName)
+            {
+                async Task<string> Resolve(string value)
+                {
+                    var lookup = await _lookupService.GetByIdAsync(value);
+                    return lookup.Name;
+                }
+
+                dto.DepartureCity = await Resolve(tour.DepartureCity);
+                dto.Transport = await Resolve(tour.Transport);
+                dto.GuideLanguage = await Resolve(tour.GuideLanguage);
+                dto.VisaInfo = await Resolve(tour.VisaInfo);
+            }
+
+            return dto;
         }
 
         public async Task UpdateAsync(UpdateTourDto updateTourDto)
