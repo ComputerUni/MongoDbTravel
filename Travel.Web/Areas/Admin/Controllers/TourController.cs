@@ -41,11 +41,12 @@ namespace Travel.Web.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
-                foreach (var (key, value) in ModelState)
+
+                foreach (var kvp in ModelState)
                 {
-                    foreach (var error in value.Errors)
+                    if (kvp.Value.Errors.Any())
                     {
-                        Console.WriteLine($"KEY: {key} | ERROR: {error.ErrorMessage}");
+                        Console.WriteLine($"Key: {kvp.Key}, Error: {kvp.Value.Errors[0].ErrorMessage}");
                     }
                 }
                 createTourViewModel.TourTypes = await _lookupService.GetByTypeAsync("TourType");

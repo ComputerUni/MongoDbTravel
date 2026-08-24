@@ -393,5 +393,15 @@
                 <text>addItem('hlList', 'Öne çıkan özellik'); document.getElementById('hlList').lastElementChild.querySelector('input').value = "@feat";</text>
         }
 
+                const currentStatus = "@Model.Tour.IsActive";
+        document.querySelectorAll(".status-pill").forEach(p => {
+            p.classList.remove("sel");
+            const input = p.querySelector("input");
+            if (input.value === currentStatus) {
+                p.classList.add("sel");
+                input.checked = true;
+            }
+        });
+
     </script>
 

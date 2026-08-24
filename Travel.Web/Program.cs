@@ -8,6 +8,7 @@ using Travel.Web.Services.BannerServices;
 using Travel.Web.Services.CategoryServices;
 using Travel.Web.Services.DestinationServices;
 using Travel.Web.Services.LookupServices;
+using Travel.Web.Services.ReservationServices;
 using Travel.Web.Services.TourServices;
 using Travel.Web.Settings;
 
@@ -28,6 +29,7 @@ builder.Services.AddScoped<ITourService, TourService>();
 builder.Services.AddScoped<IDestinationService, DestinationService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ILookupService, LookupService>();
+builder.Services.AddScoped<IReservationService, ReservationService>();
 
 //builder.Services.AddScoped<IRouteService, RouteService>();
 
