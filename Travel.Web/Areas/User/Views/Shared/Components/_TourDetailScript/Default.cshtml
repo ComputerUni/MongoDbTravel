@@ -36,8 +36,8 @@
     }
 
     /* ---------- BOOKING ---------- */
-    const UNIT = @Model.Price;
-    const CHILD_UNIT = @Model.ChildPrice;
+    const UNIT = @Model.Price.ToString("0.##", System.Globalization.CultureInfo.InvariantCulture);
+    const CHILD_UNIT = @Model.ChildPrice.ToString("0.##", System.Globalization.CultureInfo.InvariantCulture);
     let adult = 1, child = 0;
 
     const childPrice = () => CHILD_UNIT;
@@ -104,7 +104,7 @@
         })
             .then(r => {
                 if (r.ok) {
-                    window.location.href = "/User/Reservation/Index";
+                    window.location.href = "/User/Profile/Index#trips";
                 } else {
                     return r.text().then(t => { throw new Error(t); });
                 }

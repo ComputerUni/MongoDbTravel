@@ -1,4 +1,24 @@
-﻿<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+﻿@model ProfileViewModel
+
+@{
+    var reservationData = Model.Reservations.Select(r => new
+    {
+        tourName = r.TourName,
+        destinationName = r.DestinationName,
+        date = r.TourDate.ToString("dd MMM yyyy", new System.Globalization.CultureInfo("tr-TR")),
+        id = "TRV-" + r.Id.Substring(0, 8).ToUpper(),
+        status = r.Status switch
+        {
+            ReservationStatus.Onaylandı => "Onaylandı",
+            ReservationStatus.İptal => "İptal Edildi",
+            ReservationStatus.Bekliyor => "Bekliyor"
+        },
+        coverImage = r.CoverImage,
+        tourDate = r.TourDate,
+        tourId = r.TourId
+    }).ToList();
+}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     /* =============== ICONS =============== */
     const IC = {
@@ -46,7 +66,8 @@
     //     { id: 3, title: "Amsterdam Kanalları", stars: 4, date: "16 Kasım 2025", text: "Tur çok güzeldi, yalnızca serbest zaman biraz daha uzun olabilirdi." }
     // ];
 
-  const rawReservations = @Html.Raw(Json.Serialize(Model.Reservations));
+
+    const rawReservations = @Html.Raw(Json.Serialize(reservationData));
     const now = new Date();
 
     const TRIPS = {
@@ -55,21 +76,23 @@
             .map(r => ({
                 title: r.tourName || "",
                 country: r.destinationName || "",
-                date: r.tourDate, // Direkt olduğu gibi yazıyoruz
+                date: r.date,
                 res: r.id || "",
                 status: r.status,
-                img: r.coverImage
+                img: r.coverImage,
+                tourId: r.tourId
             })),
-            
+
         completed: rawReservations
             .filter(r => new Date(r.tourDate) < now)
             .map(r => ({
                 title: r.tourName || "",
                 country: r.destinationName || "",
-                date: r.tourDate, // Direkt olduğu gibi yazıyoruz
+                date: r.date,
                 res: r.id || "",
                 status: r.status,
-                img: r.coverImage
+                img: r.coverImage,
+                tourId: r.tourId
             }))
     };
 
@@ -94,15 +117,15 @@
     /* =============== SIDEBAR =============== */
     function sidebarHTML() {
         return `
-                              <div class="side-user">
-                                <div class="av">@Model.User.FirstName[0]@Model.User.LastName[0]</div>
-                                <div style="min-width:0"><b>@Model.User.FirstName @Model.User.LastName</b><span>@Model.User.Email</span></div>
-                              </div>
-                              <div class="side-menu">
-                                ${MENU.map(m => `<button class="side-link" data-pane="${m.id}" onclick="go('${m.id}')">${IC[m.ic]} ${m.label}</button>`).join("")}
-                                <div class="side-sep"></div>
-                                <button class="side-link logout" data-bs-toggle="modal" data-bs-target="#logoutModal">${IC.logout} Çıkış Yap</button>
-                              </div>`;
+                                  <div class="side-user">
+                                    <div class="av">@Model.User.FirstName[0]@Model.User.LastName[0]</div>
+                                    <div style="min-width:0"><b>@Model.User.FirstName @Model.User.LastName</b><span>@Model.User.Email</span></div>
+                                  </div>
+                                  <div class="side-menu">
+                                    ${MENU.map(m => `<button class="side-link" data-pane="${m.id}" onclick="go('${m.id}')">${IC[m.ic]} ${m.label}</button>`).join("")}
+                                    <div class="side-sep"></div>
+                                    <button class="side-link logout" data-bs-toggle="modal" data-bs-target="#logoutModal">${IC.logout} Çıkış Yap</button>
+                                  </div>`;
     }
     document.getElementById("sidebarDesktop").innerHTML = sidebarHTML();
     document.getElementById("sidebarMobile").innerHTML = sidebarHTML();
@@ -137,201 +160,201 @@
                 { t: '<b>Kuzey Işıkları</b> turu hakkında soru sordun.', time: "18 gün önce", ic: IC.questions }
             ];
             return `
-                                <div class="pane active">
-                                  <div class="pane-head">
-                                    <h1>Merhaba @Model.User.FirstName 👋</h1>
-                                    <p>Bir sonraki maceranın detaylarına göz atabilir, geçmiş seyahatlerini ve favorilerini yönetebilirsin.</p>
-                                  </div>
-                                  <div class="row g-3 mb-4">
-                                    ${stats.map(s => `<div class="col-6 col-md-3"><div class="stat-card"><div class="ico">${s.ic}</div><div class="num">${s.num}</div><div class="lab">${s.lab}</div></div></div>`).join("")}
-                                  </div>
-
-                                  <h2 style="font-family:'Sora';font-weight:700;font-size:1.25rem;color:var(--navy);margin-bottom:1rem">Yaklaşan Seyahatin</h2>
-                                  <div class="upcoming mb-4">
-                                    <img src="${t.img}" alt="${t.title}">
-                                    <div class="inner">
-                                      <span class="up-badge">Rezervasyon ${t.res}</span>
-                                      <h3>${t.title}</h3>
-                                      <div class="sub">${t.country}</div>
-                                      <div class="up-meta">
-                                        <span>📅 <b>${t.date}</b></span>
-                                        <span>⏳ <b>6 Gün / 5 Gece</b></span>
-                                        <span>⌛ Kalan: <b>63 gün</b></span>
-                                        <span class="status-chip status-ok">● ${t.status}</span>
+                                    <div class="pane active">
+                                      <div class="pane-head">
+                                        <h1>Merhaba @Model.User.FirstName 👋</h1>
+                                        <p>Bir sonraki maceranın detaylarına göz atabilir, geçmiş seyahatlerini ve favorilerini yönetebilirsin.</p>
                                       </div>
-                                      <div class="up-btns d-flex gap-2 flex-wrap">
-                                        <a href="tour-detail.html" class="btn-white">Tur Detayı</a>
-                                        <button class="btn-linewhite" onclick="go('trips')">Rezervasyonu Gör</button>
+                                      <div class="row g-3 mb-4">
+                                        ${stats.map(s => `<div class="col-6 col-md-3"><div class="stat-card"><div class="ico">${s.ic}</div><div class="num">${s.num}</div><div class="lab">${s.lab}</div></div></div>`).join("")}
                                       </div>
-                                    </div>
-                                  </div>
 
-                                  <div class="card-soft">
-                                    <h2 style="font-family:'Sora';font-weight:700;font-size:1.15rem;color:var(--navy);margin-bottom:1rem">Son Aktiviteler</h2>
-                                    ${acts.map(a => `<div class="act-item"><div class="act-ico">${a.ic}</div><div><div class="t">${a.t}</div><div class="time">${a.time}</div></div></div>`).join("")}
-                                  </div>
-                                </div>`;
+                                      <h2 style="font-family:'Sora';font-weight:700;font-size:1.25rem;color:var(--navy);margin-bottom:1rem">Yaklaşan Seyahatin</h2>
+                                      <div class="upcoming mb-4">
+                                        <img src="${t.img}" alt="${t.title}">
+                                        <div class="inner">
+                                          <span class="up-badge">Rezervasyon ${t.res}</span>
+                                          <h3>${t.title}</h3>
+                                          <div class="sub">${t.country}</div>
+                                          <div class="up-meta">
+                                            <span>📅 <b>${t.date}</b></span>
+                                            <span>⏳ <b>6 Gün / 5 Gece</b></span>
+                                            <span>⌛ Kalan: <b>63 gün</b></span>
+                                            <span class="status-chip status-ok">● ${t.status}</span>
+                                          </div>
+                                          <div class="up-btns d-flex gap-2 flex-wrap">
+                                            <a href="tour-detail.html" class="btn-white">Tur Detayı</a>
+                                            <button class="btn-linewhite" onclick="go('trips')">Rezervasyonu Gör</button>
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                      <div class="card-soft">
+                                        <h2 style="font-family:'Sora';font-weight:700;font-size:1.15rem;color:var(--navy);margin-bottom:1rem">Son Aktiviteler</h2>
+                                        ${acts.map(a => `<div class="act-item"><div class="act-ico">${a.ic}</div><div><div class="t">${a.t}</div><div class="time">${a.time}</div></div></div>`).join("")}
+                                      </div>
+                                    </div>`;
         },
 
         profile() {
             return `
-                                <div class="pane active">    
-    <div class="pane-head">
-        <h1>Profil Bilgilerim</h1>
-        <p>Kişisel bilgilerini buradan güncelleyebilirsin.</p>
-    </div>    
-    <div class="card-soft">      
-        <div class="row g-3">        
-            <div class="col-md-6 field"><label>Ad</label><input id="profileFirstName" value="@Model.User.FirstName"></div>        
-            <div class="col-md-6 field"><label>Soyad</label><input id="profileLastName" value="@Model.User.LastName"></div>        
-            <div class="col-md-6 field"><label>E-posta</label><input type="email" value="@Model.User.Email"></div>        
-            <div class="col-md-6 field"><label>Telefon</label><input id="profilePhone" value="@Model.User.PhoneNumber"></div>        
-            <div class="col-md-6 field"><label>Doğum Tarihi</label><input id="profileBirthDate" type="date" value="@Model.User.BirthDate"></div>        
-            <div class="col-md-6 field"><label>Şehir</label><input id="profileCity" value="@Model.User.City"></div>        
-            <div class="col-md-6 field"><label>Ülke</label><input id="profileCountry" value="@Model.User.Country"></div>      
-        </div>      
-        <button class="btn-teal mt-4" onclick="updateProfile()">Bilgileri Güncelle</button>    
-    </div>  
-</div>`;
+                                    <div class="pane active">
+        <div class="pane-head">
+            <h1>Profil Bilgilerim</h1>
+            <p>Kişisel bilgilerini buradan güncelleyebilirsin.</p>
+        </div>
+        <div class="card-soft">
+            <div class="row g-3">
+                <div class="col-md-6 field"><label>Ad</label><input id="profileFirstName" value="@Model.User.FirstName"></div>
+                <div class="col-md-6 field"><label>Soyad</label><input id="profileLastName" value="@Model.User.LastName"></div>
+                <div class="col-md-6 field"><label>E-posta</label><input type="email" value="@Model.User.Email"></div>
+                <div class="col-md-6 field"><label>Telefon</label><input id="profilePhone" value="@Model.User.PhoneNumber"></div>
+                <div class="col-md-6 field"><label>Doğum Tarihi</label><input id="profileBirthDate" type="date" value="@Model.User.BirthDate"></div>
+                <div class="col-md-6 field"><label>Şehir</label><input id="profileCity" value="@Model.User.City"></div>
+                <div class="col-md-6 field"><label>Ülke</label><input id="profileCountry" value="@Model.User.Country"></div>
+            </div>
+            <button class="btn-teal mt-4" onclick="updateProfile()">Bilgileri Güncelle</button>
+        </div>
+    </div>`;
         },
 
         trips() {
             const card = (t) => `
-                                  <div class="trip-card">
-                                    <img src="${t.img}" alt="${t.title}">
-                                    <div class="trip-info">
-                                      <div class="country">${t.country}</div>
-                                      <h4>${t.title}</h4>
-                                      <div class="meta"><span>📅 ${t.date}</span></div>
-                                      <div class="resno">Rezervasyon: ${t.res}</div>
-                                    </div>
-                                    <div class="trip-right">
-                                      <span class="badge-soft ${t.status === 'Onaylandı' ? 'badge-ok' : 'badge-done'}">${t.status}</span>
-                                      <div class="acts">
-                                        <a href="tour-detail.html" class="mini-btn">Tur Detayı</a>
-                                        ${t.status === 'Tamamlandı' ? (t.reviewed ? '<button class="mini-btn" onclick="go(&quot;reviews&quot;)">Yorumunu Gör</button>' : '<button class="mini-btn solid" onclick="go(&quot;reviews&quot;)">Yorum Yap</button>') : ''}
-                                      </div>
-                                    </div>
-                                  </div>`;
+                                      <div class="trip-card">
+                                        <img src="${t.img}" alt="${t.title}">
+                                        <div class="trip-info">
+                                          <div class="country">${t.country}</div>
+                                          <h4>${t.title}</h4>
+                                          <div class="meta"><span>📅 ${t.date}</span></div>
+                                          <div class="resno">Rezervasyon: ${t.res}</div>
+                                        </div>
+                                        <div class="trip-right">
+                                          <span class="badge-soft ${t.status === 'Onaylandı' ? 'badge-ok' : 'badge-done'}">${t.status}</span>
+                                          <div class="acts">
+                                            <a href="/User/Tour/Detail/${t.tourId}" class="mini-btn">Tur Detayı</a>
+                                            ${t.status === 'Tamamlandı' ? (t.reviewed ? '<button class="mini-btn" onclick="go(&quot;reviews&quot;)">Yorumunu Gör</button>' : '<button class="mini-btn solid" onclick="go(&quot;reviews&quot;)">Yorum Yap</button>') : ''}
+                                          </div>
+                                        </div>
+                                      </div>`;
             return `
-                                <div class="pane active">
-                                  <div class="pane-head"><h1>Turlarım</h1><p>Yaklaşan ve tamamlanan tüm seyahatlerin.</p></div>
-                                  <div class="subtabs" role="tablist">
-                                    <button class="subtab active" onclick="tripFilter(this,'all')">Tümü</button>
-                                    <button class="subtab" onclick="tripFilter(this,'upcoming')">Yaklaşan</button>
-                                    <button class="subtab" onclick="tripFilter(this,'completed')">Tamamlanan</button>
-                                  </div>
-                                  <div id="tripUpcoming">
-                                    <h3 style="font-family:'Sora';font-weight:600;font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:.9rem">Yaklaşan</h3>
-                                    ${TRIPS.upcoming.map(card).join("")}
-                                  </div>
-                                  <div id="tripCompleted">
-                                    <h3 style="font-family:'Sora';font-weight:600;font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:1.6rem 0 .9rem">Tamamlanan</h3>
-                                    ${TRIPS.completed.map(card).join("")}
-                                  </div>
-                                </div>`;
+                                    <div class="pane active">
+                                      <div class="pane-head"><h1>Turlarım</h1><p>Yaklaşan ve tamamlanan tüm seyahatlerin.</p></div>
+                                      <div class="subtabs" role="tablist">
+                                        <button class="subtab active" onclick="tripFilter(this,'all')">Tümü</button>
+                                        <button class="subtab" onclick="tripFilter(this,'upcoming')">Yaklaşan</button>
+                                        <button class="subtab" onclick="tripFilter(this,'completed')">Tamamlanan</button>
+                                      </div>
+                                      <div id="tripUpcoming">
+                                        <h3 style="font-family:'Sora';font-weight:600;font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:.9rem">Yaklaşan</h3>
+                                        ${TRIPS.upcoming.map(card).join("")}
+                                      </div>
+                                      <div id="tripCompleted">
+                                        <h3 style="font-family:'Sora';font-weight:600;font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:1.6rem 0 .9rem">Tamamlanan</h3>
+                                        ${TRIPS.completed.map(card).join("")}
+                                      </div>
+                                    </div>`;
         },
 
         favorites() {
             if (FAVORITES.length === 0) {
                 return `<div class="pane active"><div class="pane-head"><h1>Favorilerim</h1><p>Daha sonra incelemek için kaydettiğin turlar.</p></div>
-                                    <div class="card-soft"><div class="empty">
-                                      <div class="ico">${IC.fav}</div><h3>Henüz favori turun yok.</h3><p>Yeni rotalar keşfetmeye ne dersin?</p>
-                                      <a href="tours.html" class="btn-teal">Turları Keşfet</a>
-                                    </div></div></div>`;
+                                        <div class="card-soft"><div class="empty">
+                                          <div class="ico">${IC.fav}</div><h3>Henüz favori turun yok.</h3><p>Yeni rotalar keşfetmeye ne dersin?</p>
+                                          <a href="tours.html" class="btn-teal">Turları Keşfet</a>
+                                        </div></div></div>`;
             }
             return `
-                                <div class="pane active">
-                                  <div class="pane-head"><h1>Favorilerim</h1><p>Daha sonra incelemek için kaydettiğin turlar.</p></div>
-                                  <div class="row g-4" id="favGrid">
-                                    ${FAVORITES.map((t, i) => `
-                                      <div class="col-sm-6 col-lg-4" data-fav="${i}">
-                                        <article class="tour-card">
-                                          <div class="tour-media">
-                                            <img src="${t.img}" alt="${t.title}">
-                                            <button class="fav" title="Favoriden kaldır" onclick="removeFav(${i})">
-                                              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
-                                            </button>
-                                          </div>
-                                          <div class="tour-body">
-                                            <div class="tour-country">${t.country}</div>
-                                            <h3 class="tour-title">${t.title}</h3>
-                                            <div class="tour-meta"><span>🗓️ ${t.dur}</span><span><span style="color:#f4a92c">★</span> ${t.rating.toFixed(1)}</span></div>
-                                            <div class="tour-foot">
-                                              <div class="price"><small>Kişi başı</small><b>${t.price} <span>TL</span></b></div>
-                                              <a href="tour-detail.html" class="btn-incele">Turu İncele</a>
-                                            </div>
-                                          </div>
-                                        </article>
-                                      </div>`).join("")}
-                                  </div>
-                                </div>`;
+                                    <div class="pane active">
+                                      <div class="pane-head"><h1>Favorilerim</h1><p>Daha sonra incelemek için kaydettiğin turlar.</p></div>
+                                      <div class="row g-4" id="favGrid">
+                                        ${FAVORITES.map((t, i) => `
+                                          <div class="col-sm-6 col-lg-4" data-fav="${i}">
+                                            <article class="tour-card">
+                                              <div class="tour-media">
+                                                <img src="${t.img}" alt="${t.title}">
+                                                <button class="fav" title="Favoriden kaldır" onclick="removeFav(${i})">
+                                                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+                                                </button>
+                                              </div>
+                                              <div class="tour-body">
+                                                <div class="tour-country">${t.country}</div>
+                                                <h3 class="tour-title">${t.title}</h3>
+                                                <div class="tour-meta"><span>🗓️ ${t.dur}</span><span><span style="color:#f4a92c">★</span> ${t.rating.toFixed(1)}</span></div>
+                                                <div class="tour-foot">
+                                                  <div class="price"><small>Kişi başı</small><b>${t.price} <span>TL</span></b></div>
+                                                  <a href="tour-detail.html" class="btn-incele">Turu İncele</a>
+                                                </div>
+                                              </div>
+                                            </article>
+                                          </div>`).join("")}
+                                      </div>
+                                    </div>`;
         },
 
         reviews() {
             if (MYREVIEWS.length === 0) {
                 return `<div class="pane active"><div class="pane-head"><h1>Yorumlarım</h1></div>
-                                    <div class="card-soft"><div class="empty"><div class="ico">${IC.reviews}</div><h3>Henüz yorumun yok.</h3><p>Tamamladığın turlar hakkında deneyimini paylaşabilirsin.</p><button class="btn-teal" onclick="go('trips')">Turlarıma Git</button></div></div></div>`;
+                                        <div class="card-soft"><div class="empty"><div class="ico">${IC.reviews}</div><h3>Henüz yorumun yok.</h3><p>Tamamladığın turlar hakkında deneyimini paylaşabilirsin.</p><button class="btn-teal" onclick="go('trips')">Turlarıma Git</button></div></div></div>`;
             }
             return `
-                                <div class="pane active">
-                                  <div class="pane-head"><h1>Yorumlarım</h1><p>Turlar hakkında paylaştığın değerlendirmeler.</p></div>
-                                  <div id="reviewList">
-                                    ${MYREVIEWS.map(r => `
-                                      <div class="rev-card" data-rev="${r.id}">
-                                        <div class="top">
-                                          <div><h4>${r.title}</h4><span class="rev-date">${r.date}</span></div>
-                                          <span class="rev-stars">${starStr(r.stars)}</span>
-                                        </div>
-                                        <p>${r.text}</p>
-                                        <div class="rev-acts">
-                                          <button class="mini-btn" onclick="toast('Düzenleme demo modunda çalışıyor.')">Düzenle</button>
-                                          <button class="mini-btn" onclick="askDeleteReview(${r.id})">Sil</button>
-                                        </div>
-                                      </div>`).join("")}
-                                  </div>
-                                </div>`;
+                                    <div class="pane active">
+                                      <div class="pane-head"><h1>Yorumlarım</h1><p>Turlar hakkında paylaştığın değerlendirmeler.</p></div>
+                                      <div id="reviewList">
+                                        ${MYREVIEWS.map(r => `
+                                          <div class="rev-card" data-rev="${r.id}">
+                                            <div class="top">
+                                              <div><h4>${r.title}</h4><span class="rev-date">${r.date}</span></div>
+                                              <span class="rev-stars">${starStr(r.stars)}</span>
+                                            </div>
+                                            <p>${r.text}</p>
+                                            <div class="rev-acts">
+                                              <button class="mini-btn" onclick="toast('Düzenleme demo modunda çalışıyor.')">Düzenle</button>
+                                              <button class="mini-btn" onclick="askDeleteReview(${r.id})">Sil</button>
+                                            </div>
+                                          </div>`).join("")}
+                                      </div>
+                                    </div>`;
         },
 
         questions() {
             return `
-                                <div class="pane active">
-                                  <div class="pane-head"><h1>Sorularım</h1><p>Tur detay sayfalarında sorduğun sorular ve yanıtları.</p></div>
-                                  ${QUESTIONS.map(q => `
-                                    <div class="q-card">
-                                      <div class="top">
-                                        <div>
-                                          <div class="tour-name">${q.tour}</div>
-                                          <div class="q-txt">${q.q}</div>
-                                          <div class="q-date">${q.date}</div>
-                                        </div>
-                                        <span class="badge-soft ${q.status === 'answered' ? 'badge-ok' : 'badge-wait'}">${q.status === 'answered' ? 'Cevaplandı' : 'Cevap Bekliyor'}</span>
-                                      </div>
-                                      ${q.status === 'answered'
+                                    <div class="pane active">
+                                      <div class="pane-head"><h1>Sorularım</h1><p>Tur detay sayfalarında sorduğun sorular ve yanıtları.</p></div>
+                                      ${QUESTIONS.map(q => `
+                                        <div class="q-card">
+                                          <div class="top">
+                                            <div>
+                                              <div class="tour-name">${q.tour}</div>
+                                              <div class="q-txt">${q.q}</div>
+                                              <div class="q-date">${q.date}</div>
+                                            </div>
+                                            <span class="badge-soft ${q.status === 'answered' ? 'badge-ok' : 'badge-wait'}">${q.status === 'answered' ? 'Cevaplandı' : 'Cevap Bekliyor'}</span>
+                                          </div>
+                                          ${q.status === 'answered'
                     ? `<div class="q-answer"><span class="who">Travelio</span><span class="txt">${q.a}</span></div>`
                     : `<div class="q-wait-note">Ekibimiz sorunu en kısa sürede yanıtlayacak.</div>`}
-                                    </div>`).join("")}
-                                </div>`;
+                                        </div>`).join("")}
+                                    </div>`;
         },
 
         ratings() {
             return `
-                                <div class="pane active">
-                                  <div class="pane-head"><h1>Değerlendirmelerim</h1><p>Katıldığın turlara verdiğin puanlar.</p></div>
-                                  <div class="row g-3" id="rateGrid">
-                                    ${RATINGS.map((r, i) => `
-                                      <div class="col-sm-6 col-lg-4">
-                                        <div class="rate-card">
-                                          <div class="country">${r.country}</div>
-                                          <h4>${r.title}</h4>
-                                          <div class="stars" data-stars="${i}">${starStr(r.stars)}</div>
-                                          <div class="score">${r.stars} / 5</div>
-                                          <div class="date">${r.date}</div>
-                                          <button class="mini-btn mt-3" data-rate="${i}">Değerlendirmeyi Güncelle</button>
-                                        </div>
-                                      </div>`).join("")}
-                                  </div>
-                                </div>`;
+                                    <div class="pane active">
+                                      <div class="pane-head"><h1>Değerlendirmelerim</h1><p>Katıldığın turlara verdiğin puanlar.</p></div>
+                                      <div class="row g-3" id="rateGrid">
+                                        ${RATINGS.map((r, i) => `
+                                          <div class="col-sm-6 col-lg-4">
+                                            <div class="rate-card">
+                                              <div class="country">${r.country}</div>
+                                              <h4>${r.title}</h4>
+                                              <div class="stars" data-stars="${i}">${starStr(r.stars)}</div>
+                                              <div class="score">${r.stars} / 5</div>
+                                              <div class="date">${r.date}</div>
+                                              <button class="mini-btn mt-3" data-rate="${i}">Değerlendirmeyi Güncelle</button>
+                                            </div>
+                                          </div>`).join("")}
+                                      </div>
+                                    </div>`;
         }
     };
 
@@ -394,7 +417,7 @@
         window.location.href = "/User/Account/Logout";
     }
 
-     function updateProfile() {
+    function updateProfile() {
         const dto = {
             firstName: document.getElementById("profileFirstName").value,
             lastName: document.getElementById("profileLastName").value,
@@ -421,5 +444,6 @@
     }
 
     /* init */
-    go("overview");
+    const hash = location.hash.replace("#", "");
+    go(hash && RENDER[hash] ? hash : "overview");
 </script>

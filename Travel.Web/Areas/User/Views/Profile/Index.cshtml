@@ -33,7 +33,7 @@
 
     @await Component.InvokeAsync("_ProfileModal")
 
-    @await Component.InvokeAsync("_ProfileScript")
+    @await Component.InvokeAsync("_ProfileScript", new { model = Model })
 
 </body>
 </html>
