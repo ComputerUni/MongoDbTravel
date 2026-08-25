@@ -1,0 +1,39 @@
+﻿@model ProfileViewModel
+
+<!DOCTYPE html>
+<html lang="tr">
+
+@await Component.InvokeAsync("_ProfileHead")
+
+<body>
+
+    <!-- NAV -->
+    @await Component.InvokeAsync("_ProfileNavbar")
+
+    <div class="container prof-head">
+        <div class="crumb"><a href="index.html">Ana Sayfa</a> / <span class="cur">Profilim</span></div>
+        <div class="eyebrow">Hesabım</div>
+        <h1>Profilim</h1>
+        <p>Seyahatlerini, favorilerini ve Travelio deneyimini buradan yönetebilirsin.</p>
+    </div>
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="accountMenu" style="width:300px;background:var(--cream)">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" style="font-family:'Sora';font-weight:700;color:var(--navy)">Hesap Menüsü</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body p-2">
+            <div class="side-card" id="sidebarMobile"></div>
+        </div>
+    </div>
+
+    @await Component.InvokeAsync("_ProfileSidebar")
+
+    @await Component.InvokeAsync("_ProfileFooter")
+
+    @await Component.InvokeAsync("_ProfileModal")
+
+    @await Component.InvokeAsync("_ProfileScript")
+
+</body>
+</html>

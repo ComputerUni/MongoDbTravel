@@ -38,6 +38,7 @@ namespace Travel.Web.Services.ReservationServices
             reservation.TotalPrice = (createReservationDto.AdultCount * tour.Price) + (createReservationDto.ChildCount * tour.ChildPrice);
             reservation.Status = ReservationStatus.Bekliyor;
             reservation.CreatedAt = DateTime.UtcNow;
+            reservation.TourDate = tourDate.StartDate;
 
             await _reservationCollection.InsertOneAsync(reservation);
 
@@ -63,9 +64,22 @@ namespace Travel.Web.Services.ReservationServices
             throw new NotImplementedException();
         }
 
-        public Task<List<ResultReservationDto>> GetByUserIdAsync(string userId)
+        public async Task<List<ResultReservationDto>> GetByUserIdAsync(string userId)
         {
-            throw new NotImplementedException();
+            var reservations = await _reservationCollection.Find(r => r.UserId == userId).SortByDescending(r => r.CreatedAt).ToListAsync();
+            var dtos =  _mapper.Map<List<ResultReservationDto>>(reservations);
+            foreach(var dto in dtos)
+            {
+                var tour = await _tourCollection.Find(t => t.Id == dto.TourId).FirstOrDefaultAsync();
+                if(tour != null)
+                {
+                    dto.TourName = tour.Name;
+                    dto.CoverImage = tour.CoverImage;
+                    dto.Duration = tour.Duration;
+                }
+            }
+
+            return dtos;
         }
 
         public Task UpdateStatusAsync(string id, ReservationStatus status)

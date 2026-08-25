@@ -40,7 +40,7 @@
                             <td>
                             @if(tour.Dates != null && tour.Dates.Any())
                             {
-                                @tour.Dates.Min(d => d.StartDate).ToString("dd MMM yyyy", new System.Globalization.CultureInfo("tr-TR"))
+                                @tour.Dates.Min(d => d.StartDate).ToLocalTime().ToString("dd MMM yyyy", new System.Globalization.CultureInfo("tr-TR"))
                             }
                             else
                             {

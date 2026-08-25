@@ -191,29 +191,30 @@
 
                 /* ---------- TUR TARİHLERİ ---------- */
                 const dateList=document.getElementById("dateList");
-                function dateRowHTML(start="", end="", cap="", status="Aktif"){
+                function dateRowHTML(start="", end="", cap="", isActive=true){
                     const index = dateList.querySelectorAll(".drow").length;
-                  return `
-                  <div class="drow">
-                    <div class="field"><label>Başlangıç Tarihi</label><input type="date" class="ctrl d-start" name="Tour.Dates[${index}].StartDate" value="${start}" /></div>
-                    <div class="field"><label>Bitiş Tarihi</label><input type="date" class="ctrl d-end" name="Tour.Dates[${index}].EndDate" value="${end}" /></div>
-                    <div class="field" style="max-width:120px"><label>Kontenjan</label><input type="number" min="1" class="ctrl d-cap" name="Tour.Dates[${index}].Quota" value="${cap}" placeholder="28"></div>
-                    <div class="field" style="max-width:130px"><label>Durum</label>
-                      <select class="ctrl d-status" name="Tour.Dates[${index}].IsActive"><option ${status==='Aktif'?'selected':''}>Aktif</option><option ${status==='Pasif'?'selected':''}>Pasif</option></select>
-                    </div>
-                    <button class="del-mini" onclick="removeRow(this,'.drow')" aria-label="Sil">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>
-                    </button>
-                  </div>`;
+                return `
+        <div class="drow">
+            <div class="field"><label>Başlangıç Tarihi</label><input type="date" class="ctrl d-start" name="Tour.Dates[${index}].StartDate" value="${start}" /></div>
+            <div class="field"><label>Bitiş Tarihi</label><input type="date" class="ctrl d-end" name="Tour.Dates[${index}].EndDate" value="${end}" /></div>
+            <div class="field" style="max-width:120px"><label>Kontenjan</label><input type="number" min="1" class="ctrl d-cap" name="Tour.Dates[${index}].Quota" value="${cap}" placeholder="28"></div>
+            <div class="field" style="max-width:130px"><label>Durum</label>
+                <select class="ctrl d-status" name="Tour.Dates[${index}].IsActive">
+                    <option value="true" ${isActive === true || isActive === 'true' ? 'selected' : ''}>Aktif</option>
+                    <option value="false" ${isActive === false || isActive === 'false' ? 'selected' : ''}>Pasif</option>
+                </select>
+            </div>
+            <button class="del-mini" onclick="removeRow(this,'.drow')" aria-label="Sil">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>
+            </button>
+        </div>`;
                 }
                 function addDate(){ dateList.insertAdjacentHTML("beforeend", dateRowHTML()); refreshDateDelState(); }
                 function refreshDateDelState(){
                   const rows=dateList.querySelectorAll(".drow");
                   rows.forEach(r=> r.querySelector(".del-mini").disabled = rows.length<=1);
                 }
-                // seed one example
-                dateList.insertAdjacentHTML("beforeend", dateRowHTML("2026-10-12","2026-10-17","28","Aktif"));
-                refreshDateDelState();
+
 
                 /* ---------- GÜN GÜN PROGRAM ---------- */
                 const dayList=document.getElementById("dayList");
@@ -367,30 +368,30 @@
 
                         @foreach (var date in Model.Tour.Dates)
         {
-                    <text>dateList.insertAdjacentHTML("beforeend", dateRowHTML("@date.StartDate.ToString("yyyy-MM-dd")", "@date.EndDate.ToString("yyyy-MM-dd")", "@date.Quota", "@(date.IsActive ? "Aktif" : "Pasif")"));</text>
+                        <text>dateList.insertAdjacentHTML("beforeend", dateRowHTML("@date.StartDate.ToLocalTime().ToString("yyyy-MM-dd")", "@date.EndDate.ToLocalTime().ToString("yyyy-MM-dd")", "@date.Quota", "@(date.IsActive ? "Aktif" : "Pasif")"));</text>
         }
         refreshDateDelState();
 
         @for (int i = 0; i < Model.Tour.DayPrograms.Count; i++)
         {
-                    var day = Model.Tour.DayPrograms[i];
-                    <text>dayList.insertAdjacentHTML("beforeend", dayHTML(@i, false, "@day.Title", "@day.Description", "@day.Accommodation", "@day.Transport", "@day.Meals"));</text>
+                        var day = Model.Tour.DayPrograms[i];
+                        <text>dayList.insertAdjacentHTML("beforeend", dayHTML(@i, false, "@day.Title", "@day.Description", "@day.Accommodation", "@day.Transport", "@day.Meals"));</text>
         }
         renumberDays();
 
         @foreach (var inc in Model.Tour.Included)
         {
-                <text>addItem('incList', 'Yeni hizmet'); document.getElementById('incList').lastElementChild.querySelector('input').value = "@inc";</text>
+                    <text>addItem('incList', 'Yeni hizmet'); document.getElementById('incList').lastElementChild.querySelector('input').value = "@Html.Raw(inc)";</text>
         }
 
         @foreach (var exc in Model.Tour.NotIncluded)
         {
-                <text>addItem('excList', 'Yeni madde'); document.getElementById('excList').lastElementChild.querySelector('input').value = "@exc";</text>
+                        <text>addItem('excList', 'Yeni madde'); document.getElementById('excList').lastElementChild.querySelector('input').value = "@Html.Raw(exc)";</text>
         }
 
         @foreach (var feat in Model.Tour.Features)
         {
-                <text>addItem('hlList', 'Öne çıkan özellik'); document.getElementById('hlList').lastElementChild.querySelector('input').value = "@feat";</text>
+                        <text>addItem('hlList', 'Öne çıkan özellik'); document.getElementById('hlList').lastElementChild.querySelector('input').value = "@Html.Raw(feat)";</text>
         }
 
                 const currentStatus = "@Model.Tour.IsActive";

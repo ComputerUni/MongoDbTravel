@@ -24,8 +24,6 @@ namespace Travel.Web.Areas.User.Controllers
             {
                 return BadRequest(ex.Message);
             }
-
-            return View();
         }
     }
 }

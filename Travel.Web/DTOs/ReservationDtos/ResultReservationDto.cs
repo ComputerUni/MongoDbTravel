@@ -14,5 +14,9 @@ namespace Travel.Web.DTOs.ReservationDtos
         public decimal TotalPrice { get; set; }
         public ReservationStatus Status { get; set; }
         public DateTime CreatedAt { get; set; }
+        public string TourName { get; set; }
+        public string CoverImage { get; set; }
+        public int Duration { get; set; }
+        public string DestinationName { get; set; }
     }
 }

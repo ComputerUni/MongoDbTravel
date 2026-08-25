@@ -1,0 +1,61 @@
+﻿<!-- LOGOUT MODAL -->
+<div class="modal fade" id="logoutModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body text-center p-4">
+                <div style="width:56px;height:56px;border-radius:16px;background:rgba(192,85,79,.1);color:#c0554f;display:grid;place-items:center;margin:0 auto 1rem">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" /><polyline points="16 17 21 12 16 7" /><line x1="21" y1="12" x2="9" y2="12" /></svg>
+                </div>
+                <h5 style="font-family:'Sora';font-weight:700;color:var(--navy)">Çıkış yapmak istediğine emin misin?</h5>
+                <p style="color:var(--muted);font-size:.9rem">Hesabından çıkış yapıldığında rezervasyonların ve favorilerin güvende kalır.</p>
+                <div class="d-flex gap-2 justify-content-center mt-3">
+                    <button class="btn-outline" data-bs-dismiss="modal">Vazgeç</button>
+                    <button class="btn-teal" style="background:#c0554f" onclick="doLogout()">Çıkış Yap</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- RATING MODAL -->
+<div class="modal fade" id="rateModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <h5 class="modal-title" style="font-family:'Sora';font-weight:700;color:var(--navy)">Değerlendirmeyi Güncelle</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p id="rateTourName" style="color:var(--muted);font-size:.9rem;margin-bottom:.6rem"></p>
+                <div id="ratePicker">
+                    <span class="star-pick" data-v="1">★</span><span class="star-pick" data-v="2">★</span><span class="star-pick" data-v="3">★</span><span class="star-pick" data-v="4">★</span><span class="star-pick" data-v="5">★</span>
+                </div>
+            </div>
+            <div class="modal-footer border-0">
+                <button class="btn-teal" onclick="saveRating()">Kaydet</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- DELETE REVIEW MODAL -->
+<div class="modal fade" id="delModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body text-center p-4">
+                <h5 style="font-family:'Sora';font-weight:700;color:var(--navy)">Yorumu silmek istiyor musun?</h5>
+                <p style="color:var(--muted);font-size:.9rem">Bu işlem geri alınamaz.</p>
+                <div class="d-flex gap-2 justify-content-center mt-3">
+                    <button class="btn-outline" data-bs-dismiss="modal">Vazgeç</button>
+                    <button class="btn-teal" style="background:#c0554f" onclick="confirmDeleteReview()">Sil</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast-ok" id="toast">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+    <span id="toastMsg">Kaydedildi.</span>
+</div>

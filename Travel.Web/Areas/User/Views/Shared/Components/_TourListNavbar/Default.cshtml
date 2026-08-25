@@ -1,6 +1,6 @@
 ﻿<nav class="navbar navbar-expand-lg sticky-top">
     <div class="container">
-        <a class="brand" href="#"><span class="dot"></span>Travelio</a>
+        <a class="brand" href="/User/Home/Index"><span class="dot"></span>Travelio</a>
         <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -13,9 +13,9 @@
                 <li class="nav-item"><a class="nav-link" href="#hakkimizda">Hakkımızda</a></li>
                 <li class="nav-item"><a class="nav-link" href="#iletisim">İletişim</a></li>
             </ul>
-            @if(User.Identity.IsAuthenticated)
+            @if (User.Identity.IsAuthenticated)
             {
-                <a href="#" class="profile-pill">
+                <a href="/User/Profile/Index" class="profile-pill">
                     <span>@User.Identity.Name</span>
                     <span class="avatar">@User.Identity.Name[0] @User.Identity.Name[1]</span>
                 </a>
