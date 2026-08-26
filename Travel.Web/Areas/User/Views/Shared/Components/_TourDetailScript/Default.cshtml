@@ -171,4 +171,32 @@
                           </div>
                         </article>
                       </div>`).join("");
+
+
+    function toggleFav(btn) {
+        const tourId = btn.dataset.tourId;
+        const isOn = btn.classList.contains('on');
+        fetch(isOn ? '/User/Favorite/Delete' : '/User/Favorite/Add', {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ tourId: tourId })
+        }).then(r => {
+            if (r.ok) btn.classList.toggle("on");
+        });
+    }
+
+    function loadUserFavorites() {
+        fetch('/User/Favorite/GetUserFavorites')
+            .then(r => r.json())
+            .then(favoriteIds => {
+                document.querySelectorAll('.fav[data-tour-id]').forEach(btn => {
+                    if (favoriteIds.includes(btn.dataset.tourId)) {
+                        btn.classList.add('on');
+                    }
+                });
+            });
+    }
+
+    loadUserFavorites();
+
 </script>

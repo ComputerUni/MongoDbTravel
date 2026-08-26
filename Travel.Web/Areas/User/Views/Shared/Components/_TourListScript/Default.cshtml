@@ -6,21 +6,21 @@
     const TOURS = @Html.Raw(Json.Serialize(Model.Select(t => new
         {
             id = t.Id,
-            title = t.Name,
-            country = t.DestinationName,
-            ctry = t.DestinationName.ToLower(),
+                            title = t.Name,
+                            country = t.DestinationName,
+                            ctry = t.DestinationName.ToLower(),
             dur = t.Duration,
-            durLabel = t.Duration + " Gün",
-            price = t.Price,
+                            durLabel = t.Duration + " Gün",
+                            price = t.Price,
             cat = t.CategoryName,
-            catLabel = t.CategoryName,
-            badge = t.IsFeatured ? "Popüler" : "",
+                            catLabel = t.CategoryName,
+                            badge = t.IsFeatured ? "Popüler" : "",
             img = t.CoverImage ?? "",
-            rating = 0.0,
-            reviews = 0
-        })));
-  
+                            rating = 0.0,
+                            reviews = 0
+                })));
 
+  
     /* ---------- FILTER OPTIONS ---------- */
     const DEST_OPTS = [
         { key: "fransa", label: "Fransa" }, { key: "italya", label: "İtalya" }, { key: "ispanya", label: "İspanya" },
@@ -55,63 +55,63 @@
 
     function sidebarHTML() {
         return `
-                      <h2>Turları Filtrele</h2>
-                      <p class="filter-sub">Sana en uygun rotayı bulmak için daralt.</p>
+                              <h2>Turları Filtrele</h2>
+                              <p class="filter-sub">Sana en uygun rotayı bulmak için daralt.</p>
 
-                      <div class="filter-group">
-                        <h3>Tur Ara</h3>
-                        <div class="search-wrap">
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                          <input type="text" class="f-search" placeholder="Tur veya destinasyon ara" />
-                        </div>
-                      </div>
+                              <div class="filter-group">
+                                <h3>Tur Ara</h3>
+                                <div class="search-wrap">
+                                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                                  <input type="text" class="f-search" placeholder="Tur veya destinasyon ara" />
+                                </div>
+                              </div>
 
-                      <div class="filter-group">
-                        <h3>Destinasyon</h3>
-                        ${DEST_OPTS.map(o => `
-                          <label class="fcheck">
-                            <span class="lbl"><input type="checkbox" class="f-dest" value="${o.key}"> ${o.label}</span>
-                            <span class="cnt">(${destCount(o.key)})</span>
-                          </label>`).join("")}
-                      </div>
+                              <div class="filter-group">
+                                <h3>Destinasyon</h3>
+                                ${DEST_OPTS.map(o => `
+                                  <label class="fcheck">
+                                    <span class="lbl"><input type="checkbox" class="f-dest" value="${o.key}"> ${o.label}</span>
+                                    <span class="cnt">(${destCount(o.key)})</span>
+                                  </label>`).join("")}
+                              </div>
 
-                      <div class="filter-group">
-                        <h3>Tur Süresi</h3>
-                        ${DUR_OPTS.map(o => `
-                          <label class="fcheck">
-                            <span class="lbl"><input type="checkbox" class="f-dur" value="${o.key}"> ${o.label}</span>
-                          </label>`).join("")}
-                      </div>
+                              <div class="filter-group">
+                                <h3>Tur Süresi</h3>
+                                ${DUR_OPTS.map(o => `
+                                  <label class="fcheck">
+                                    <span class="lbl"><input type="checkbox" class="f-dur" value="${o.key}"> ${o.label}</span>
+                                  </label>`).join("")}
+                              </div>
 
-                      <div class="filter-group">
-                        <h3>Fiyat Aralığı</h3>
-                        ${PRICE_OPTS.map(o => `
-                          <label class="fcheck">
-                            <span class="lbl"><input type="checkbox" class="f-price" value="${o.key}"> ${o.label}</span>
-                          </label>`).join("")}
-                      </div>
+                              <div class="filter-group">
+                                <h3>Fiyat Aralığı</h3>
+                                ${PRICE_OPTS.map(o => `
+                                  <label class="fcheck">
+                                    <span class="lbl"><input type="checkbox" class="f-price" value="${o.key}"> ${o.label}</span>
+                                  </label>`).join("")}
+                              </div>
 
-                      <div class="filter-group">
-                        <h3>Tur Tipi</h3>
-                        ${TYPE_OPTS.map(o => `
-                          <label class="fcheck">
-                            <span class="lbl"><input type="checkbox" class="f-type" value="${o}"> ${o}</span>
-                          </label>`).join("")}
-                      </div>
+                              <div class="filter-group">
+                                <h3>Tur Tipi</h3>
+                                ${TYPE_OPTS.map(o => `
+                                  <label class="fcheck">
+                                    <span class="lbl"><input type="checkbox" class="f-type" value="${o}"> ${o}</span>
+                                  </label>`).join("")}
+                              </div>
 
-                      <div class="filter-group">
-                        <h3>Değerlendirme</h3>
-                        ${RATING_OPTS.map(o => `
-                          <label class="fcheck">
-                            <span class="lbl"><input type="radio" name="f-rating" class="f-rating" value="${o.key}"> <span class="stars-opt">${starsMarkup(o.stars)}</span></span>
-                            <span class="cnt">${o.label}</span>
-                          </label>`).join("")}
-                      </div>
+                              <div class="filter-group">
+                                <h3>Değerlendirme</h3>
+                                ${RATING_OPTS.map(o => `
+                                  <label class="fcheck">
+                                    <span class="lbl"><input type="radio" name="f-rating" class="f-rating" value="${o.key}"> <span class="stars-opt">${starsMarkup(o.stars)}</span></span>
+                                    <span class="cnt">${o.label}</span>
+                                  </label>`).join("")}
+                              </div>
 
-                      <div class="filter-actions">
-                        <button class="btn-teal" onclick="applyFromButton()">Filtreleri Uygula</button>
-                        <button class="clear-link" onclick="clearFilters()">Filtreleri Temizle</button>
-                      </div>`;
+                              <div class="filter-actions">
+                                <button class="btn-teal" onclick="applyFromButton()">Filtreleri Uygula</button>
+                                <button class="clear-link" onclick="clearFilters()">Filtreleri Temizle</button>
+                              </div>`;
     }
 
     document.getElementById("filterCardDesktop").innerHTML = sidebarHTML();
@@ -173,32 +173,32 @@
 
     function cardHTML(t) {
         return `
-                      <div class="col-md-6">
-                        <article class="tour-card">
-                          <div class="tour-media">
-                            <img src="${t.img}" alt="${t.title}" loading="lazy" />
-                            ${t.badge ? `<span class="tour-badge">${t.badge}</span>` : ''}
-                            <button class="fav" aria-label="Favorilere ekle" onclick="this.classList.toggle('on')">
-                              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
-                            </button>
-                          </div>
-                          <div class="tour-body">
-                            <div class="tour-topline">
-                              <span class="tour-country">${t.country}</span>
-                              <span class="tour-cat">${t.catLabel}</span>
-                            </div>
-                            <h3 class="tour-title">${t.title}</h3>
-                            <div class="tour-meta">
-                              <span>🗓️ ${t.durLabel}</span>
-                              <span class="rating"><span class="star">★</span> ${t.rating.toFixed(1)} <span style="color:var(--muted);font-weight:400">(${fmt(t.reviews)})</span></span>
-                            </div>
-                            <div class="tour-foot">
-                              <div class="price"><small>Kişi başı</small><b>${fmt(t.price)} <span>TL</span></b></div>
-                              <a href="/User/Tour/Detail/${t.id}" class="btn-incele">Turu İncele</a>
-                            </div>
-                          </div>
-                        </article>
-                      </div>`;
+                              <div class="col-md-6">
+                                <article class="tour-card">
+                                  <div class="tour-media">
+                                    <img src="${t.img}" alt="${t.title}" loading="lazy" />
+                                    ${t.badge ? `<span class="tour-badge">${t.badge}</span>` : ''}
+                                    <button class="fav" aria-label="Favorilere ekle" data-tour-id="${t.id}" onclick="toggleFavorite(this)">
+                                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+                                    </button>
+                                  </div>
+                                  <div class="tour-body">
+                                    <div class="tour-topline">
+                                      <span class="tour-country">${t.country}</span>
+                                      <span class="tour-cat">${t.catLabel}</span>
+                                    </div>
+                                    <h3 class="tour-title">${t.title}</h3>
+                                    <div class="tour-meta">
+                                      <span>🗓️ ${t.durLabel}</span>
+                                      <span class="rating"><span class="star">★</span> ${t.rating.toFixed(1)} <span style="color:var(--muted);font-weight:400">(${fmt(t.reviews)})</span></span>
+                                    </div>
+                                    <div class="tour-foot">
+                                      <div class="price"><small>Kişi başı</small><b>${fmt(t.price)} <span>TL</span></b></div>
+                                      <a href="/User/Tour/Detail/${t.id}" class="btn-incele">Turu İncele</a>
+                                    </div>
+                                  </div>
+                                </article>
+                              </div>`;
     }
 
     /* ---------- ACTIVE CHIPS ---------- */
@@ -271,6 +271,41 @@
         document.getElementById("sortSelect").value = "onerilen";
         syncState(); render();
     }
+
+    function toggleFavorite(btn) {
+        const tourId = btn.dataset.tourId;
+        const isOn = btn.classList.contains("on");
+        const url = isOn ? "/User/Favorite/Delete" : "/User/Favorite/Add";
+
+        fetch(url, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ tourId: tourId })
+        }).then(r => {
+            if (r.ok) {
+                btn.classList.toggle("on");
+            } else {
+                alert("İşlem başarısız");
+            }
+        });
+    }
+
+
+    function loadUserFavorites() {
+        fetch('/User/Favorite/GetUserFavorites')
+            .then(r => r.json())
+            .then(favoriteIds => {
+                document.querySelectorAll('.fav[data-tour-id]').forEach(btn => {
+                    if (favoriteIds.includes(btn.dataset.tourId)) {
+                        btn.classList.add('on');
+                    }
+                });
+            });
+    }
+
+    loadUserFavorites();
+
+
 
     // initial
     render();

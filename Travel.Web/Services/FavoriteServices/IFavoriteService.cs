@@ -1,10 +1,12 @@
-﻿namespace Travel.Web.Services.FavoriteServices
+﻿using Travel.Web.DTOs.FavoriteDtos;
+
+namespace Travel.Web.Services.FavoriteServices
 {
     public interface IFavoriteService
     {
-        Task AddAsync(string userId, string tourId);
+        Task AddAsync(CreateFavoriteDto dto);
         Task RemoveAsync(string userId, string tourId);
-        Task GetByUserIdAsync(string userId);
-        Task IsFavoriteAsync(string userId, string tourId);
+        Task<List<ResultFavoriteDto>> GetByUserIdAsync(string userId);
+        Task<bool> IsFavoriteAsync(string userId, string tourId);
     }
 }
