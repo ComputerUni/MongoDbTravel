@@ -8,13 +8,13 @@ namespace Travel.Web.Areas.User.Controllers
     {
         public async Task<IActionResult> Index()
         {
-            var tours = await _tourService.GetAllAsync();
+            var tours = await _tourService.GetActiveToursForUserAsync();
             return View(tours);
         }
 
         public async Task<IActionResult> Detail(string id)
         {
-            var result = await _tourService.GetByIdAsync(id);
+            var result = await _tourService.GetActiveTourByIdForUserAsync(id);
             return View(result);
         }
 

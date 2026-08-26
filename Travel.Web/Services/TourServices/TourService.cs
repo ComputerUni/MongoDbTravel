@@ -101,6 +101,40 @@ namespace Travel.Web.Services.TourServices
             return dto;
         }
 
+        public async Task<ResultTourDto> GetActiveTourByIdForUserAsync(string id, bool resolveName = true)
+        {
+            var tour = await _tourCollection.Find(x => x.Id == id && x.IsActive == "Aktif" && x.Dates.Any(d => d.IsActive)).FirstOrDefaultAsync();
+            if (tour == null) return null;
+
+            tour.Dates = tour.Dates.Where(d => d.IsActive).ToList();
+
+            var dto = _mapper.Map<ResultTourDto>(tour);
+
+            var category = await _categoryService.GetByIdAsync(dto.CategoryId);
+            dto.CategoryName = category?.CategoryName ?? "-";
+
+            var destination = await _destinationService.GetByIdAsync(dto.DestinationId);
+            dto.DestinationName = destination?.Name ?? "-";
+
+            if (resolveName)
+            {
+                async Task<string> Resolve(string value)
+                {
+                    var lookup = await _lookupService.GetByIdAsync(value);
+                    return lookup.Name;
+                }
+
+                dto.DepartureCity = await Resolve(tour.DepartureCity);
+                dto.Transport = await Resolve(tour.Transport);
+                dto.GuideLanguage = await Resolve(tour.GuideLanguage);
+                dto.VisaInfo = await Resolve(tour.VisaInfo);
+            }
+
+            return dto;
+
+        }
+
+
         public async Task UpdateAsync(UpdateTourDto updateTourDto)
         {
             var tour = _mapper.Map<Tour>(updateTourDto);
@@ -135,6 +169,25 @@ namespace Travel.Web.Services.TourServices
             await file.CopyToAsync(stream);
 
             return "/uploads/tours/" + fileName;
+        }
+
+
+        public async Task<List<ResultTourDto>> GetActiveToursForUserAsync()
+        {
+            var tours = await _tourCollection.Find(x => x.IsActive == "Aktif" && x.Dates.Any(d => d.IsActive)).ToListAsync();
+            var categories = await _categoryService.GetAllAsync();
+            var destinations = await _destinationService.GetAllAsync();
+
+            var dtos = _mapper.Map<List<ResultTourDto>>(tours);
+
+            foreach(var dto in dtos)
+            {
+                dto.CategoryName = categories.FirstOrDefault(c => c.Id == dto.CategoryId)?.CategoryName ?? "-";
+                dto.DestinationName = destinations.FirstOrDefault(c => c.Id == dto.DestinationId)?.Name ?? "-";
+            }
+
+            return dtos;
+
         }
     }
 }

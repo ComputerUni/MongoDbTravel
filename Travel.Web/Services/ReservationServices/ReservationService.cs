@@ -46,7 +46,13 @@ namespace Travel.Web.Services.ReservationServices
                 Builders<Tour>.Filter.ElemMatch(t => t.Dates, d => d.Id == createReservationDto.TourDateId));
 
             var update = Builders<Tour>.Update.Inc("Dates.$.Quota", -totalPerson);
-            await _tourCollection.UpdateOneAsync(filter, update);
+
+            var updateResult = await _tourCollection.UpdateOneAsync(filter, update);
+
+            if (updateResult.ModifiedCount == 0)
+            {
+                throw new Exception("Rezervasyon oluşturuldu ancak kontenjan düşürülemedi, ID eşleşmesini kontrol edin.");
+            }
         }
 
         public Task<List<ResultReservationDto>> GetAllAsync()
@@ -67,15 +73,30 @@ namespace Travel.Web.Services.ReservationServices
         public async Task<List<ResultReservationDto>> GetByUserIdAsync(string userId)
         {
             var reservations = await _reservationCollection.Find(r => r.UserId == userId).SortByDescending(r => r.CreatedAt).ToListAsync();
-            var dtos =  _mapper.Map<List<ResultReservationDto>>(reservations);
-            foreach(var dto in dtos)
+            var dtos = _mapper.Map<List<ResultReservationDto>>(reservations);
+
+            foreach (var dto in dtos)
             {
                 var tour = await _tourCollection.Find(t => t.Id == dto.TourId).FirstOrDefaultAsync();
-                if(tour != null)
+                if (tour != null)
                 {
                     dto.TourName = tour.Name;
                     dto.CoverImage = tour.CoverImage;
                     dto.Duration = tour.Duration;
+
+                    bool isOverallActive = tour.IsActive == "Aktif";
+
+                    bool isDateActive = true;
+                    if (tour.Dates != null && tour.Dates.Any())
+                    {
+                        var matchingDate = tour.Dates.FirstOrDefault(d => d.StartDate.Date == dto.TourDate.Date);
+                        if (matchingDate != null)
+                        {
+                            isDateActive = matchingDate.IsActive; 
+                        }
+                    }
+
+                    dto.TourIsActive = (isOverallActive && isDateActive) ? "Aktif" : "Pasif";
                 }
             }
 

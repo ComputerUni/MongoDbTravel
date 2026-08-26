@@ -14,9 +14,9 @@
                 @foreach (var (date, i) in Model.Dates.Select((d, i) => (d, i)))
                 {
                     <label class="date-opt @(i == 0 ? "sel" : "")">
-                        <span class="d">@date.StartDate.ToString("dd") - @date.EndDate.ToString("dd MMM yyyy")</span>
+                        <span class="d">@date.StartDate.ToLocalTime().ToString("dd") - @date.EndDate.ToLocalTime().ToString("dd MMM yyyy")</span>
                         <input type="radio" name="tourDate" value="@date.Id" @(i == 0 ? "checked" : "") />
-                        @if(date.Quota <= 5 && date.Quota > 0)
+                        @if (date.Quota <= 5 && date.Quota > 0)
                         {
                             <span class="left">Son @date.Quota Kontenjan</span>
                         }

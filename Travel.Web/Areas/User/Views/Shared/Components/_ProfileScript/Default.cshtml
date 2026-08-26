@@ -5,7 +5,7 @@
     {
         tourName = r.TourName,
         destinationName = r.DestinationName,
-        date = r.TourDate.ToString("dd MMM yyyy", new System.Globalization.CultureInfo("tr-TR")),
+        date = r.TourDate.ToLocalTime().ToString("dd MMM yyyy", new System.Globalization.CultureInfo("tr-TR")),
         id = "TRV-" + r.Id.Substring(0, 8).ToUpper(),
         status = r.Status switch
         {
@@ -15,7 +15,8 @@
         },
         coverImage = r.CoverImage,
         tourDate = r.TourDate,
-        tourId = r.TourId
+        tourId = r.TourId,
+        tourIsActive = r.TourIsActive
     }).ToList();
 
 
@@ -96,7 +97,8 @@
                 res: r.id || "",
                 status: r.status,
                 img: r.coverImage,
-                tourId: r.tourId
+                tourId: r.tourId,
+                tourIsActive: r.tourIsActive
             })),
 
         completed: rawReservations
@@ -109,7 +111,8 @@
                 res: r.id || "",
                 status: r.status,
                 img: r.coverImage,
-                tourId: r.tourId
+                tourId: r.tourId,
+                tourIsActive: r.tourIsActive
             }))
     };
 
@@ -170,6 +173,7 @@
                 { ic: IC.reviews, num: 5, lab: "Yorum" }
             ];
             const t = TRIPS.upcoming[0];
+            const isTourPassive = t && t.tourIsActive !== "Aktif";
             const acts = [
                 { t: '<b>Roma & Toskana</b> turuna yorum yaptın.', time: "2 gün önce", ic: IC.reviews },
                 { t: '<b>Tokyo & Kyoto</b> turunu favorilere ekledin.', time: "5 gün önce", ic: IC.fav },
@@ -200,7 +204,11 @@
                                                 <span class="status-chip status-ok">● ${t.status}</span>
                                               </div>
                                               <div class="up-btns d-flex gap-2 flex-wrap">
-                                                <a href="tour-detail.html" class="btn-white">Tur Detayı</a>
+                                              ${isTourPassive 
+                                                ? `<span class="btn-white" style="opacity: 0.5; pointer-events: none; cursor: not-allowed; background: #e9ecef;">Tur Pasife Alındı</span>`
+                                                : ` <a href="/User/Tour/Detail/${t.tourId}" class="btn-white">Tur Detayı</a>`
+                                              }
+                                                   
                                                 <button class="btn-linewhite" onclick="go('trips')">Rezervasyonu Gör</button>
                                               </div>
                                             </div>
@@ -235,41 +243,48 @@
         </div>`;
         },
 
-        trips() {
-            const card = (t) => `
-                                          <div class="trip-card">
-                                            <img src="${t.img}" alt="${t.title}">
-                                            <div class="trip-info">
-                                              <div class="country">${t.country}</div>
-                                              <h4>${t.title}</h4>
-                                              <div class="meta"><span>📅 ${t.date}</span></div>
-                                              <div class="resno">Rezervasyon: ${t.res}</div>
-                                            </div>
-                                            <div class="trip-right">
-                                              <span class="badge-soft ${t.status === 'Onaylandı' ? 'badge-ok' : 'badge-done'}">${t.status}</span>
-                                              <div class="acts">
-                                                <a href="/User/Tour/Detail/${t.tourId}" class="mini-btn">Tur Detayı</a>
-                                                ${t.status === 'Tamamlandı' ? (t.reviewed ? '<button class="mini-btn" onclick="go(&quot;reviews&quot;)">Yorumunu Gör</button>' : '<button class="mini-btn solid" onclick="go(&quot;reviews&quot;)">Yorum Yap</button>') : ''}
-                                              </div>
-                                            </div>
-                                          </div>`;
+       trips() {
+            const card = (t) => {
+                const isTourPassive = t.tourIsActive !== "Aktif"; 
+
+                return `
+                      <div class="trip-card">
+                        <img src="${t.img}" alt="${t.title}">
+                        <div class="trip-info">
+                          <div class="country">${t.country}</div>
+                          <h4>${t.title}</h4>
+                          <div class="meta"><span>📅 ${t.date}</span></div>
+                          <div class="resno">Rezervasyon: ${t.res}</div>
+                        </div>
+                        <div class="trip-right">
+                          <div class="acts">
+                            ${isTourPassive 
+                              ? '<span class="mini-btn" style="opacity: 0.5; pointer-events: none; cursor: not-allowed; background: #e9ecef;">Tur Pasife Alındı</span>' 
+                              : `<a href="/User/Tour/Detail/${t.tourId}" class="mini-btn">Tur Detayı</a>`
+                            }
+                            ${!isTourPassive && t.status === 'Tamamlandı' ? (t.reviewed ? '<button class="mini-btn" onclick="go(&quot;reviews&quot;)">Yorumunu Gör</button>' : '<button class="mini-btn solid" onclick="go(&quot;reviews&quot;)">Yorum Yap</button>') : ''}
+                          </div>
+                        </div>
+                      </div>`;
+            };
+
             return `
-                                        <div class="pane active">
-                                          <div class="pane-head"><h1>Turlarım</h1><p>Yaklaşan ve tamamlanan tüm seyahatlerin.</p></div>
-                                          <div class="subtabs" role="tablist">
-                                            <button class="subtab active" onclick="tripFilter(this,'all')">Tümü</button>
-                                            <button class="subtab" onclick="tripFilter(this,'upcoming')">Yaklaşan</button>
-                                            <button class="subtab" onclick="tripFilter(this,'completed')">Tamamlanan</button>
-                                          </div>
-                                          <div id="tripUpcoming">
-                                            <h3 style="font-family:'Sora';font-weight:600;font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:.9rem">Yaklaşan</h3>
-                                            ${TRIPS.upcoming.map(card).join("")}
-                                          </div>
-                                          <div id="tripCompleted">
-                                            <h3 style="font-family:'Sora';font-weight:600;font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:1.6rem 0 .9rem">Tamamlanan</h3>
-                                            ${TRIPS.completed.map(card).join("")}
-                                          </div>
-                                        </div>`;
+                <div class="pane active">
+                  <div class="pane-head"><h1>Turlarım</h1><p>Yaklaşan ve tamamlanan tüm seyahatlerin.</p></div>
+                  <div class="subtabs" role="tablist">
+                    <button class="subtab active" onclick="tripFilter(this,'all')">Tümü</button>
+                    <button class="subtab" onclick="tripFilter(this,'upcoming')">Yaklaşan</button>
+                    <button class="subtab" onclick="tripFilter(this,'completed')">Tamamlanan</button>
+                  </div>
+                  <div id="tripUpcoming">
+                    <h3 style="font-family:'Sora';font-weight:600;font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:.9rem">Yaklaşan</h3>
+                    ${TRIPS.upcoming.map(card).join("")}
+                  </div>
+                  <div id="tripCompleted">
+                    <h3 style="font-family:'Sora';font-weight:600;font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:1.6rem 0 .9rem">Tamamlanan</h3>
+                    ${TRIPS.completed.map(card).join("")}
+                  </div>
+                </div>`;
         },
 
         favorites() {
@@ -299,7 +314,7 @@
                                                     <div class="tour-meta"><span>🗓️ ${t.dur}</span><span><span style="color:#f4a92c">★</span> ${t.rating.toFixed(1)}</span></div>
                                                     <div class="tour-foot">
                                                       <div class="price"><small>Kişi başı</small><b>${t.price} <span>TL</span></b></div>
-                                                      <a href="tour-detail.html" class="btn-incele">Turu İncele</a>
+                                                          <a href="/User/Tour/Detail/${t.tourId}" class="btn-incele">Turu İncele</a>
                                                     </div>
                                                   </div>
                                                 </article>

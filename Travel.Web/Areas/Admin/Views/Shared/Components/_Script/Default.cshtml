@@ -22,10 +22,9 @@
         const index = dayList.querySelectorAll(".day").length;
         dayList.insertAdjacentHTML("beforeend", dayHTML(index, true));
 
-        // Yeni eklenen günün açılması için max-height değerini dinamik olarak veriyoruz
         const last = dayList.lastElementChild;
         const body = last.querySelector(".day-body");
-        body.style.maxHeight = "500px"; // İçeriğin rahat sığması için sabit bir yükseklik verelim
+        body.style.maxHeight = "500px"; 
 
         renumberDays();
     }
@@ -190,7 +189,7 @@
 
         /* ---------- TUR TARİHLERİ ---------- */
         const dateList=document.getElementById("dateList");
-        function dateRowHTML(start="", end="", cap="", status=true){
+        function dateRowHTML(start="", end="", cap="", status="true"){
             const index = dateList.querySelectorAll(".drow").length;
           return `
                  <div class="drow">
@@ -214,7 +213,7 @@
           rows.forEach(r=> r.querySelector(".del-mini").disabled = rows.length<=1);
         }
         // seed one example
-        dateList.insertAdjacentHTML("beforeend", dateRowHTML("2026-10-12","2026-10-17","28", true));
+        // dateList.insertAdjacentHTML("beforeend", dateRowHTML("2026-10-12","2026-10-17","28", true));
         refreshDateDelState();
 
         /* ---------- GÜN GÜN PROGRAM ---------- */

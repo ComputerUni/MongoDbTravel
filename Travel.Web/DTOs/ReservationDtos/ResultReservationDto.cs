@@ -18,5 +18,6 @@ namespace Travel.Web.DTOs.ReservationDtos
         public string CoverImage { get; set; }
         public int Duration { get; set; }
         public string DestinationName { get; set; }
+        public string TourIsActive { get; set; }
     }
 }

@@ -191,24 +191,28 @@
 
                 /* ---------- TUR TARİHLERİ ---------- */
                 const dateList=document.getElementById("dateList");
-                function dateRowHTML(start="", end="", cap="", isActive=true){
-                    const index = dateList.querySelectorAll(".drow").length;
-                return `
-        <div class="drow">
-            <div class="field"><label>Başlangıç Tarihi</label><input type="date" class="ctrl d-start" name="Tour.Dates[${index}].StartDate" value="${start}" /></div>
-            <div class="field"><label>Bitiş Tarihi</label><input type="date" class="ctrl d-end" name="Tour.Dates[${index}].EndDate" value="${end}" /></div>
-            <div class="field" style="max-width:120px"><label>Kontenjan</label><input type="number" min="1" class="ctrl d-cap" name="Tour.Dates[${index}].Quota" value="${cap}" placeholder="28"></div>
-            <div class="field" style="max-width:130px"><label>Durum</label>
-                <select class="ctrl d-status" name="Tour.Dates[${index}].IsActive">
-                    <option value="true" ${isActive === true || isActive === 'true' ? 'selected' : ''}>Aktif</option>
-                    <option value="false" ${isActive === false || isActive === 'false' ? 'selected' : ''}>Pasif</option>
-                </select>
-            </div>
-            <button class="del-mini" onclick="removeRow(this,'.drow')" aria-label="Sil">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>
-            </button>
-        </div>`;
-                }
+        function dateRowHTML(start="", end="", cap="", isActive=true){
+            const index = dateList.querySelectorAll(".drow").length;
+
+            // Gelen değerin string veya boolean olma ihtimaline karşı kesin kontrol
+            const isChecked = (isActive === true || isActive === 'true' || isActive === 'True');
+
+            return `
+            <div class="drow">
+                <div class="field"><label>Başlangıç Tarihi</label><input type="date" class="ctrl d-start" name="Tour.Dates[${index}].StartDate" value="${start}" /></div>
+                <div class="field"><label>Bitiş Tarihi</label><input type="date" class="ctrl d-end" name="Tour.Dates[${index}].EndDate" value="${end}" /></div>
+                <div class="field" style="max-width:120px"><label>Kontenjan</label><input type="number" min="1" class="ctrl d-cap" name="Tour.Dates[${index}].Quota" value="${cap}" placeholder="28"></div>
+                <div class="field" style="max-width:130px"><label>Durum</label>
+                    <select class="ctrl d-status" name="Tour.Dates[${index}].IsActive">
+                        <option value="true" ${isChecked ? 'selected' : ''}>Aktif</option>
+                        <option value="false" ${!isChecked ? 'selected' : ''}>Pasif</option>
+                    </select>
+                </div>
+                <button class="del-mini" onclick="removeRow(this,'.drow')" aria-label="Sil">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>
+                </button>
+            </div>`;
+        }
                 function addDate(){ dateList.insertAdjacentHTML("beforeend", dateRowHTML()); refreshDateDelState(); }
                 function refreshDateDelState(){
                   const rows=dateList.querySelectorAll(".drow");
@@ -368,7 +372,7 @@
 
                         @foreach (var date in Model.Tour.Dates)
         {
-                        <text>dateList.insertAdjacentHTML("beforeend", dateRowHTML("@date.StartDate.ToLocalTime().ToString("yyyy-MM-dd")", "@date.EndDate.ToLocalTime().ToString("yyyy-MM-dd")", "@date.Quota", "@(date.IsActive ? "Aktif" : "Pasif")"));</text>
+                        <text>dateList.insertAdjacentHTML("beforeend", dateRowHTML("@date.StartDate.ToLocalTime().ToString("yyyy-MM-dd")", "@date.EndDate.ToLocalTime().ToString("yyyy-MM-dd")", "@date.Quota", @date.IsActive.ToString().ToLower()));</text>
         }
         refreshDateDelState();
 
