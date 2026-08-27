@@ -2,6 +2,7 @@
 using Travel.Web.DTOs.ReservationDtos;
 using System.Text.Json;
 using Travel.Web.DTOs.FavoriteDtos;
+using Travel.Web.DTOs.CommentDtos;
 
 namespace Travel.Web.Areas.User.Models
 {
@@ -10,5 +11,6 @@ namespace Travel.Web.Areas.User.Models
         public AppUser User { get; set; }
         public List<ResultReservationDto> Reservations { get; set; }
         public List<ResultFavoriteDto> Favorites { get; set; }
+        public List<ResultCommentDto> Comments { get; set; }
     }
 }

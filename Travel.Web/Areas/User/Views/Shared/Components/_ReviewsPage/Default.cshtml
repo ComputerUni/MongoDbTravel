@@ -1,40 +1,43 @@
-﻿<section id="yorumlar" style="background:#fff">
+﻿@model List<ResultCommentDto>
+
+<section id="yorumlar" style="background:#fff">
     <div class="container">
         <div class="section-head mb-5">
             <div class="eyebrow">Gezgin yorumları</div>
             <h2>Gezginler Ne Diyor?</h2>
         </div>
         <div class="row g-4">
-            <div class="col-md-4">
-                <div class="review-card">
-                    <div class="review-stars">★★★★★</div>
-                    <p>Paris & Disneyland turu beklentimin çok üzerindeydi. Rehberimiz gerçekten şehri yaşayan biriydi, sıradan turlarda göremeyeceğin köşelere götürdü.</p>
-                    <div class="review-user">
-                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80" alt="" />
-                        <div><b>Elif Yıldız</b><span>Paris & Disneyland</span></div>
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var comment in Model)
+                {
+                    <div class="col-md-4">
+                        <div class="review-card" style="padding: 24px; border-radius: 12px; border: 1px solid #eaeaea; background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.03);">
+                            <div class="review-stars" style="color: #f4a92c; font-size: 1.1rem; margin-bottom: 12px;">
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    @Html.Raw(i <= comment.Rating ? "★" : "<span class='off' style='color:#ccc;'>★</span>")
+                                }
+                            </div>
+                            <p style="color: #495057; font-size: 0.95rem; line-height: 1.5; margin-bottom: 20px;">@comment.Content</p>
+
+                            <div class="review-user" style="display: flex; align-items: center; gap: 12px;">
+                                <div class="qa-avatar" style="width:40px; height:40px; border-radius:50%; background:var(--navy, #112233); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:600; font-size: 0.9rem;">
+                                    @comment.UserInitials
+                                </div>
+                                <div style="display: flex; flex-direction: column;">
+                                    <b style="color: #112233; font-size: 0.95rem;">@comment.UserFullName</b>
+                                    <span style="color: #6c757d; font-size: 0.85rem;">@comment.TourName</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="review-card">
-                    <div class="review-stars">★★★★★</div>
-                    <p>Roma & Toskana rotasında her şey dakikası dakikasına planlanmıştı ama hiç sıkışık hissettirmedi. Toskana'daki bağ turu tatilin en güzel anıydı.</p>
-                    <div class="review-user">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80" alt="" />
-                        <div><b>Mert Kaya</b><span>Roma & Toskana</span></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="review-card">
-                    <div class="review-stars">★★★★★</div>
-                    <p>İlk kez yurt dışına çıkıyordum ve İsviçre Alpleri turunda kendimi hep güvende hissettim. Destek ekibi bir sorunumda gece yarısı bile anında yanıt verdi.</p>
-                    <div class="review-user">
-                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=200&q=80" alt="" />
-                        <div><b>Zeynep Demir</b><span>İsviçre Alpleri</span></div>
-                    </div>
-                </div>
-            </div>
+                }
+            }
+            else
+            {
+                <p class="text-center text-muted">Henüz hiç yorum yapılmamış.</p>
+            }
         </div>
     </div>
 </section>

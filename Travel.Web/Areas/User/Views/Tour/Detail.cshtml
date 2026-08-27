@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model TourDetailViewModel
+
+<!DOCTYPE html>
 <html lang="tr">
 
 @await Component.InvokeAsync("_TourDetailHead")
@@ -15,9 +17,9 @@
         </div>
 
         <!-- DETAIL HEADER -->
-        @await Component.InvokeAsync("_TourDetailHeader", new { tour = Model })
+        @await Component.InvokeAsync("_TourDetailHeader", new { tour = Model.Tour })
         <!-- GALLERY -->
-        @await Component.InvokeAsync("_TourDetailGallery", new { tour = Model })
+        @await Component.InvokeAsync("_TourDetailGallery", new { tour = Model.Tour })
 
     </div>
 
@@ -25,7 +27,7 @@
     <div class="container body-section">
         <div class="row g-4">
             <!-- LEFT -->
-            @await Component.InvokeAsync("_TourDetailLeft", new { tour = Model })
+            @await Component.InvokeAsync("_TourDetailLeft", new { model = Model })
 
             <!-- RIGHT: BOOKING -->
             @await Component.InvokeAsync("_TourDetailRight", new { tour = Model })
@@ -66,7 +68,6 @@
     @await Component.InvokeAsync("_TourDetailFooter")
 
 
-    @await Component.InvokeAsync("_TourDetailScript")
-
+    @await Component.InvokeAsync("_TourDetailScript", new { model = Model })
 </body>
 </html>

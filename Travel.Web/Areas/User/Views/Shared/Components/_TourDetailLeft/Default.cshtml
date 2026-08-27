@@ -1,19 +1,19 @@
-﻿@model ResultTourDto
+﻿@model TourDetailViewModel
 
 <div class="col-lg-8">
 
     <!-- ABOUT -->
     <div class="content-block">
         <h2>Tur Hakkında</h2>
-        <p>@Model.Description</p>
-        <p>@Model.ShortDescription</p>
+        <p>@Model.Tour.Description</p>
+        <p>@Model.Tour.ShortDescription</p>
     </div>
 
     <!-- HIGHLIGHTS -->
     <div class="content-block">
         <h2>Turun Öne Çıkanları</h2>
         <ul class="hl-list">
-            @foreach (var feature in Model.Features)
+            @foreach (var feature in Model.Tour.Features)
             {
                 <li><span class="hl-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg></span>@feature</li>
             }
@@ -23,7 +23,7 @@
     <!-- ITINERARY -->
     <div class="content-block">
         <h2>Gün Gün Tur Programı</h2>
-        @foreach (var (day, i) in Model.DayPrograms.Select((d, i) => (d, i)))
+        @foreach (var (day, i) in Model.Tour.DayPrograms.Select((d, i) => (d, i)))
         {
             <div class="itin-item @(i == 0 ? "open" : "")">
                 <div class="itin-head" onclick="toggleDay(this)">
@@ -62,7 +62,7 @@
             <div class="col-md-6">
                 <h2>Fiyata Dahil Olanlar</h2>
                 <ul class="inc-list">
-                    @foreach(var include in Model.Included)
+                    @foreach(var include in Model.Tour.Included)
                     {
                         <li><span class="inc-yes"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg></span>@include</li>
                     }
@@ -71,7 +71,7 @@
             <div class="col-md-6">
                 <h2>Fiyata Dahil Olmayanlar</h2>
                 <ul class="inc-list">
-                    @foreach(var notinc in Model.NotIncluded)
+                    @foreach(var notinc in Model.Tour.NotIncluded)
                     {
                         <li><span class="inc-no"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg></span>@notinc</li>
                     }
@@ -84,17 +84,17 @@
     <div class="content-block">
         <h2>Tur Bilgileri</h2>
         <div class="info-grid">
-            <div class="info-cell"><div class="k">Tur Süresi</div><div class="v">@Model.Duration Gün / @Model.Night Gece</div></div>
-            <div class="info-cell"><div class="k">Başlangıç Şehri</div><div class="v">@Model.DepartureCity</div></div>
-            <div class="info-cell"><div class="k">Ulaşım</div><div class="v">@Model.Transport</div></div>
-            <div class="info-cell"><div class="k">Konaklama</div><div class="v">@Model.Accommodation</div></div>
-            <div class="info-cell"><div class="k">Rehber Dili</div><div class="v">@Model.GuideLanguage</div></div>
-            <div class="info-cell"><div class="k">Grup Büyüklüğü</div><div class="v">Maks. @Model.GroupSize kişi</div></div>
-            <div class="info-cell"><div class="k">Vize</div><div class="v">@Model.VisaInfo</div></div>
+            <div class="info-cell"><div class="k">Tur Süresi</div><div class="v">@Model.Tour.Duration Gün / @Model.Tour.Night Gece</div></div>
+            <div class="info-cell"><div class="k">Başlangıç Şehri</div><div class="v">@Model.Tour.DepartureCity</div></div>
+            <div class="info-cell"><div class="k">Ulaşım</div><div class="v">@Model.Tour.Transport</div></div>
+            <div class="info-cell"><div class="k">Konaklama</div><div class="v">@Model.Tour.Accommodation</div></div>
+            <div class="info-cell"><div class="k">Rehber Dili</div><div class="v">@Model.Tour.GuideLanguage</div></div>
+            <div class="info-cell"><div class="k">Grup Büyüklüğü</div><div class="v">Maks. @Model.Tour.GroupSize kişi</div></div>
+            <div class="info-cell"><div class="k">Vize</div><div class="v">@Model.Tour.VisaInfo</div></div>
         </div>
         <div class="meet-note">
             <b>Buluşma Noktası</b>
-            <p>@Model.MeetingPoint</p>
+            <p>@Model.Tour.MeetingPoint</p>
         </div>
     </div>
 
@@ -116,38 +116,24 @@
             </div>
         </div>
 
-        <div class="review-card">
-            <div class="rev-user">
-                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&q=80" alt="" />
-                <div><b>Elif Yılmaz</b><span class="sub">Roma & Toskana Turu · 12 Haziran 2026</span></div>
-                <span class="rev-stars">★★★★★</span>
+        @foreach(var comment in Model.Comments)
+        {
+            <div class="review-card">
+                <div class="rev-user">
+                    <div class="qa-avatar">@comment.UserInitials</div>
+                    <div><b>@comment.UserFullName</b><span class="sub">@comment.TourName · @comment.CreatedAt.ToString("dd MMM yyyy", new System.Globalization.CultureInfo("tr-TR"))</span></div>
+                    <span class="rev-stars">
+                        @for(int i = 0; i <= 5; i++)
+                        {
+                            @(i <= comment.Rating ? "★" : "<span class='off'>★</span>")
+                        }
+                    </span>
+                </div>
+                <p>@comment.Content</p>
             </div>
-            <p>Roma zaten çok güzeldi ama Toskana bölümü turu bambaşka bir seviyeye taşıdı. Rehberimiz hem bilgili hem de çok ilgiliydi.</p>
-        </div>
-        <div class="review-card">
-            <div class="rev-user">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" alt="" />
-                <div><b>Mert Kaya</b><span class="sub">Roma & Toskana Turu · 4 Haziran 2026</span></div>
-                <span class="rev-stars">★★★★★</span>
-            </div>
-            <p>Program oldukça dengeliydi. Hem rehberli gezilere hem de kendi başımıza şehri keşfetmeye zamanımız oldu.</p>
-        </div>
-        <div class="review-card">
-            <div class="rev-user">
-                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=120&q=80" alt="" />
-                <div><b>Zeynep Demir</b><span class="sub">Roma & Toskana Turu · 21 Mayıs 2026</span></div>
-                <span class="rev-stars">★★★★★</span>
-            </div>
-            <p>Floransa ve Toskana kesinlikle favorim oldu. Oteller temizdi ve transferlerde hiçbir sorun yaşamadık.</p>
-        </div>
-        <div class="review-card">
-            <div class="rev-user">
-                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80" alt="" />
-                <div><b>Burak Şahin</b><span class="sub">Roma & Toskana Turu · 9 Mayıs 2026</span></div>
-                <span class="rev-stars">★★★★<span class="off">★</span></span>
-            </div>
-            <p>Tur genel olarak çok başarılıydı. Vatikan günü biraz yoğun geçti ama organizasyon ve rehberlik çok iyiydi.</p>
-        </div>
+        }
+     
+
 
         <div class="write-box">
             <div>

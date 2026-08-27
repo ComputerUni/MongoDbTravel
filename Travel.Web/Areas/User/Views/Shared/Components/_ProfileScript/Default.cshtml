@@ -31,6 +31,16 @@
         tourId = f.TourId
     }).ToList();
 
+
+    var commentsData = Model.Comments.Select(c => new
+    {
+        id = c.Id,
+        text = c.Content,
+        title = c.TourName,
+        stars = c.Rating,
+        date = c.CreatedAt.ToLocalTime().ToString("dd MMMM yyyy", new System.Globalization.CultureInfo("tr-TR")),
+    }).ToList();
+
 }
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
@@ -77,6 +87,7 @@
     //     { title: "Paris & Alsace", country: "Fransa", dur: "7 Gün / 6 Gece", rating: 4.8, price: "47.900", img: IMG.alsace }
     // ];
 
+    let MYREVIEWS = @Html.Raw(Json.Serialize(commentsData));
     // let MYREVIEWS = [
     //     { id: 1, title: "Roma & Toskana Keşfi", stars: 5, date: "12 Haziran 2026", text: "Roma zaten çok güzeldi ama Toskana bölümü turun en unutulmaz kısmıydı. Rehberimiz de çok ilgiliydi." },
     //     { id: 2, title: "Paris & Disneyland", stars: 5, date: "18 Mart 2026", text: "İlk Paris seyahatimizdi ve organizasyon gerçekten çok başarılıydı." },
@@ -341,7 +352,7 @@
                                                 <p>${r.text}</p>
                                                 <div class="rev-acts">
                                                   <button class="mini-btn" onclick="toast('Düzenleme demo modunda çalışıyor.')">Düzenle</button>
-                                                  <button class="mini-btn" onclick="askDeleteReview(${r.id})">Sil</button>
+                                                  <button class="mini-btn" onclick="askDeleteReview('${r.id}')">Sil</button>
                                                 </div>
                                               </div>`).join("")}
                                           </div>
@@ -419,10 +430,27 @@
     let pendingDelId = null;
     function askDeleteReview(id) { pendingDelId = id; new bootstrap.Modal(document.getElementById("delModal")).show(); }
     function confirmDeleteReview() {
-        MYREVIEWS = MYREVIEWS.filter(r => r.id !== pendingDelId);
+        if(!pendingDelId) return;
+
+        fetch("/User/Comment/Delete/" + pendingDelId, {
+            method:"POST",
+            headers: {"Content-Type" : "application/json"},
+            body: JSON.stringify({commentId: pendingDelId})
+        })
+        .then(r => {
+            if(r.ok) {
+                MYREVIEWS = MYREVIEWS.filter(r => r.id !== pendingDelId);
         bootstrap.Modal.getInstance(document.getElementById("delModal")).hide();
         document.getElementById("contentArea").innerHTML = RENDER.reviews();
         toast("Yorum silindi.");
+            } else {
+                alert("Yorum silinemedi.");
+            }
+        })
+        .catch(err => alert("Bağlantı hatası: " + err.message));
+
+
+        
     }
 
     // ratings modal
