@@ -99,9 +99,12 @@ namespace Travel.Web.Services.CommentServices
             foreach(var dto in dtos)
             {
                 var tour = await _tourCollection.Find(t => t.Id == dto.TourId).FirstOrDefaultAsync();
-                if(tour != null)
+                var destination = await _destinationCollection.Find(d => d.Id == tour.DestinationId).FirstOrDefaultAsync();
+                if (tour != null)
                 {
                     dto.TourName = tour.Name;
+                    dto.Country = destination.Country;
+                    dto.DestinationName = destination.Name;
                 }
 
                 var user = await _userManager.FindByIdAsync(dto.UserId);
@@ -113,6 +116,12 @@ namespace Travel.Web.Services.CommentServices
             }
 
             return dtos;
+        }
+
+        public async Task UpdateRatingAsync(string commentId, int rating)
+        {
+            var update = Builders<Comment>.Update.Set(x => x.Rating, rating);
+            await _commentCollection.UpdateOneAsync(x => x.Id == commentId, update); 
         }
     }
 }

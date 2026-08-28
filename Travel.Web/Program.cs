@@ -10,6 +10,7 @@ using Travel.Web.Services.CommentServices;
 using Travel.Web.Services.DestinationServices;
 using Travel.Web.Services.FavoriteServices;
 using Travel.Web.Services.LookupServices;
+using Travel.Web.Services.QuestionServices;
 using Travel.Web.Services.ReservationServices;
 using Travel.Web.Services.TourServices;
 using Travel.Web.Settings;
@@ -34,6 +35,7 @@ builder.Services.AddScoped<ILookupService, LookupService>();
 builder.Services.AddScoped<IReservationService, ReservationService>();
 builder.Services.AddScoped<IFavoriteService, FavoriteService>();
 builder.Services.AddScoped<ICommentService, CommentService>();
+builder.Services.AddScoped<IQuestionService, QuestionService>();
 
 //builder.Services.AddScoped<IRouteService, RouteService>();
 

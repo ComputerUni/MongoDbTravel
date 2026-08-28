@@ -9,5 +9,6 @@ namespace Travel.Web.Services.CommentServices
         Task<List<ResultCommentDto>> GetByTourIdAsync(string tourId);
         Task<List<ResultCommentDto>> GetByUserIdAsync(string userId);
         Task DeleteAsync(string userId, string commentId);
+        Task UpdateRatingAsync(string commentId, int rating);
     }
 }

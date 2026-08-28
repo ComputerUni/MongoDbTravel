@@ -106,12 +106,27 @@
         })
             .then(r => {
                 if (r.ok) {
-                    window.location.href = "/User/Profile/Index#trips";
+                    return r.json(); 
                 } else {
                     return r.text().then(t => { throw new Error(t); });
                 }
             })
-            .catch(err => alert("Rezervasyon oluşturulamadı: " + err.message));
+            .then(data => {
+                const rawTitle = "@Model.Tour.Name";
+                const parser = new DOMParser();
+                const decodedTitle = parser.parseFromString(rawTitle, 'text/html').body.textContent;
+
+                document.getElementById("resModalTour").textContent = decodedTitle;
+                document.getElementById("resModalDate").textContent = document.querySelector(".date-opt.sel .d").textContent;
+                document.getElementById("resModalPerson").textContent = adult + " Yetişkin" + (child ? ", " + child + " Çocuk" : "");
+                document.getElementById("resModalTotal").textContent = document.getElementById("grandTotal").textContent;
+                document.getElementById("resModalId").textContent = data.reservationId;
+
+                new bootstrap.Modal(document.getElementById("reservationModal")).show();
+            })
+            .catch(err => {
+                alert("Rezervasyon oluşturulamadı: " + err.message);
+            });
     }
 
     function sharePage() {
@@ -163,8 +178,30 @@
     function sendQuestion() {
         const v = document.getElementById("askInput").value.trim();
         if (!v) { return; }
-        document.getElementById("askInput").value = "";
-        document.getElementById("askOk").style.display = "block";
+
+        const tourId = document.getElementById("reserveBtn").dataset.tourId;
+
+        fetch("/User/Question/Create", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                tourId: tourId,
+                content: v,
+            })
+        }).then(r => {
+            if (r.ok) {
+                document.getElementById("askInput").value = "";
+                document.getElementById("askOk").style.display = "block";
+                location.reload();
+            } else {
+                return r.text().then(t => { throw new Error(t); });
+            }
+        })
+            .catch(err => {
+                alert("Soru gönderilemedi: " + err.message);
+            });
+
+
     }
 
     /* ---------- SIMILAR ---------- */

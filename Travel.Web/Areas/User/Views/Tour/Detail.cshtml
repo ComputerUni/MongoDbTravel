@@ -13,7 +13,7 @@
     <div class="container">
         <!-- BREADCRUMB -->
         <div class="crumb">
-            <a href="index.html">Ana Sayfa</a> / <a href="tours.html">Turlar</a> / <span class="cur">Roma & Toskana Keşfi</span>
+            <a href="/User/Home/Index">Ana Sayfa</a> / <a href="/User/Tour/Index">Turlar</a> / <span class="cur">Roma & Toskana Keşfi</span>
         </div>
 
         <!-- DETAIL HEADER -->
@@ -59,6 +59,43 @@
                 </div>
                 <div class="modal-footer border-0">
                     <button class="btn-teal" onclick="submitReview()">Yorumu Gönder</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- REZERVASYON BAŞARI MODALI -->
+    <div class="modal fade" id="reservationModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="border-radius: 20px; border: none; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.1);">
+                <div class="modal-body text-center p-4 p-md-5" style="background-color: #fcfdfd;">
+
+                    <!-- Başarı İkonu -->
+                    <div style="width: 65px; height: 65px; background-color: #d1e7dd; color: #0f5132; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px auto; font-size: 28px;">
+                        ✓
+                    </div>
+
+                    <h4 style="font-family:'Sora', sans-serif; font-weight: 700; color: #0f5132; margin-bottom: 8px;">Rezervasyonunuz Oluşturuldu!</h4>
+                    <p style="color: #6c757d; font-size: 0.9rem; margin-bottom: 20px;">Seyahat planınız başarıyla kaydedildi.</p>
+
+                    <!-- Detay Bilgi Kartı -->
+                    <div style="background-color: #f1f3f5; border-radius: 12px; padding: 16px; text-align: left; margin-bottom: 20px; font-size: 0.9rem; color: #333;">
+                        <div style="margin-bottom: 6px;"><b>Tur:</b> <span id="resModalTour" style="color: #495057;"></span></div>
+                        <div style="margin-bottom: 6px;"><b>Tarih:</b> <span id="resModalDate" style="color: #495057;"></span></div>
+                        <div style="margin-bottom: 6px;"><b>Kişi:</b> <span id="resModalPerson" style="color: #495057;"></span></div>
+                        <div style="margin-bottom: 0;"><b>Toplam:</b> <span id="resModalTotal" style="color: #495057; font-weight: 600;"></span></div>
+                    </div>
+
+                    <!-- Yeşil Rezervasyon Numarası Kutusu -->
+                    <div style="background-color: #d1e7dd; border: 1px dashed #badbcc; padding: 12px; border-radius: 10px; margin-bottom: 25px;">
+                        <span style="font-size: 0.8rem; color: #0f5132; display: block; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px;">Rezervasyon Numaranız</span>
+                        <b id="resModalId" style="font-size: 1.15rem; color: #0f5132; letter-spacing: 1px;">TRV-XXXXXX</b>
+                    </div>
+
+                    <div class="d-grid">
+                        <a href="/User/Profile/Index#trips" class="btn btn-success" style="background-color: #0f5132; border: none; padding: 12px; font-weight: 600; border-radius: 10px;">Rezervasyonlarıma Git</a>
+                    </div>
+
                 </div>
             </div>
         </div>

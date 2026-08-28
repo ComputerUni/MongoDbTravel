@@ -17,8 +17,11 @@ namespace Travel.Web.Areas.User.Controllers
 
             try
             {
-                await _reservationService.CreateAsync(dto);
-                return Ok();
+                string rawId = await _reservationService.CreateAsync(dto);
+
+                string formattedId = "TRV-" + rawId.Substring(0, Math.Min(8, rawId.Length)).ToUpper();
+
+                return Json(new { success = true, reservationId = formattedId });
             }
             catch(Exception ex)
             {

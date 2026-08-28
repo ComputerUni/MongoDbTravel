@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 using Travel.Web.DTOs.ReservationDtos;
 using Travel.Web.Entities;
 using Travel.Web.Entities.Enums;
@@ -10,19 +12,23 @@ namespace Travel.Web.Services.ReservationServices
     public class ReservationService : IReservationService
     {
         private readonly IMongoCollection<Reservation> _reservationCollection;
+        private readonly IMongoCollection<Destination> _destinationCollection;
         private readonly IMongoCollection<Tour> _tourCollection;
+        private readonly UserManager<AppUser> _userManager;
         private readonly IMapper _mapper;
 
-        public ReservationService(IDatabaseSettings databaseSettings, IMapper mapper)
+        public ReservationService(IDatabaseSettings databaseSettings, UserManager<AppUser> userManager, IMapper mapper)
         {
             var client = new MongoClient(databaseSettings.ConnectionString);
             var database = client.GetDatabase(databaseSettings.DatabaseName);
             _reservationCollection = database.GetCollection<Reservation>(databaseSettings.ReservationCollectionName);
+            _destinationCollection = database.GetCollection<Destination>(databaseSettings.DestinationCollectionName);
             _tourCollection = database.GetCollection<Tour>(databaseSettings.TourCollectionName);
             _mapper = mapper;
+            _userManager = userManager;
         }
 
-        public async Task CreateAsync(CreateReservationDto createReservationDto)
+        public async Task<string> CreateAsync(CreateReservationDto createReservationDto)
         {
             var tour = await _tourCollection.Find(x => x.Id == createReservationDto.TourId).FirstOrDefaultAsync();
             var tourDate = tour.Dates.FirstOrDefault(d => d.Id == createReservationDto.TourDateId);
@@ -53,11 +59,43 @@ namespace Travel.Web.Services.ReservationServices
             {
                 throw new Exception("Rezervasyon oluşturuldu ancak kontenjan düşürülemedi, ID eşleşmesini kontrol edin.");
             }
+
+            return reservation.Id;
         }
 
-        public Task<List<ResultReservationDto>> GetAllAsync()
+        public async Task<List<ResultReservationDto>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var reservations = await _reservationCollection.AsQueryable().OrderByDescending(r => r.CreatedAt).ToListAsync();
+            var tours = await _tourCollection.AsQueryable().ToListAsync();
+            var destinations = await _destinationCollection.AsQueryable().ToListAsync();
+
+            var dtos = _mapper.Map<List<ResultReservationDto>>(reservations);
+
+           
+            foreach (var dto in dtos)
+            {
+                var tour = tours.FirstOrDefault(t => t.Id == dto.TourId);
+                var user = await _userManager.FindByIdAsync(dto.UserId);
+                if (tour != null)
+                {
+                    dto.TourName = tour.Name;
+                    dto.CoverImage = tour.CoverImage;
+                    dto.Duration = tour.Duration;
+                    dto.UserFullName = user.FirstName + " " + user.LastName;
+                    dto.UserEmail = user.Email;
+                 
+                    var destination = destinations.FirstOrDefault(d => d.Id == tour.DestinationId);
+                    dto.DestinationName = destination?.Name; 
+
+                }
+                else
+                {
+                    dto.TourName = "Silinmiş Tur";
+                    dto.DestinationName = "-";
+                }
+            }
+
+            return dtos;
         }
 
         public Task<ResultReservationDto> GetByIdAsync(string id)
@@ -103,9 +141,14 @@ namespace Travel.Web.Services.ReservationServices
             return dtos;
         }
 
-        public Task UpdateStatusAsync(string id, ReservationStatus status)
+        public async Task UpdateStatusAsync(string id, ReservationStatus status)
         {
-            throw new NotImplementedException();
+            var filter = Builders<Reservation>.Filter.Eq(r => r.Id, id);
+            var update = Builders<Reservation>.Update.Set(x => x.Status, status);
+
+            await _reservationCollection.UpdateOneAsync(filter, update);
+
+
         }
     }
 }

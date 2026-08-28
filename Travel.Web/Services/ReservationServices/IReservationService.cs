@@ -9,7 +9,7 @@ namespace Travel.Web.Services.ReservationServices
         Task<List<ResultReservationDto>> GetAllAsync();
         Task<List<ResultReservationDto>> GetByUserIdAsync(string userId);
         Task<List<ResultReservationDto>> GetByTourIdAsync(string tourId);
-        Task CreateAsync(CreateReservationDto createReservationDto);
+        Task<string> CreateAsync(CreateReservationDto createReservationDto);
         Task UpdateStatusAsync(string id, ReservationStatus status);
     }
 }

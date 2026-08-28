@@ -28,5 +28,15 @@ namespace Travel.Web.Areas.User.Controllers
             await _commentService.DeleteAsync(user.Id.ToString(), commentDto.CommentId);
             return Ok();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateRating([FromBody] UpdateRatingDto dto)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null) return Unauthorized();
+
+            await _commentService.UpdateRatingAsync(dto.CommentId, dto.Rating);
+            return Ok();
+        }
     }
 }

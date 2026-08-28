@@ -174,7 +174,7 @@ namespace Travel.Web.Services.TourServices
 
         public async Task<List<ResultTourDto>> GetActiveToursForUserAsync()
         {
-            var tours = await _tourCollection.Find(x => x.IsActive == "Aktif" && x.Dates.Any(d => d.IsActive)).ToListAsync();
+            var tours = await _tourCollection.Find(x => x.IsActive == "Aktif" && x.Dates.Any(d => d.IsActive) && x.IsFeatured).ToListAsync();
             var categories = await _categoryService.GetAllAsync();
             var destinations = await _destinationService.GetAllAsync();
 

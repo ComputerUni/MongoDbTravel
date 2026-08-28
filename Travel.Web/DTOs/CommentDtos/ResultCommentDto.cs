@@ -15,5 +15,7 @@
 
         // Tur bilgisi (profil sayfası için)
         public string TourName { get; set; }
+        public string Country { get; set; }
+        public string DestinationName { get; set; }
     }
 }
