@@ -2,6 +2,7 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
+using QuestPDF.Infrastructure;
 using System.Reflection;
 using Travel.Web.Entities;
 using Travel.Web.Services.BannerServices;
@@ -11,6 +12,7 @@ using Travel.Web.Services.DestinationServices;
 using Travel.Web.Services.FavoriteServices;
 using Travel.Web.Services.LookupServices;
 using Travel.Web.Services.QuestionServices;
+using Travel.Web.Services.ReportServices;
 using Travel.Web.Services.ReservationServices;
 using Travel.Web.Services.TourServices;
 using Travel.Web.Settings;
@@ -36,6 +38,7 @@ builder.Services.AddScoped<IReservationService, ReservationService>();
 builder.Services.AddScoped<IFavoriteService, FavoriteService>();
 builder.Services.AddScoped<ICommentService, CommentService>();
 builder.Services.AddScoped<IQuestionService, QuestionService>();
+builder.Services.AddScoped<IReportService, ReportService>();
 
 //builder.Services.AddScoped<IRouteService, RouteService>();
 
@@ -97,5 +100,7 @@ using (var scope = app.Services.CreateScope())
     }
 
 }
+
+QuestPDF.Settings.License = LicenseType.Community;
 
 app.Run();

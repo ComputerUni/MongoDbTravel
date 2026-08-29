@@ -14,13 +14,16 @@ namespace Travel.Web.Areas.Admin.Controllers
             return View(reservations);
         }
 
-
         public async Task<IActionResult> UpdateStatus([FromBody] UpdateReservationStatusDto updateReservationDto)
         {
+            await _reservationService.UpdateStatusAsync(updateReservationDto.Id, updateReservationDto.Status);
+            return Ok();
+        }
 
-                await _reservationService.UpdateStatusAsync(updateReservationDto.Id, updateReservationDto.Status);
-                return Ok();
-           
+        public async Task<IActionResult> GetReservationById(string id)
+        {
+            var values = await _reservationService.GetByIdAsync(id);
+            return Ok(values);
         }
     }
 }

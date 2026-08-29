@@ -8,6 +8,7 @@ namespace Travel.Web.DTOs.ReservationDtos
         public string UserId { get; set; }
         public string UserFullName { get; set; } 
         public string UserEmail { get; set; } 
+        public string UserPhone { get; set; } 
         public string TourId { get; set; }
         public string TourDateId { get; set; }
         public DateTime TourDate { get; set; }

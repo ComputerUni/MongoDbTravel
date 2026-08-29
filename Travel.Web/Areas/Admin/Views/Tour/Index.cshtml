@@ -21,6 +21,42 @@
     </a>
 </div>
 
+<!-- RAPOR AL -->
+<div class="sec" style="margin-bottom:1rem">
+    <div class="row g-3 align-items-end">
+        <div class="col-auto">
+            <label class="form-label fw-semibold">Tur Seç</label>
+            <select class="ctrl" id="reportTourId" onchange="loadReportDates()">
+                <option value="">Tur seçiniz...</option>
+                @foreach (var tour in Model)
+                {
+                    <option value="@tour.Id">@tour.Name</option>
+                }
+            </select>
+        </div>
+        <div class="col-auto">
+            <label class="form-label fw-semibold">Tur Tarihi</label>
+            <select class="ctrl" id="reportDateId" disabled>
+                <option value="">Tüm Tarihler</option>
+            </select>
+        </div>
+        <div class="col-auto">
+            <label class="form-label fw-semibold">Rezervasyon Durumu</label>
+            <select class="ctrl" id="reportStatus">
+                <option value="">Tüm Durumlar</option>
+                @foreach (var status in Enum.GetValues<ReservationStatus>())
+                {
+                    <option value="@status">@status</option>
+                }
+            </select>
+        </div>
+        <div class="col-auto d-flex gap-2">
+            <button type="button" class="btn-teal" onclick="downloadTourReport('excel')">📊 Excel</button>
+            <button type="button" class="btn-navy" onclick="downloadTourReport('pdf')">📄 PDF</button>
+        </div>
+    </div>
+</div>
+
 @await Component.InvokeAsync("_AdminTourKpi") 
 @await Component.InvokeAsync("_AdminTourFilter")
 @await Component.InvokeAsync("_AdminTourBulkBar")

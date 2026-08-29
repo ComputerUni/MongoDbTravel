@@ -55,41 +55,41 @@
             const cc = capClass(t.res, t.cap);
             const pct = t.cap ? Math.min(100, Math.round(t.res / t.cap * 100)) : 0;
             return `
-                        <tr data-id="${t.id}">
-                          <td><input type="checkbox" class="chk row-chk" value="${t.id}" onchange="updateBulk()"></td>
-                          <td>
-                            <div class="tour-cell">
-                              <img src="${t.img}" alt="${t.title}">
-                              <div><b>${t.title}</b><span>${t.country}</span></div>
-                            </div>
-                          </td>
-                          <td><span class="cat-pill">${t.cat}</span></td>
-                          <td class="muted-cell">${t.dur}</td>
-                          <td><span class="amount">${fmt(t.price)} TL</span></td>
-                          <td class="muted-cell">${t.date}</td>
-                          <td>
-                            <div class="cap">
-                              <div class="cap-top">${t.res} / ${t.cap} ${cc === "full" ? '<span class="full">· Dolu</span>' : ''}</div>
-                              <div class="cap-track"><div class="cap-fill ${cc}" style="width:${pct}%"></div></div>
-                            </div>
-                          </td>
-                          <td style="font-weight:600">${t.res}</td>
-                          <td><span class="badge-x ${statusClass[t.status]}">${t.status}</span></td>
-                          <td>
-                            <div class="dropdown">
-                              <button class="act-btn" data-bs-toggle="dropdown" aria-label="İşlemler">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.7"/><circle cx="12" cy="12" r="1.7"/><circle cx="12" cy="19" r="1.7"/></svg>
-                              </button>
-                              <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="tour-detail.html"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg> Görüntüle</a></li>
-                                <li><a class="dropdown-item" href="admin-tour-edit.html"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4z"/></svg> Düzenle</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="copyTour(${t.id});return false"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Kopyala</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="toggleStatus(${t.id});return false"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9"/><polyline points="21 3 21 9 15 9"/></svg> ${t.status === "Aktif" ? "Pasif Yap" : "Aktif Yap"}</a></li>
-                                <li><a class="dropdown-item danger" href="#" onclick="askDelete(${t.id});return false"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg> Sil</a></li>
-                              </ul>
-                            </div>
-                          </td>
-                        </tr>`;
+                                                                <tr data-id="${t.id}">
+                                                                  <td><input type="checkbox" class="chk row-chk" value="${t.id}" onchange="updateBulk()"></td>
+                                                                  <td>
+                                                                    <div class="tour-cell">
+                                                                      <img src="${t.img}" alt="${t.title}">
+                                                                      <div><b>${t.title}</b><span>${t.country}</span></div>
+                                                                    </div>
+                                                                  </td>
+                                                                  <td><span class="cat-pill">${t.cat}</span></td>
+                                                                  <td class="muted-cell">${t.dur}</td>
+                                                                  <td><span class="amount">${fmt(t.price)} TL</span></td>
+                                                                  <td class="muted-cell">${t.date}</td>
+                                                                  <td>
+                                                                    <div class="cap">
+                                                                      <div class="cap-top">${t.res} / ${t.cap} ${cc === "full" ? '<span class="full">· Dolu</span>' : ''}</div>
+                                                                      <div class="cap-track"><div class="cap-fill ${cc}" style="width:${pct}%"></div></div>
+                                                                    </div>
+                                                                  </td>
+                                                                  <td style="font-weight:600">${t.res}</td>
+                                                                  <td><span class="badge-x ${statusClass[t.status]}">${t.status}</span></td>
+                                                                  <td>
+                                                                    <div class="dropdown">
+                                                                      <button class="act-btn" data-bs-toggle="dropdown" aria-label="İşlemler">
+                                                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.7"/><circle cx="12" cy="12" r="1.7"/><circle cx="12" cy="19" r="1.7"/></svg>
+                                                                      </button>
+                                                                      <ul class="dropdown-menu dropdown-menu-end">
+                                                                        <li><a class="dropdown-item" href="tour-detail.html"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg> Görüntüle</a></li>
+                                                                        <li><a class="dropdown-item" href="admin-tour-edit.html"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4z"/></svg> Düzenle</a></li>
+                                                                        <li><a class="dropdown-item" href="#" onclick="copyTour(${t.id});return false"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Kopyala</a></li>
+                                                                        <li><a class="dropdown-item" href="#" onclick="toggleStatus(${t.id});return false"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9"/><polyline points="21 3 21 9 15 9"/></svg> ${t.status === "Aktif" ? "Pasif Yap" : "Aktif Yap"}</a></li>
+                                                                        <li><a class="dropdown-item danger" href="#" onclick="askDelete(${t.id});return false"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg> Sil</a></li>
+                                                                      </ul>
+                                                                    </div>
+                                                                  </td>
+                                                                </tr>`;
         }).join("");
         document.getElementById("checkAll").checked = false;
         updateBulk();
@@ -178,7 +178,157 @@
             });
     }
 
+    function openReservationDetail(id) {
+        fetch(`/Admin/Reservation/GetReservationById?id=${id}`)
+            .then(r => {
+                if (!r.ok) { throw new Error("Veri alınamadı") };
+                return r.json();
+            })
+            .then(data => {
+                document.getElementById("modalResId").textContent = "TRV-" + data.id.substring(0, 8).toUpperCase();
+                document.getElementById("modalUserFullName").textContent = data.userFullName;
+                document.getElementById("modalUserEmail").textContent = data.userEmail;
+                document.getElementById("modalTourName").textContent = data.tourName;
+                document.getElementById("modalDestinationName").textContent = data.destinationName;
 
+                let startDate = new Date(data.tourDate);
+                let endDate = new Date(startDate);
+                endDate.setDate(startDate.getDate() + data.duration);
+
+                let options = { day: '2-digit', month: 'short', year: 'numeric' };
+                document.getElementById("modalTourDateRange").textContent = startDate.toLocaleDateString('tr-TR', options) + " - " + endDate.toLocaleDateString('tr-TR', options);
+
+                document.getElementById("modalDuration").textContent = data.duration + " Gün";
+                document.getElementById("modalPeopleCount").textContent = `${data.adultCount} Yetişkin${data.childCount > 0 ? ', ' + data.childCount + ' Çocuk' : ''}`;
+                document.getElementById("modalTotalPrice").textContent = data.totalPrice.toLocaleString("tr-TR", { minimumFractionDigits: 2 }) + " TL";
+
+                let createdDate = new Date(data.createdAt);
+                document.getElementById("modalCreatedAt").textContent = createdDate.toLocaleDateString("tr-TR", { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+
+                new bootstrap.Modal(document.getElementById("reservationDetailModal")).show();
+
+            })
+            .catch(err => {
+                console.error(err);
+                alert("Rezervasyon detayları yüklenirken bir hata oluştu.");
+            });
+    }
+
+    function openQuestionDetail(id) {
+        fetch(`/Admin/Question/GetQuestionById?id=${id}`)
+            .then(r => {
+                if (!r.ok) { throw new Error("Veri alınamadı.") };
+                return r.json();
+            })
+            .then(data => {
+                document.getElementById("modalUserFullName").textContent = data.userFullName;
+                document.getElementById("modalUserEmail").textContent = data.email;
+                document.getElementById("modalTourName").textContent = data.tourName;
+                document.getElementById("modalContent").textContent = data.content;
+
+                const answerBox = document.getElementById("modalAnswerContent");
+                if(data.isAnswered && data.answer) {
+                    answerBox.textContent = data.answer;
+                    answerBox.style.borderColor = "#198754";
+                } else {
+                    answerBox.textContent = "Bu soru henüz cevaplanmamış.";
+                 answerBox.style.borderColor = "#ffc107";
+                }
+
+
+                let createdDate = new Date(data.createdAt);
+                document.getElementById("modalCreatedAt").textContent = createdDate.toLocaleDateString("tr-TR", { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+
+                new bootstrap.Modal(document.getElementById("reservationDetailModal")).show();
+
+            })
+            .catch(err => {
+                console.error(err);
+                alert("Soru detayı yüklenirken bir hata oluştu.");
+
+            });
+    }
+
+    function openAnswerModal(id) {
+        document.getElementById("answerQuestionId").value = id;
+        document.getElementById("answerContent").value = "";
+
+        new bootstrap.Modal(document.getElementById("answerModal")).show();
+    }
+
+    function submitAnswer() {
+        const questionId = document.getElementById("answerQuestionId").value;
+        const answer = document.getElementById("answerContent").value;
+
+        if(!answer.trim()) {
+            alert("Lütfen bir cevap yazın");
+            return;
+        }
+
+        fetch('/Admin/Question/AnswerQuestion', {
+            method:"POST",
+            headers: {'Content-Type' : "application/x-www-form-urlencoded" },
+            body: `questionId=${encodeURIComponent(questionId)}&answer=${encodeURIComponent(answer)}`
+        })
+        .then(r => {
+            if(!r.ok) {throw new Error("Cevap kaydedilemedi.");}
+            return r.json();
+        })
+        .then(data => {
+            if(data.success) {
+                location.reload();
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            alert("İşlem sırasında bir hata oluştu");
+        });
+    }
+
+
+        function loadReportDates() {
+        const tourId = document.getElementById('reportTourId').value;
+        const dateSelect = document.getElementById('reportDateId');
+
+        if (!tourId) {
+            dateSelect.innerHTML = '<option value="">Tüm Tarihler</option>';
+            dateSelect.disabled = true;
+            return;
+        }
+
+        fetch(`/Admin/Tour/GetTourDatesForReport?tourId=${tourId}`)
+            .then(r => r.json())
+            .then(data => {
+                dateSelect.innerHTML = '<option value="">Tüm Tarihler</option>';
+                data.forEach(d => {
+                    dateSelect.innerHTML += `<option value="${d.id}">${d.date}</option>`;
+                });
+                dateSelect.disabled = false;
+            });
+    }
+
+    function downloadTourReport(format) {
+        const tourId = document.getElementById('reportTourId').value;
+        const tourDateId = document.getElementById('reportDateId').value;
+        const status = document.getElementById('reportStatus').value;
+
+        if (!tourId) {
+            alert('Lütfen bir tur seçin.');
+            return;
+        }
+
+        let url;
+        if (tourDateId) {
+            const action = format === 'excel' ? 'DownloadTourDateExcelReport' : 'DownloadTourDatePdfReport';
+            url = `/Admin/Tour/${action}?tourId=${tourId}&tourDateId=${tourDateId}`;
+            if (status) url += `&status=${encodeURIComponent(status)}`;
+        } else {
+            const action = format === 'excel' ? 'DownloadExcelReport' : 'DownloadPdfReport';
+            url = `/Admin/Tour/${action}?tourId=${tourId}`;
+        }
+
+        window.open(url, '_blank');
+    }
 
     render();
 </script>

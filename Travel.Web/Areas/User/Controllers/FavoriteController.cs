@@ -38,6 +38,8 @@ namespace Travel.Web.Areas.User.Controllers
         public async Task<IActionResult> GetUserFavorites()
         {
             var user = await _userManager.GetUserAsync(User);
+            if (user == null) return Ok(new List<string>());
+
             var favorites = await _favoriteService.GetByUserIdAsync(user.Id.ToString());
             return Ok(favorites.Select(f => f.TourId));
         }

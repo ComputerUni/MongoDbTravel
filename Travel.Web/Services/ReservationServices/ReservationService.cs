@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DocumentFormat.OpenXml.Spreadsheet;
 using Microsoft.AspNetCore.Identity;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
@@ -32,6 +33,9 @@ namespace Travel.Web.Services.ReservationServices
         {
             var tour = await _tourCollection.Find(x => x.Id == createReservationDto.TourId).FirstOrDefaultAsync();
             var tourDate = tour.Dates.FirstOrDefault(d => d.Id == createReservationDto.TourDateId);
+
+            Console.WriteLine($"Gelen TourDateId: {createReservationDto.TourDateId}");
+            Console.WriteLine($"Tour Dates: {string.Join(", ", tour.Dates.Select(d => d.Id))}");
 
             int totalPerson = createReservationDto.AdultCount + createReservationDto.ChildCount;
 
@@ -71,7 +75,7 @@ namespace Travel.Web.Services.ReservationServices
 
             var dtos = _mapper.Map<List<ResultReservationDto>>(reservations);
 
-           
+
             foreach (var dto in dtos)
             {
                 var tour = tours.FirstOrDefault(t => t.Id == dto.TourId);
@@ -83,9 +87,9 @@ namespace Travel.Web.Services.ReservationServices
                     dto.Duration = tour.Duration;
                     dto.UserFullName = user.FirstName + " " + user.LastName;
                     dto.UserEmail = user.Email;
-                 
+
                     var destination = destinations.FirstOrDefault(d => d.Id == tour.DestinationId);
-                    dto.DestinationName = destination?.Name; 
+                    dto.DestinationName = destination?.Name;
 
                 }
                 else
@@ -98,14 +102,86 @@ namespace Travel.Web.Services.ReservationServices
             return dtos;
         }
 
-        public Task<ResultReservationDto> GetByIdAsync(string id)
+        public async Task<ResultReservationDto> GetByIdAsync(string id)
         {
-            throw new NotImplementedException();
+            var reservation = await _reservationCollection.AsQueryable().FirstOrDefaultAsync(x => x.Id == id);
+            var dto = _mapper.Map<ResultReservationDto>(reservation);
+
+            var tour = await _tourCollection.AsQueryable().FirstOrDefaultAsync(t => t.Id == dto.TourId);
+            var user = await _userManager.FindByIdAsync(dto.UserId);
+            var destinations = await _destinationCollection.AsQueryable().ToListAsync();
+
+            dto.UserFullName = user.FirstName + " " + user.LastName;
+            dto.UserEmail = user.Email;
+
+            if (tour != null)
+            {
+                dto.TourName = tour.Name;
+                dto.CoverImage = tour.CoverImage;
+                dto.Duration = tour.Duration;
+
+                var destination = destinations.FirstOrDefault(d => d.Id == tour.DestinationId);
+                dto.DestinationName = destination.Name;
+            }
+
+            else
+            {
+                dto.TourName = "Silinmiş Tur";
+                dto.DestinationName = "-";
+            }
+
+            return dto;
+
         }
 
-        public Task<List<ResultReservationDto>> GetByTourIdAsync(string tourId)
+        public async Task<List<ResultReservationDto>> GetByTourIdAsync(string tourId, string tourDateId = null, string status = null)
         {
-            throw new NotImplementedException();
+            var filter = Builders<Reservation>.Filter.Eq(r => r.TourId, tourId);
+
+            if(!string.IsNullOrEmpty(tourDateId))
+            {
+                filter &= Builders<Reservation>.Filter.Eq(r => r.TourDateId, tourDateId);
+            }
+
+
+            if(!string.IsNullOrEmpty(status) && Enum.TryParse<ReservationStatus>(status, out var statusEnum))
+            {
+                filter &= Builders<Reservation>.Filter.Eq(r => r.Status, statusEnum);
+            }
+
+           
+            var reservations = await _reservationCollection.Find(filter).SortByDescending(r => r.CreatedAt).ToListAsync();
+
+
+            Console.WriteLine($"tourId: {tourId}");
+            Console.WriteLine($"tourDateId: {tourDateId}");
+            Console.WriteLine($"status: {status}");
+            Console.WriteLine($"rezervasyon sayısı: {reservations.Count}");
+
+
+            var tour = await _tourCollection.Find(t => t.Id == tourId).FirstOrDefaultAsync();
+            var dtos = _mapper.Map<List<ResultReservationDto>>(reservations);
+
+            foreach (var dto in dtos)
+            {
+                var user = await _userManager.FindByIdAsync(dto.UserId);
+                dto.UserFullName = $"{user.FirstName} {user.LastName}";
+                dto.UserEmail = user.Email;
+                dto.UserPhone = user.PhoneNumber;
+
+                if (tour != null)
+                {
+                    dto.TourName = tour.Name;
+                    dto.CoverImage = tour.CoverImage;
+                    dto.Duration = tour.Duration;
+
+                }
+                else
+                {
+                    dto.TourName = "Silinmiş Tur";
+                }
+            }
+            return dtos;
         }
 
         public async Task<List<ResultReservationDto>> GetByUserIdAsync(string userId)
@@ -130,7 +206,7 @@ namespace Travel.Web.Services.ReservationServices
                         var matchingDate = tour.Dates.FirstOrDefault(d => d.StartDate.Date == dto.TourDate.Date);
                         if (matchingDate != null)
                         {
-                            isDateActive = matchingDate.IsActive; 
+                            isDateActive = matchingDate.IsActive;
                         }
                     }
 

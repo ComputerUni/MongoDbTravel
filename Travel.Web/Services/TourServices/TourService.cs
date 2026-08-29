@@ -15,6 +15,7 @@ namespace Travel.Web.Services.TourServices
     public class TourService : ITourService
     {
         private readonly IMongoCollection<Tour> _tourCollection;
+        private readonly IMongoCollection<Reservation> _reservationCollection;
         private readonly IMapper _mapper;
         private readonly ICategoryService _categoryService;
         private readonly IDestinationService _destinationService;
@@ -25,6 +26,7 @@ namespace Travel.Web.Services.TourServices
             var client = new MongoClient(databaseSettings.ConnectionString);
             var database = client.GetDatabase(databaseSettings.DatabaseName);
             _tourCollection = database.GetCollection<Tour>(databaseSettings.TourCollectionName);
+            _reservationCollection = database.GetCollection<Reservation>(databaseSettings.ReservationCollectionName);
             _categoryService = categoryService;
             _destinationService = destinationService;
             _lookupService = lookupService;
@@ -68,6 +70,9 @@ namespace Travel.Web.Services.TourServices
             {
                 dto.CategoryName = categories.FirstOrDefault(c => c.Id == dto.CategoryId)?.CategoryName ?? "-";
                 dto.DestinationName = destinations.FirstOrDefault(d => d.Id == dto.DestinationId)?.Name ?? "-";
+
+                var reservationCount = await _reservationCollection.CountDocumentsAsync(r => r.TourId == dto.Id);
+                dto.ReservationCount = (int)reservationCount;
             }
 
             return dtos;

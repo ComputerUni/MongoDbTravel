@@ -66,7 +66,7 @@
                                 <span>-</span>
                             }
                         </td>
-                        <td>-</td>
+                        <td><span style="font-weight:600; color:var(--navy);">@tour.ReservationCount Rezervasyon</span></td>
                         <td>
                             @if (tour.IsActive == "Aktif")
                             {
@@ -84,6 +84,8 @@
 
                         <td>
                             <div style="display:flex; gap:6px;">
+                                <a href="@Url.Action("DownloadPdfReport", "Tour", new { tourId = tour.Id, area = "Admin" })" class="btn-mini" title="PDF Raporu İndir" target="_blank">📄</a>
+                                <a href="@Url.Action("DownloadExcelReport", "Tour", new { tourId = tour.Id, area = "Admin" })" class="btn-mini" title="Excel Raporu İndir" target="_blank">📊</a>
                                 <a href="@Url.Action("Update", "Tour", new { id = tour.Id, area = "Admin" })" class="btn-mini" title="Düzenle">✏️</a>
                                 <a href="@Url.Action("Delete", "Tour", new { id = tour.Id, area = "Admin" })" class="btn-mini text-danger" title="Sil" onclick="return confirm('Bu turu silmek istediğinize emin misiniz?');">🗑️</a>
                             </div>

@@ -8,7 +8,7 @@ namespace Travel.Web.Services.ReservationServices
         Task<ResultReservationDto> GetByIdAsync(string id);
         Task<List<ResultReservationDto>> GetAllAsync();
         Task<List<ResultReservationDto>> GetByUserIdAsync(string userId);
-        Task<List<ResultReservationDto>> GetByTourIdAsync(string tourId);
+        Task<List<ResultReservationDto>> GetByTourIdAsync(string tourId, string tourDateId = null, string status = null);
         Task<string> CreateAsync(CreateReservationDto createReservationDto);
         Task UpdateStatusAsync(string id, ReservationStatus status);
     }

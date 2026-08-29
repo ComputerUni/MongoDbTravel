@@ -65,13 +65,17 @@
 
                         <td>
                             <div class="d-flex gap-1">
-                                <button class="btn btn-sm btn-outline-success" onclick="updateStatus('@reservation.Id', 'Onaylandı')" title="Onayla">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
-                                </button>
-                                <button class="btn btn-sm btn-outline-danger" onclick="updateStatus('@reservation.Id', 'İptal')" title="İptal Et">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
-                                </button>
+                                @if(reservation.Status.ToString() != "Onaylandı")
+                                {
+                                    <button type="button" style="background:none; border:none; padding:2px; cursor:pointer;" onclick="updateStatus('@reservation.Id', 'Onaylandı')" title="Onayla">✅</button>
+                                }
+                                @if(reservation.Status.ToString() != "İptal")
+                                {
+                                    <button type="button" style="background:none; border:none; padding:2px; cursor:pointer;" onclick="updateStatus('@reservation.Id', 'İptal')" title="İptal Et">❌</button>
+                                }
+                                <button type="button" style="background:none; border:none; padding:2px; cursor:pointer;" onclick="openReservationDetail('@reservation.Id')" title="Detayları Gör">👁️</button>
                             </div>
+
                         </td>
                     </tr>
                 }
@@ -98,6 +102,90 @@
             <a href="#">3</a>
             <a href="#">4</a>
             <a href="#">Sonraki</a>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="reservationDetailModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0 shadow-lg" style="border-radius: 12px; overflow: hidden;">
+
+            <div class="modal-header bg-white px-4 py-3 border-bottom">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="bg-light text-primary p-2 rounded-3 d-flex align-items-center justify-content-center" style="width: 42px; height: 42px;">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    </div>
+                    <div>
+                        <h5 class="modal-title fw-bold text-dark mb-0">Rezervasyon Özeti</h5>
+                        <small class="text-black font-monospace" id="modalResId"></small>
+                    </div>
+                </div>
+                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Kapat"></button>
+            </div>
+            <div class="modal-body p-4 bg-light bg-opacity-50">
+                <div class="row g-3">
+                    <div class="col-12">
+                        <div class="card border-0 shadow-sm p-3 bg-white" style="border-radius: 10px;">
+                            <span class="text-uppercase text-muted fw-bold mb-2" style="font-size: 11px; letter-spacing: 0.5px;">Müşteri Bilgileri</span>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="text-muted small">Ad Soyad</div>
+                                    <div id="modalUserFullName" class="fw-semibold text-dark fs-6"></div>
+                                </div>
+                                <div class="col-md-6 mt-2 mt-md-0">
+                                    <div class="text-muted small">E-Posta Adresi</div>
+                                    <div id="modalUserEmail" class="fw-semibold text-primary"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="card border-0 shadow-sm p-3 bg-white" style="border-radius: 10px;">
+                            <span class="text-uppercase text-muted fw-bold mb-2" style="font-size: 11px; letter-spacing: 0.5px;">Tur Detayları</span>
+                            <div class="row g-2">
+                                <div class="col-md-6">
+                                    <div class="text-muted small">Tur Adı</div>
+                                    <div id="modalTourName" class="fw-semibold text-dark"></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="text-muted small">Destinasyon</div>
+                                    <div id="modalDestinationName" class="fw-semibold text-dark"></div>
+                                </div>
+                                <div class="col-md-6 mt-4">
+                                    <div class="text-muted small">Tur Tarih Aralığı</div>
+                                    <div id="modalTourDateRange" class="fw-semibold text-dark"></div>
+                                </div>
+                                <div class="col-md-6 mt-4">
+                                    <div class="text-muted small">Süre</div>
+                                    <div id="modalDuration" class="fw-semibold text-dark"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="card border-0 shadow-sm p-3 bg-white" style="border-radius: 10px;">
+                            <span class="text-uppercase text-muted fw-bold mb-2" style="font-size: 11px; letter-spacing: 0.5px;">Ödeme ve Katılım Detayları</span>
+                            <div class="row align-items-center">
+                                <div class="col-md-4">
+                                    <div class="text-muted small">Kişi Dağılımı</div>
+                                    <div id="modalPeopleCount" class="fw-semibold text-dark"></div>
+                                </div>
+                                <div class="col-md-4 mt-2 mt-md-0">
+                                    <div class="text-muted small">Toplam Tutar</div>
+                                    <div id="modalTotalPrice" class="fw-bold text-success fs-5"></div>
+                                </div>
+                                <div class="col-md-4 mt-2 mt-md-0">
+                                    <div class="text-muted small">Kayıt Tarihi</div>
+                                    <div id="modalCreatedAt" class="fw-semibold text-muted small"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -1,0 +1,168 @@
+﻿@model List<ResultQuestionDto>
+@{
+    int count = 0;
+}
+
+<div class="card-x mb-3">
+    <div class="tbl-wrap">
+        <table class="tx">
+            <thead>
+                <tr>
+                    <th style="width:36px"><input type="checkbox" class="chk" id="checkAll" onchange="toggleAll(this)"></th>
+                    <th>Soru ID</th>
+                    <th>Kullanıcı</th>
+                    <th>Tur</th>
+                    <th>Soru İçeriği</th>
+                    <th>Soru Tarihi</th>
+                    <th>Durum</th>
+                    <th style="width:140px">İşlemler</th>
+                </tr>
+            </thead>
+            <tbody id="tourRows">
+                @foreach (var question in Model)
+                {
+                    count++;
+                    <tr>
+                        <td><input type="checkbox" class="chk row-chk" value="@question.Id" /></td>
+                        <td>@count</td>
+                        <td><span class="text-primary fw-bold">@question.UserFullName</span></td>
+                        <td>@question.TourName</td>
+                        <td>@question.Content</td>
+                        <td>@question.CreatedAt.ToLocalTime().ToString("dd MMM yyyy")</td>
+                        <td>
+                            @if (question.IsAnswered)
+                            {
+                                <span class="badge bg-success">Cevaplandı</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-warning text-dark">Bekleniyor</span>
+                            }
+                        </td>
+
+                        <td>
+                            <div class="d-flex gap-1 align-items-center">
+                                <button type="button" style="background:none; border:none; padding:2px; cursor:pointer;" onclick="openQuestionDetail('@question.Id')" title="Soruyu Görüntüle">👁️</button>
+                                @if (!question.IsAnswered)
+                                {
+                                    <button type="button" style="background:none; border:none; padding:2px; cursor:pointer;" onclick="openAnswerModal('@question.Id')" title="Cevapla">💬</button>
+
+                                }
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div id="emptyState" style="display:none">
+        <div class="empty">
+            <div class="eic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg></div>
+            <h3>Tur bulunamadı</h3>
+            <p>Arama veya filtre kriterlerinizi değiştirerek tekrar deneyebilirsiniz.</p>
+            <button class="btn-teal" style="margin:0 auto" onclick="clearFilters()">Filtreleri Temizle</button>
+        </div>
+    </div>
+    <div class="pager-row" id="pagerRow">
+        <div class="per-page">
+            Sayfa başına
+            <select id="perPage"><option>10</option><option>25</option><option>50</option></select>
+        </div>
+        <div class="pager">
+            <a href="#" class="disabled">Önceki</a>
+            <a href="#" class="active">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">Sonraki</a>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="reservationDetailModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0 shadow-lg" style="border-radius: 12px; overflow: hidden;">
+
+            <div class="modal-header bg-white px-4 py-3 border-bottom">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="bg-light text-primary p-2 rounded-3 d-flex align-items-center justify-content-center" style="width: 42px; height: 42px;">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                    </div>
+                    <div>
+                        <h5 class="modal-title fw-bold text-dark mb-0">Soru Detayı</h5>
+                        <small class="text-muted">Kullanıcı Soru ve Bilgileri</small>
+                    </div>
+                </div>
+                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Kapat"></button>
+            </div>
+            <div class="modal-body p-4 bg-light bg-opacity-50">
+                <div class="row g-3">
+                    <div class="col-12">
+                        <div class="card border-0 shadow-sm p-3 bg-white" style="border-radius: 10px;">
+                            <span class="text-uppercase text-muted fw-bold mb-2" style="font-size: 11px; letter-spacing: 0.5px;">Müşteri Bilgileri</span>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="text-muted small">Ad Soyad</div>
+                                    <div id="modalUserFullName" class="fw-semibold text-dark fs-6"></div>
+                                </div>
+                                <div class="col-md-6 mt-2 mt-md-0">
+                                    <div class="text-muted small">E-Posta Adresi</div>
+                                    <div id="modalUserEmail" class="fw-semibold text-primary"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="card border-0 shadow-sm p-3 bg-white" style="border-radius: 10px;">
+                            <span class="text-uppercase text-muted fw-bold mb-2" style="font-size: 11px; letter-spacing: 0.5px;">Tur ve Soru Bilgileri</span>
+                            <div class="row g-2">
+                                <div class="col-12">
+                                    <div class="text-muted small">Tur Adı</div>
+                                    <div id="modalTourName" class="fw-semibold text-dark"></div>
+                                </div>
+                                <div class="col-12 mt-3">
+                                    <div class="text-muted small">Soru İçeriği</div>
+                                    <div id="modalContent" class="p-3 bg-light rounded-2 text-dark mt-1" style="font-size: 14px;"></div>
+                                </div>
+                                <div class="col-12 mt-3">
+                                    <div class="text-muted small">Verilen Cevap</div>
+                                    <div id="modalAnswerContent" class="p-3 bg-light rounded-2 text-dark mt-1" style="font-size: 14px;"></div>
+                                </div>
+                                <div class="col-md-6 mt-3">
+                                    <div class="text-muted small">Soru Tarihi</div>
+                                    <div id="modalCreatedAt" class="fw-semibold text-muted small"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="answerModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg" style="border-radius: 12px; overflow: hidden;">
+            <div class="modal-header bg-white px-4 py-3 border-bottom">
+                <h5 class="modal-title fw-bold text-dark mb-0">Soruyu Cevapla</h5>
+                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Kapat"></button>
+            </div>
+            <div class="modal-body p-4 bg-light bg-opacity-50">
+                <input type="hidden" id="answerQuestionId" />
+                <div class="mb-3">
+                    <label class="form-label text-muted small fw-bold">Cevabınız</label>
+                    <textarea id="answerContent" class="form-control" rows="5" placeholder="Kullanıcıya iletmek istediğiniz cevabı yazın..."></textarea>
+                </div>
+                <div class="text-end">
+                    <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">İptal</button>
+                    <button type="button" class="btn btn-primary px-4" onclick="submitAnswer()">Cevabı Gönder</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

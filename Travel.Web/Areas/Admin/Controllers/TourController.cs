@@ -6,12 +6,13 @@ using Travel.Web.Entities.Enums;
 using Travel.Web.Services.CategoryServices;
 using Travel.Web.Services.DestinationServices;
 using Travel.Web.Services.LookupServices;
+using Travel.Web.Services.ReportServices;
 using Travel.Web.Services.TourServices;
 
 namespace Travel.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class TourController(ITourService _tourService, ILookupService _lookupService, ICategoryService _categoryService, IDestinationService _destinationService, IMapper _mapper) : Controller
+    public class TourController(ITourService _tourService, ILookupService _lookupService, ICategoryService _categoryService, IDestinationService _destinationService, IReportService _reportService, IMapper _mapper) : Controller
     {
         public async Task<IActionResult> Index()
         {
@@ -112,6 +113,48 @@ namespace Travel.Web.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
+        public async Task<IActionResult> DownloadExcelReport(string tourId)
+        {
+            var stream = await _reportService.ExportTourReservationsToExcelAsync(tourId);
+            string excelName = $"Tur_Katilimci_Raporu_{DateTime.Now:yyyyMMddHHmmss}.xlsx";
+            return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", excelName);
+        }
+
+        public async Task<IActionResult> DownloadPdfReport(string tourId)
+        {
+            var stream = await _reportService.ExportTourReservationsToPdfAsync(tourId);
+            string fileName = $"Tur_Katilimci_Raporu_{DateTime.Now:yyyyMMddHHmmss}.pdf";
+            return File(stream, "application/pdf", fileName);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> DownloadTourDateExcelReport(string tourId, string tourDateId, string status = null)
+        {
+            var stream = await _reportService.ExportTourDateReservationsToExcelAsync(tourId, tourDateId, status);
+            string excelName = $"Tur_Katilimci_Raporu_{DateTime.Now:yyyyMMddHHmmss}.xlsx";
+            return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", excelName);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> DownloadTourDatePdfReport(string tourId, string tourDateId, string status = null)
+        {
+            var stream = await _reportService.ExportTourDateReservationsToPdfAsync(tourId, tourDateId, status);
+            string fileName = $"Tur_Katilimci_Raporu_{DateTime.Now:yyyyMMddHHmmss}.pdf";
+            return File(stream, "application/pdf", fileName);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetTourDatesForReport(string tourId)
+        {
+            var tour = await _tourService.GetByIdAsync(tourId, resolveNames: false);
+            var result = tour.Dates?.Select(d => new
+            {
+                id = d.Id,
+                date = d.StartDate.ToLocalTime().ToString("dd.MM.yyyy")
+            });
+
+            return Json(result);
+        }
 
     }
 }

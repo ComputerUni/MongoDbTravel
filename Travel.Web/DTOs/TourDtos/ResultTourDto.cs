@@ -38,5 +38,6 @@ namespace Travel.Web.DTOs.TourDtos
         public List<string> Features { get; set; } = new();
         public List<TourDateDto> Dates { get; set; } = new();
         public List<DayProgramDto> DayPrograms { get; set; } = new();
+        public int ReservationCount { get; set; }
     }
 }

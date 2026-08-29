@@ -1,0 +1,22 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.TopbarTitle = "Soru Yönetimi";
+}
+
+@await Component.InvokeAsync("_AdminTourHead")
+
+
+<div class="crumb"><a href="#">Dashboard</a> / <span class="cur">Sorular</span></div>
+<div class="page-intro">
+    <div>
+        <h1>Soru Yönetimi</h1>
+        <p>Travelio'daki tüm soruları görüntüleyebilir, filtreleyebilir ve yönetebilirsiniz.</p>
+    </div>
+</div>
+
+@await Component.InvokeAsync("_AdminTourKpi")
+@await Component.InvokeAsync("_AdminTourFilter")
+@await Component.InvokeAsync("_AdminTourBulkBar")
+@await Component.InvokeAsync("_AdminQuestionTable")
+@await Component.InvokeAsync("_AdminTourDeleteModal")
+@await Component.InvokeAsync("_AdminTourScript")
