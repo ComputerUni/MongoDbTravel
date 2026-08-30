@@ -8,6 +8,7 @@ using Travel.Web.Entities;
 using Travel.Web.Services.BannerServices;
 using Travel.Web.Services.CategoryServices;
 using Travel.Web.Services.CommentServices;
+using Travel.Web.Services.DashboardServices;
 using Travel.Web.Services.DestinationServices;
 using Travel.Web.Services.FavoriteServices;
 using Travel.Web.Services.LookupServices;
@@ -39,6 +40,7 @@ builder.Services.AddScoped<IFavoriteService, FavoriteService>();
 builder.Services.AddScoped<ICommentService, CommentService>();
 builder.Services.AddScoped<IQuestionService, QuestionService>();
 builder.Services.AddScoped<IReportService, ReportService>();
+builder.Services.AddScoped<IDashboardService, DashboardService>();
 
 //builder.Services.AddScoped<IRouteService, RouteService>();
 

@@ -52,7 +52,7 @@
             </div>
             <div class="col-md-6 field">
                 <label>Destinasyon <span class="req">*</span></label>
-                <select class="ctrl" asp-for="Tour.DestinationId" asp-items="@(new SelectList(Model.Destinations, "Id", "Name"))">
+                <select class="ctrl" asp-for="Tour.DestinationId" asp-items="@(new SelectList(Model.Destinations, "Id", "Country"))">
                     <option value="">Destinasyon Seçiniz</option>
                 </select>
             </div>

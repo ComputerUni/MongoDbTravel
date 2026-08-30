@@ -1,0 +1,24 @@
+﻿@model List<PopularTourDto>
+
+<div class="col-lg-4">
+    <div class="card-x h-100">
+        <div class="card-head"><h3>En Popüler Turlar</h3></div>
+        <div class="card-body pt-2">
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                var tour = Model[i];
+                <div class="d-flex align-items-center gap-3 py-2" style="border-bottom:1px solid #e5e7eb">
+                    <span style="font-size:.85rem;font-weight:700;color:var(--navy);width:16px">@(i + 1)</span>
+                    @if (!string.IsNullOrEmpty(tour.CoverImage))
+                    {
+                        <img src="@tour.CoverImage" style="width:40px;height:40px;border-radius:8px;object-fit:cover;" />
+                    }
+                    <div class="flex-grow-1">
+                        <div class="fw-semibold">@tour.TourName</div>
+                        <small class="text-muted">@tour.ReservationCount rezervasyon</small>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

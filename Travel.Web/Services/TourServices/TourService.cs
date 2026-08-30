@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using Travel.Web.Areas.Admin.Models;
@@ -71,7 +72,7 @@ namespace Travel.Web.Services.TourServices
                 dto.CategoryName = categories.FirstOrDefault(c => c.Id == dto.CategoryId)?.CategoryName ?? "-";
                 dto.DestinationName = destinations.FirstOrDefault(d => d.Id == dto.DestinationId)?.Name ?? "-";
 
-                var reservationCount = await _reservationCollection.CountDocumentsAsync(r => r.TourId == dto.Id);
+                var reservationCount = await _reservationCollection.CountDocumentsAsync(r => r.TourId == dto.Id && r.Status != ReservationStatus.İptal);
                 dto.ReservationCount = (int)reservationCount;
             }
 
@@ -192,7 +193,31 @@ namespace Travel.Web.Services.TourServices
             }
 
             return dtos;
+        }
 
+        public async Task<TourKpiDto> GetTourKpiAsync()
+        {
+            var pipeline = new[]
+            {
+                new BsonDocument("$group", new BsonDocument
+                {
+                    {"_id", "$IsActive"},
+                    {"count", new BsonDocument("$sum", 1) },
+                    {"totalQuota", new BsonDocument("$sum", "$GroupSize") }
+
+                })
+            };
+
+            var results = await _tourCollection.Aggregate<BsonDocument>(pipeline).ToListAsync();
+            var kpi = new TourKpiDto
+            {
+                TotalTours = results.Sum(r => r["count"].AsInt32),
+                ActiveTours = results.FirstOrDefault(r => r["_id"].AsString == "Aktif")?["count"].AsInt32 ?? 0,
+                PassiveTours = results.FirstOrDefault(r => r["_id"].AsString == "Pasif")?["count"].AsInt32 ?? 0,
+                TotalQuota = results.Sum(r => r["totalQuota"].AsInt32)
+            };
+
+            return kpi;
         }
     }
 }

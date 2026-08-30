@@ -54,6 +54,22 @@
     </div>
 </div>
 
+<!-- CANCEL RESERVATION MODAL -->
+<div class="modal fade" id="cancelReservationModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body text-center p-4">
+                <h5 style="font-family:'Sora';font-weight:700;color:var(--navy)">Rezervasyonu iptal etmek istiyor musun?</h5>
+                <p style="color:var(--muted);font-size:.9rem">Bu işlem sonrasında tur kontenjanınız iade edilecektir ve geri alınamaz.</p>
+                <div class="d-flex gap-2 justify-content-center mt-3">
+                    <button class="btn-outline" data-bs-dismiss="modal">Vazgeç</button>
+                    <button class="btn-teal" style="background:#c0554f" onclick="confirmCancelReservation()">Evet, İptal Et</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="editReviewModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">

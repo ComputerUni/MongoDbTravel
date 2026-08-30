@@ -1,0 +1,30 @@
+﻿@model List<ResultQuestionDto>
+
+<div class="col-lg-4">
+    <div class="card-x h-100">
+        <div class="card-head"><h3>Yanıt Bekleyen Sorular</h3></div>
+        <div class="card-body pt-2">
+            @foreach (var question in Model)
+            {
+                <div style="padding:.75rem 0;border-bottom:1px solid #e5e7eb">
+                    <div class="text-muted" style="font-size:.75rem;margin-bottom:.25rem">@question.TourName</div>
+                    <div class="fw-semibold" style="font-size:.88rem;margin-bottom:.4rem">@question.Content</div>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <small class="text-muted">
+                            @{
+                                var diff = DateTime.UtcNow - question.CreatedAt.ToUniversalTime();
+                                string timeAgo = diff.TotalMinutes < 60
+                                    ? $"{(int)diff.TotalMinutes} dakika önce"
+                                    : diff.TotalHours < 24
+                                        ? $"{(int)diff.TotalHours} saat önce"
+                                        : $"{(int)diff.TotalDays} gün önce";
+                            }
+                            @timeAgo
+                        </small>
+                        <a href="/Admin/Question/Index" class="btn-soft" style="font-size:.78rem;padding:.2rem .7rem">Cevapla</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

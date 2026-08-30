@@ -138,18 +138,18 @@ namespace Travel.Web.Services.ReservationServices
         {
             var filter = Builders<Reservation>.Filter.Eq(r => r.TourId, tourId);
 
-            if(!string.IsNullOrEmpty(tourDateId))
+            if (!string.IsNullOrEmpty(tourDateId))
             {
                 filter &= Builders<Reservation>.Filter.Eq(r => r.TourDateId, tourDateId);
             }
 
 
-            if(!string.IsNullOrEmpty(status) && Enum.TryParse<ReservationStatus>(status, out var statusEnum))
+            if (!string.IsNullOrEmpty(status) && Enum.TryParse<ReservationStatus>(status, out var statusEnum))
             {
                 filter &= Builders<Reservation>.Filter.Eq(r => r.Status, statusEnum);
             }
 
-           
+
             var reservations = await _reservationCollection.Find(filter).SortByDescending(r => r.CreatedAt).ToListAsync();
 
 
@@ -219,10 +219,25 @@ namespace Travel.Web.Services.ReservationServices
 
         public async Task UpdateStatusAsync(string id, ReservationStatus status)
         {
+            var reservation = await _reservationCollection.Find(r => r.Id == id).FirstOrDefaultAsync();
             var filter = Builders<Reservation>.Filter.Eq(r => r.Id, id);
             var update = Builders<Reservation>.Update.Set(x => x.Status, status);
 
             await _reservationCollection.UpdateOneAsync(filter, update);
+
+
+            if (status == ReservationStatus.İptal)
+            {
+                int totalPerson = reservation.AdultCount + reservation.ChildCount;
+
+                var tourFilter = Builders<Tour>.Filter.And(
+                    Builders<Tour>.Filter.Eq(t => t.Id, reservation.TourId),
+                    Builders<Tour>.Filter.ElemMatch(t => t.Dates, d => d.Id == reservation.TourDateId)
+                );
+
+                var tourUpdate = Builders<Tour>.Update.Inc("Dates.$.Quota", totalPerson);
+                await _tourCollection.UpdateOneAsync(tourFilter, tourUpdate);
+            }
 
 
         }

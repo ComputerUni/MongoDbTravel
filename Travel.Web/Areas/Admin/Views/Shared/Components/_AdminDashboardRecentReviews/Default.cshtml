@@ -1,0 +1,35 @@
+﻿@model List<ResultCommentDto>
+
+<div class="col-lg-4">
+    <div class="card-x h-100">
+        <div class="card-head"><h3>Son Yorumlar</h3></div>
+        <div class="card-body pt-2">
+            @foreach (var comment in Model)
+            {
+                <div style="padding:.75rem 0;border-bottom:1px solid #e5e7eb">
+                    <div class="d-flex align-items-center gap-2 mb-1">
+                        <div style="width:32px;height:32px;border-radius:50%;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0">
+                            @comment.UserInitials
+                        </div>
+                        <div>
+                            <div class="fw-semibold" style="font-size:.85rem">@comment.UserFullName</div>
+                            <small class="text-muted">@comment.TourName</small>
+                        </div>
+                        <div class="ms-auto">
+                            @for (int i = 1; i <= 5; i++)
+                            {
+                                <span style="color:@(i <= comment.Rating ? "#f59e0b" : "#d1d5db");font-size:.75rem">★</span>
+                            }
+                        </div>
+                    </div>
+                    <p style="font-size:.82rem;color:var(--muted);margin:0;padding-left:40px">
+                        @(comment.Content.Length > 80 ? comment.Content.Substring(0, 80) + "..." : comment.Content)
+                    </p>
+                    <small style="padding-left:40px;color:var(--muted);font-size:.75rem">
+                        @comment.CreatedAt.ToString("dd MMM yyyy", new System.Globalization.CultureInfo("tr-TR"))
+                    </small>
+                </div>
+            }
+        </div>
+    </div>
+</div>

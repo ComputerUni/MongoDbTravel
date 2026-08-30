@@ -1,0 +1,63 @@
+﻿@model List<ResultReservationDto>
+
+<div class="card-x mb-3">
+    <div class="card-head">
+        <h3>Son Rezervasyonlar</h3>
+        <a href="/Admin/Reservation/Index" class="btn-soft">Tümünü Gör</a>
+    </div>
+    <div class="card-body pt-2">
+        <div class="tbl-wrap">
+            <table class="tx">
+                <thead>
+                    <tr>
+                        <th>Rezervasyon No</th>
+                        <th>Misafir</th>
+                        <th>Tur</th>
+                        <th>Tur Tarihi</th>
+                        <th>Kişi</th>
+                        <th>Tutar</th>
+                        <th>Durum</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var r in Model)
+                    {
+                        <tr>
+                            <td><span class="text-primary fw-bold">TRV-@r.Id.Substring(0, 8).ToUpper()</span></td>
+                            <td>
+                                <div><b>@r.UserFullName</b></div>
+                                <small class="text-muted">@r.UserEmail</small>
+                            </td>
+                            <td>
+                                <div style="display:flex;align-items:center;gap:8px">
+                                    @if (!string.IsNullOrEmpty(r.CoverImage))
+                                    {
+                                        <img src="@r.CoverImage" style="width:32px;height:32px;border-radius:6px;object-fit:cover;" />
+                                    }
+                                    <span>@r.TourName</span>
+                                </div>
+                            </td>
+                            <td><small>@r.TourDate.ToLocalTime().ToString("dd MMM yyyy")</small></td>
+                            <td>@(r.AdultCount + r.ChildCount) kişi</td>
+                            <td><b>@r.TotalPrice.ToString("N0") TL</b></td>
+                            <td>
+                                @if (r.Status.ToString() == "Onaylandı")
+                                {
+                                    <span class="badge bg-success">Onaylandı</span>
+                                }
+                                else if (r.Status.ToString() == "İptal")
+                                {
+                                    <span class="badge bg-danger">İptal</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-warning text-dark">Bekliyor</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

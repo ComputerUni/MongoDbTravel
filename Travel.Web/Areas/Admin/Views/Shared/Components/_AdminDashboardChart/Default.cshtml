@@ -1,0 +1,61 @@
+﻿<div class="col-lg-8">
+    <div class="card-x h-100">
+        <div class="card-head">
+            <h3>Rezervasyon İstatistikleri</h3>
+            <select class="chart-select" id="rangeSelect" onchange="loadChart(this.value)">
+                <option value="7">Son 7 Gün</option>
+                <option value="30">Son 30 Gün</option>
+                <option value="6m" selected>Son 6 Ay</option>
+            </select>
+        </div>
+        <div class="card-body">
+            <div class="chart-wrap"><canvas id="resChart"></canvas></div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    let resChart = null;
+
+    function loadChart(range) {
+        fetch(`/Admin/Dashboard/GetChartData?range=${range}`)
+            .then(r => r.json())
+            .then(data => {
+                const labels = data.map(d => d.label);
+                const counts = data.map(d => d.count);
+
+                if (resChart) resChart.destroy();
+
+                const ctx = document.getElementById('resChart').getContext('2d');
+                resChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Rezervasyon',
+                            data: counts,
+                            borderColor: '#0d9488',
+                            backgroundColor: 'rgba(13,148,136,.1)',
+                            borderWidth: 2,
+                            pointBackgroundColor: '#0d9488',
+                            pointRadius: 4,
+                            fill: true,
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false, 
+                        plugins: { legend: { display: false } },
+                        scales: {
+                            y: { beginAtZero: false, grid: { color: '#f1f5f9' } },
+                            x: { grid: { display: false } }
+                        }
+                    }
+                });
+            });
+    }
+
+    loadChart('6m');
+</script>

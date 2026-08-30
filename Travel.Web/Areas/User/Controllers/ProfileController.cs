@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Travel.Web.Areas.User.Models;
 using Travel.Web.DTOs.ProfileDtos;
+using Travel.Web.DTOs.ReservationDtos;
 using Travel.Web.Entities;
+using Travel.Web.Entities.Enums;
 using Travel.Web.Services.CommentServices;
 using Travel.Web.Services.FavoriteServices;
 using Travel.Web.Services.QuestionServices;
@@ -48,6 +50,13 @@ namespace Travel.Web.Areas.User.Controllers
 
             await _userManager.UpdateAsync(user);
             return Ok();
-        } 
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Cancel([FromBody] CancelReservationDto dto)
+        {
+            await _reservationService.UpdateStatusAsync(dto.Id, ReservationStatus.İptal);
+            return Ok();
+        }
     }
 }
