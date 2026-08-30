@@ -1,4 +1,6 @@
-﻿namespace Travel.Web.DTOs.CommentDtos
+﻿using Travel.Web.Entities.Enums;
+
+namespace Travel.Web.DTOs.CommentDtos
 {
     public class ResultCommentDto
     {
@@ -8,10 +10,12 @@
         public string Content { get; set; }
         public int Rating { get; set; }
         public DateTime CreatedAt { get; set; }
+        public CommentStatus Status { get; set; }
 
         // Kullanıcı bilgileri
         public string UserFullName { get; set; }
         public string UserInitials { get; set; }
+        public string UserEmail { get; set; }
 
         // Tur bilgisi (profil sayfası için)
         public string TourName { get; set; }

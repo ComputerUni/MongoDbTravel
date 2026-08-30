@@ -9,6 +9,7 @@ namespace Travel.Web.Mappings
         public CommentMappings()
         {
             CreateMap<CreateCommentDto, Comment>();
+            CreateMap<UpdateCommentDto, Comment>();
             CreateMap<Comment, ResultCommentDto>();
         }
     }

@@ -30,6 +30,16 @@ namespace Travel.Web.Areas.User.Controllers
         }
 
         [HttpPost]
+        public async Task<IActionResult> Update([FromBody] UpdateCommentDto commentDto)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            await _commentService.UpdateAsync(commentDto.CommentId, commentDto.Content, commentDto.Rating);
+            return Ok();
+        }
+        
+
+
+        [HttpPost]
         public async Task<IActionResult> UpdateRating([FromBody] UpdateRatingDto dto)
         {
             var user = await _userManager.GetUserAsync(User);

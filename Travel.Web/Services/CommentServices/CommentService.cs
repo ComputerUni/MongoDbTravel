@@ -4,6 +4,7 @@ using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using Travel.Web.DTOs.CommentDtos;
 using Travel.Web.Entities;
+using Travel.Web.Entities.Enums;
 using Travel.Web.Settings;
 
 namespace Travel.Web.Services.CommentServices
@@ -44,10 +45,10 @@ namespace Travel.Web.Services.CommentServices
             var comments = await _commentCollection.AsQueryable().ToListAsync();
             var dtos = _mapper.Map<List<ResultCommentDto>>(comments);
 
-            foreach(var dto in dtos)
+            foreach (var dto in dtos)
             {
                 var tour = await _tourCollection.Find(t => t.Id == dto.TourId).FirstOrDefaultAsync();
-                if(tour != null)
+                if (tour != null)
                 {
                     dto.TourName = tour.Name;
                 }
@@ -57,30 +58,30 @@ namespace Travel.Web.Services.CommentServices
                 {
                     dto.UserFullName = user.FirstName + " " + user.LastName;
                     dto.UserInitials = user.FirstName[0].ToString() + user.LastName[0].ToString();
+                    dto.UserEmail = user.Email;
                 }
 
             }
-
 
             return dtos;
         }
 
         public async Task<List<ResultCommentDto>> GetByTourIdAsync(string tourId)
         {
-            var comments = await _commentCollection.Find(x => x.TourId == tourId).ToListAsync();
+            var comments = await _commentCollection.Find(x => x.TourId == tourId && x.Status == CommentStatus.Yayında).ToListAsync();
             var dtos = _mapper.Map<List<ResultCommentDto>>(comments);
 
             var tour = await _tourCollection.Find(t => t.Id == tourId).FirstOrDefaultAsync();
 
-            foreach(var dto in dtos)
+            foreach (var dto in dtos)
             {
-                if(tour != null)
+                if (tour != null)
                 {
                     dto.TourName = tour.Name;
                 }
 
                 var user = await _userManager.FindByIdAsync(dto.UserId);
-                if(user != null)
+                if (user != null)
                 {
                     dto.UserFullName = user.FirstName + " " + user.LastName;
                     dto.UserInitials = user.FirstName[0].ToString() + user.LastName[0].ToString();
@@ -96,7 +97,7 @@ namespace Travel.Web.Services.CommentServices
 
             var dtos = _mapper.Map<List<ResultCommentDto>>(comments);
 
-            foreach(var dto in dtos)
+            foreach (var dto in dtos)
             {
                 var tour = await _tourCollection.Find(t => t.Id == dto.TourId).FirstOrDefaultAsync();
                 var destination = await _destinationCollection.Find(d => d.Id == tour.DestinationId).FirstOrDefaultAsync();
@@ -108,7 +109,7 @@ namespace Travel.Web.Services.CommentServices
                 }
 
                 var user = await _userManager.FindByIdAsync(dto.UserId);
-                if(user != null)
+                if (user != null)
                 {
                     dto.UserFullName = user.FirstName + " " + user.LastName;
                     dto.UserInitials = user.FirstName[0].ToString() + user.LastName[0].ToString();
@@ -118,10 +119,30 @@ namespace Travel.Web.Services.CommentServices
             return dtos;
         }
 
+        public async Task UpdateAsync(string commentId, string content, int rating)
+        {
+            var update = Builders<Comment>.Update.Set(x => x.Content, content).Set(x => x.Rating, rating);
+            await _commentCollection.UpdateOneAsync(x => x.Id == commentId, update);
+        }
+
         public async Task UpdateRatingAsync(string commentId, int rating)
         {
             var update = Builders<Comment>.Update.Set(x => x.Rating, rating);
-            await _commentCollection.UpdateOneAsync(x => x.Id == commentId, update); 
+            await _commentCollection.UpdateOneAsync(x => x.Id == commentId, update);
         }
+
+        public async Task ApproveAsync(string commentId)
+        {
+            var approved = Builders<Comment>.Update.Set(x => x.Status, CommentStatus.Yayında);
+            await _commentCollection.UpdateOneAsync(x => x.Id == commentId, approved);
+        }
+
+        public async Task MarkAsSpamAsync(string commentId)
+        {
+            var spam = Builders<Comment>.Update.Set(x => x.Status, CommentStatus.Spam);
+            await _commentCollection.UpdateOneAsync(x => x.Id == commentId, spam);
+        }
+
+
     }
 }
