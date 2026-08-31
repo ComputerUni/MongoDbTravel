@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DocumentFormat.OpenXml.Spreadsheet;
 using Microsoft.AspNetCore.Identity;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using Travel.Web.DTOs.ReservationDtos;
@@ -238,6 +239,91 @@ namespace Travel.Web.Services.ReservationServices
                 var tourUpdate = Builders<Tour>.Update.Inc("Dates.$.Quota", totalPerson);
                 await _tourCollection.UpdateOneAsync(tourFilter, tourUpdate);
             }
+
+        }
+
+        public async Task<ReservationKpiDto> GetReservationKpiAsync()
+        {
+            var pipeline = new[]
+            {
+                new BsonDocument("$facet", new BsonDocument
+                {
+                    {
+                        "totalCount", new BsonArray
+                        {
+                            new BsonDocument("$count", "count")
+                        }
+                    },
+
+            {
+                "statusCounts", new BsonArray
+                {
+                    
+                    new BsonDocument("$group", new BsonDocument
+                    {
+                        { "_id", "$Status" },
+                        { "count", new BsonDocument("$sum", 1) }
+                    })
+                }
+            },
+
+                     {
+                        "totalPrice", new BsonArray
+                        {
+                            new BsonDocument("$group", new BsonDocument
+                            {
+                                {"_id", BsonNull.Value },
+                                {"sum", new BsonDocument("$sum", "$TotalPrice") }
+                            })
+                        }
+                      }
+
+                    })
+                };
+
+
+            var results = await _reservationCollection.Aggregate<BsonDocument>(pipeline).FirstOrDefaultAsync();
+            var kpiDto = new ReservationKpiDto();
+
+            if (results != null)
+            {
+                var totalArr = results["totalCount"].AsBsonArray;
+                if (totalArr.Count > 0)
+                {
+                    kpiDto.TotalReservationCount = totalArr[0]["count"].AsInt32;
+                }
+
+                var statusArr = results["statusCounts"].AsBsonArray;
+                foreach (var doc in statusArr)
+                {
+                    var statusId = doc["_id"];
+                    int statusCode = -1;
+
+                    if (statusId != null && !statusId.IsBsonNull)
+                    {
+                        statusCode = statusId.ToInt32(); 
+                    }
+
+                    var count = doc["count"].AsInt32;
+
+                    if (statusCode == 2)
+                    {
+                        kpiDto.ApprovedReservationCount = count;
+                    }
+                    else if (statusCode == 1)
+                    {
+                        kpiDto.PendingReservationCount = count;
+                    }
+                }
+
+                var revenueArr = results["totalPrice"].AsBsonArray;
+                if (revenueArr.Count > 0 && !revenueArr[0]["sum"].IsBsonNull)
+                {
+                    kpiDto.TotalPrice = revenueArr[0]["sum"].ToDecimal();
+                }
+            }
+
+            return kpiDto;
 
 
         }

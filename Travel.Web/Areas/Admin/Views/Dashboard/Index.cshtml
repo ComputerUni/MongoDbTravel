@@ -1,7 +1,9 @@
-﻿<div class="page-intro">
+﻿@using System.Security.Claims
+
+<div class="page-intro">
     <div>
         <div class="eyebrow">Genel Bakış</div>
-        <h1>Hoş Geldiniz, Murat 👋</h1>
+        <h1>Hoş Geldiniz, @User.FindFirstValue("FirstName") 👋</h1>
         <p>Travelio platformundaki son gelişmeleri ve önemli verileri buradan takip edebilirsiniz.</p>
     </div>
     <div class="date-pill">

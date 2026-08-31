@@ -6,6 +6,7 @@ using Travel.Web.Services.ReservationServices;
 namespace Travel.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class ReservationController(IReservationService _reservationService) : Controller
     {
         public async Task<IActionResult> Index()

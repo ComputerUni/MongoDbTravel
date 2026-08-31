@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Travel.Web.Services.DashboardServices;
 
 namespace Travel.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
-
+    [Authorize]
     public class DashboardController(IDashboardService _dashboardService) : Controller
     {
         public IActionResult Index()

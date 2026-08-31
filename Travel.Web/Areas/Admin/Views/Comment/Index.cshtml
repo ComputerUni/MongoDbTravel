@@ -6,7 +6,7 @@
 @await Component.InvokeAsync("_AdminTourHead")
 
 
-<div class="crumb"><a href="#">Dashboard</a> / <span class="cur">Yorumlar</span></div>
+<div class="crumb"><a href="/Admin/Dashboard/Index">Dashboard</a> / <span class="cur">Yorumlar</span></div>
 <div class="page-intro">
     <div>
         <h1>Yorum Yönetimi</h1>
@@ -16,8 +16,7 @@
 
 
 
-@await Component.InvokeAsync("_AdminTourKpi")
-@await Component.InvokeAsync("_AdminTourFilter")
+@await Component.InvokeAsync("_AdminCommentKpi")
 @await Component.InvokeAsync("_AdminTourBulkBar")
 @await Component.InvokeAsync("_AdminCommentTable")
 @await Component.InvokeAsync("_AdminTourDeleteModal")

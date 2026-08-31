@@ -10,16 +10,16 @@
             <div class="row g-0 align-items-center">
                 <div class="col-md-3 search-field">
                     <label>Destinasyon</label>
-                    <input class="control" name="destination" list="dests" placeholder="Nereye gidelim?" />
-                    <datalist id="dests">
+                    <select class="control" name="destination">
+                        <option value="">Nereye gidelim?</option>
                         @if (Model.Destination != null)
                         {
                             @foreach (var item in Model.Destination)
                             {
-                                <option value="@item.Name">@item.Name</option>
+                                <option value="@item.Country">@item.Country</option>
                             }
                         }
-                    </datalist>
+                    </select>
                 </div>
                 <div class="col-md-3 search-field">
                     <label>Tarih</label>

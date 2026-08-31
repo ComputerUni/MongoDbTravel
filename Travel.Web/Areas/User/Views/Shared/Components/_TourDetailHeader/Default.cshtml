@@ -1,21 +1,36 @@
-﻿@model ResultTourDto
+﻿@model TourDetailViewModel
+
+@{
+    var avgRating = Model.Comments.Any()
+        ? Model.Comments.Average(c => c.Rating)
+        : 0;
+    var totalReviews = Model.Comments.Count;
+
+    var star5 = Model.Comments.Count(c => c.Rating == 5);
+    var star4 = Model.Comments.Count(c => c.Rating == 4);
+    var star3 = Model.Comments.Count(c => c.Rating == 3);
+    var star2 = Model.Comments.Count(c => c.Rating == 2);
+    var star1 = Model.Comments.Count(c => c.Rating == 1);
+
+    double pct(int count) => totalReviews > 0 ? Math.Round((double)count / totalReviews * 100) : 0;
+}
 
 <div class="detail-head">
     <div class="d-flex justify-content-between align-items-start flex-wrap gap-3">
         <div>
-            <div class="cat-line">@(Model.DestinationName ?? "-") · @(Model.CategoryName ?? "-")</div>
-            <h1>@Model.Name</h1>
+            <div class="cat-line">@(Model.Tour.Country ?? "-") · @(Model.Tour.CategoryName ?? "-")</div>
+            <h1>@Model.Tour.Name</h1>
             <div class="head-meta">
-                <span class="rating"><span class="star">★</span> 4.8</span>
-                <span>1.687 değerlendirme</span>
+                <span class="rating"><span class="star">★</span> @avgRating.ToString("0.0")</span>
+                <span>@totalReviews değerlendirme</span>
                 <span class="dot-sep"></span>
-                <span>@Model.Duration Gün / @Model.Night Gece</span>
+                <span>@Model.Tour.Duration Gün / @Model.Tour.Night Gece</span>
                 <span class="dot-sep"></span>
-                <span>@(Model.Route ?? "-")</span>
+                <span>@(Model.Tour.Route ?? "-")</span>
             </div>
         </div>
         <div class="head-actions">
-            <button class="icon-btn fav" id="favBtn" data-tour-id="@Model.Id" onclick="toggleFav(this)">
+            <button class="icon-btn fav" id="favBtn" data-tour-id="@Model.Tour.Id" onclick="toggleFav(this)">
                 <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z" /></svg>
                 Kaydet
             </button>

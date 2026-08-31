@@ -1,4 +1,6 @@
-﻿<div class="card-x filter-bar mb-3">
+﻿@model TourListViewModel
+
+<div class="card-x filter-bar mb-3">
     <div class="row g-2 align-items-center">
         <div class="col-lg-4 col-md-6">
             <div class="f-search">
@@ -9,27 +11,19 @@
         <div class="col-lg-3 col-md-6">
             <select class="f-select" id="fDest">
                 <option value="">Tüm Destinasyonlar</option>
-                <option>Fransa</option>
-                <option>İtalya</option>
-                <option>İspanya</option>
-                <option>Hollanda</option>
-                <option>Avusturya</option>
-                <option>İsviçre</option>
-                <option>Norveç</option>
-                <option>Japonya</option>
-                <option>Portekiz</option>
+                @foreach(var dest in Model.Destinations)
+                {
+                    <option>@dest.Country</option>
+                }
             </select>
         </div>
         <div class="col-lg-2 col-md-4">
             <select class="f-select" id="fCat">
                 <option value="">Tüm Kategoriler</option>
-                <option>Kültür Turu</option>
-                <option>Şehir Turu</option>
-                <option>Doğa & Macera</option>
-                <option>Romantik Rota</option>
-                <option>Gastronomi</option>
-                <option>Kış & Kuzey Işıkları</option>
-                <option>Uzak Doğu</option>
+                @foreach (var cat in Model.Categories)
+                {
+                    <option>@cat.CategoryName</option>
+                }
             </select>
         </div>
         <div class="col-lg-2 col-md-4">
@@ -46,4 +40,4 @@
     </div>
 </div>
 
-<div class="result-line"><b id="resultCount">12</b> tur listeleniyor</div>
+<div class="result-line"><b id="resultCount">@Model.Tours.Count</b> tur listeleniyor</div>

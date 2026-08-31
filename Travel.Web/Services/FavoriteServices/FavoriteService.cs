@@ -10,6 +10,7 @@ namespace Travel.Web.Services.FavoriteServices
     {
         private readonly IMongoCollection<Favorite> _favoriteCollection;
         private readonly IMongoCollection<Tour> _tourCollection;
+        private readonly IMongoCollection<Comment> _commentCollection;
         private readonly IMongoCollection<Destination> _destinationCollection;
         private readonly IMapper _mapper;
 
@@ -18,6 +19,7 @@ namespace Travel.Web.Services.FavoriteServices
             var client = new MongoClient(databaseSettings.ConnectionString);
             var database = client.GetDatabase(databaseSettings.DatabaseName);
             _favoriteCollection = database.GetCollection<Favorite>(databaseSettings.FavoriteCollectionName);
+            _commentCollection = database.GetCollection<Comment>(databaseSettings.CommentCollectionName);
             _tourCollection = database.GetCollection<Tour>(databaseSettings.TourCollectionName);
             _destinationCollection = database.GetCollection<Destination>(databaseSettings.DestinationCollectionName);
             _mapper = mapper;
@@ -47,6 +49,9 @@ namespace Travel.Web.Services.FavoriteServices
                     dto.Price = tour.Price;
                     dto.Duration = tour.Duration;
                     dto.Country = destination.Country;
+
+                    var comments = await _commentCollection.Find(c => c.TourId == dto.TourId).ToListAsync();
+                    dto.AverageRating = comments.Count > 0 ? Math.Round(comments.Average(c => c.Rating), 1) : 0;
                 }
             }
 

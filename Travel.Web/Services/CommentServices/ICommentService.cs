@@ -1,4 +1,5 @@
 ﻿using Travel.Web.DTOs.CommentDtos;
+using Travel.Web.DTOs.ReservationDtos;
 
 namespace Travel.Web.Services.CommentServices
 {
@@ -13,5 +14,6 @@ namespace Travel.Web.Services.CommentServices
         Task UpdateRatingAsync(string commentId, int rating);
         Task ApproveAsync(string commentId);
         Task MarkAsSpamAsync(string commentId);
+        Task<CommentKpiDto> GetCommentKpiAsync();
     }
 }

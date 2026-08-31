@@ -1,0 +1,22 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.TopbarTitle = "Kullanıcı Yönetimi";
+}
+
+@await Component.InvokeAsync("_AdminTourHead")
+
+
+<div class="crumb"><a href="/Admin/Dashboard/Index/">Dashboard</a> / <span class="cur">Kullanıcılar</span></div>
+<div class="page-intro">
+    <div>
+        <h1>Kullanıcı Yönetimi</h1>
+        <p>Travelio'daki tüm kullanıcıları görüntüleyebilir, filtreleyebilir ve yönetebilirsiniz.</p>
+    </div>
+</div>
+
+
+@await Component.InvokeAsync("_AdminTourKpi")
+@await Component.InvokeAsync("_AdminTourBulkBar")
+@await Component.InvokeAsync("_AdminUserTable")
+@await Component.InvokeAsync("_AdminTourDeleteModal")
+@await Component.InvokeAsync("_AdminTourScript")

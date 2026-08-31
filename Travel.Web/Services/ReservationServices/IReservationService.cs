@@ -1,4 +1,5 @@
 ﻿using Travel.Web.DTOs.ReservationDtos;
+using Travel.Web.DTOs.TourDtos;
 using Travel.Web.Entities.Enums;
 
 namespace Travel.Web.Services.ReservationServices
@@ -11,5 +12,6 @@ namespace Travel.Web.Services.ReservationServices
         Task<List<ResultReservationDto>> GetByTourIdAsync(string tourId, string tourDateId = null, string status = null);
         Task<string> CreateAsync(CreateReservationDto createReservationDto);
         Task UpdateStatusAsync(string id, ReservationStatus status);
+        Task<ReservationKpiDto> GetReservationKpiAsync();
     }
 }

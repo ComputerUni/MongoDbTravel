@@ -1,4 +1,6 @@
-﻿<header class="topbar">
+﻿@using System.Security.Claims
+
+<header class="topbar">
     <button class="hamb" onclick="toggleSidebar(true)" aria-label="Menü">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="18" x2="21" y2="18" /></svg>
     </button>
@@ -13,8 +15,8 @@
             <span class="n-badge">3</span>
         </button>
         <div class="tb-user">
-            <div class="av">MY</div>
-            <div class="nm"><b>Murat Yücedağ</b><span>Yönetici</span></div>
+            <div class="av">@(User.FindFirstValue("FirstName")?[0])@(User.FindFirstValue("LastName")?[0])</div>
+            <div class="nm"><b>@User.FindFirstValue("FirstName") @User.FindFirstValue("LastName")</b><span>@(User.IsInRole("Admin") ? "Admin" : "Üye")</span></div>
         </div>
     </div>
 </header>

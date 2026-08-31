@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Travel.Web.DTOs.LookupDtos;
 using Travel.Web.Services.LookupServices;
@@ -6,6 +7,7 @@ using Travel.Web.Services.LookupServices;
 namespace Travel.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class LookupItemController(ILookupService _lookupService, IMapper _mapper) : Controller
     {
         public async Task<IActionResult> Index()

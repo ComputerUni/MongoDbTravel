@@ -12,5 +12,6 @@
         public decimal Price { get; set; }
         public int Duration { get; set; }
         public string Country { get; set; }
+        public double AverageRating { get; set; }
     }
 }

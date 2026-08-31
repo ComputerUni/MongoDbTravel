@@ -62,7 +62,7 @@
             <div class="col-md-6">
                 <h2>Fiyata Dahil Olanlar</h2>
                 <ul class="inc-list">
-                    @foreach(var include in Model.Tour.Included)
+                    @foreach (var include in Model.Tour.Included)
                     {
                         <li><span class="inc-yes"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg></span>@include</li>
                     }
@@ -71,7 +71,7 @@
             <div class="col-md-6">
                 <h2>Fiyata Dahil Olmayanlar</h2>
                 <ul class="inc-list">
-                    @foreach(var notinc in Model.Tour.NotIncluded)
+                    @foreach (var notinc in Model.Tour.NotIncluded)
                     {
                         <li><span class="inc-no"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg></span>@notinc</li>
                     }
@@ -98,32 +98,52 @@
         </div>
     </div>
 
+    @{
+        var avgRating = Model.Comments.Any()
+            ? Model.Comments.Average(c => c.Rating)
+            : 0;
+        var totalReviews = Model.Comments.Count;
+
+        var star5 = Model.Comments.Count(c => c.Rating == 5);
+        var star4 = Model.Comments.Count(c => c.Rating == 4);
+        var star3 = Model.Comments.Count(c => c.Rating == 3);
+        var star2 = Model.Comments.Count(c => c.Rating == 2);
+        var star1 = Model.Comments.Count(c => c.Rating == 1);
+
+        int pct(int count) => totalReviews > 0 ? (int)Math.Round((double)count / totalReviews * 100) : 0;
+    }
+
     <!-- REVIEWS -->
     <div class="content-block">
         <h2>Misafir Yorumları</h2>
         <div class="rev-summary mb-3">
             <div class="rev-score">
-                <div class="num">4.8</div>
-                <div class="stars">★★★★★</div>
-                <div class="cnt">1.687 değerlendirme</div>
+                <div class="num">@avgRating.ToString("0.0")</div>
+                <div class="stars">
+                    @for (int i = 1; i <= 5; i++)
+                    {
+                        @Html.Raw(i <= (int)Math.Round(avgRating) ? "★" : "<span class='off'>★</span>")
+                    }
+                </div>
+                <div class="cnt">@totalReviews değerlendirme</div>
             </div>
             <div class="rev-bars">
-                <div class="bar-row"><span class="lab">5 yıldız</span><div class="bar-track"><div class="bar-fill" style="width:82%"></div></div><span class="pct">%82</span></div>
-                <div class="bar-row"><span class="lab">4 yıldız</span><div class="bar-track"><div class="bar-fill" style="width:13%"></div></div><span class="pct">%13</span></div>
-                <div class="bar-row"><span class="lab">3 yıldız</span><div class="bar-track"><div class="bar-fill" style="width:4%"></div></div><span class="pct">%4</span></div>
-                <div class="bar-row"><span class="lab">2 yıldız</span><div class="bar-track"><div class="bar-fill" style="width:1%"></div></div><span class="pct">%1</span></div>
-                <div class="bar-row"><span class="lab">1 yıldız</span><div class="bar-track"><div class="bar-fill" style="width:0%"></div></div><span class="pct">%0</span></div>
+                <div class="bar-row"><span class="lab">5 yıldız</span><div class="bar-track"><div class="bar-fill" style="width:@pct(star5)%"></div></div><span class="pct">%@pct(star5)</span></div>
+                <div class="bar-row"><span class="lab">4 yıldız</span><div class="bar-track"><div class="bar-fill" style="width:@pct(star4)%"></div></div><span class="pct">%@pct(star4)</span></div>
+                <div class="bar-row"><span class="lab">3 yıldız</span><div class="bar-track"><div class="bar-fill" style="width:@pct(star3)%"></div></div><span class="pct">%@pct(star3)</span></div>
+                <div class="bar-row"><span class="lab">2 yıldız</span><div class="bar-track"><div class="bar-fill" style="width:@pct(star2)%"></div></div><span class="pct">%@pct(star2)</span></div>
+                <div class="bar-row"><span class="lab">1 yıldız</span><div class="bar-track"><div class="bar-fill" style="width:@pct(star1)%"></div></div><span class="pct">%@pct(star1)</span></div>
             </div>
         </div>
 
-        @foreach(var comment in Model.Comments)
+        @foreach (var comment in Model.Comments)
         {
             <div class="review-card">
                 <div class="rev-user">
                     <div class="qa-avatar">@comment.UserInitials</div>
                     <div><b>@comment.UserFullName</b><span class="sub">@comment.TourName · @comment.CreatedAt.ToString("dd MMM yyyy", new System.Globalization.CultureInfo("tr-TR"))</span></div>
                     <span class="rev-stars">
-                        @for(int i = 0; i <= 5; i++)
+                        @for (int i = 0; i <= 5; i++)
                         {
                             @Html.Raw(i <= comment.Rating ? "★" : "<span class='off'>★</span>")
                         }
@@ -132,8 +152,8 @@
                 <p>@comment.Content</p>
             </div>
         }
-     
 
+     
 
         <div class="write-box">
             <div>
@@ -147,18 +167,21 @@
     <!-- Q&A -->
     <div class="content-block">
         <h2>Tur Hakkında Sorular</h2>
-        @foreach(var question in Model.Questions)
+        @foreach (var question in Model.Questions)
         {
-        <div class="qa-item">
-            <div class="qa-q">
-                <span class="qa-avatar">@question.UserInitials</span>
-                <div><div class="who">@question.UserFullName</div><div class="txt">@question.Content</div></div>
+            <div class="qa-item">
+                <div class="qa-q">
+                    <span class="qa-avatar">@question.UserInitials</span>
+                    <div><div class="who">@question.UserFullName</div><div class="txt">@question.Content</div></div>
+                </div>
+                @if (question.IsAnswered)
+                {
+                    <div class="qa-a"><span class="brand-mini">Travelio</span><span class="txt">@question.Answer</span></div>
+                }
             </div>
-            <div class="qa-a"><span class="brand-mini">Travelio</span><span class="txt">@question.Answer</span></div>
-        </div>      
         }
+
       
-     
         <div class="ask-box">
             <div class="book-label" style="margin-top:0">Bu tur hakkında merak ettiğin bir şey mi var?</div>
             <textarea id="askInput" placeholder="Sorunu yaz..."></textarea>

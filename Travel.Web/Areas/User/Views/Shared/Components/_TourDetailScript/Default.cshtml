@@ -86,7 +86,14 @@
         });
     });
 
-    function reserve() {
+    const isAuthenticated = @User.Identity.IsAuthenticated.ToString().ToLower();
+
+    function reserve() {        
+        if (!isAuthenticated) {
+            var loginModal = new bootstrap.Modal(document.getElementById('loginRequiredModal'));
+            loginModal.show();
+            return;
+        }
         const tourDateId = document.querySelector('input[name="tourDate"]:checked')?.value;
 
         if (!tourDateId) { alert("Lütfen bir tur tarihi seçin."); return; }

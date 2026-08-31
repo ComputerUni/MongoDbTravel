@@ -17,6 +17,7 @@ namespace Travel.Web.Services.TourServices
     {
         private readonly IMongoCollection<Tour> _tourCollection;
         private readonly IMongoCollection<Reservation> _reservationCollection;
+        private readonly IMongoCollection<Comment> _commentCollection;
         private readonly IMapper _mapper;
         private readonly ICategoryService _categoryService;
         private readonly IDestinationService _destinationService;
@@ -28,6 +29,7 @@ namespace Travel.Web.Services.TourServices
             var database = client.GetDatabase(databaseSettings.DatabaseName);
             _tourCollection = database.GetCollection<Tour>(databaseSettings.TourCollectionName);
             _reservationCollection = database.GetCollection<Reservation>(databaseSettings.ReservationCollectionName);
+            _commentCollection = database.GetCollection<Comment>(databaseSettings.CommentCollectionName);
             _categoryService = categoryService;
             _destinationService = destinationService;
             _lookupService = lookupService;
@@ -37,15 +39,15 @@ namespace Travel.Web.Services.TourServices
         public async Task CreateAsync(CreateTourDto createTourDto)
         {
             var tour = _mapper.Map<Tour>(createTourDto);
-            if(createTourDto.CoverImage != null)
+            if (createTourDto.CoverImage != null)
             {
                 tour.CoverImage = await SaveFileAsync(createTourDto.CoverImage);
             }
 
-            if(createTourDto.Gallery != null && createTourDto.Gallery.Any())
+            if (createTourDto.Gallery != null && createTourDto.Gallery.Any())
             {
                 tour.Gallery = new List<string>();
-                foreach(var file in createTourDto.Gallery)
+                foreach (var file in createTourDto.Gallery)
                 {
                     tour.Gallery.Add(await SaveFileAsync(file));
                 }
@@ -67,13 +69,22 @@ namespace Travel.Web.Services.TourServices
 
             var dtos = _mapper.Map<List<ResultTourDto>>(tours);
 
-            foreach(var dto in dtos)
+
+
+            foreach (var dto in dtos)
             {
                 dto.CategoryName = categories.FirstOrDefault(c => c.Id == dto.CategoryId)?.CategoryName ?? "-";
                 dto.DestinationName = destinations.FirstOrDefault(d => d.Id == dto.DestinationId)?.Name ?? "-";
 
+                var destination = destinations.FirstOrDefault(d => d.Id == dto.DestinationId);
+                dto.Country = destination?.Country ?? "-";
+
                 var reservationCount = await _reservationCollection.CountDocumentsAsync(r => r.TourId == dto.Id && r.Status != ReservationStatus.İptal);
                 dto.ReservationCount = (int)reservationCount;
+
+                var comments = await _commentCollection.Find(c => c.TourId == dto.Id).ToListAsync();
+                dto.ReviewCount = comments.Count;
+                dto.AverageRating = comments.Count > 0 ? Math.Round(comments.Average(c => c.Rating), 1) : 0;
             }
 
             return dtos;
@@ -89,8 +100,9 @@ namespace Travel.Web.Services.TourServices
 
             var destination = await _destinationService.GetByIdAsync(dto.DestinationId);
             dto.DestinationName = destination?.Name ?? "-";
+            dto.Country = destination?.Country ?? "-";
 
-            if(resolveName)
+            if (resolveName)
             {
                 async Task<string> Resolve(string value)
                 {
@@ -121,6 +133,11 @@ namespace Travel.Web.Services.TourServices
 
             var destination = await _destinationService.GetByIdAsync(dto.DestinationId);
             dto.DestinationName = destination?.Name ?? "-";
+            dto.Country = destination?.Country ?? "-";
+
+            var comments = await _commentCollection.Find(c => c.TourId == dto.Id).ToListAsync();
+            dto.ReviewCount = comments.Count;
+            dto.AverageRating = comments.Count > 0 ? Math.Round(comments.Average(c => c.Rating), 1) : 0;
 
             if (resolveName)
             {
@@ -147,10 +164,10 @@ namespace Travel.Web.Services.TourServices
 
             tour.CoverImage = updateTourDto.CoverImage != null ? await SaveFileAsync(updateTourDto.CoverImage) : updateTourDto.ExistingCoverImage;
 
-            if(updateTourDto.Gallery != null && updateTourDto.Gallery.Any())
+            if (updateTourDto.Gallery != null && updateTourDto.Gallery.Any())
             {
                 tour.Gallery = new List<string>();
-                foreach(var file in updateTourDto.Gallery)
+                foreach (var file in updateTourDto.Gallery)
                 {
                     tour.Gallery.Add(await SaveFileAsync(file));
                 }
@@ -186,10 +203,16 @@ namespace Travel.Web.Services.TourServices
 
             var dtos = _mapper.Map<List<ResultTourDto>>(tours);
 
-            foreach(var dto in dtos)
+            foreach (var dto in dtos)
             {
                 dto.CategoryName = categories.FirstOrDefault(c => c.Id == dto.CategoryId)?.CategoryName ?? "-";
-                dto.DestinationName = destinations.FirstOrDefault(c => c.Id == dto.DestinationId)?.Name ?? "-";
+                var destination = destinations.FirstOrDefault(d => d.Id == dto.DestinationId);
+                dto.DestinationName = destination?.Name ?? "-";
+                dto.Country = destination?.Country ?? "-";
+
+                var comments = await _commentCollection.Find(c => c.TourId == dto.Id).ToListAsync();
+                dto.ReviewCount = comments.Count;
+                dto.AverageRating = comments.Count > 0 ? Math.Round(comments.Average(c => c.Rating), 1) : 0;
             }
 
             return dtos;

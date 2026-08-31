@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Identity;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using Travel.Web.DTOs.CommentDtos;
@@ -141,6 +142,86 @@ namespace Travel.Web.Services.CommentServices
         {
             var spam = Builders<Comment>.Update.Set(x => x.Status, CommentStatus.Spam);
             await _commentCollection.UpdateOneAsync(x => x.Id == commentId, spam);
+        }
+
+        public async Task<CommentKpiDto> GetCommentKpiAsync()
+        {
+            var pipeline = new[]
+            {
+                new BsonDocument("$facet", new BsonDocument
+                {
+                    {
+                        "totalComment", new BsonArray
+                        {
+                            new BsonDocument("$count", "count")
+                        }
+                    },
+
+                    {
+                        "statusCounts", new BsonArray
+                        {
+                            new BsonDocument("$group", new BsonDocument
+                            {
+                                { "_id", "$Status" },
+                                {"count", new BsonDocument("$sum", 1) }
+                            })
+                        }
+                    },
+                    {
+                        "averageRating", new BsonArray
+                        {
+                            new BsonDocument("$group", new BsonDocument
+                            {
+                                {"_id", BsonNull.Value },
+                              { "avg", new BsonDocument("$avg", "$Rating") }
+                            })
+                        }
+                    }
+                })
+            };
+
+            var results = await _commentCollection.Aggregate<BsonDocument>(pipeline).FirstOrDefaultAsync();
+            var kpiDto = new CommentKpiDto();
+
+            if(results != null)
+            {
+                var totalArr = results["totalComment"].AsBsonArray;
+                if(totalArr.Count > 0)
+                {
+                    kpiDto.TotalCommentCount = totalArr[0]["count"].AsInt32;
+                }
+
+                var statusArr = results["statusCounts"].AsBsonArray;
+                foreach(var doc in statusArr)
+                {
+                    var statusId = doc["_id"];
+                    int statusCode = -1;
+
+                    if(statusId != null && !statusId.IsBsonNull)
+                    {
+                        statusCode = statusId.ToInt32();
+                    }
+
+                    var count = doc["count"].AsInt32;
+
+                    if(statusCode == 1)
+                    {
+                        kpiDto.PublishedCommentCount = count;
+                    }
+                    else if(statusCode == 0)
+                    {
+                        kpiDto.PendingCommentCount = count;
+                    }
+                }
+
+                var ratingArr = results["averageRating"].AsBsonArray;
+                if (ratingArr.Count > 0 && !ratingArr[0]["avg"].IsBsonNull)
+                {
+                    kpiDto.AverageRating = Math.Round(ratingArr[0]["avg"].ToDouble(), 1);
+                }
+            }
+
+            return kpiDto;
         }
 
 

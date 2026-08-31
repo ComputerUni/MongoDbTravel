@@ -8,6 +8,7 @@
                     <th style="width:36px"><input type="checkbox" class="chk" id="checkAll" onchange="toggleAll(this)"></th>
                     <th class="sortable" onclick="sortBy('title')">Tur <span class="sar">↕</span></th>
                     <th>Kategori</th>
+                    <th>Destinasyon</th>
                     <th>Süre</th>
                     <th class="sortable" onclick="sortBy('price')">Fiyat <span class="sar">↕</span></th>
                     <th class="sortable" onclick="sortBy('date')">Yaklaşan Tarih <span class="sar">↕</span></th>
@@ -20,7 +21,10 @@
             <tbody id="tourRows">
                 @foreach (var tour in Model)
                 {
-                    <tr>
+                    <tr data-title="@tour.Name"
+                        data-destination="@tour.Country"
+                        data-category="@tour.CategoryName"
+                        data-status="@tour.IsActive">
                         <td><input type="checkbox" class="chk row-chk" value="@tour.Id" /></td>
                         <td>
                             <div style="display:flex; align-items:center; gap:10px;">
@@ -35,6 +39,7 @@
                             </div>
                         </td>
                         <td>@tour.CategoryName</td>
+                        <td>@tour.Country</td>
                         <td>@tour.Duration gün / @tour.Night gece</td>
                         <td><span style="font-weight:600; color:var(--navy);">@tour.Price.ToString("N0") TL</span></td>
                        <td>

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Travel.Web.Areas.Admin.Models;
 using Travel.Web.DTOs.TourDtos;
@@ -12,12 +13,23 @@ using Travel.Web.Services.TourServices;
 namespace Travel.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class TourController(ITourService _tourService, ILookupService _lookupService, ICategoryService _categoryService, IDestinationService _destinationService, IReportService _reportService, IMapper _mapper) : Controller
     {
         public async Task<IActionResult> Index()
         {
             var tours = await _tourService.GetAllAsync();
-            return View(tours);
+            var destinations = await _destinationService.GetAllAsync();
+            var categories = await _categoryService.GetAllAsync();
+
+            var viewModel = new TourListViewModel
+            {
+                Tours = tours,
+                Destinations = destinations,
+                Categories = categories
+            };
+
+            return View(viewModel);
         }
 
         [HttpGet]

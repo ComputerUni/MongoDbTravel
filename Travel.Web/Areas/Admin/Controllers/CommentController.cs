@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Travel.Web.Services.CommentServices;
 
 namespace Travel.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class CommentController(ICommentService _commentService) : Controller
     {
         public async Task<IActionResult> Index()

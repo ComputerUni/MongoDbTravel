@@ -28,7 +28,7 @@
             <label class="form-label fw-semibold">Tur Seç</label>
             <select class="ctrl" id="reportTourId" onchange="loadReportDates()">
                 <option value="">Tur seçiniz...</option>
-                @foreach (var tour in Model)
+                @foreach (var tour in Model.Tours)
                 {
                     <option value="@tour.Id">@tour.Name</option>
                 }

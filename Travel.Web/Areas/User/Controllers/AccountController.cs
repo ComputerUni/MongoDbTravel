@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using Travel.Web.DTOs.AccountDtos;
 using Travel.Web.Entities;
 
@@ -76,14 +78,27 @@ namespace Travel.Web.Areas.User.Controllers
                 ModelState.AddModelError(string.Empty, "Bu mail sistemde kayıtlı değil");
                 return View(loginDto);
             }
+            if(await _userManager.IsLockedOutAsync(user))
+            {
+                return RedirectToAction("AccountSuspended", "Account", new { area = "User" });
+            }
 
-            var result = await _signManager.PasswordSignInAsync(user, loginDto.Password, false, false);
 
-            if (!result.Succeeded)
+            //var result = await _signManager.PasswordSignInAsync(user, loginDto.Password, false, false);
+            var passwordValid = await _userManager.CheckPasswordAsync(user, loginDto.Password);
+
+            if (!passwordValid)
             {
                 ModelState.AddModelError(string.Empty, "Email veya şifre hatalı");
                 return View(loginDto);
             }
+
+            await _signManager.SignInWithClaimsAsync(user, false, new[]
+            {
+                new Claim("FirstName", user.FirstName ?? ""),
+                new Claim("LastName", user.LastName ?? ""),
+            });
+
 
             if (await _userManager.IsInRoleAsync(user, "Admin"))
                 return RedirectToAction("Index", "Tour", new { area = "Admin" });
@@ -91,11 +106,17 @@ namespace Travel.Web.Areas.User.Controllers
                 return RedirectToAction("Index", "Home", new { area = "User" });
         }
 
-        [Authorize]
+        [AllowAnonymous]
         public async Task<IActionResult> Logout()
         {
             await _signManager.SignOutAsync();
             return RedirectToAction("Login");
+        }
+
+        [AllowAnonymous]
+        public IActionResult AccountSuspended()
+        {
+            return View();
         }
 
 

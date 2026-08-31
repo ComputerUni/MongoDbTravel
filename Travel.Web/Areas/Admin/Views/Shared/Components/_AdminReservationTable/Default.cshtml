@@ -21,7 +21,12 @@
             <tbody id="tourRows">
                 @foreach (var reservation in Model)
                 {
-                    <tr>
+                    <tr data-tour="@reservation.TourName"
+                        data-user="@reservation.UserFullName"
+                        data-date="@reservation.TourDate.ToLocalTime().ToString("yyyy-MM-dd")"
+                        data-status="@reservation.Status.ToString()">
+
+
                         <td><input type="checkbox" class="chk row-chk" value="@reservation.Id" /></td>
                         <td><span class="text-primary fw-bold">TRV-@reservation.Id.Substring(0, 8).ToUpper()</span></td>
 

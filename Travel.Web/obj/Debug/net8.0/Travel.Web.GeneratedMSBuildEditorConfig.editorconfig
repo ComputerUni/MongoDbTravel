@@ -79,6 +79,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUmVzZXJ2YXRpb25cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/BURHAN/Desktop/MongoDbProject/Travel.Web/Areas/Admin/Views/Shared/Components/_AdminCommentKpi/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXENvbXBvbmVudHNcX0FkbWluQ29tbWVudEtwaVxEZWZhdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/BURHAN/Desktop/MongoDbProject/Travel.Web/Areas/Admin/Views/Shared/Components/_AdminCommentTable/Default.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXENvbXBvbmVudHNcX0FkbWluQ29tbWVudFRhYmxlXERlZmF1bHQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -113,6 +117,18 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/BURHAN/Desktop/MongoDbProject/Travel.Web/Areas/Admin/Views/Shared/Components/_AdminQuestionTable/Default.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXENvbXBvbmVudHNcX0FkbWluUXVlc3Rpb25UYWJsZVxEZWZhdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/BURHAN/Desktop/MongoDbProject/Travel.Web/Areas/Admin/Views/Shared/Components/_AdminReservationFilter/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXENvbXBvbmVudHNcX0FkbWluUmVzZXJ2YXRpb25GaWx0ZXJcRGVmYXVsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/BURHAN/Desktop/MongoDbProject/Travel.Web/Areas/Admin/Views/Shared/Components/_AdminReservationKpi/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXENvbXBvbmVudHNcX0FkbWluUmVzZXJ2YXRpb25LcGlcRGVmYXVsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/BURHAN/Desktop/MongoDbProject/Travel.Web/Areas/Admin/Views/Shared/Components/_AdminReservationScript/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXENvbXBvbmVudHNcX0FkbWluUmVzZXJ2YXRpb25TY3JpcHRcRGVmYXVsdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/BURHAN/Desktop/MongoDbProject/Travel.Web/Areas/Admin/Views/Shared/Components/_AdminReservationTable/Default.cshtml]
@@ -151,6 +167,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXENvbXBvbmVudHNcX0FkbWluVG91clVwZGF0ZVNjcmlwdFxEZWZhdWx0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/BURHAN/Desktop/MongoDbProject/Travel.Web/Areas/Admin/Views/Shared/Components/_AdminUserTable/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXENvbXBvbmVudHNcX0FkbWluVXNlclRhYmxlXERlZmF1bHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/BURHAN/Desktop/MongoDbProject/Travel.Web/Areas/Admin/Views/Shared/Components/_Footer/Default.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXENvbXBvbmVudHNcX0Zvb3RlclxEZWZhdWx0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -187,12 +207,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVG91clxVcGRhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/BURHAN/Desktop/MongoDbProject/Travel.Web/Areas/Admin/Views/User/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlclxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/BURHAN/Desktop/MongoDbProject/Travel.Web/Areas/Admin/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/BURHAN/Desktop/MongoDbProject/Travel.Web/Areas/Admin/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/BURHAN/Desktop/MongoDbProject/Travel.Web/Areas/User/Views/Account/AccountSuspended.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlclxWaWV3c1xBY2NvdW50XEFjY291bnRTdXNwZW5kZWQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/BURHAN/Desktop/MongoDbProject/Travel.Web/Areas/User/Views/Account/Login.cshtml]

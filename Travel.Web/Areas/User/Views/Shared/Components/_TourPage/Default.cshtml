@@ -23,7 +23,7 @@
                                 <div class="tour-badges-wrapper" style="position: absolute; top: 12px; left: 12px; display: flex; gap: 6px; z-index: 2;">
                                     @if (item.IsFeatured)
                                     {
-                                        <span style="background: var(--teal, #0d9488); color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">Öne Çıkan</span>
+                                        <span style="background: var(--teal, #0d9488); color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">Popüler</span>
                                     }
                                     @if (item.IsBest)
                                     {
@@ -39,10 +39,15 @@
                                 </button>
                             </div>
                             <div class="tour-body">
-                                <div class="tour-country">@item.DestinationName</div>
+                                <div class="tour-country">@item.Country</div>
                                 <h3 class="tour-title">@item.Name</h3>
                                 <div class="tour-meta">
                                     <span>🗓️ @item.Duration gün</span>
+                                    <span class="rating" style="margin-left: 10px;">
+                                        <span class="star" style="color: #fbbf24;">★</span>
+                                        <strong style="color: #111827;">@item.AverageRating.ToString("0.0")</strong>
+                                        <span style="color: var(--muted, #6b7280); font-weight: 400;">(@item.ReviewCount)</span>
+                                    </span>
                                 </div>
                                 <div class="tour-foot">
                                     <div class="price">

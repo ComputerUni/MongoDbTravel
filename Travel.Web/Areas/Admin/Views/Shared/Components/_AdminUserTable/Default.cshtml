@@ -1,0 +1,82 @@
+﻿@model List<AppUser>
+
+<div class="card-x mb-3">
+    <div class="tbl-wrap">
+        <table class="tx">
+            <thead>
+                <tr>
+                    <th style="width:36px"><input type="checkbox" class="chk" id="checkAll" onchange="toggleAll(this)"></th>
+                    <th>Ad Soyad</th>
+                    <th>E-posta</th>
+                    <th>Telefon</th>
+                    <th>Şehir</th>
+                    <th class="sortable">Kayıt Tarihi</th>
+                    <th>Durum</th>
+                    <th style="width:56px">İşlemler</th>
+                </tr>
+            </thead>
+            <tbody id="tourRows">
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <td><input type="checkbox" class="chk row-chk" value="@user.Id" /></td>
+                        <td>@user.FirstName @user.LastName</td>
+                        <td>@user.Email</td>
+                        <td>@user.PhoneNumber</td>
+                        <td>@user.City</td>
+                        <td>@user.CreatedAt.ToLocalTime().ToString("dd MMM yyyy", new System.Globalization.CultureInfo("tr-TR"))</td>
+
+                        <td>
+                            @if (user.LockoutEnd == null || user.LockoutEnd.Value.UtcDateTime < DateTime.UtcNow)
+                            {
+                                <span class="badge bg-success">Aktif</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger">Pasif</span>
+                            }
+                        </td>
+                        <td>
+                            <div style="display:flex; gap:6px;">
+                                @if (user.LockoutEnd == null || user.LockoutEnd < DateTimeOffset.UtcNow)
+                                {
+                                    <a href="@Url.Action("SetPassive", "User", new { id = user.Id, area = "Admin" })"
+                                       class="btn-mini text-danger" title="Pasife Al"
+                                       onclick="return confirm('Kullanıcıyı pasife almak istediğinize emin misiniz?')">🔒</a>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("SetActive", "User", new { id = user.Id, area = "Admin" })"
+                                       class="btn-mini text-success" title="Aktife Al"
+                                       onclick="return confirm('Kullanıcıyı aktife almak istediğinize emin misiniz?')">🔓</a>
+                                }
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div id="emptyState" style="display:none">
+        <div class="empty">
+            <div class="eic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg></div>
+            <h3>Tur bulunamadı</h3>
+            <p>Arama veya filtre kriterlerinizi değiştirerek tekrar deneyebilirsiniz.</p>
+            <button class="btn-teal" style="margin:0 auto" onclick="clearFilters()">Filtreleri Temizle</button>
+        </div>
+    </div>
+    <div class="pager-row" id="pagerRow">
+        <div class="per-page">
+            Sayfa başına
+            <select id="perPage"><option>10</option><option>25</option><option>50</option></select>
+        </div>
+        <div class="pager">
+            <a href="#" class="disabled">Önceki</a>
+            <a href="#" class="active">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">Sonraki</a>
+        </div>
+    </div>
+</div>

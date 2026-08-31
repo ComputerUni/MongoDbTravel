@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Travel.Web.DTOs.CategoryDtos;
 using Travel.Web.Services.CategoryServices;
@@ -6,6 +7,7 @@ using Travel.Web.Services.CategoryServices;
 namespace Travel.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class CategoryController(ICategoryService _categoryService, IMapper _mapper) : Controller
     {
         public async Task<IActionResult> Index()

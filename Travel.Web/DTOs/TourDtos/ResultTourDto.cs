@@ -39,5 +39,8 @@ namespace Travel.Web.DTOs.TourDtos
         public List<TourDateDto> Dates { get; set; } = new();
         public List<DayProgramDto> DayPrograms { get; set; } = new();
         public int ReservationCount { get; set; }
+        public string Country { get; set; }
+        public double AverageRating { get; set; }
+        public int ReviewCount { get; set; }
     }
 }

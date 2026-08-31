@@ -5,33 +5,27 @@
         <div class="kpi">
             <div class="top">
                 <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18v12H3z" /><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" /></svg></div>
-                <span class="trend">+3</span>
             </div>
             <div class="num">@Model.TotalTours</div>
             <div class="lab">Toplam Tur</div>
-            <div class="sub"><span class="up">@Model.ActiveTours Aktif Tur</span></div>
         </div>
     </div>
     <div class="col-6 col-xl-3">
         <div class="kpi">
             <div class="top">
                 <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4" /><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" /></svg></div>
-                <span class="trend">+12%</span>
             </div>
             <div class="num">@Model.TotalReservations</div>
             <div class="lab">Toplam Rezervasyon</div>
-            <div class="sub"><span class="up">Bu ay @Model.ThisMonthReservations</span> · geçen aya göre %12 artış</div>
         </div>
     </div>
     <div class="col-6 col-xl-3">
         <div class="kpi">
             <div class="top">
                 <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /></svg></div>
-                <span class="trend">+318</span>
             </div>
             <div class="num">@Model.TotalUsers</div>
             <div class="lab">Toplam Kullanıcı</div>
-            <div class="sub"><span class="up">Bu ay +318</span></div>
         </div>
     </div>
     <div class="col-6 col-xl-3">
@@ -41,7 +35,6 @@
             </div>
             <div class="num">@Model.PendingQuestions</div>
             <div class="lab">Bekleyen Sorular</div>
-            <div class="sub warn">Yanıt bekliyor</div>
         </div>
     </div>
 </div>

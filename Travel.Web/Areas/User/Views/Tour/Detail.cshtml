@@ -13,11 +13,11 @@
     <div class="container">
         <!-- BREADCRUMB -->
         <div class="crumb">
-            <a href="/User/Home/Index">Ana Sayfa</a> / <a href="/User/Tour/Index">Turlar</a> / <span class="cur">Roma & Toskana Keşfi</span>
+            <a href="/User/Home/Index">Ana Sayfa</a> / <a href="/User/Tour/Index">Turlar</a> / <span class="cur">@Model.Tour.Name</span>
         </div>
 
         <!-- DETAIL HEADER -->
-        @await Component.InvokeAsync("_TourDetailHeader", new { tour = Model.Tour })
+        @await Component.InvokeAsync("_TourDetailHeader", new { model = Model })
         <!-- GALLERY -->
         @await Component.InvokeAsync("_TourDetailGallery", new { tour = Model.Tour })
 

@@ -3,108 +3,108 @@
   "WorkspaceRootPath": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\areas\\user\\views\\shared\\components\\_profilescript\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:areas\\user\\views\\shared\\components\\_profilescript\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\areas\\user\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:areas\\user\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\dtos\\reservationdtos\\resultreservationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:dtos\\reservationdtos\\resultreservationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\areas\\admin\\views\\question\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:areas\\admin\\views\\question\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\areas\\user\\models\\profileviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:areas\\user\\models\\profileviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\areas\\admin\\views\\comment\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:areas\\admin\\views\\comment\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\areas\\user\\views\\shared\\components\\_profilemodal\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:areas\\user\\views\\shared\\components\\_profilemodal\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\areas\\admin\\views\\reservation\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:areas\\admin\\views\\reservation\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\areas\\user\\views\\profile\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:areas\\user\\views\\profile\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\areas\\admin\\views\\user\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:areas\\admin\\views\\user\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\areas\\user\\views\\shared\\components\\_tourpage\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:areas\\user\\views\\shared\\components\\_tourpage\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\areas\\admin\\viewcomponents\\_admincommentviewcomponents\\_admincommentkpiviewcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:areas\\admin\\viewcomponents\\_admincommentviewcomponents\\_admincommentkpiviewcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\areas\\user\\views\\shared\\components\\_headpage\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:areas\\user\\views\\shared\\components\\_headpage\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\areas\\admin\\views\\shared\\components\\_admincommentkpi\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:areas\\admin\\views\\shared\\components\\_admincommentkpi\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\areas\\user\\views\\shared\\components\\_tourlistnavbar\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:areas\\user\\views\\shared\\components\\_tourlistnavbar\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\areas\\admin\\viewcomponents\\adminreservationviewcomponents\\_adminreservationkpiviewcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:areas\\admin\\viewcomponents\\adminreservationviewcomponents\\_adminreservationkpiviewcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\areas\\user\\views\\shared\\components\\_tourlisthead\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:areas\\user\\views\\shared\\components\\_tourlisthead\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\services\\commentservices\\commentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:services\\commentservices\\commentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\areas\\user\\views\\shared\\components\\_tourlistscript\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:areas\\user\\views\\shared\\components\\_tourlistscript\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\dtos\\commentdtos\\commentkpidto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:dtos\\commentdtos\\commentkpidto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\areas\\user\\views\\tour\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:areas\\user\\views\\tour\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\areas\\user\\views\\shared\\components\\_heropage\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:areas\\user\\views\\shared\\components\\_heropage\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\services\\tourservices\\tourservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:services\\tourservices\\tourservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\areas\\user\\controllers\\reservationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:areas\\user\\controllers\\reservationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\areas\\user\\controllers\\profilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:areas\\user\\controllers\\profilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\dtos\\reservationdtos\\cancelreservationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:dtos\\reservationdtos\\cancelreservationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\entities\\enums\\commentstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:entities\\enums\\commentstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\services\\reservationservices\\reservationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:services\\reservationservices\\reservationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\areas\\admin\\views\\tour\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:areas\\admin\\views\\tour\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\entities\\enums\\reservationstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:entities\\enums\\reservationstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\areas\\admin\\views\\shared\\components\\_admintourkpi\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:areas\\admin\\views\\shared\\components\\_admintourkpi\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\dtos\\reservationdtos\\reservationkpidto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:dtos\\reservationdtos\\reservationkpidto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\areas\\admin\\viewcomponents\\admintourviewcomponent\\_admintourkpiviewcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:areas\\admin\\viewcomponents\\admintourviewcomponent\\_admintourkpiviewcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\services\\commentservices\\icommentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:services\\commentservices\\icommentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\services\\reservationservices\\ireservationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:services\\reservationservices\\ireservationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\areas\\admin\\views\\shared\\components\\_adminreservationkpi\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:areas\\admin\\views\\shared\\components\\_adminreservationkpi\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\areas\\admin\\views\\shared\\components\\_adminreservationscript\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:areas\\admin\\views\\shared\\components\\_adminreservationscript\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\areas\\admin\\views\\shared\\components\\_sidebar\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:areas\\admin\\views\\shared\\components\\_sidebar\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\services\\tourservices\\tourservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:services\\tourservices\\tourservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\services\\tourservices\\itourservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:services\\tourservices\\itourservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\areas\\admin\\views\\shared\\components\\_admindashboardchart\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:areas\\admin\\views\\shared\\components\\_admindashboardchart\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\areas\\admin\\viewcomponents\\_sidebarviewcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:areas\\admin\\viewcomponents\\_sidebarviewcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\areas\\admin\\views\\shared\\components\\_admindashboardpendingquestions\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:areas\\admin\\views\\shared\\components\\_admindashboardpendingquestions\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\areas\\admin\\views\\shared\\components\\_admintourscript\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:areas\\admin\\views\\shared\\components\\_admintourscript\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\areas\\admin\\views\\dashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:areas\\admin\\views\\dashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\areas\\admin\\views\\shared\\components\\_admintourtable\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:areas\\admin\\views\\shared\\components\\_admintourtable\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\services\\dashboardservices\\dashboardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:services\\dashboardservices\\dashboardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\areas\\admin\\views\\shared\\components\\_adminreservationfilter\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:areas\\admin\\views\\shared\\components\\_adminreservationfilter\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|c:\\users\\burhan\\desktop\\mongodbproject\\travel.web\\areas\\admin\\views\\shared\\components\\_adminreservationtable\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9826FFAB-14DC-0C20-847C-325B671D1752}|Travel.Web.csproj|solutionrelative:areas\\admin\\views\\shared\\components\\_adminreservationtable\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -114,7 +114,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 948,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -131,336 +131,239 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{a80febb4-e7e0-4147-b476-21aaf2453969}"
-            }
-          ]
-        },
-        {
-          "DockedWidth": 948,
-          "SelectedChildIndex": 2,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ResultReservationDto.cs",
-              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\DTOs\\ReservationDtos\\ResultReservationDto.cs",
-              "RelativeDocumentMoniker": "DTOs\\ReservationDtos\\ResultReservationDto.cs",
-              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\DTOs\\ReservationDtos\\ResultReservationDto.cs",
-              "RelativeToolTip": "DTOs\\ReservationDtos\\ResultReservationDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-30T17:05:50.434Z",
-              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ProfileViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\User\\Models\\ProfileViewModel.cs",
-              "RelativeDocumentMoniker": "Areas\\User\\Models\\ProfileViewModel.cs",
-              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\User\\Models\\ProfileViewModel.cs",
-              "RelativeToolTip": "Areas\\User\\Models\\ProfileViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "_AdminCommentKpiViewComponent.cs",
+              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\Admin\\ViewComponents\\_AdminCommentViewComponents\\_AdminCommentKpiViewComponent.cs",
+              "RelativeDocumentMoniker": "Areas\\Admin\\ViewComponents\\_AdminCommentViewComponents\\_AdminCommentKpiViewComponent.cs",
+              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\Admin\\ViewComponents\\_AdminCommentViewComponents\\_AdminCommentKpiViewComponent.cs",
+              "RelativeToolTip": "Areas\\Admin\\ViewComponents\\_AdminCommentViewComponents\\_AdminCommentKpiViewComponent.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-30T17:05:31.522Z",
+              "WhenOpened": "2026-08-31T15:51:30.478Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Default.cshtml",
-              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\User\\Views\\Shared\\Components\\_ProfileScript\\Default.cshtml",
-              "RelativeDocumentMoniker": "Areas\\User\\Views\\Shared\\Components\\_ProfileScript\\Default.cshtml",
-              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\User\\Views\\Shared\\Components\\_ProfileScript\\Default.cshtml",
-              "RelativeToolTip": "Areas\\User\\Views\\Shared\\Components\\_ProfileScript\\Default.cshtml",
-              "ViewState": "AgIAABcBAAAAAAAAAAAiwDQBAABkAAAAAAAAAA==",
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\User\\Views\\Account\\Login.cshtml",
+              "RelativeDocumentMoniker": "Areas\\User\\Views\\Account\\Login.cshtml",
+              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\User\\Views\\Account\\Login.cshtml",
+              "RelativeToolTip": "Areas\\User\\Views\\Account\\Login.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-08-30T16:02:57.071Z",
+              "WhenOpened": "2026-08-31T13:49:44.369Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\User\\Views\\Profile\\Index.cshtml",
-              "RelativeDocumentMoniker": "Areas\\User\\Views\\Profile\\Index.cshtml",
-              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\User\\Views\\Profile\\Index.cshtml",
-              "RelativeToolTip": "Areas\\User\\Views\\Profile\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAKAAAAAAAAAA==",
+              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\Admin\\Views\\User\\Index.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\User\\Index.cshtml",
+              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\Admin\\Views\\User\\Index.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\User\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-08-30T16:18:42.95Z",
+              "WhenOpened": "2026-08-31T14:33:28.504Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\Admin\\Views\\Question\\Index.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Question\\Index.cshtml",
+              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\Admin\\Views\\Question\\Index.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Question\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-31T14:34:53.769Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Default.cshtml",
-              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\User\\Views\\Shared\\Components\\_ProfileModal\\Default.cshtml",
-              "RelativeDocumentMoniker": "Areas\\User\\Views\\Shared\\Components\\_ProfileModal\\Default.cshtml",
-              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\User\\Views\\Shared\\Components\\_ProfileModal\\Default.cshtml",
-              "RelativeToolTip": "Areas\\User\\Views\\Shared\\Components\\_ProfileModal\\Default.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFMAAAA/AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-08-30T16:16:10.175Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Default.cshtml",
-              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\User\\Views\\Shared\\Components\\_TourListHead\\Default.cshtml",
-              "RelativeDocumentMoniker": "Areas\\User\\Views\\Shared\\Components\\_TourListHead\\Default.cshtml",
-              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\User\\Views\\Shared\\Components\\_TourListHead\\Default.cshtml",
-              "RelativeToolTip": "Areas\\User\\Views\\Shared\\Components\\_TourListHead\\Default.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-08-30T16:47:40.767Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Default.cshtml",
-              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\User\\Views\\Shared\\Components\\_TourListScript\\Default.cshtml",
-              "RelativeDocumentMoniker": "Areas\\User\\Views\\Shared\\Components\\_TourListScript\\Default.cshtml",
-              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\User\\Views\\Shared\\Components\\_TourListScript\\Default.cshtml",
-              "RelativeToolTip": "Areas\\User\\Views\\Shared\\Components\\_TourListScript\\Default.cshtml",
-              "ViewState": "AgIAAAgBAAAAAAAAAADwvyQBAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-08-30T16:48:17.544Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\User\\Views\\Tour\\Index.cshtml",
-              "RelativeDocumentMoniker": "Areas\\User\\Views\\Tour\\Index.cshtml",
-              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\User\\Views\\Tour\\Index.cshtml",
-              "RelativeToolTip": "Areas\\User\\Views\\Tour\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAiAAAAAAAAAA==",
+              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\Admin\\Views\\Reservation\\Index.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Reservation\\Index.cshtml",
+              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\Admin\\Views\\Reservation\\Index.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Reservation\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-08-30T16:47:48.268Z",
+              "WhenOpened": "2026-08-31T13:49:57.815Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Default.cshtml",
-              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\User\\Views\\Shared\\Components\\_TourListNavbar\\Default.cshtml",
-              "RelativeDocumentMoniker": "Areas\\User\\Views\\Shared\\Components\\_TourListNavbar\\Default.cshtml",
-              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\User\\Views\\Shared\\Components\\_TourListNavbar\\Default.cshtml",
-              "RelativeToolTip": "Areas\\User\\Views\\Shared\\Components\\_TourListNavbar\\Default.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\Admin\\Views\\Comment\\Index.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Comment\\Index.cshtml",
+              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\Admin\\Views\\Comment\\Index.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Comment\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-08-30T16:47:33.958Z",
+              "WhenOpened": "2026-08-31T14:35:05.992Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
               "Title": "Default.cshtml",
-              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\User\\Views\\Shared\\Components\\_HeadPage\\Default.cshtml",
-              "RelativeDocumentMoniker": "Areas\\User\\Views\\Shared\\Components\\_HeadPage\\Default.cshtml",
-              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\User\\Views\\Shared\\Components\\_HeadPage\\Default.cshtml",
-              "RelativeToolTip": "Areas\\User\\Views\\Shared\\Components\\_HeadPage\\Default.cshtml",
-              "ViewState": "AgIAAEEBAAAAAAAAAAAiwFoBAAAfAAAAAAAAAA==",
+              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\Admin\\Views\\Shared\\Components\\_AdminCommentKpi\\Default.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Shared\\Components\\_AdminCommentKpi\\Default.cshtml",
+              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\Admin\\Views\\Shared\\Components\\_AdminCommentKpi\\Default.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Shared\\Components\\_AdminCommentKpi\\Default.cshtml",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAADIAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-08-30T16:46:51.63Z",
+              "WhenOpened": "2026-08-31T15:53:16.003Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Default.cshtml",
-              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\User\\Views\\Shared\\Components\\_HeroPage\\Default.cshtml",
-              "RelativeDocumentMoniker": "Areas\\User\\Views\\Shared\\Components\\_HeroPage\\Default.cshtml",
-              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\User\\Views\\Shared\\Components\\_HeroPage\\Default.cshtml",
-              "RelativeToolTip": "Areas\\User\\Views\\Shared\\Components\\_HeroPage\\Default.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-08-30T16:46:33.235Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "ReservationController.cs",
-              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\User\\Controllers\\ReservationController.cs",
-              "RelativeDocumentMoniker": "Areas\\User\\Controllers\\ReservationController.cs",
-              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\User\\Controllers\\ReservationController.cs",
-              "RelativeToolTip": "Areas\\User\\Controllers\\ReservationController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 8,
+              "Title": "CommentService.cs",
+              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Services\\CommentServices\\CommentService.cs",
+              "RelativeDocumentMoniker": "Services\\CommentServices\\CommentService.cs",
+              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Services\\CommentServices\\CommentService.cs",
+              "RelativeToolTip": "Services\\CommentServices\\CommentService.cs",
+              "ViewState": "AgIAAKcAAAAAAAAAAADwv8UAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-30T16:23:13.186Z",
+              "WhenOpened": "2026-08-31T16:26:57.046Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "CancelReservationDto.cs",
-              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\DTOs\\ReservationDtos\\CancelReservationDto.cs",
-              "RelativeDocumentMoniker": "DTOs\\ReservationDtos\\CancelReservationDto.cs",
-              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\DTOs\\ReservationDtos\\CancelReservationDto.cs",
-              "RelativeToolTip": "DTOs\\ReservationDtos\\CancelReservationDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 9,
+              "Title": "CommentKpiDto.cs",
+              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\DTOs\\CommentDtos\\CommentKpiDto.cs",
+              "RelativeDocumentMoniker": "DTOs\\CommentDtos\\CommentKpiDto.cs",
+              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\DTOs\\CommentDtos\\CommentKpiDto.cs",
+              "RelativeToolTip": "DTOs\\CommentDtos\\CommentKpiDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-30T16:09:15.081Z",
+              "WhenOpened": "2026-08-31T16:24:41.027Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "CommentStatus.cs",
+              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Entities\\Enums\\CommentStatus.cs",
+              "RelativeDocumentMoniker": "Entities\\Enums\\CommentStatus.cs",
+              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Entities\\Enums\\CommentStatus.cs",
+              "RelativeToolTip": "Entities\\Enums\\CommentStatus.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-31T16:47:02.058Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 14,
-              "Title": "ProfileController.cs",
-              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\User\\Controllers\\ProfileController.cs",
-              "RelativeDocumentMoniker": "Areas\\User\\Controllers\\ProfileController.cs",
-              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\User\\Controllers\\ProfileController.cs",
-              "RelativeToolTip": "Areas\\User\\Controllers\\ProfileController.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAgwDsAAAAJAAAAAAAAAA==",
+              "Title": "ICommentService.cs",
+              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Services\\CommentServices\\ICommentService.cs",
+              "RelativeDocumentMoniker": "Services\\CommentServices\\ICommentService.cs",
+              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Services\\CommentServices\\ICommentService.cs",
+              "RelativeToolTip": "Services\\CommentServices\\ICommentService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-30T16:05:56.632Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "ReservationStatus.cs",
-              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Entities\\Enums\\ReservationStatus.cs",
-              "RelativeDocumentMoniker": "Entities\\Enums\\ReservationStatus.cs",
-              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Entities\\Enums\\ReservationStatus.cs",
-              "RelativeToolTip": "Entities\\Enums\\ReservationStatus.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-30T15:57:02.314Z",
+              "WhenOpened": "2026-08-31T16:25:58.214Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 16,
-              "Title": "ReservationService.cs",
-              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Services\\ReservationServices\\ReservationService.cs",
-              "RelativeDocumentMoniker": "Services\\ReservationServices\\ReservationService.cs",
-              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Services\\ReservationServices\\ReservationService.cs",
-              "RelativeToolTip": "Services\\ReservationServices\\ReservationService.cs",
-              "ViewState": "AgIAAMkAAAAAAAAAAAAswPIAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-30T15:55:27.941Z",
+              "Title": "Default.cshtml",
+              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\Admin\\Views\\Shared\\Components\\_AdminReservationKpi\\Default.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Shared\\Components\\_AdminReservationKpi\\Default.cshtml",
+              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\Admin\\Views\\Shared\\Components\\_AdminReservationKpi\\Default.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Shared\\Components\\_AdminReservationKpi\\Default.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-31T14:44:54.204Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 19,
-              "Title": "Default.cshtml",
-              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\Admin\\Views\\Shared\\Components\\_AdminTourKpi\\Default.cshtml",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Shared\\Components\\_AdminTourKpi\\Default.cshtml",
-              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\Admin\\Views\\Shared\\Components\\_AdminTourKpi\\Default.cshtml",
-              "RelativeToolTip": "Areas\\Admin\\Views\\Shared\\Components\\_AdminTourKpi\\Default.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-08-30T15:49:50.672Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\Admin\\Views\\Tour\\Index.cshtml",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Tour\\Index.cshtml",
-              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\Admin\\Views\\Tour\\Index.cshtml",
-              "RelativeToolTip": "Areas\\Admin\\Views\\Tour\\Index.cshtml",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAADEAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-08-30T15:48:50.221Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
               "Title": "TourService.cs",
               "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Services\\TourServices\\TourService.cs",
               "RelativeDocumentMoniker": "Services\\TourServices\\TourService.cs",
               "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Services\\TourServices\\TourService.cs",
               "RelativeToolTip": "Services\\TourServices\\TourService.cs",
-              "ViewState": "AgIAACUAAAAAAAAAAAAYwEoAAACWAAAAAAAAAA==",
+              "ViewState": "AgIAANEAAAAAAAAAAAAqwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-30T15:40:34.008Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "_AdminTourKpiViewComponent.cs",
-              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\Admin\\ViewComponents\\AdminTourViewComponent\\_AdminTourKpiViewComponent.cs",
-              "RelativeDocumentMoniker": "Areas\\Admin\\ViewComponents\\AdminTourViewComponent\\_AdminTourKpiViewComponent.cs",
-              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\Admin\\ViewComponents\\AdminTourViewComponent\\_AdminTourKpiViewComponent.cs",
-              "RelativeToolTip": "Areas\\Admin\\ViewComponents\\AdminTourViewComponent\\_AdminTourKpiViewComponent.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAA7AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-30T15:49:01.964Z",
+              "WhenOpened": "2026-08-31T14:49:04.232Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 21,
-              "Title": "ITourService.cs",
-              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Services\\TourServices\\ITourService.cs",
-              "RelativeDocumentMoniker": "Services\\TourServices\\ITourService.cs",
-              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Services\\TourServices\\ITourService.cs",
-              "RelativeToolTip": "Services\\TourServices\\ITourService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Title": "_SidebarViewComponent.cs",
+              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\Admin\\ViewComponents\\_SidebarViewComponent.cs",
+              "RelativeDocumentMoniker": "Areas\\Admin\\ViewComponents\\_SidebarViewComponent.cs",
+              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\Admin\\ViewComponents\\_SidebarViewComponent.cs",
+              "RelativeToolTip": "Areas\\Admin\\ViewComponents\\_SidebarViewComponent.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-30T15:41:48.325Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\Admin\\Views\\Dashboard\\Index.cshtml",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Dashboard\\Index.cshtml",
-              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\Admin\\Views\\Dashboard\\Index.cshtml",
-              "RelativeToolTip": "Areas\\Admin\\Views\\Dashboard\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAA/AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-08-30T15:27:25.567Z",
+              "WhenOpened": "2026-08-31T14:36:25.924Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 22,
               "Title": "Default.cshtml",
-              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\Admin\\Views\\Shared\\Components\\_AdminDashboardChart\\Default.cshtml",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Shared\\Components\\_AdminDashboardChart\\Default.cshtml",
-              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\Admin\\Views\\Shared\\Components\\_AdminDashboardChart\\Default.cshtml",
-              "RelativeToolTip": "Areas\\Admin\\Views\\Shared\\Components\\_AdminDashboardChart\\Default.cshtml",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAACcAAAArAAAAAAAAAA==",
+              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\Admin\\Views\\Shared\\Components\\_AdminTourScript\\Default.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Shared\\Components\\_AdminTourScript\\Default.cshtml",
+              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\Admin\\Views\\Shared\\Components\\_AdminTourScript\\Default.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Shared\\Components\\_AdminTourScript\\Default.cshtml",
+              "ViewState": "AgIAAIkBAAAAAAAAAAAkwLwBAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-08-30T14:31:02.851Z",
+              "WhenOpened": "2026-08-31T14:16:43.057Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 23,
               "Title": "Default.cshtml",
-              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\Admin\\Views\\Shared\\Components\\_AdminDashboardPendingQuestions\\Default.cshtml",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Shared\\Components\\_AdminDashboardPendingQuestions\\Default.cshtml",
-              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\Admin\\Views\\Shared\\Components\\_AdminDashboardPendingQuestions\\Default.cshtml",
-              "RelativeToolTip": "Areas\\Admin\\Views\\Shared\\Components\\_AdminDashboardPendingQuestions\\Default.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAGAAAAAAAAAA==",
+              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\Admin\\Views\\Shared\\Components\\_AdminTourTable\\Default.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Shared\\Components\\_AdminTourTable\\Default.cshtml",
+              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\Admin\\Views\\Shared\\Components\\_AdminTourTable\\Default.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Shared\\Components\\_AdminTourTable\\Default.cshtml",
+              "ViewState": "AgIAADAAAAAAAAAAAAAAAHwAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-08-30T14:20:22.094Z",
+              "WhenOpened": "2026-08-31T14:17:27.555Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 25,
-              "Title": "DashboardService.cs",
-              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Services\\DashboardServices\\DashboardService.cs",
-              "RelativeDocumentMoniker": "Services\\DashboardServices\\DashboardService.cs",
-              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Services\\DashboardServices\\DashboardService.cs",
-              "RelativeToolTip": "Services\\DashboardServices\\DashboardService.cs",
-              "ViewState": "AgIAAGAAAAAAAAAAAADwv3AAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-30T10:50:18.785Z",
+              "Title": "Default.cshtml",
+              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\Admin\\Views\\Shared\\Components\\_AdminReservationTable\\Default.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Shared\\Components\\_AdminReservationTable\\Default.cshtml",
+              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\Admin\\Views\\Shared\\Components\\_AdminReservationTable\\Default.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Shared\\Components\\_AdminReservationTable\\Default.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-31T14:02:19.295Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Default.cshtml",
+              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\Admin\\Views\\Shared\\Components\\_AdminReservationFilter\\Default.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Shared\\Components\\_AdminReservationFilter\\Default.cshtml",
+              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\Admin\\Views\\Shared\\Components\\_AdminReservationFilter\\Default.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Shared\\Components\\_AdminReservationFilter\\Default.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-31T13:52:56.805Z",
               "EditorCaption": ""
             }
           ]
@@ -471,15 +374,106 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
+              "Title": "_AdminReservationKpiViewComponent.cs",
+              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\Admin\\ViewComponents\\AdminReservationViewComponents\\_AdminReservationKpiViewComponent.cs",
+              "RelativeDocumentMoniker": "Areas\\Admin\\ViewComponents\\AdminReservationViewComponents\\_AdminReservationKpiViewComponent.cs",
+              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\Admin\\ViewComponents\\AdminReservationViewComponents\\_AdminReservationKpiViewComponent.cs",
+              "RelativeToolTip": "Areas\\Admin\\ViewComponents\\AdminReservationViewComponents\\_AdminReservationKpiViewComponent.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-31T16:51:04.472Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ReservationStatus.cs",
+              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Entities\\Enums\\ReservationStatus.cs",
+              "RelativeDocumentMoniker": "Entities\\Enums\\ReservationStatus.cs",
+              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Entities\\Enums\\ReservationStatus.cs",
+              "RelativeToolTip": "Entities\\Enums\\ReservationStatus.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-31T15:21:47.869Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "IReservationService.cs",
+              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Services\\ReservationServices\\IReservationService.cs",
+              "RelativeDocumentMoniker": "Services\\ReservationServices\\IReservationService.cs",
+              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Services\\ReservationServices\\IReservationService.cs",
+              "RelativeToolTip": "Services\\ReservationServices\\IReservationService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-31T14:48:39.685Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ReservationKpiDto.cs",
+              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\DTOs\\ReservationDtos\\ReservationKpiDto.cs",
+              "RelativeDocumentMoniker": "DTOs\\ReservationDtos\\ReservationKpiDto.cs",
+              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\DTOs\\ReservationDtos\\ReservationKpiDto.cs",
+              "RelativeToolTip": "DTOs\\ReservationDtos\\ReservationKpiDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-31T16:31:42.749Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
               "Title": "Default.cshtml",
-              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\User\\Views\\Shared\\Components\\_TourPage\\Default.cshtml",
-              "RelativeDocumentMoniker": "Areas\\User\\Views\\Shared\\Components\\_TourPage\\Default.cshtml",
-              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\User\\Views\\Shared\\Components\\_TourPage\\Default.cshtml",
-              "RelativeToolTip": "Areas\\User\\Views\\Shared\\Components\\_TourPage\\Default.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAiAAAAAAAAAA==",
+              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\Admin\\Views\\Shared\\Components\\_AdminReservationScript\\Default.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Shared\\Components\\_AdminReservationScript\\Default.cshtml",
+              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\Admin\\Views\\Shared\\Components\\_AdminReservationScript\\Default.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Shared\\Components\\_AdminReservationScript\\Default.cshtml",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAACEAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-08-30T16:46:58.348Z",
+              "WhenOpened": "2026-08-31T13:55:21.787Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ReservationService.cs",
+              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Services\\ReservationServices\\ReservationService.cs",
+              "RelativeDocumentMoniker": "Services\\ReservationServices\\ReservationService.cs",
+              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Services\\ReservationServices\\ReservationService.cs",
+              "RelativeToolTip": "Services\\ReservationServices\\ReservationService.cs",
+              "ViewState": "AgIAABQBAAAAAAAAAADwvxYBAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-31T14:49:04.923Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Default.cshtml",
+              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\Admin\\Views\\Shared\\Components\\_Sidebar\\Default.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Shared\\Components\\_Sidebar\\Default.cshtml",
+              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Areas\\Admin\\Views\\Shared\\Components\\_Sidebar\\Default.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Shared\\Components\\_Sidebar\\Default.cshtml",
+              "ViewState": "AgIAAAIAAAAAAAAAAADwvx8AAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-31T14:35:40.22Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "ITourService.cs",
+              "DocumentMoniker": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Services\\TourServices\\ITourService.cs",
+              "RelativeDocumentMoniker": "Services\\TourServices\\ITourService.cs",
+              "ToolTip": "C:\\Users\\BURHAN\\Desktop\\MongoDbProject\\Travel.Web\\Services\\TourServices\\ITourService.cs",
+              "RelativeToolTip": "Services\\TourServices\\ITourService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-31T14:48:42.261Z",
               "EditorCaption": ""
             }
           ]

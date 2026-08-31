@@ -16,6 +16,7 @@ using Travel.Web.Services.QuestionServices;
 using Travel.Web.Services.ReportServices;
 using Travel.Web.Services.ReservationServices;
 using Travel.Web.Services.TourServices;
+using Travel.Web.Services.UserServices;
 using Travel.Web.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -41,6 +42,7 @@ builder.Services.AddScoped<ICommentService, CommentService>();
 builder.Services.AddScoped<IQuestionService, QuestionService>();
 builder.Services.AddScoped<IReportService, ReportService>();
 builder.Services.AddScoped<IDashboardService, DashboardService>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 //builder.Services.AddScoped<IRouteService, RouteService>();
 

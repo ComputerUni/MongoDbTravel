@@ -6,9 +6,9 @@ namespace Travel.Web.Areas.User.ViewComponents.TourDetailViewComponents
 {
     public class _TourDetailHeaderViewComponent : ViewComponent
     {
-        public IViewComponentResult Invoke(ResultTourDto tour)
+        public IViewComponentResult Invoke(TourDetailViewModel model)
         {
-            return View(tour);
+            return View(model);
         }
     }
 }
