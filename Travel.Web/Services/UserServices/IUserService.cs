@@ -1,4 +1,5 @@
-﻿using Travel.Web.Entities;
+﻿using Travel.Web.DTOs.AccountDtos;
+using Travel.Web.Entities;
 
 namespace Travel.Web.Services.UserServices
 {
@@ -8,5 +9,6 @@ namespace Travel.Web.Services.UserServices
         Task<AppUser> GetByIdAsync(string id);
         Task SetActiveAsync(string id);
         Task SetPassiveAsync(string id);
+        Task<UserKpiDto> GetUserKpiAsync();
     }
 }

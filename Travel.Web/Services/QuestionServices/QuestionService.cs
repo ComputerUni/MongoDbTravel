@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Identity;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using Travel.Web.DTOs.CommentDtos;
@@ -42,7 +43,6 @@ namespace Travel.Web.Services.QuestionServices
             await _questionCollection.InsertOneAsync(question);
         }
 
-
         public async Task<ResultQuestionDto> GetByIdAsync(string id)
         {
             var question = await _questionCollection.AsQueryable().FirstOrDefaultAsync(x => x.Id == id);
@@ -61,10 +61,6 @@ namespace Travel.Web.Services.QuestionServices
             return dto;
 
         }
-
-
-
-
         public async Task<List<ResultQuestionDto>> GetAllAsync()
         {
             var questions = await _questionCollection.AsQueryable().ToListAsync();
@@ -166,6 +162,73 @@ namespace Travel.Web.Services.QuestionServices
 
             }
             return dtos;
+        }
+
+        public async Task<QuestionKpiDto> GetQuestionKpiAsync()
+        {
+            var pipeline = new[]
+            {
+                new BsonDocument("$facet", new BsonDocument
+                {
+                    {
+                        "totalCount", new BsonArray
+                        {
+                            new BsonDocument("$count", "count")
+                        }
+                    },
+
+                    {
+                        "statusCounts", new BsonArray
+                        {
+                            new BsonDocument("$group", new BsonDocument
+                            {
+                                {"_id", "$IsAnswered" },
+                                {"count", new BsonDocument("$sum", 1) }
+                            })
+                        }
+                    },
+                })
+            };
+
+            var results = await _questionCollection.Aggregate<BsonDocument>(pipeline).FirstOrDefaultAsync();
+            var kpiDto = new QuestionKpiDto();
+
+            if (results != null)
+            {
+                var totalArr = results["totalCount"].AsBsonArray;
+                if (totalArr.Count > 0)
+                {
+                    kpiDto.TotalQuestionCount = totalArr[0]["count"].AsInt32;
+                }
+
+                var statusArr = results["statusCounts"].AsBsonArray;
+                foreach (var doc in statusArr)
+                {
+                    var isAnsweredVal = doc["_id"];
+                    var count = doc["count"].AsInt32;
+
+                    if (isAnsweredVal != null && !isAnsweredVal.IsBsonNull)
+                    {
+                        bool isAnswered = isAnsweredVal.AsBoolean;
+
+                        if (isAnswered)
+                        {
+                            kpiDto.AnsweredQuestionCount = count;
+                        }
+                        else
+                        {
+                            kpiDto.PendingQuestionCount = count;
+                        }
+                    }
+                }
+
+                if(kpiDto.TotalQuestionCount > 0)
+                {
+                    kpiDto.ResponseRate = Math.Round(((double)kpiDto.AnsweredQuestionCount / kpiDto.TotalQuestionCount) * 100, 1);
+                }
+            }
+
+            return kpiDto;
         }
     }
 }

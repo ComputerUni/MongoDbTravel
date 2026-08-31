@@ -1,0 +1,76 @@
+﻿<script>
+    
+document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById("fSearch");
+    const ratingInput = document.getElementById("fRating");
+    const statusSelect = document.getElementById("fStatus");
+
+    function filterComments() {
+       const q = searchInput ? searchInput.value.trim().toLocaleLowerCase('tr-TR') : "";
+        const selectedRating = ratingInput ? ratingInput.value : "";
+        const st = statusSelect ? statusSelect.value.trim().toLowerCase() : "";
+
+        const rows = document.querySelectorAll("#tourRows tr");
+        let visibleCount = 0;
+
+        rows.forEach(row => {
+           const rowText = row.innerText.toLocaleLowerCase('tr-TR');
+           const rowRating = (row.getAttribute("data-rating") || "").trim();
+           const rowStatus = (row.getAttribute("data-status") || "").trim().toLowerCase()
+
+            let matches = true;
+
+            if (q && !rowText.includes(q)) {
+                    matches = false;
+                }
+
+           if (selectedRating && rowRating !== selectedRating) {
+                    matches = false;
+                }
+
+            if (st) {
+                    let normRowStatus = rowStatus;
+                    if (rowStatus.includes("bekle")) normRowStatus = "bekliyor";
+                    if (rowStatus.includes("yayın")) normRowStatus = "yayında";
+                    if (rowStatus.includes("spam")) normRowStatus = "spam";
+
+                    let normSt = st;
+                    if (st.includes("bekle")) normSt = "bekliyor";
+                    if (st.includes("yayın")) normSt = "yayında";
+                    if (st.includes("spam")) normSt = "spam";
+
+                    if (normRowStatus !== normSt) {
+                        matches = false;
+                    }
+                }
+
+        if (matches) {
+                    row.style.display = "";
+                    visibleCount++;
+                } else {
+                    row.style.display = "none";
+                }
+        });
+
+        const countEl = document.getElementById("resultCount");
+            if (countEl) countEl.textContent = visibleCount;
+
+
+        const emptyState = document.getElementById("emptyState");
+        const pagerRow = document.getElementById("pagerRow");
+        if (emptyState) emptyState.style.display = visibleCount === 0 ? "block" : "none";
+        if (pagerRow) pagerRow.style.display = visibleCount === 0 ? "none" : "flex";
+        }
+
+      if (searchInput) searchInput.addEventListener("input", filterComments);
+        if (ratingInput) ratingInput.addEventListener("change", filterComments);
+        if (statusSelect) statusSelect.addEventListener("change", filterComments);
+
+        window.clearFilters = function() {
+            if (searchInput) searchInput.value = "";
+           if (ratingInput) ratingInput.value = "";
+            if (statusSelect) statusSelect.value = "";
+            filterComments();
+        };
+    });
+</script>

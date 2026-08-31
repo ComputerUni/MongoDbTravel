@@ -22,7 +22,11 @@
                 @foreach (var question in Model)
                 {
                     count++;
-                    <tr>
+                    <tr data-tour="@question.TourName"
+                        data-user="@question.UserFullName"
+                        data-status="@(question.IsAnswered ? "Cevaplandı" : "Bekliyor")">
+
+
                         <td><input type="checkbox" class="chk row-chk" value="@question.Id" /></td>
                         <td>@count</td>
                         <td><span class="text-primary fw-bold">@question.UserFullName</span></td>

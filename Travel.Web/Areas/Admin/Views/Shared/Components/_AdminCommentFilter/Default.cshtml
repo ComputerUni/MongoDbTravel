@@ -1,0 +1,38 @@
+﻿@model List<ResultCommentDto>
+
+<div class="card-x filter-bar mb-3">
+    <div class="row g-2 align-items-center">
+        <div class="col-lg-5 col-md-6">
+            <div class="f-search">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
+                <input type="text" id="fSearch" placeholder="Yorum, tur adı veya kullanıcı ara...">
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <select class="f-select" id="fRating">
+                <option value="">Tüm Puanlar</option>
+                <option value="5">5 Yıldız</option>
+                <option value="4">4 Yıldız</option>
+                <option value="3">3 Yıldız</option>
+                <option value="2">2 Yıldız</option>
+                <option value="1">1 Yıldız</option>
+            </select>
+        </div>
+
+        <div class="col-lg-3 col-md-4">
+            <select class="f-select" id="fStatus">
+                <option value="">Tüm Durumlar</option>
+                <option value="Bekliyor">Bekliyor</option>
+                <option value="Yayında">Yayında</option>
+                <option value="Spam">Spam</option>
+            </select>
+        </div>
+
+        <div class="col-lg-1 col-md-4">
+            <button class="btn-clear" onclick="clearFilters()">Temizle</button>
+        </div>
+    </div>
+</div>
+
+<div class="result-line"><b id="resultCount">@Model.Count</b> yorum listeleniyor</div>

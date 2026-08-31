@@ -6,6 +6,78 @@
         document.getElementById("sbOverlay").classList.toggle("show", show);
     }
 
+    document.addEventListener("DOMContentLoaded", function() {
+        const searchInput = document.getElementById("fSearch");
+        const destSelect = document.getElementById("fDest");
+        const catSelect = document.getElementById("fCat");
+        const statusSelect = document.getElementById("fStatus");
+
+        function filterTours() {
+            const q = searchInput ? searchInput.value.trim().toLowerCase() : "";
+            const dest = destSelect ? destSelect.value.trim().toLowerCase() : "";
+            const cat = catSelect ? catSelect.value.trim().toLowerCase() : "";
+            const st = statusSelect ? statusSelect.value.trim() : "";
+
+            const rows = document.querySelectorAll("#tourRows tr");
+            let visibleCount = 0;
+
+            rows.forEach(row => {
+                const title = (row.getAttribute("data-title") || "").toLowerCase();
+                const destination = (row.getAttribute("data-destination") || "").toLowerCase();
+                const category = (row.getAttribute("data-category") || "").toLowerCase();
+                const status = (row.getAttribute("data-status") || "").trim();
+
+                let matches = true;
+
+                if (q && !title.includes(q)) {
+                    matches = false;
+                }
+
+                if (dest && !destination.includes(dest)) {
+                    matches = false;
+                }
+
+                if (cat && category !== cat) {
+                    matches = false;
+                }
+
+                if (st && status !== st) {
+                    matches = false;
+                }
+
+                if (matches) {
+                    row.style.display = "";
+                    visibleCount++;
+                } else {
+                    row.style.display = "none";
+                }
+            });
+
+            const countEl = document.getElementById("resultCount");
+            if (countEl) countEl.textContent = visibleCount;
+
+            const emptyState = document.getElementById("emptyState");
+            const pagerRow = document.getElementById("pagerRow");
+            if (emptyState) emptyState.style.display = visibleCount === 0 ? "block" : "none";
+            if (pagerRow) pagerRow.style.display = visibleCount === 0 ? "none" : "flex";
+        }
+
+
+        if (searchInput) searchInput.addEventListener("input", filterTours);
+        if (destSelect) destSelect.addEventListener("change", filterTours);
+        if (catSelect) catSelect.addEventListener("change", filterTours);
+        if (statusSelect) statusSelect.addEventListener("change", filterTours);
+
+
+        window.clearFilters = function() {
+            if (searchInput) searchInput.value = "";
+            if (destSelect) destSelect.value = "";
+            if (catSelect) catSelect.value = "";
+            if (statusSelect) statusSelect.value = "";
+            filterTours();
+        };
+    });
+
     let sortKey = null, sortDir = 1;
     const fmt = n => n.toLocaleString("tr-TR");
     const statusClass = { Aktif: "b-ok", Pasif: "b-pasif", Taslak: "b-taslak" };
@@ -361,88 +433,6 @@
     }
 
 
-    function toggleSidebar(show) {
-        document.getElementById("sidebar").classList.toggle("show", show);
-        document.getElementById("sbOverlay").classList.toggle("show", show);
-    }
-
-    document.addEventListener("DOMContentLoaded", function () {
-        const searchInput = document.getElementById("fSearch");
-        const destSelect = document.getElementById("fDest");
-        const catSelect = document.getElementById("fCat");
-        const statusSelect = document.getElementById("fStatus");
-
-        function filterTours() {
-            const q = searchInput ? searchInput.value.trim().toLowerCase() : "";
-            const dest = destSelect ? destSelect.value.trim().toLowerCase() : "";
-            const cat = catSelect ? catSelect.value.trim().toLowerCase() : "";
-            const st = statusSelect ? statusSelect.value.trim() : "";
-
-            const rows = document.querySelectorAll("#tourRows tr");
-            let visibleCount = 0;
-
-            rows.forEach(row => {
-                const title = (row.getAttribute("data-title") || "").toLowerCase();
-                const destination = (row.getAttribute("data-destination") || "").toLowerCase();
-                const category = (row.getAttribute("data-category") || "").toLowerCase();
-                const status = (row.getAttribute("data-status") || "").trim();
-
-                let matches = true;
-
-                // 1. Arama (Tur adı)
-                if (q && !title.includes(q)) {
-                    matches = false;
-                }
-
-                // 2. Destinasyon / Bölge Filtresi
-                if (dest && !destination.includes(dest)) {
-                    matches = false;
-                }
-
-                // 3. Kategori Filtresi
-                if (cat && category !== cat) {
-                    matches = false;
-                }
-
-                // 4. Durum Filtresi (Aktif, Pasif vb.)
-                if (st && status !== st) {
-                    matches = false;
-                }
-
-                if (matches) {
-                    row.style.display = "";
-                    visibleCount++;
-                } else {
-                    row.style.display = "none";
-                }
-            });
-
-            // Sayaç Güncelleme
-            const countEl = document.getElementById("resultCount");
-            if (countEl) countEl.textContent = visibleCount;
-
-            // Boş Durum Yönetimi (Tur bulunamadı ekranı)
-            const emptyState = document.getElementById("emptyState");
-            const pagerRow = document.getElementById("pagerRow");
-            if (emptyState) emptyState.style.display = visibleCount === 0 ? "block" : "none";
-            if (pagerRow) pagerRow.style.display = visibleCount === 0 ? "none" : "flex";
-        }
-
-        // Dinleyiciler
-        if (searchInput) searchInput.addEventListener("input", filterTours);
-        if (destSelect) destSelect.addEventListener("change", filterTours);
-        if (catSelect) catSelect.addEventListener("change", filterTours);
-        if (statusSelect) statusSelect.addEventListener("change", filterTours);
-
-        // Global Temizleme Fonksiyonu
-        window.clearFilters = function() {
-            if (searchInput) searchInput.value = "";
-            if (destSelect) destSelect.value = "";
-            if (catSelect) catSelect.value = "";
-            if (statusSelect) statusSelect.value = "";
-            filterTours();
-        };
-    });
-
+  
     render();
 </script>

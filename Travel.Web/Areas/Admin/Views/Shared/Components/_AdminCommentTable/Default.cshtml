@@ -24,7 +24,12 @@
                 @foreach (var comment in Model)
                 {
                     count++;
-                    <tr>
+                    <tr data-tour="@comment.TourName"
+                        data-user="@comment.UserFullName"
+                        data-rating="@comment.Rating"
+                        data-status="@comment.Status">
+
+
                         <td><input type="checkbox" class="chk row-chk" value="@comment.Id" /></td>
                         <td>@count</td>
                         <td><span class="text-primary fw-bold">@comment.UserFullName</span></td>

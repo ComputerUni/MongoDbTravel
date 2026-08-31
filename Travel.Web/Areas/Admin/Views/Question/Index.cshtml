@@ -14,8 +14,9 @@
     </div>
 </div>
 
-@await Component.InvokeAsync("_AdminTourKpi")
+@await Component.InvokeAsync("_AdminQuestionKpi")
+@await Component.InvokeAsync("_AdminQuestionFilter")
 @await Component.InvokeAsync("_AdminTourBulkBar")
 @await Component.InvokeAsync("_AdminQuestionTable")
 @await Component.InvokeAsync("_AdminTourDeleteModal")
-@await Component.InvokeAsync("_AdminTourScript")
+@await Component.InvokeAsync("_AdminQuestionScript")

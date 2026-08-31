@@ -12,5 +12,6 @@ namespace Travel.Web.Services.QuestionServices
         Task<List<ResultQuestionDto>> GetByUserIdAsync(string userId);
         Task<List<ResultQuestionDto>> GetUnansweredAsync();
         Task AnswerAsync(string questionId, string answer);
+        Task<QuestionKpiDto> GetQuestionKpiAsync();
     }
 }

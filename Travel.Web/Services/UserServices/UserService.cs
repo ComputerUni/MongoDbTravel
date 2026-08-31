@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using MongoDB.Bson;
 using MongoDB.Driver;
+using MongoDB.Driver.Linq;
+using Travel.Web.DTOs.AccountDtos;
 using Travel.Web.Entities;
 using Travel.Web.Settings;
 
@@ -37,12 +40,27 @@ namespace Travel.Web.Services.UserServices
 
         }
 
-
         public async Task SetPassiveAsync(string id)
         {
             var user = await _userManager.FindByIdAsync(id);
             await _userManager.SetLockoutEnabledAsync(user, true);
             await _userManager.SetLockoutEndDateAsync(user, DateTimeOffset.MaxValue);
+        }
+
+        public async Task<UserKpiDto> GetUserKpiAsync()
+        {
+            var todayStart = DateTime.UtcNow.Date;
+            var users = _userManager.Users.ToList();
+
+            var kpiDto = new UserKpiDto
+            {
+                TotalUserCount = users.Count,
+                ActiveUserCount = users.Count(u => u.LockoutEnd == null || u.LockoutEnd <= DateTimeOffset.Now),
+                PassiveUserCount = users.Count(u => u.LockoutEnd != null && u.LockoutEnd > DateTimeOffset.Now),
+                TodayUserCount = users.Count(u => u.CreatedAt >= todayStart)
+            };
+
+            return kpiDto;
         }
     }
 }
