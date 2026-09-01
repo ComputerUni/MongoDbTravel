@@ -1,0 +1,66 @@
+﻿@model List<ResultWhyUsItemDto>
+@{
+    ViewData["Title"] = "Neden Biz Yönetimi";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int count = 0;
+}
+
+<div class="sec" style="margin-bottom:1rem">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h4 class="fw-bold text-dark mb-1">Neden Biz Alanı</h4>
+            <p class="text-muted small mb-0">Ana sayfada görünen "Neden Biz" kartlarını buradan yönetebilirsiniz.</p>
+        </div>
+        <a href="/Admin/WhyUsItem/Create" class="btn-teal text-decoration-none px-3 py-2" style="border-radius: 8px;">+ Yeni Kart Ekle</a>
+    </div>
+
+    <div class="card-x mb-3">
+        <div class="tbl-wrap">
+            <table class="tx">
+                <thead>
+                    <tr>
+                        <th style="width:50px">#</th>
+                        <th>Başlık</th>
+                        <th>Açıklama</th>
+                        <th>İkon</th>
+                        <th style="width:100px">Sıra</th>
+                        <th style="width:120px">İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        @foreach (var item in Model)
+                        {
+                            count++;
+                            <tr>
+                                <td>@count</td>
+                                <td><span class="fw-bold text-dark">@item.Title</span></td>
+                                <td>@(item.Description.Length > 80 ? item.Description.Substring(0, 80) + "..." : item.Description)</td>
+                                <td>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <i class="@item.Icon fs-5" style="color: #0d9488;"></i>
+@*                                         <code>@item.Icon</code> *@
+                                    </div>
+                                </td>
+                                <td><span class="badge bg-light text-dark border">@item.DisplayOrder</span></td>
+                                <td>
+                                    <div class="d-flex gap-1 align-items-center">
+                                        <a href="/Admin/WhyUsItem/Update/@item.Id" class="btn btn-sm btn-outline-secondary border-0" title="Düzenle">✏️</a>
+                                        <a href="/Admin/WhyUsItem/Delete/@item.Id" class="btn btn-sm btn-outline-danger border-0" onclick="return confirm('Bu kartı silmek istediğinize emin misiniz?');" title="Sil">🗑️</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="6" class="text-center py-4 text-muted">Henüz hiç kayıt eklenmemiş.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

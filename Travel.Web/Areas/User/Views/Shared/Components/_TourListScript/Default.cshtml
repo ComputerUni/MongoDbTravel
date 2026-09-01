@@ -1,4 +1,5 @@
-﻿@model List<ResultTourDto>
+﻿@using X.PagedList
+@model IPagedList<ResultTourDto>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
@@ -64,64 +65,122 @@
     function starsMarkup(n) { let s = ""; for (let i = 1; i <= 5; i++) { s += i <= n ? "★" : "<span class='off'>★</span>"; } return s; }
 
     function sidebarHTML() {
-        return `
-                                  <h2>Turları Filtrele</h2>
-                                  <p class="filter-sub">Sana en uygun rotayı bulmak için daralt.</p>
+        // CSS stillerini doğrudan fonksiyonun içine ekledik, ayrı dosya ile uğraşmazsın
+        const styles = `
+            <style>
+                .filter-dropdown-group {
+                    background: #ffffff;
+                    border: 1px solid #e5e7eb;
+                    border-radius: 8px;
+                    margin-bottom: 12px;
+                    padding: 12px 16px;
+                    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+                }
+                .filter-summary {
+                    font-size: 0.85rem;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    letter-spacing: 0.03em;
+                    color: var(--navy, #111827);
+                    cursor: pointer;
+                    list-style: none;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    user-select: none;
+                }
+                .filter-summary::-webkit-details-marker {
+                    display: none;
+                }
+                .filter-summary::after {
+                    content: "⌄";
+                    font-size: 1.2rem;
+                    font-weight: 600;
+                    transition: transform 0.2s ease;
+                    color: var(--muted, #6b7280);
+                }
+                .filter-dropdown-group[open] .filter-summary::after {
+                    transform: rotate(180deg);
+                }
+                .filter-content {
+                    margin-top: 12px;
+                    padding-top: 8px;
+                    border-top: 1px solid #f3f4f6;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 8px;
+                }
+            </style>
+        `;
 
-                                  <div class="filter-group">
-                                    <h3>Tur Ara</h3>
-                                    <div class="search-wrap">
-                                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                                      <input type="text" class="f-search" placeholder="Tur veya destinasyon ara" />
-                                    </div>
-                                  </div>
+        return styles + `
+            <h2>Turları Filtrele</h2>
+            <p class="filter-sub">Sana en uygun rotayı bulmak için daralt.</p>
 
-                                  <div class="filter-group">
-                                    <h3>Destinasyon</h3>
-                                    ${DEST_OPTS.map(o => `
-                                      <label class="fcheck">
-                                        <span class="lbl"><input type="checkbox" class="f-dest" value="${o.key}"> ${o.label}</span>
-                                        <span class="cnt">(${destCount(o.key)})</span>
-                                      </label>`).join("")}
-                                  </div>
+            <div class="filter-group">
+                <h3>Tur Ara</h3>
+                <div class="search-wrap" style="margin-top: 10px;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <input type="text" class="f-search" placeholder="Tur veya destinasyon ara" />
+                </div>
+            </div>
 
-                                  <div class="filter-group">
-                                    <h3>Tur Süresi</h3>
-                                    ${DUR_OPTS.map(o => `
-                                      <label class="fcheck">
-                                        <span class="lbl"><input type="checkbox" class="f-dur" value="${o.key}"> ${o.label}</span>
-                                      </label>`).join("")}
-                                  </div>
+            <details class="filter-dropdown-group" open>
+                <summary class="filter-summary">Destinasyon</summary>
+                <div class="filter-content">
+                    ${DEST_OPTS.map(o => `
+                      <label class="fcheck">
+                        <span class="lbl"><input type="checkbox" class="f-dest" value="${o.key}"> ${o.label}</span>
+                        <span class="cnt">(${destCount(o.key)})</span>
+                      </label>`).join("")}
+                </div>
+            </details>
 
-                                  <div class="filter-group">
-                                    <h3>Fiyat Aralığı</h3>
-                                    ${PRICE_OPTS.map(o => `
-                                      <label class="fcheck">
-                                        <span class="lbl"><input type="checkbox" class="f-price" value="${o.key}"> ${o.label}</span>
-                                      </label>`).join("")}
-                                  </div>
+            <details class="filter-dropdown-group" open>
+                <summary class="filter-summary">Tur Süresi</summary>
+                <div class="filter-content">
+                    ${DUR_OPTS.map(o => `
+                      <label class="fcheck">
+                        <span class="lbl"><input type="checkbox" class="f-dur" value="${o.key}"> ${o.label}</span>
+                      </label>`).join("")}
+                </div>
+            </details>
 
-                                  <div class="filter-group">
-                                    <h3>Tur Tipi</h3>
-                                    ${TYPE_OPTS.map(o => `
-                                      <label class="fcheck">
-                                        <span class="lbl"><input type="checkbox" class="f-type" value="${o}"> ${o}</span>
-                                      </label>`).join("")}
-                                  </div>
+            <details class="filter-dropdown-group" open>
+                <summary class="filter-summary">Fiyat Aralığı</summary>
+                <div class="filter-content">
+                    ${PRICE_OPTS.map(o => `
+                      <label class="fcheck">
+                        <span class="lbl"><input type="checkbox" class="f-price" value="${o.key}"> ${o.label}</span>
+                      </label>`).join("")}
+                </div>
+            </details>
 
-                                  <div class="filter-group">
-                                    <h3>Değerlendirme</h3>
-                                    ${RATING_OPTS.map(o => `
-                                      <label class="fcheck">
-                                        <span class="lbl"><input type="radio" name="f-rating" class="f-rating" value="${o.key}"> <span class="stars-opt">${starsMarkup(o.stars)}</span></span>
-                                        <span class="cnt">${o.label}</span>
-                                      </label>`).join("")}
-                                  </div>
+            <details class="filter-dropdown-group" open>
+                <summary class="filter-summary">Tur Tipi</summary>
+                <div class="filter-content">
+                    ${TYPE_OPTS.map(o => `
+                      <label class="fcheck">
+                        <span class="lbl"><input type="checkbox" class="f-type" value="${o}"> ${o}</span>
+                      </label>`).join("")}
+                </div>
+            </details>
 
-                                  <div class="filter-actions">
-                                    <button class="btn-teal" onclick="applyFromButton()">Filtreleri Uygula</button>
-                                    <button class="clear-link" onclick="clearFilters()">Filtreleri Temizle</button>
-                                  </div>`;
+            <details class="filter-dropdown-group" open>
+                <summary class="filter-summary">Değerlendirme</summary>
+                <div class="filter-content">
+                    ${RATING_OPTS.map(o => `
+                      <label class="fcheck">
+                        <span class="lbl"><input type="radio" name="f-rating" class="f-rating" value="${o.key}"> <span class="stars-opt">${starsMarkup(o.stars)}</span></span>
+                        <span class="cnt">${o.label}</span>
+                      </label>`).join("")}
+                </div>
+            </details>
+
+            <div class="filter-actions" style="margin-top: 20px;">
+                <button class="btn-teal" onclick="applyFromButton()">Filtreleri Uygula</button>
+                <button class="clear-link" onclick="clearFilters()">Filtreleri Temizle</button>
+            </div>`;
     }
 
     document.getElementById("filterCardDesktop").innerHTML = sidebarHTML();

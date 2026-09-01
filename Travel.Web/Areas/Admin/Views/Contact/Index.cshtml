@@ -1,0 +1,8 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.TopbarTitle = "İletişim Yönetimi";
+}
+
+
+@await Component.InvokeAsync("_AdminContactTable", new { page = int.TryParse(Context.Request.Query["page"], out var p) ? p : 1 })
+

@@ -1,4 +1,7 @@
-﻿@model List<ResultCategoryDto>
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<ResultCategoryDto>
+
 
 @{
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
@@ -41,6 +44,22 @@
                 }
             </tbody>
         </table>
+    </div>
+    <div class="pager-row" id="pagerRow">
+        <div class="per-page">
+            Toplam @Model.TotalItemCount kayıttan @Model.FirstItemOnPage - @Model.LastItemOnPage arası gösteriliyor.
+        </div>
+        <div class="pager">
+            @Html.PagedListPager(Model, page => Url.Action("Index", "Category", new { area = "Admin", page }), new PagedListRenderOptions
+            {
+                LiElementClasses = new[] { "page-item" },
+                PageClasses = new[] { "page-link" },
+                DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+                DisplayLinkToLastPage = PagedListDisplayMode.Never,
+                DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                DisplayLinkToNextPage = PagedListDisplayMode.Always,
+            })
+        </div>
     </div>
 </div>
 

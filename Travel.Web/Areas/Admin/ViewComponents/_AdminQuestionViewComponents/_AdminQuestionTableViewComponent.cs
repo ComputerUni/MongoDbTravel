@@ -1,12 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Travel.Web.Services.QuestionServices;
+using X.PagedList.Extensions;
 
 namespace Travel.Web.Areas.Admin.ViewComponents._AdminQuestionViewComponents
 {
-    public class _AdminQuestionTableViewComponent : ViewComponent
+    public class _AdminQuestionTableViewComponent(IQuestionService _questionService) : ViewComponent
     {
-        public IViewComponentResult Invoke()
+        public async Task<IViewComponentResult> InvokeAsync(int page = 1)
         {
-            return View();
+            var questions = await _questionService.GetAllAsync();
+            return View(questions.ToPagedList(page, 6));
         }
     }
 }

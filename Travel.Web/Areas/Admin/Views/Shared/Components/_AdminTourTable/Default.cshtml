@@ -1,4 +1,6 @@
-﻿@model List<ResultTourDto>
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<ResultTourDto>
 
 <div class="card-x mb-3">
     <div class="tbl-wrap">
@@ -110,16 +112,18 @@
     </div>
     <div class="pager-row" id="pagerRow">
         <div class="per-page">
-            Sayfa başına
-            <select id="perPage"><option>10</option><option>25</option><option>50</option></select>
+            Toplam @Model.TotalItemCount kayıttan @Model.FirstItemOnPage - @Model.LastItemOnPage arası gösteriliyor.
         </div>
         <div class="pager">
-            <a href="#" class="disabled">Önceki</a>
-            <a href="#" class="active">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <a href="#">Sonraki</a>
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions
+            {
+                LiElementClasses = new[] { "page-item" },
+                PageClasses = new[] { "page-link" },
+                DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+                DisplayLinkToLastPage = PagedListDisplayMode.Never,
+                DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                DisplayLinkToNextPage = PagedListDisplayMode.Always,
+            })
         </div>
     </div>
 </div>

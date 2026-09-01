@@ -19,6 +19,6 @@
 @await Component.InvokeAsync("_AdminCommentKpi")
 @await Component.InvokeAsync("_AdminCommentFilter")
 @await Component.InvokeAsync("_AdminTourBulkBar")
-@await Component.InvokeAsync("_AdminCommentTable")
+@await Component.InvokeAsync("_AdminCommentTable", new { page = int.TryParse(Context.Request.Query["page"], out var p) ? p : 1 })
 @await Component.InvokeAsync("_AdminTourDeleteModal")
 @await Component.InvokeAsync("_AdminCommentScript")

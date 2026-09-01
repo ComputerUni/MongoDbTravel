@@ -15,6 +15,15 @@ namespace Travel.Web.Areas.User.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateCommentDto createCommentDto)
         {
+            if(!ModelState.IsValid)
+            {
+                var errorMessages = ModelState.Values
+                    .SelectMany(v => v.Errors)
+                    .Select(e => e.ErrorMessage);
+
+                return BadRequest(string.Join("\n", errorMessages));
+            }
+
             var user = await _userManager.GetUserAsync(User);
             createCommentDto.UserId = user.Id.ToString();
             await _commentService.CreateAsync(createCommentDto);

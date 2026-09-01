@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Travel.Web.DTOs.CategoryDtos;
 using Travel.Web.Services.CategoryServices;
+using X.PagedList.Extensions;
 
 namespace Travel.Web.Areas.Admin.Controllers
 {
@@ -10,10 +11,10 @@ namespace Travel.Web.Areas.Admin.Controllers
     [Authorize]
     public class CategoryController(ICategoryService _categoryService, IMapper _mapper) : Controller
     {
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
             var categories = await _categoryService.GetAllAsync();
-            return View(categories);
+            return View(categories.ToPagedList(page, 6));
         }
 
         [HttpGet]

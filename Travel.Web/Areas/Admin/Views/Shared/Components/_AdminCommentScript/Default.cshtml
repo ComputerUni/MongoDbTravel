@@ -73,4 +73,45 @@ document.addEventListener("DOMContentLoaded", function () {
             filterComments();
         };
     });
+
+
+    function approveComment(id) {
+        fetch(`/Admin/Comment/Approve?commentId=${id}`, {
+            method: "POST"
+        })
+            .then(r => {
+                if (r.ok) location.reload();
+            });
+    }
+
+    function spamComment(id) {
+        fetch(`/Admin/Comment/MarkAsSpam?commentId=${id}`, {
+            method: "POST"
+        })
+            .then(r => {
+                if (r.ok) location.reload();
+            });
+    }
+
+    function openCommentDetailFromRow(button) {
+        const row = button.closest("tr");
+
+        // Verileri güvenli bir şekilde data-* özniteliklerinden alıyoruz
+        const fullName = row.getAttribute("data-user");
+        const email = row.querySelector("td:nth-child(4)").textContent; // Email sütunu
+        const tourName = row.getAttribute("data-tour");
+        const content = row.querySelector("td:nth-child(6)").textContent; // Yorum içeriği sütunu
+        const rating = parseInt(row.getAttribute("data-rating")) || 0;
+        const createdAt = row.querySelector("td:nth-child(8)").textContent; // Tarih sütunu
+
+        document.getElementById('modalUserFullName').textContent = fullName;
+        document.getElementById('modalUserEmail').textContent = email;
+        document.getElementById('modalTourName').textContent = tourName;
+        document.getElementById('modalContent').textContent = content;
+        document.getElementById('modalAnswerContent').textContent = '⭐'.repeat(rating) + ' (' + rating + '/5)';
+        document.getElementById('modalCreatedAt').textContent = createdAt;
+
+        new bootstrap.Modal(document.getElementById("commentDetailModal")).show();
+    }
+
 </script>

@@ -16,9 +16,17 @@
     </div>
 
     <!-- VALIDATION BANNER -->
-    <div class="val-banner" id="valBanner">
+    <div class="val-banner" id="valBanner" style="@(ViewData.ModelState.ErrorCount > 0 ? "display: block;" : "display: none;")">
         <b>Lütfen eksik alanları tamamlayın:</b>
-        <ul id="valList"></ul>
+        <ul id="valList">
+            @foreach (var state in ViewData.ModelState.Values)
+            {
+                @foreach (var error in state.Errors)
+                {
+                    <li>@error.ErrorMessage</li>
+                }
+            }
+        </ul>
     </div>
 
     <!-- 1. TEMEL BİLGİLER -->
@@ -215,7 +223,7 @@
                     <b>Galeri görsellerini seçin.</b>
                     <span>Tur galerisi için en fazla 8 görsel ekleyebilirsiniz.</span>
                 </label>
-                <input type="file" name="Tour.Gallery"  id="galleryInput" accept="image/*" multiple hidden onchange="previewGallery(this)">
+                <input type="file" name="Tour.Gallery" id="galleryInput" accept="image/*" multiple hidden onchange="previewGallery(this)">
                 <div class="previews" id="galleryPreviews"></div>
             </div>
 
@@ -254,11 +262,10 @@
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
             Son kaydedilme: Henüz kaydedilmedi
         </div>
-       <div class="btns">
-    <a href="/Admin/Tour/Index" class="btn-ghost">İptal</a>
-    <button type="button" class="btn-navy" onclick="saveDraft()">Taslak Kaydet</button>
-    <button type="submit" class="btn-teal">Turu Yayınla</button>
-</div>
+        <div class="btns">
+            <a href="/Admin/Tour/Index" class="btn-ghost">İptal</a>
+            <button type="submit" class="btn-teal">Turu Yayınla</button>
+        </div>
     </div>
 
     <!-- TOAST -->

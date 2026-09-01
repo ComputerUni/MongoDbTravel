@@ -17,6 +17,6 @@
 @await Component.InvokeAsync("_AdminReservationKpi")
 @await Component.InvokeAsync("_AdminReservationFilter")
 @await Component.InvokeAsync("_AdminTourBulkBar")
-@await Component.InvokeAsync("_AdminReservationTable")
+@await Component.InvokeAsync("_AdminReservationTable", new { page = int.TryParse(Context.Request.Query["page"], out var p) ? p : 1 })
 @await Component.InvokeAsync("_AdminTourDeleteModal")
 @await Component.InvokeAsync("_AdminReservationScript")

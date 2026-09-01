@@ -44,7 +44,7 @@ namespace Travel.Web.Areas.Admin.Controllers
                 Cities = await _lookupService.GetByTypeAsync(((int)LookupType.City).ToString()),
                 Transports = await _lookupService.GetByTypeAsync(((int)LookupType.Transport).ToString()),
                 GuideLanguages = await _lookupService.GetByTypeAsync(((int)LookupType.GuideLanguage).ToString()),
-                VisaInfos = await _lookupService.GetByTypeAsync(((int)LookupType.VisaInfo).ToString())
+                VisaInfos = await _lookupService.GetByTypeAsync(((int)LookupType.VisaInfo).ToString()),
             };
             return View(viewModel);
         }

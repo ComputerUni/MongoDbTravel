@@ -3,16 +3,17 @@ using Travel.Web.Areas.User.Models;
 using Travel.Web.Services.CommentServices;
 using Travel.Web.Services.QuestionServices;
 using Travel.Web.Services.TourServices;
+using X.PagedList.Extensions;
 
 namespace Travel.Web.Areas.User.Controllers
 {
     [Area("User")]
     public class TourController(ITourService _tourService, ICommentService _commentService, IQuestionService _questionService) : Controller
     {
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
             var tours = await _tourService.GetActiveToursForUserAsync();
-            return View(tours);
+            return View(tours.ToPagedList(page, 6));
         }
 
         public async Task<IActionResult> Detail(string id)

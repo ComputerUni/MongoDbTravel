@@ -1,4 +1,6 @@
-﻿@model List<ResultTourDto>
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<ResultTourDto>
 
 <!DOCTYPE html>
 <html lang="tr">
@@ -67,22 +69,27 @@
                         </div>
                     </div>
 
-                    <!-- pagination -->
-                    <nav class="pager" id="pager">
-                        <a href="#" class="nav-arrow" aria-label="Önceki">←</a>
-                        <a href="#" class="active">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#">4</a>
-                        <a href="#" class="nav-arrow" aria-label="Sonraki">→</a>
-                    </nav>
+                    <div class="pager-row" id="pagerRow">
+
+                        <div class="pager">
+                            @Html.PagedListPager(Model, page => Url.Action("Index", "Tour", new { area = "User", page }), new PagedListRenderOptions
+                            {
+                                LiElementClasses = new[] { "page-item" },
+                                PageClasses = new[] { "page-link" },
+                                DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+                                DisplayLinkToLastPage = PagedListDisplayMode.Never,
+                                DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                                DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                            })
+                        </div>
+                    </div>
 
                     <!-- mini cta -->
                     <div class="mini-cta">
                         <div class="eyebrow">Yardımcı olalım</div>
                         <h2>Aradığın Rotayı Bulamadın mı?</h2>
                         <p>Hayalindeki destinasyonu bize söyle, sana uygun seyahat seçeneklerini birlikte bulalım.</p>
-                        <a href="index.html#iletisim" class="btn-teal">Bize Ulaş</a>
+                        <a href="/User/Contact/Index" class="btn-teal">Bize Ulaş</a>
                     </div>
                 </div>
             </div>

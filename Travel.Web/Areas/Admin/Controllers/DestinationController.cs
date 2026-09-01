@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Travel.Web.DTOs.DestinationDtos;
 using Travel.Web.Services.DestinationServices;
+using X.PagedList.Extensions;
 
 namespace Travel.Web.Areas.Admin.Controllers
 {
@@ -10,10 +11,10 @@ namespace Travel.Web.Areas.Admin.Controllers
     [Authorize]
     public class DestinationController(IDestinationService _destinationService, IMapper _mapper) : Controller
     {
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
             var destinations = await _destinationService.GetAllAsync();
-            return View(destinations);
+            return View(destinations.ToPagedList(page, 6));
         }
 
         [HttpGet]
@@ -25,7 +26,7 @@ namespace Travel.Web.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateDestinationDto createDestinationDto)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View(createDestinationDto);
             }
@@ -48,7 +49,7 @@ namespace Travel.Web.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Update(UpdateDestinationDto updateDestinationDto)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View(updateDestinationDto);
             }

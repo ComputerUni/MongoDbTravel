@@ -14,7 +14,8 @@
         public string QuestionCollectionName { get; set; }
         public string FavoriteCollectionName { get; set; }
         public string LookupItemCollectionName { get; set; }
-
+        public string WhyUsItemCollectionName { get; set; }
+        public string ContactCollectionName { get; set; }
 
     }
 }

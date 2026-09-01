@@ -8,9 +8,11 @@ using Travel.Web.Entities;
 using Travel.Web.Services.BannerServices;
 using Travel.Web.Services.CategoryServices;
 using Travel.Web.Services.CommentServices;
+using Travel.Web.Services.ContactServices;
 using Travel.Web.Services.DashboardServices;
 using Travel.Web.Services.DestinationServices;
 using Travel.Web.Services.FavoriteServices;
+using Travel.Web.Services.IWhyUsServices;
 using Travel.Web.Services.LookupServices;
 using Travel.Web.Services.QuestionServices;
 using Travel.Web.Services.ReportServices;
@@ -18,6 +20,7 @@ using Travel.Web.Services.ReservationServices;
 using Travel.Web.Services.TourServices;
 using Travel.Web.Services.UserServices;
 using Travel.Web.Settings;
+using Travel.Web.Validations.CommentValidations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +31,7 @@ builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddFluentValidationAutoValidation()
     .AddFluentValidationClientsideAdapters()
     .AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+
 
 builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection(nameof(DatabaseSettings)));
 
@@ -43,6 +47,8 @@ builder.Services.AddScoped<IQuestionService, QuestionService>();
 builder.Services.AddScoped<IReportService, ReportService>();
 builder.Services.AddScoped<IDashboardService, DashboardService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IWhyUsService, WhyUsService>();
+builder.Services.AddScoped<IContactService, ContactService>();
 
 //builder.Services.AddScoped<IRouteService, RouteService>();
 

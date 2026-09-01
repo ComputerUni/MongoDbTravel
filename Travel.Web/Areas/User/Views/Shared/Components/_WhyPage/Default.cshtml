@@ -1,4 +1,6 @@
-﻿<section id="hakkimizda">
+﻿@model List<ResultWhyUsItemDto>
+
+<section id="hakkimizda">
     <div class="container">
         <div class="section-head mb-5">
             <div class="eyebrow">Neden biz</div>
@@ -6,33 +8,19 @@
             <p>Sadece bir tur değil, baştan sona düşünülmüş bir seyahat deneyimi.</p>
         </div>
         <div class="row g-4">
-            <div class="col-md-4">
-                <div class="why-card">
-                    <div class="why-ico">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" /></svg>
+            @foreach(var item in Model)
+            {
+                <div class="col-md-4">
+                    <div class="why-card">
+                        <div class="why-ico">
+                            <i class="@item.Icon" style="font-size: 24px;"></i>
+                        </div>
+                        <h4>@item.Title</h4>
+                        <p>@item.Description</p>
                     </div>
-                    <h4>Özenle Seçilmiş Rotalar</h4>
-                    <p>Her tur, yerel uzmanlarımız tarafından test edilmiş gerçek deneyimlerden oluşur; klişe turistik duraklar değil.</p>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="why-card">
-                    <div class="why-ico">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>
-                    </div>
-                    <h4>Gizli Ücret Yok</h4>
-                    <p>Gördüğün fiyat ödediğin fiyattır. Konaklama, ulaşım ve rehberlik tek pakette şeffaf şekilde sunulur.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="why-card">
-                    <div class="why-ico">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1" /><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" /><line x1="6" y1="1" x2="6" y2="4" /><line x1="10" y1="1" x2="10" y2="4" /><line x1="14" y1="1" x2="14" y2="4" /></svg>
-                    </div>
-                    <h4>7/24 Yanındayız</h4>
-                    <p>Seyahatin boyunca Türkçe destek ekibimiz tek mesaj uzağında. Herhangi bir aksilikte anında yanındayız.</p>
-                </div>
-            </div>
+            }
+          
         </div>
     </div>
 </section>

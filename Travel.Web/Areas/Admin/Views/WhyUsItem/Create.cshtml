@@ -1,0 +1,50 @@
+﻿@model CreateWhyUsItemDto
+@{
+    ViewData["Title"] = "Yeni Kart Ekle";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="sec" style="margin-bottom:1rem">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h4 class="fw-bold text-dark mb-1">Yeni "Neden Biz" Kartı Ekle</h4>
+            <p class="text-muted small mb-0">Anasayfada gösterilecek yeni avantaj maddesini tanımlayın.</p>
+        </div>
+        <a href="/Admin/WhyUsItem/Index" class="btn btn-secondary btn-sm px-3">Geri Dön</a>
+    </div>
+
+    <div class="card-x p-4" style="border-radius: 12px; background: #fff;">
+        <form asp-action="Create" method="post">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label fw-semibold">Başlık</label>
+                    <input type="text" asp-for="Title" class="ctrl w-100" placeholder="Örn: Özenle Seçilmiş Rotalar" required />
+                    <span asp-validation-for="Title" class="text-danger small"></span>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label fw-semibold">Sıra No (Display Order)</label>
+                    <input type="number" asp-for="DisplayOrder" class="ctrl w-100" placeholder="1" required />
+                    <span asp-validation-for="DisplayOrder" class="text-danger small"></span>
+                </div>
+
+                <div class="col-12">
+                    <label class="form-label fw-semibold">İkon (Emoji veya Sınıf)</label>
+                    <input type="text" asp-for="Icon" class="ctrl w-100" placeholder="Örn: 📍 veya bi-geo-alt" />
+                    <span asp-validation-for="Icon" class="text-danger small"></span>
+                </div>
+
+                <div class="col-12">
+                    <label class="form-label fw-semibold">Açıklama</label>
+                    <textarea asp-for="Description" class="ctrl w-100" rows="4" placeholder="Kart detay açıklamasını giriniz..." required></textarea>
+                    <span asp-validation-for="Description" class="text-danger small"></span>
+                </div>
+
+                <div class="col-12 d-flex justify-content-end gap-2 mt-4">
+                    <a href="/Admin/WhyUsItem/Index" class="btn btn-light px-4">İptal</a>
+                    <button type="submit" class="btn-teal px-4">Kaydet</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,4 +1,6 @@
-﻿@model List<ResultReservationDto>
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<ResultReservationDto>
 
 <div class="card-x mb-3">
     <div class="tbl-wrap">
@@ -41,7 +43,10 @@
                                 </div>
                             </div>
                         </td>
-                        <td>@reservation.UserFullName <span class="text-primary fw-bold">@reservation.UserEmail</span></td>
+                        <td>
+                            <div class="fw-semibold text-dark">@reservation.UserFullName</div>
+                            <div class="text-primary" style="font-size: 0.85rem;">@reservation.UserEmail</div>
+                        </td>
                         <td>@reservation.DestinationName</td>
                         <td>@reservation.TourDate.ToLocalTime().ToString("dd MMM") - @reservation.TourDate.AddDays(reservation.Duration).ToString("dd MMM yyyy")</td>
                         <td><small class="text-muted">@reservation.CreatedAt.ToString("dd MMM yyyy HH:mm")</small></td>
@@ -97,16 +102,18 @@
     </div>
     <div class="pager-row" id="pagerRow">
         <div class="per-page">
-            Sayfa başına
-            <select id="perPage"><option>10</option><option>25</option><option>50</option></select>
+            Toplam @Model.TotalItemCount kayıttan @Model.FirstItemOnPage - @Model.LastItemOnPage arası gösteriliyor.
         </div>
         <div class="pager">
-            <a href="#" class="disabled">Önceki</a>
-            <a href="#" class="active">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <a href="#">Sonraki</a>
+            @Html.PagedListPager(Model, page => Url.Action("Index", "Reservation", new { area = "Admin", page }), new PagedListRenderOptions
+            {
+                LiElementClasses = new[] { "page-item" },
+                PageClasses = new[] { "page-link" },
+                DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+                DisplayLinkToLastPage = PagedListDisplayMode.Never,
+                DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                DisplayLinkToNextPage = PagedListDisplayMode.Always,
+            })
         </div>
     </div>
 </div>

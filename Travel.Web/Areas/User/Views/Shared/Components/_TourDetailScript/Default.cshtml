@@ -6,25 +6,25 @@
     const itinEl = document.getElementById("itinerary");
     if (itinEl && typeof ITIN !== "undefined" && ITIN.length > 0) {
         itinEl.innerHTML = ITIN.map((d, i) => `
-                <div class="itin-item ${i === 0 ? 'open' : ''}">
-                    <div class="itin-head" onclick="toggleDay(this)">
-                        <span class="day-tag">${d.day}</span>
-                        <span class="itin-title">${d.title}</span>
-                        <span class="itin-toggle"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
-                    </div>
-                    <div class="itin-body">
-                        <div class="itin-inner">
-                            <p style="margin-bottom:.4rem">${d.body}</p>
-                            ${d.list ? `<ul>${d.list.map(x => `<li>${x}</li>`).join("")}</ul>` : ""}
-                            ${d.after ? `<p style="margin:0">${d.after}</p>` : ""}
-                            <div class="itin-tags">
-                                <span>🏨 ${d.stay}</span>
-                                <span>🚌 ${d.trans}</span>
-                                <span>🍽️ ${d.meal}</span>
+                    <div class="itin-item ${i === 0 ? 'open' : ''}">
+                        <div class="itin-head" onclick="toggleDay(this)">
+                            <span class="day-tag">${d.day}</span>
+                            <span class="itin-title">${d.title}</span>
+                            <span class="itin-toggle"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                        </div>
+                        <div class="itin-body">
+                            <div class="itin-inner">
+                                <p style="margin-bottom:.4rem">${d.body}</p>
+                                ${d.list ? `<ul>${d.list.map(x => `<li>${x}</li>`).join("")}</ul>` : ""}
+                                ${d.after ? `<p style="margin:0">${d.after}</p>` : ""}
+                                <div class="itin-tags">
+                                    <span>🏨 ${d.stay}</span>
+                                    <span>🚌 ${d.trans}</span>
+                                    <span>🍽️ ${d.meal}</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>`).join("");
+                    </div>`).join("");
 
         itinEl.querySelector(".itin-item.open .itin-body").style.maxHeight = "600px";
     }
@@ -88,7 +88,7 @@
 
     const isAuthenticated = @User.Identity.IsAuthenticated.ToString().ToLower();
 
-    function reserve() {        
+    function reserve() {
         if (!isAuthenticated) {
             var loginModal = new bootstrap.Modal(document.getElementById('loginRequiredModal'));
             loginModal.show();
@@ -113,7 +113,7 @@
         })
             .then(r => {
                 if (r.ok) {
-                    return r.json(); 
+                    return r.json();
                 } else {
                     return r.text().then(t => { throw new Error(t); });
                 }
@@ -151,9 +151,6 @@
     });
     function submitReview() {
         const txt = document.getElementById("reviewText").value.trim();
-        if (!pickedStars) { alert("Lütfen bir puan seç."); return; }
-        if (!txt) { alert("Lütfen yorumunu yaz."); return; }
-
         const tourId = document.getElementById("reserveBtn").dataset.tourId;
 
         fetch("/User/Comment/Create", {
@@ -175,9 +172,12 @@
                 return r.text().then(t => { throw new Error(t); });
             }
         })
-        .catch(err => {
-            alert("Yorum gönderilemedi: " + err.message);
-        });
+            .catch(err => {
+                const errDiv = document.getElementById('reviewError');
+                errDiv.innerHTML = err.message.replace(/\n/g, '<br>');
+                errDiv.style.display = 'block';
+            });
+
        
     }
 
@@ -218,26 +218,26 @@
         { title: "Prag & Viyana Kültür Turu", country: "Çekya · Avusturya", dur: "6 Gün / 5 Gece", rating: 4.8, reviews: 1421, price: "36.400", badge: "", img: "https://images.unsplash.com/photo-1541849546-216549ae216d?auto=format&fit=crop&w=800&q=80" }
     ];
     document.getElementById("similarGrid").innerHTML = SIMILAR.map(t => `
-                          <div class="col-md-6 col-lg-4">
-                            <article class="tour-card">
-                              <div class="tour-media">
-                                <img src="${t.img}" alt="${t.title}" loading="lazy" />
-                                ${t.badge ? `<span class="tour-badge">${t.badge}</span>` : ''}
-                              </div>
-                              <div class="tour-body">
-                                <div class="tour-country">${t.country}</div>
-                                <h3 class="tour-title">${t.title}</h3>
-                                <div class="tour-meta">
-                                  <span>🗓️ ${t.dur}</span>
-                                  <span><span class="star">★</span> ${t.rating.toFixed(1)} <span style="color:var(--muted)">(${t.reviews.toLocaleString("tr-TR")})</span></span>
-                                </div>
-                                <div class="tour-foot">
-                                  <div class="price"><small>Kişi başı</small><b>${t.price} <span>TL</span></b></div>
-                                  <a href="tour-detail.html" class="btn-incele">Turu İncele</a>
-                                </div>
-                              </div>
-                            </article>
-                          </div>`).join("");
+                              <div class="col-md-6 col-lg-4">
+                                <article class="tour-card">
+                                  <div class="tour-media">
+                                    <img src="${t.img}" alt="${t.title}" loading="lazy" />
+                                    ${t.badge ? `<span class="tour-badge">${t.badge}</span>` : ''}
+                                  </div>
+                                  <div class="tour-body">
+                                    <div class="tour-country">${t.country}</div>
+                                    <h3 class="tour-title">${t.title}</h3>
+                                    <div class="tour-meta">
+                                      <span>🗓️ ${t.dur}</span>
+                                      <span><span class="star">★</span> ${t.rating.toFixed(1)} <span style="color:var(--muted)">(${t.reviews.toLocaleString("tr-TR")})</span></span>
+                                    </div>
+                                    <div class="tour-foot">
+                                      <div class="price"><small>Kişi başı</small><b>${t.price} <span>TL</span></b></div>
+                                      <a href="tour-detail.html" class="btn-incele">Turu İncele</a>
+                                    </div>
+                                  </div>
+                                </article>
+                              </div>`).join("");
 
 
     function toggleFav(btn) {

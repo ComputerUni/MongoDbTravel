@@ -21,12 +21,11 @@
     </a>
 </div>
 
-<!-- RAPOR AL -->
 <div class="sec" style="margin-bottom:1rem">
     <div class="row g-3 align-items-end">
-        <div class="col-auto">
+        <div class="col-lg-3 col-md-6">
             <label class="form-label fw-semibold">Tur Seç</label>
-            <select class="ctrl" id="reportTourId" onchange="loadReportDates()">
+            <select class="ctrl w-100" id="reportTourId" onchange="loadReportDates()">
                 <option value="">Tur seçiniz...</option>
                 @foreach (var tour in Model.Tours)
                 {
@@ -34,15 +33,15 @@
                 }
             </select>
         </div>
-        <div class="col-auto">
+        <div class="col-lg-3 col-md-6">
             <label class="form-label fw-semibold">Tur Tarihi</label>
-            <select class="ctrl" id="reportDateId" disabled>
+            <select class="ctrl w-100" id="reportDateId" disabled>
                 <option value="">Tüm Tarihler</option>
             </select>
         </div>
-        <div class="col-auto">
+        <div class="col-lg-3 col-md-6">
             <label class="form-label fw-semibold">Rezervasyon Durumu</label>
-            <select class="ctrl" id="reportStatus">
+            <select class="ctrl w-100" id="reportStatus">
                 <option value="">Tüm Durumlar</option>
                 @foreach (var status in Enum.GetValues<ReservationStatus>())
                 {
@@ -50,16 +49,17 @@
                 }
             </select>
         </div>
-        <div class="col-auto d-flex gap-2">
-            <button type="button" class="btn-teal" onclick="downloadTourReport('excel')">📊 Excel</button>
-            <button type="button" class="btn-navy" onclick="downloadTourReport('pdf')">📄 PDF</button>
+        <div class="col-lg-3 col-md-6 d-flex gap-2">
+            <button type="button" class="btn-teal flex-fill" onclick="downloadTourReport('excel')">📊 Excel</button>
+            <button type="button" class="btn-navy flex-fill" onclick="downloadTourReport('pdf')">📄 PDF</button>
         </div>
+
     </div>
 </div>
 
-@await Component.InvokeAsync("_AdminTourKpi") 
+@await Component.InvokeAsync("_AdminTourKpi")
 @await Component.InvokeAsync("_AdminTourFilter")
 @await Component.InvokeAsync("_AdminTourBulkBar")
-@await Component.InvokeAsync("_AdminTourTable")
+@await Component.InvokeAsync("_AdminTourTable", new { page = int.TryParse(Context.Request.Query["page"], out var p) ? p : 1 })
 @await Component.InvokeAsync("_AdminTourDeleteModal")
 @await Component.InvokeAsync("_AdminTourScript")

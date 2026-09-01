@@ -93,3 +93,5 @@ C:\Users\BURHAN\Desktop\MongoDbProject\Travel.Web\obj\Debug\net8.0\refint\Travel
 C:\Users\BURHAN\Desktop\MongoDbProject\Travel.Web\obj\Debug\net8.0\Travel.Web.pdb
 C:\Users\BURHAN\Desktop\MongoDbProject\Travel.Web\obj\Debug\net8.0\Travel.Web.genruntimeconfig.cache
 C:\Users\BURHAN\Desktop\MongoDbProject\Travel.Web\obj\Debug\net8.0\ref\Travel.Web.dll
+C:\Users\BURHAN\Desktop\MongoDbProject\Travel.Web\bin\Debug\net8.0\X.PagedList.dll
+C:\Users\BURHAN\Desktop\MongoDbProject\Travel.Web\bin\Debug\net8.0\X.PagedList.Mvc.Core.dll
