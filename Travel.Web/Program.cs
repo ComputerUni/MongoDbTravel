@@ -1,6 +1,8 @@
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
 using QuestPDF.Infrastructure;
 using System.Reflection;
@@ -13,6 +15,7 @@ using Travel.Web.Services.DashboardServices;
 using Travel.Web.Services.DestinationServices;
 using Travel.Web.Services.FavoriteServices;
 using Travel.Web.Services.IWhyUsServices;
+using Travel.Web.Services.LocalizationServices;
 using Travel.Web.Services.LookupServices;
 using Travel.Web.Services.QuestionServices;
 using Travel.Web.Services.ReportServices;
@@ -49,6 +52,7 @@ builder.Services.AddScoped<IDashboardService, DashboardService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IWhyUsService, WhyUsService>();
 builder.Services.AddScoped<IContactService, ContactService>();
+builder.Services.AddScoped<ITourLocalizationService, TourLocalizationService>();
 
 //builder.Services.AddScoped<IRouteService, RouteService>();
 
@@ -64,7 +68,13 @@ builder.Services.AddIdentity<AppUser, AppRole>()
     ).AddDefaultTokenProviders();
 
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddLocalization(opt => opt.ResourcesPath = "Resources");
+
+builder.Services.AddControllersWithViews()
+    .AddViewLocalization()
+    .AddDataAnnotationsLocalization();
+
+
 
 var app = builder.Build();
 
@@ -81,6 +91,17 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+var supportedCultures = new[] { "tr", "en" };
+var localizationOptions = new RequestLocalizationOptions()
+    .SetDefaultCulture("tr")
+    .AddSupportedCultures(supportedCultures)
+    .AddSupportedUICultures(supportedCultures);
+
+localizationOptions.RequestCultureProviders.Insert(0,
+    new QueryStringRequestCultureProvider());
+
+app.UseRequestLocalization(localizationOptions);
 
 app.UseAuthentication();
 

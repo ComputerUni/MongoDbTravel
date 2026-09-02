@@ -31,9 +31,15 @@
                 <option value="">Tur Tipi Seçiniz</option>
             </select>
         </div>
-        <div class="field mb-3">
-            <label class="form-label">Değer / İsim (Name) <span class="req">*</span></label>
-            <input class="ctrl form-control" asp-for="Name" placeholder="Örn: Uçak, Schengen Vizesi, İstanbul">
+        <div class="row g-3">
+            <div class="col-md-6 field">
+                <label class="form-label">Değer / İsim (TR) <span class="req">*</span></label>
+                <input class="ctrl form-control" asp-for="Name" placeholder="Örn: Uçak, Schengen Vizesi">
+            </div>
+            <div class="col-md-6 field">
+                <label class="form-label">Name (EN)</label>
+                <input class="ctrl form-control" asp-for="NameEn" placeholder="e.g. Flight, Schengen Visa">
+            </div>
         </div>
         <button type="submit" class="btn-teal">Kaydet</button>
     </div>

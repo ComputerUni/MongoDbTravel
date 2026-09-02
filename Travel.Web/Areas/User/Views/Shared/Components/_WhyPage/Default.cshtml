@@ -1,11 +1,12 @@
-﻿@model List<ResultWhyUsItemDto>
+﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<Travel.Web.SharedResource> L
+@model List<ResultWhyUsItemDto>
 
 <section id="hakkimizda">
     <div class="container">
         <div class="section-head mb-5">
-            <div class="eyebrow">Neden biz</div>
-            <h2>Neden Travelio?</h2>
-            <p>Sadece bir tur değil, baştan sona düşünülmüş bir seyahat deneyimi.</p>
+            <div class="eyebrow">@L["NedenBiz"]</div>
+            <h2>@L["NedenTravelio"]</h2>
+            <p>@L["NedenTravelioAciklama"]</p>
         </div>
         <div class="row g-4">
             @foreach(var item in Model)

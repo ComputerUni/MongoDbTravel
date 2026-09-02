@@ -13,5 +13,6 @@ namespace Travel.Web.Services.TourServices
         Task DeleteAsync(string id);
         Task UpdateAsync(UpdateTourDto updateTourDto);
         Task<TourKpiDto> GetTourKpiAsync();
+        Task<string> CreateAndReturnIdAsync(CreateTourDto createTourDto);
     }
 }

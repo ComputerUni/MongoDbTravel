@@ -1,14 +1,15 @@
-﻿@model List<ResultTourDto>
+﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<Travel.Web.SharedResource> L
+@model List<ResultTourDto>
 
 <section id="turlar">
     <div class="container">
         <div class="d-flex flex-wrap justify-content-between align-items-end mb-5">
             <div class="section-head">
-                <div class="eyebrow">Popüler rotalar</div>
-                <h2>En Çok Tercih Edilen Turlar</h2>
-                <p>Gezginlerin en çok rezervasyon yaptığı, özenle planlanmış rotalar.</p>
+                <div class="eyebrow">@L["PopulerRotalar"]</div>
+                <h2>@L["EnCokTercihEdilenTurlar"]</h2>
+                <p>@L["EnCokTercihEdilenTurlarAciklama"]</p>
             </div>
-            <a href="/User/Tour/Index" class="btn btn-teal d-none d-md-inline-block mt-3">Tüm turları gör</a>
+            <a href="/User/Tour/Index" class="btn btn-teal d-none d-md-inline-block mt-3">@L["TumTurlariGor"]</a>
         </div>
 
         <div class="row g-4" id="tourGrid">
@@ -23,15 +24,15 @@
                                 <div class="tour-badges-wrapper" style="position: absolute; top: 12px; left: 12px; display: flex; gap: 6px; z-index: 2;">
                                     @if (item.IsFeatured)
                                     {
-                                        <span style="background: var(--teal, #0d9488); color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">Popüler</span>
+                                        <span style="background: var(--teal, #0d9488); color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">@L["Populer"]</span>
                                     }
                                     @if (item.IsBest)
                                     {
-                                        <span style="background: #e11d48; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">Çok Satan</span>
+                                        <span style="background: #e11d48; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">@L["CokSatan"]</span>
                                     }
                                     @if (item.IsNew)
                                     {
-                                        <span style="background: #2563eb; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">Yeni</span>
+                                        <span style="background: #2563eb; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">@L["Yeni"]</span>
                                     }
                                 </div>
                                 <button class="fav" aria-label="Favorilere ekle" data-tour-id="@item.Id" onclick="toggleFavorite(this)">
@@ -42,7 +43,7 @@
                                 <div class="tour-country">@item.Country</div>
                                 <h3 class="tour-title">@item.Name</h3>
                                 <div class="tour-meta">
-                                    <span>🗓️ @item.Duration gün</span>
+                                    <span>🗓️ @item.Duration @L["gun"]</span>
                                     <span class="rating" style="margin-left: 10px;">
                                         <span class="star" style="color: #fbbf24;">★</span>
                                         <strong style="color: #111827;">@item.AverageRating.ToString("0.0")</strong>
@@ -51,10 +52,10 @@
                                 </div>
                                 <div class="tour-foot">
                                     <div class="price">
-                                        <small>Kişi başı</small>
+                                        <small>@L["KisiBasi"]</small>
                                         <b>@item.Price.ToString("N0") <span>TL</span></b>
                                     </div>
-                                    <a href="/User/Tour/Detail/@item.Id" class="btn-incele">Turu İncele</a>
+                                    <a href="/User/Tour/Detail/@item.Id" class="btn-incele">@L["TuruIncele"]</a>
                                 </div>
                             </div>
                         </article>

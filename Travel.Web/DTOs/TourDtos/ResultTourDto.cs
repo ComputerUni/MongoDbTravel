@@ -42,5 +42,23 @@ namespace Travel.Web.DTOs.TourDtos
         public string Country { get; set; }
         public double AverageRating { get; set; }
         public int ReviewCount { get; set; }
+
+
+
+        public string? NameEn { get; set; }
+        public string? CountryEn { get; set; }
+        public string? DescriptionEn { get; set; }
+        public string? ShortDescriptionEn { get; set; }
+        public string? RouteEn { get; set; }
+        public string? TourTypeEn { get; set; }
+        public string? TransportEn { get; set; }
+        public string? AccommodationEn { get; set; }
+        public string? GuideLanguageEn { get; set; }
+        public string? VisaInfoEn { get; set; }
+        public string? MeetingPointEn { get; set; }
+        public List<string>? IncludedEn { get; set; } = new();
+        public List<string>? NotIncludedEn { get; set; } = new();
+        public List<DayProgramDto>? DayProgramsEn { get; set; } = new();
+        public List<string>? FeaturesEn { get; set; } = new ();
     }
 }

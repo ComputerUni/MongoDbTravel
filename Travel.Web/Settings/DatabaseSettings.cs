@@ -16,6 +16,7 @@
         public string LookupItemCollectionName { get; set; }
         public string WhyUsItemCollectionName { get; set; }
         public string ContactCollectionName { get; set; }
+        public string TourLocalizationCollectionName { get; set; }
 
     }
 }

@@ -35,29 +35,51 @@
         <ul id="valList"></ul>
     </div>
 
+
     <!-- 1. TEMEL BİLGİLER -->
     <div class="sec">
         <div class="sec-head">
             <h2><span class="sec-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /></svg></span> Temel Bilgiler</h2>
-            <p>Turun kullanıcı tarafında görünen temel bilgilerini girin.</p>
+            <p>Turun Türkçe ve İngilizce temel bilgilerini girin.</p>
         </div>
-        <div class="field">
-            <label>Tur Adı <span class="req">*</span></label>
-            <input class="ctrl" asp-for="Tour.Name" placeholder="Örn. Roma & Toskana Keşfi">
-        </div>
-        <div class="field">
-            <label>Kısa Açıklama</label>
-            <textarea class="ctrl" asp-for="Tour.ShortDescription" rows="2" placeholder="Turun öne çıkan özelliklerini birkaç cümleyle anlatın."></textarea>
-        </div>
-        <div class="field">
-            <label>Tur Açıklaması</label>
-            <textarea class="ctrl" asp-for="Tour.Description" rows="4" placeholder="Turun konsepti, deneyimi ve önemli detayları..."></textarea>
-        </div>
-        <div class="field">
-            <label>Buluşma Noktası</label>
-            <input class="ctrl" asp-for="Tour.MeetingPoint" placeholder="İstanbul Havalimanı Dış Hatlar Terminali" />
-        </div>
+
         <div class="row g-3">
+            <div class="col-md-6 field">
+                <label>Tur Adı (TR) <span class="req">*</span></label>
+                <input class="ctrl" asp-for="Tour.Name" placeholder="Örn. Roma & Toskana Keşfi">
+            </div>
+            <div class="col-md-6 field">
+                <label>Tour Name (EN)</label>
+                <input class="ctrl" asp-for="Tour.NameEn" placeholder="e.g. Rome & Tuscany Discovery">
+            </div>
+
+            <div class="col-md-6 field">
+                <label>Kısa Açıklama (TR)</label>
+                <textarea class="ctrl" asp-for="Tour.ShortDescription" rows="2" placeholder="Turun öne çıkan özelliklerini birkaç cümleyle anlatın."></textarea>
+            </div>
+            <div class="col-md-6 field">
+                <label>Short Description (EN)</label>
+                <textarea class="ctrl" asp-for="Tour.ShortDescriptionEn" rows="2" placeholder="Short description in English..."></textarea>
+            </div>
+
+            <div class="col-md-6 field">
+                <label>Tur Açıklaması (TR)</label>
+                <textarea class="ctrl" asp-for="Tour.Description" rows="4" placeholder="Turun konsepti, deneyimi ve önemli detayları..."></textarea>
+            </div>
+            <div class="col-md-6 field">
+                <label>Description (EN)</label>
+                <textarea class="ctrl" asp-for="Tour.DescriptionEn" rows="4" placeholder="Detailed description in English..."></textarea>
+            </div>
+
+            <div class="col-md-6 field">
+                <label>Buluşma Noktası (TR)</label>
+                <input class="ctrl" asp-for="Tour.MeetingPoint" placeholder="İstanbul Havalimanı Dış Hatlar Terminali" />
+            </div>
+            <div class="col-md-6 field">
+                <label>Meeting Point (EN)</label>
+                <input class="ctrl" asp-for="Tour.MeetingPointEn" placeholder="Istanbul Airport International Departures" />
+            </div>
+
             <div class="col-md-6 field">
                 <label>Kategori <span class="req">*</span></label>
                 <select class="ctrl" asp-for="Tour.CategoryId" asp-items="@(new SelectList(Model.Categories, "Id", "CategoryName"))">
@@ -70,9 +92,16 @@
                     <option value="">Destinasyon Seçiniz</option>
                 </select>
             </div>
-            <div class="col-md-8 field">
-                <label>Tur Rotası</label>
-                <input class="ctrl" asp-for="Tour.Route" placeholder="Roma · Vatikan · Floransa · Pisa · Toskana">
+
+            <div class="row g-3">
+                <div class="col-md-6 field">
+                    <label>Tur Rotası (TR)</label>
+                    <input class="ctrl" asp-for="Tour.Route" placeholder="Roma · Vatikan · Floransa · Pisa · Toskana">
+                </div>
+                <div class="col-md-6 field">
+                    <label>Route (EN)</label>
+                    <input class="ctrl" asp-for="Tour.RouteEn" placeholder="Rome · Vatican · Florence · Pisa · Tuscany">
+                </div>
             </div>
             <div class="col-md-4 field">
                 <label>Tur Tipi</label>
@@ -123,8 +152,12 @@
                 <select class="ctrl" asp-for="Tour.Transport" asp-items="@(new SelectList(Model.Transports, "Id", "Name"))"><option value="">Ulaşım Aracı Seçiniz</option></select>
             </div>
             <div class="col-md-6 col-lg-3 field">
-                <label>Konaklama</label>
+                <label>Konaklama (TR)</label>
                 <input class="ctrl" asp-for="Tour.Accommodation" placeholder="4 Yıldızlı Oteller">
+            </div>
+            <div class="col-md-6 col-lg-3 field">
+                <label>Accommodation (EN)</label>
+                <input class="ctrl" asp-for="Tour.AccommodationEn" placeholder="4-Star Hotels">
             </div>
             <div class="col-md-6 col-lg-3 field">
                 <label>Rehber Bilgisi</label>
@@ -184,22 +217,22 @@
             <div class="col-lg-6">
                 <label style="font-size:.8rem;font-weight:600;color:var(--navy);margin-bottom:.6rem;display:block">Fiyata Dahil Olanlar</label>
                 <div id="incList"></div>
-                <button type="button" class="btn-add" onclick="addItem('incList','Yeni hizmet')">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg> Yeni Hizmet Ekle
+                <button type="button" class="btn-add" onclick="addItem('incList','Yeni hizmet','New service')">
+                    Yeni Hizmet Ekle
                 </button>
             </div>
             <div class="col-lg-6">
                 <label style="font-size:.8rem;font-weight:600;color:var(--navy);margin-bottom:.6rem;display:block">Fiyata Dahil Olmayanlar</label>
                 <div id="excList"></div>
-                <button type="button" class="btn-add" onclick="addItem('excList','Yeni madde')">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg> Yeni Madde Ekle
+                <button type="button" class="btn-add" onclick="addItem('excList','Yeni madde','New item')">
+                    Yeni Madde Ekle
                 </button>
             </div>
             <div class="col-12">
                 <label style="font-size:.8rem;font-weight:600;color:var(--navy);margin-bottom:.6rem;display:block">Turun Öne Çıkanları</label>
                 <div id="hlList"></div>
-                <button type="button" class="btn-add" onclick="addItem('hlList','Öne çıkan özellik')">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg> Öne Çıkan Özellik Ekle
+                <button type="button" class="btn-add" onclick="addItem('hlList','Öne çıkan özellik','Highlight')">
+                    Öne Çıkan Özellik Ekle
                 </button>
             </div>
         </div>

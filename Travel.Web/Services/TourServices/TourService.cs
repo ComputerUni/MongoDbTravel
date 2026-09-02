@@ -38,6 +38,11 @@ namespace Travel.Web.Services.TourServices
 
         public async Task CreateAsync(CreateTourDto createTourDto)
         {
+            await CreateAndReturnIdAsync(createTourDto);
+        }
+
+        public async Task<string> CreateAndReturnIdAsync(CreateTourDto createTourDto)
+        {
             var tour = _mapper.Map<Tour>(createTourDto);
             if (createTourDto.CoverImage != null)
             {
@@ -54,6 +59,7 @@ namespace Travel.Web.Services.TourServices
             }
 
             await _tourCollection.InsertOneAsync(tour);
+            return tour.Id;
         }
 
         public async Task DeleteAsync(string id)
@@ -197,7 +203,7 @@ namespace Travel.Web.Services.TourServices
 
         public async Task<List<ResultTourDto>> GetActiveToursForUserAsync()
         {
-            var tours = await _tourCollection.Find(x => x.IsActive == "Aktif" && x.Dates.Any(d => d.IsActive) && x.IsFeatured).ToListAsync();
+            var tours = await _tourCollection.Find(x => x.IsActive == "Aktif" && x.Dates.Any(d => d.IsActive) && x.IsFeatured).SortByDescending(x => x.Id).ToListAsync();
             var categories = await _categoryService.GetAllAsync();
             var destinations = await _destinationService.GetAllAsync();
 

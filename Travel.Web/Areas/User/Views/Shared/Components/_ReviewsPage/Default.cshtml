@@ -1,10 +1,11 @@
-﻿@model List<ResultCommentDto>
+﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<Travel.Web.SharedResource> L
+@model List<ResultCommentDto>
 
 <section id="yorumlar" style="background:#fff">
     <div class="container">
         <div class="section-head mb-5">
-            <div class="eyebrow">Gezgin yorumları</div>
-            <h2>Gezginler Ne Diyor?</h2>
+            <div class="eyebrow">@L["GezginYorumlari"]</div>
+            <h2>@L["GezginlerNeDiyor"]</h2>
         </div>
         <div class="row g-4">
             @if (Model != null && Model.Any())

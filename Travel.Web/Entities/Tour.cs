@@ -26,8 +26,6 @@ namespace Travel.Web.Entities
         public List<string> Included { get; set; } = new();
         public List<string> NotIncluded { get; set; } = new();
         public decimal Price { get; set; }
-        //public string Country { get; set; }
-        //public string City { get; set; }
         public string CategoryId { get; set; }
         public string DestinationId { get; set; }
         public int Duration { get; set; }

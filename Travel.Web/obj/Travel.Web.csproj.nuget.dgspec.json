@@ -73,6 +73,10 @@
               "target": "Package",
               "version": "[11.3.1, )"
             },
+            "Microsoft.Extensions.Localization": {
+              "target": "Package",
+              "version": "[10.0.11, )"
+            },
             "MongoDB.Driver": {
               "target": "Package",
               "version": "[3.10.0, )"

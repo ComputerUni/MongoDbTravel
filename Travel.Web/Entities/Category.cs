@@ -5,5 +5,6 @@ namespace Travel.Web.Entities
     public class Category : BaseEntity
     {
         public string CategoryName { get; set; }
+        public string? CategoryNameEn { get; set; }
     }
 }

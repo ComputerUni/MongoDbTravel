@@ -1,6 +1,7 @@
 ﻿@using X.PagedList
 @using X.PagedList.Mvc.Core
 @model IPagedList<ResultTourDto>
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Travel.Web.SharedResource> L
 
 <!DOCTYPE html>
 <html lang="tr">
@@ -32,21 +33,21 @@
                     <!-- toolbar -->
                     <div class="toolbar">
                         <div>
-                            <h2>Turlar</h2>
-                            <div class="count"><span id="resultCount">12</span> tur bulundu</div>
+                            <h2>@L["Turlar"]</h2>
+                            <div class="count"><span id="resultCount">@Model.Count</span> @L["turbulundu"]</div>
                         </div>
                         <div class="d-flex align-items-center gap-2">
                             <button class="btn-filter-mobile d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#filterOffcanvas">
-                                Filtrele
+                                @L["Filtrele"]
                             </button>
                             <div class="sort-wrap">
-                                <label for="sortSelect" class="d-none d-sm-block">Sırala:</label>
+                                <label for="sortSelect" class="d-none d-sm-block">@L["Sirala"]:</label>
                                 <select id="sortSelect">
-                                    <option value="onerilen">Önerilen</option>
-                                    <option value="puan">En Yüksek Puan</option>
-                                    <option value="fiyat-artan">Fiyat: Düşükten Yükseğe</option>
-                                    <option value="fiyat-azalan">Fiyat: Yüksekten Düşüğe</option>
-                                    <option value="yeni">En Yeni Turlar</option>
+                                    <option value="onerilen">@L["Onerilen"]</option>
+                                    <option value="puan">@L["EnYuksekPuan"]</option>
+                                    <option value="fiyat-artan">@L["Fiyat"]: @L["DusuktenYuksege"]</option>
+                                    <option value="fiyat-azalan">@L["Fiyat"]: @L["YuksektenDusuge"]</option>
+                                    <option value="yeni">@L["EnYeniTurlar"]</option>
                                 </select>
                             </div>
                         </div>
@@ -63,9 +64,9 @@
                             <div class="ico">
                                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
                             </div>
-                            <h3>Aradığın kriterlere uygun tur bulunamadı.</h3>
-                            <p>Filtreleri biraz gevşetmeyi dene ya da tümünü temizleyerek yeniden başla.</p>
-                            <button class="btn-teal" onclick="clearFilters()">Filtreleri Temizle</button>
+                            <h3>@L["AradiginKriter"]</h3>
+                            <p>@L["FiltreGevsetme"]</p>
+                            <button class="btn-teal" onclick="clearFilters()">@L["FiltreleriTemizle"]</button>
                         </div>
                     </div>
 
@@ -86,10 +87,10 @@
 
                     <!-- mini cta -->
                     <div class="mini-cta">
-                        <div class="eyebrow">Yardımcı olalım</div>
-                        <h2>Aradığın Rotayı Bulamadın mı?</h2>
-                        <p>Hayalindeki destinasyonu bize söyle, sana uygun seyahat seçeneklerini birlikte bulalım.</p>
-                        <a href="/User/Contact/Index" class="btn-teal">Bize Ulaş</a>
+                        <div class="eyebrow">@L["YardimciOlalim"]</div>
+                        <h2>@L["AradiginRota"]</h2>
+                        <p>@L["CTAAciklama"]</p>
+                        <a href="/User/Contact/Index" class="btn-teal">@L["BizeUlas"]</a>
                     </div>
                 </div>
             </div>

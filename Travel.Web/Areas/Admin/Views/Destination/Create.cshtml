@@ -20,14 +20,38 @@
             <p>Destinasyonun görünen bilgilerini girin.</p>
         </div>
 
-        <div class="field">
-            <label asp-for="Name">Destinasyon Adı <span class="req">*</span></label>
-            <input class="ctrl" asp-for="Name" placeholder="Örn. Roma & Toskana Keşfi">
+        <div class="row g-3">
+            <div class="col-md-6 field">
+                <label asp-for="Name">Destinasyon Adı (TR) <span class="req">*</span></label>
+                <input class="ctrl" asp-for="Name" placeholder="Örn. Roma">
+            </div>
+            <div class="col-md-6 field">
+                <label asp-for="NameEn">Destination Name (EN)</label>
+                <input class="ctrl" asp-for="NameEn" placeholder="e.g. Rome">
+            </div>
         </div>
-        <div class="field">
-            <label asp-for="Country">Ülke Adı <span class="req">*</span></label>
-            <input class="ctrl" asp-for="Country" placeholder="Örn: İtalya">
+        <div class="row g-3">
+            <div class="col-md-6 field">
+                <label asp-for="Country">Ülke Adı (TR) <span class="req">*</span></label>
+                <input class="ctrl" asp-for="Country" placeholder="Örn: İtalya">
+            </div>
+            <div class="col-md-6 field">
+                <label asp-for="CountryEn">Country Name (EN)</label>
+                <input class="ctrl" asp-for="CountryEn" placeholder="e.g. Italy">
+            </div>
         </div>
+
+        <div class="row g-3">
+            <div class="col-md-6 field">
+                <label asp-for="Description">Açıklama (TR)</label>
+                <textarea asp-for="Description" class="ctrl" rows="4" placeholder="Destinasyon hakkında kısa bilgi..."></textarea>
+            </div>
+            <div class="col-md-6 field">
+                <label asp-for="DescriptionEn">Description (EN)</label>
+                <textarea asp-for="DescriptionEn" class="ctrl" rows="4" placeholder="Short info about the destination..."></textarea>
+            </div>
+        </div>
+
         <div class="field">
             <label>Görsel</label>
             <label class="upload" for="imageInput">
@@ -41,10 +65,6 @@
             <div class="cover-preview" id="coverPreview" style="display:none">
                 <img id="coverImg" alt="Önizleme">
             </div>
-        </div>
-        <div class="field">
-            <label asp-for="Description">Açıklama</label>
-            <textarea asp-for="Description" class="ctrl" rows="4" placeholder="Destinasyon hakkında kısa bilgi..."></textarea>
         </div>
         <div class="field form-check">
             <input type="checkbox" class="form-check-input" asp-for="IsPopular">

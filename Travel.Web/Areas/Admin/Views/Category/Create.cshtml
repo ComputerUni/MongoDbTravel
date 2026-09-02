@@ -20,9 +20,15 @@
             <p>Kategorinin görünen bilgilerini girin.</p>
         </div>
 
-        <div class="field">
-            <label asp-for="CategoryName">Destinasyon Adı <span class="req">*</span></label>
-            <input class="ctrl" asp-for="CategoryName" placeholder="Örn: Kültür">
+        <div class="row g-3">
+            <div class="col-md-6 field">
+                <label asp-for="CategoryName">Kategori Adı (TR) <span class="req">*</span></label>
+                <input class="ctrl" asp-for="CategoryName" placeholder="Örn: Kültür">
+            </div>
+            <div class="col-md-6 field">
+                <label asp-for="CategoryNameEn">Category Name (EN)</label>
+                <input class="ctrl" asp-for="CategoryNameEn" placeholder="e.g. Culture">
+            </div>
         </div>
 
         <button type="submit" class="btn-teal">Kaydet</button>

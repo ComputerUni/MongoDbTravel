@@ -1,11 +1,12 @@
-﻿@model List<ResultDestinationDto>
+﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<Travel.Web.SharedResource> L
+@model List<ResultDestinationDto>
 
 <section id="destinasyonlar" class="dest-section">
     <div class="container">
         <div class="section-head mb-5">
-            <div class="eyebrow">İlham veren şehirler</div>
-            <h2>Popüler Destinasyonlar</h2>
-            <p>Milyonlarca gezginin tekrar tekrar dönmek istediği rüya şehirler.</p>
+            <div class="eyebrow">@L["IlhamVerenSehirler"]</div>
+            <h2>@L["PopulerDestinasyonlar"]</h2>
+            <p>@L["PopulerDestinasyonlarAciklama"]</p>
         </div>
         <div class="row g-4">
             @if (Model.Count > 0)

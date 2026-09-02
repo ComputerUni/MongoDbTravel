@@ -13,6 +13,7 @@ namespace Travel.Web.DTOs.LookupDtos
             ? ((LookupType)t).DisplayName()
             : Type;
         public string Name { get; set; }
+        public string? NameEn { get; set; }
         public bool IsActive { get; set; }
     }
 }

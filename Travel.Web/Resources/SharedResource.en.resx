@@ -1,0 +1,459 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AnaSayfa" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Turlar" xml:space="preserve">
+    <value>Tours</value>
+  </data>
+  <data name="Destinasyonlar" xml:space="preserve">
+    <value>Destinations</value>
+  </data>
+  <data name="Yorumlar" xml:space="preserve">
+    <value>Reviews</value>
+  </data>
+  <data name="Hakkimizda" xml:space="preserve">
+    <value>About Us</value>
+  </data>
+  <data name="Iletisim" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="GirisYap" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="TurlariKesfedin" xml:space="preserve">
+    <value>Explore Tours</value>
+  </data>
+  <data name="BizeUlas" xml:space="preserve">
+    <value>Contact Us</value>
+  </data>
+  <data name="Destinasyon" xml:space="preserve">
+    <value>Destination</value>
+  </data>
+  <data name="Tarih" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="KisiSayisi" xml:space="preserve">
+    <value>Number of People</value>
+  </data>
+  <data name="PopulerDestinasyonlar" xml:space="preserve">
+    <value>Popular Destinations</value>
+  </data>
+  <data name="GezginlerNeDiyor" xml:space="preserve">
+    <value>What Do Travelers Say?</value>
+  </data>
+  <data name="NedenTravelio" xml:space="preserve">
+    <value>Why Travelio?</value>
+  </data>
+  <data name="TurHakkinda" xml:space="preserve">
+    <value>Tour Information</value>
+  </data>
+  <data name="TurunOneChikanlari" xml:space="preserve">
+    <value>Tour Highlights</value>
+  </data>
+  <data name="GunGunTurProgrami" xml:space="preserve">
+    <value>Day by Day Itinerary</value>
+  </data>
+  <data name="FiyataDahilOlanlar" xml:space="preserve">
+    <value>What's Included</value>
+  </data>
+  <data name="FiyataDahilOlmayanlar" xml:space="preserve">
+    <value>What's Not Included</value>
+  </data>
+  <data name="TurBilgileri" xml:space="preserve">
+    <value>Tur Bilgileri</value>
+  </data>
+  <data name="MisafirYorumlari" xml:space="preserve">
+    <value>Guest Reviews</value>
+  </data>
+  <data name="YorumYaz" xml:space="preserve">
+    <value>Write a Review</value>
+  </data>
+  <data name="TurHakkindaSorular" xml:space="preserve">
+    <value>Questions About the Tour</value>
+  </data>
+  <data name="SoruGonder" xml:space="preserve">
+    <value>Send Question</value>
+  </data>
+  <data name="RezervasyonYap" xml:space="preserve">
+    <value>Book Now</value>
+  </data>
+  <data name="TurTarihi" xml:space="preserve">
+    <value>Tour Date</value>
+  </data>
+  <data name="Yetiskin" xml:space="preserve">
+    <value>Adult</value>
+  </data>
+  <data name="Cocuk" xml:space="preserve">
+    <value>Child</value>
+  </data>
+  <data name="Toplam" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="GirisYapinizGerekiyor" xml:space="preserve">
+    <value>Login Required</value>
+  </data>
+  <data name="HayalindekiTuruBul" xml:space="preserve">
+    <value>Find Your Dream Tour</value>
+  </data>
+  <data name="Filtrele" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="EnCokTercihEdilenTurlar" xml:space="preserve">
+    <value>Most Popular Tours</value>
+  </data>
+  <data name="TumTurlariGor" xml:space="preserve">
+    <value>See All Tours</value>
+  </data>
+  <data name="TuruIncele" xml:space="preserve">
+    <value>View Tour</value>
+  </data>
+  <data name="KisiBasiFiyat" xml:space="preserve">
+    <value>Per person</value>
+  </data>
+  <data name="KayitOl" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="GirisYapSayfa" xml:space="preserve">
+    <value>Sign In</value>
+  </data>
+  <data name="HesapOlustur" xml:space="preserve">
+    <value>Create Account</value>
+  </data>
+  <data name="BeniHatirla" xml:space="preserve">
+    <value>Remember me</value>
+  </data>
+  <data name="HesabinYokMu" xml:space="preserve">
+    <value>Don't have an account?</value>
+  </data>
+  <data name="ZatenHesabinVarMi" xml:space="preserve">
+    <value>Already have an account?</value>
+  </data>
+  <data name="AdSoyad" xml:space="preserve">
+    <value>Full Name</value>
+  </data>
+  <data name="EPosta" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Sifre" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="SifreTekrar" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
+  <data name="MesajiGonder" xml:space="preserve">
+    <value>Send Message</value>
+  </data>
+  <data name="BizeUlasin" xml:space="preserve">
+    <value>Contact Us</value>
+  </data>
+  <data name="KaydetButon" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Paylas" xml:space="preserve">
+    <value>Share</value>
+  </data>
+  <data name="KontenjanDoldu" xml:space="preserve">
+    <value>Sold Out</value>
+  </data>
+  <data name="SonKontenjan" xml:space="preserve">
+    <value>Last {0} Spots!</value>
+  </data>
+  <data name="Turları Ara" xml:space="preserve">
+    <value>Search Tours</value>
+  </data>
+  <data name="Mutlu Gezgin" xml:space="preserve">
+    <value>Happy Travelers</value>
+  </data>
+  <data name="HeroBaslik" xml:space="preserve">
+    <value>Ready to Explore the World?</value>
+  </data>
+  <data name="HeroAciklama" xml:space="preserve">
+    <value>From Europe's iconic cities to the unique routes of the Far East, unforgettable experiences await you.</value>
+  </data>
+  <data name="HeroEyebrow" xml:space="preserve">
+    <value>Discover with Travelio</value>
+  </data>
+  <data name="PopulerRotalar" xml:space="preserve">
+    <value>Popular Routes</value>
+  </data>
+  <data name="Populer" xml:space="preserve">
+    <value>Popular</value>
+  </data>
+  <data name="EnCokTercihEdilenTurlarAciklama" xml:space="preserve">
+    <value>Carefully planned routes with the most bookings from travelers.</value>
+  </data>
+  <data name="CokSatan" xml:space="preserve">
+    <value>Best Seller</value>
+  </data>
+  <data name="Yeni" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="IlhamVerenSehirler" xml:space="preserve">
+    <value>Inspiring Cities</value>
+  </data>
+  <data name="PopulerDestinasyonlarAciklama" xml:space="preserve">
+    <value>Dream cities that millions of travelers want to return to again and again.</value>
+  </data>
+  <data name="GezginYorumlari" xml:space="preserve">
+    <value>Traveler Reviews</value>
+  </data>
+  <data name="HenuzYorumYok" xml:space="preserve">
+    <value>No reviews yet.</value>
+  </data>
+  <data name="NedenBiz" xml:space="preserve">
+    <value>Why Us?</value>
+  </data>
+  <data name="NedenTravelioAciklama" xml:space="preserve">
+    <value>Not just a tour, but a travel experience thought through from start to finish.</value>
+  </data>
+  <data name="SiradakiDurak" xml:space="preserve">
+    <value>The next stop is you</value>
+  </data>
+  <data name="CTABaslik" xml:space="preserve">
+    <value>Your Next Adventure is Just a Click Away</value>
+  </data>
+  <data name="CTAAciklama" xml:space="preserve">
+    <value>Choose your dream route and leave the rest to Travelio. Don't miss early booking advantages for limited capacity tours.</value>
+  </data>
+  <data name="FooterAciklama" xml:space="preserve">
+    <value>Unforgettable journeys to every corner of the world with carefully designed tours.</value>
+  </data>
+  <data name="Kesfet" xml:space="preserve">
+    <value>Explore</value>
+  </data>
+  <data name="Kampanyalar" xml:space="preserve">
+    <value>Campaigns</value>
+  </data>
+  <data name="Kurumsal" xml:space="preserve">
+    <value>Corporate</value>
+  </data>
+  <data name="Kariyer" xml:space="preserve">
+    <value>Careers</value>
+  </data>
+  <data name="Blog" xml:space="preserve">
+    <value>Blog</value>
+  </data>
+  <data name="BulteneKatil" xml:space="preserve">
+    <value>Join Newsletter</value>
+  </data>
+  <data name="BulteneKatilAciklama" xml:space="preserve">
+    <value>Be the first to hear about new routes and early booking opportunities.</value>
+  </data>
+  <data name="EpostaAdresin" xml:space="preserve">
+    <value>Your email address</value>
+  </data>
+  <data name="Katil" xml:space="preserve">
+    <value>Join</value>
+  </data>
+  <data name="FooterTelif" xml:space="preserve">
+    <value>© 2026 Travelio. All rights reserved.</value>
+  </data>
+  <data name="FooterLinkler" xml:space="preserve">
+    <value>Privacy · Terms of Use · Cookies</value>
+  </data>
+  <data name="gun" xml:space="preserve">
+    <value>day</value>
+  </data>
+  <data name="KisiBasi" xml:space="preserve">
+    <value>Per person</value>
+  </data>
+  <data name="DunyayiKesfet" xml:space="preserve">
+    <value>Explore The World</value>
+  </data>
+  <data name="TurlariFiltrele" xml:space="preserve">
+    <value>Filter Tours</value>
+  </data>
+  <data name="TourFiltreAciklama" xml:space="preserve">
+    <value>Narrow down to find the best route for you.</value>
+  </data>
+  <data name="TurAra" xml:space="preserve">
+    <value>Search Tour</value>
+  </data>
+  <data name="AradiginRota" xml:space="preserve">
+    <value>Couldn't Find the Route You're Looking For?</value>
+  </data>
+  <data name="AradiginRotaAciklama" xml:space="preserve">
+    <value>Tell us your dream destination, and let's find the right travel options together.</value>
+  </data>
+  <data name="YardimciOlalim" xml:space="preserve">
+    <value>We Are Here To Help</value>
+  </data>
+  <data name="GunveUzeri" xml:space="preserve">
+    <value>8 Days and Above</value>
+  </data>
+  <data name="veuzeri" xml:space="preserve">
+    <value>and above</value>
+  </data>
+  <data name="TurSuresi" xml:space="preserve">
+    <value>Tour Duration</value>
+  </data>
+  <data name="FiyatAraligi" xml:space="preserve">
+    <value>Price Range</value>
+  </data>
+  <data name="TurTipi" xml:space="preserve">
+    <value>Tour Type</value>
+  </data>
+  <data name="FiltreleriUygula" xml:space="preserve">
+    <value>Apply Filters</value>
+  </data>
+  <data name="FiltreleriTemizle" xml:space="preserve">
+    <value>Clear Filters</value>
+  </data>
+  <data name="EnUygunRota" xml:space="preserve">
+    <value>Refine to find the best route for you.</value>
+  </data>
+  <data name="TurVeyaDestinasyonAra" xml:space="preserve">
+    <value>Search tour or destination</value>
+  </data>
+  <data name="Degerlendirme" xml:space="preserve">
+    <value>Rating</value>
+  </data>
+  <data name="Sirala" xml:space="preserve">
+    <value>Sort</value>
+  </data>
+  <data name="Fiyat" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="Onerilen" xml:space="preserve">
+    <value>Recommended</value>
+  </data>
+  <data name="EnYuksekPuan" xml:space="preserve">
+    <value>Highest Rated</value>
+  </data>
+  <data name="EnYeniTurlar" xml:space="preserve">
+    <value>Newest Tours</value>
+  </data>
+  <data name="AradiginKriter" xml:space="preserve">
+    <value>No tours found matching your search.</value>
+  </data>
+  <data name="FiltreGevsetme" xml:space="preserve">
+    <value>Try relaxing your filters or clear them to start over.</value>
+  </data>
+  <data name="turbulundu" xml:space="preserve">
+    <value>tours found</value>
+  </data>
+  <data name="DusuktenYuksege" xml:space="preserve">
+    <value>Low to High</value>
+  </data>
+  <data name="YuksektenDusuge" xml:space="preserve">
+    <value>High to Low</value>
+  </data>
+</root>
