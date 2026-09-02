@@ -9,5 +9,6 @@ namespace Travel.Web.Areas.User.Models
         public ResultTourDto Tour { get; set; }
         public List<ResultCommentDto> Comments { get; set; }
         public List<ResultQuestionDto> Questions { get; set; }
+        public List<ResultTourDto> SimilarTours { get; set; }
     }
 }

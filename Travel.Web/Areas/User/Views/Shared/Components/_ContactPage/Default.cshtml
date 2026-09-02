@@ -1,10 +1,13 @@
-﻿<section class="py-5" style="background-color: #f8fafc; min-height: 80vh; display: flex; align-items: center;">
+﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<Travel.Web.SharedResource> L
+
+
+<section class="py-5" style="background-color: #f8fafc; min-height: 80vh; display: flex; align-items: center;">
     <div class="container">
         <div class="row justify-content-center mb-5">
             <div class="col-lg-8 text-center">
                 <span class="badge bg-light text-primary px-3 py-2 mb-2 fw-semibold" style="border-radius: 20px;">Bize Ulaşın</span>
-                <h2 class="fw-bold text-dark display-6">Sorularınız İçin Buradayız</h2>
-                <p class="text-muted">Seyahat planlarınız, turlarımız veya merak ettiğiniz her konuda bizimle iletişime geçebilirsiniz.</p>
+                <h2 class="fw-bold text-dark display-6">@L["BizeUlas"]</h2>
+                <p class="text-muted">@L["SorularinizIcin"]</p>
             </div>
         </div>
 
@@ -17,8 +20,8 @@
                                 📍
                             </div>
                             <div>
-                                <h6 class="fw-bold text-dark mb-1">Ofisimiz</h6>
-                                <p class="text-muted small mb-0">Gaziantep, Türkiye</p>
+                                <h6 class="fw-bold text-dark mb-1">@L["Ofisimiz"]</h6>
+                                <p class="text-muted small mb-0">Gaziantep, @L["Turkiye"]</p>
                             </div>
                         </div>
                     </div>
@@ -29,7 +32,7 @@
                                 ✉️
                             </div>
                             <div>
-                                <h6 class="fw-bold text-dark mb-1">E-Posta Adresi</h6>
+                                <h6 class="fw-bold text-dark mb-1">@L["EPosta"]</h6>
                                 <p class="text-muted small mb-0">info@turkuaztravel.com</p>
                             </div>
                         </div>
@@ -41,7 +44,7 @@
                                 📞
                             </div>
                             <div>
-                                <h6 class="fw-bold text-dark mb-1">Telefon Destek</h6>
+                                <h6 class="fw-bold text-dark mb-1">@L["TelefonDestek"]</h6>
                                 <p class="text-muted small mb-0">+90 (342) 000 00 00</p>
                             </div>
                         </div>
@@ -51,7 +54,7 @@
 
             <div class="col-lg-8">
                 <div class="card border-0 shadow-sm p-4 p-md-5 bg-white h-100" style="border-radius: 12px;">
-                    <h4 class="fw-bold text-dark mb-4">Bize Mesaj Gönderin</h4>
+                    <h4 class="fw-bold text-dark mb-4">@L["MesajGonder"]</h4>
 
                     @if (TempData["SuccessMessage"] != null)
                     {
@@ -64,23 +67,23 @@
                     <form asp-controller="Contact" asp-action="Index" method="post">
                         <div class="row g-3">
                             <div class="col-md-6">
-                                <label class="form-label text-muted small fw-semibold">Adınız Soyadınız</label>
-                                <input type="text" name="Name" class="form-control shadow-none" placeholder="Adınız Soyadınız" required style="border-radius: 8px; padding: 12px;" />
+                                <label class="form-label text-muted small fw-semibold">@L["AdSoyad"]</label>
+                                <input type="text" name="Name" class="form-control shadow-none" placeholder="@L["AdSoyad"]" required style="border-radius: 8px; padding: 12px;" />
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label text-muted small fw-semibold">E-Posta Adresiniz</label>
-                                <input type="email" name="Email" class="form-control shadow-none" placeholder="ornek@mail.com" required style="border-radius: 8px; padding: 12px;" />
+                                <label class="form-label text-muted small fw-semibold">@L["EPosta"]</label>
+                                <input type="email" name="Email" class="form-control shadow-none" placeholder="@L["EPosta"]" required style="border-radius: 8px; padding: 12px;" />
                             </div>
                             <div class="col-12">
-                                <label class="form-label text-muted small fw-semibold">Konu Başlığı</label>
-                                <input type="text" name="Subject" class="form-control shadow-none" placeholder="Mesajınızın konusu nedir?" required style="border-radius: 8px; padding: 12px;" />
+                                <label class="form-label text-muted small fw-semibold">@L["KonuBaslik"]</label>
+                                <input type="text" name="Subject" class="form-control shadow-none" placeholder="@L["MesajKonu"]" required style="border-radius: 8px; padding: 12px;" />
                             </div>
                             <div class="col-12">
-                                <label class="form-label text-muted small fw-semibold">Mesajınız</label>
-                                <textarea name="Message" class="form-control shadow-none" rows="5" placeholder="Mesajınızı buraya yazabilirsiniz..." required style="border-radius: 8px; padding: 12px;"></textarea>
+                                <label class="form-label text-muted small fw-semibold">@L["Mesajiniz"]</label>
+                                <textarea name="Message" class="form-control shadow-none" rows="5" placeholder="@L["BurayaMesaj"]" required style="border-radius: 8px; padding: 12px;"></textarea>
                             </div>
                             <div class="col-12 mt-4">
-                                <button type="submit" class="btn w-100 py-3 fw-semibold text-white" style="border-radius: 8px; background-color: #0d9488; border-color: #0d9488;">Mesajı Gönder</button>
+                                <button type="submit" class="btn w-100 py-3 fw-semibold text-white" style="border-radius: 8px; background-color: #0d9488; border-color: #0d9488;">@L["MesajiGonder"]</button>
                             </div>
                         </div>
                     </form>

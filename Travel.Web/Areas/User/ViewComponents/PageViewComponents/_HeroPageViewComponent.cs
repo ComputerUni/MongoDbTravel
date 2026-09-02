@@ -36,6 +36,17 @@ namespace Travel.Web.Areas.User.ViewComponents.PageViewComponents
             var destinations = await _destinationCollection.Find(_ => true).ToListAsync();
             var destinationDtos = _mapper.Map<List<ResultDestinationDto>>(destinations);
 
+            var currentCulture = Thread.CurrentThread.CurrentUICulture.Name;
+            var langCode = currentCulture.StartsWith("en", StringComparison.OrdinalIgnoreCase) ? "en" : "tr";
+            
+            if(langCode == "en")
+            {
+                foreach(var dest in destinationDtos)
+                {
+                    dest.Country = dest.CountryEn ?? dest.Country;
+                }
+            }
+
             var model = new HeroViewModel
             {
                 DestinationCount = destinationCount,

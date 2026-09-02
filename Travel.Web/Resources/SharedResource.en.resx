@@ -178,7 +178,7 @@
     <value>What's Not Included</value>
   </data>
   <data name="TurBilgileri" xml:space="preserve">
-    <value>Tur Bilgileri</value>
+    <value>Tour Infos</value>
   </data>
   <data name="MisafirYorumlari" xml:space="preserve">
     <value>Guest Reviews</value>
@@ -370,7 +370,7 @@
     <value>Privacy · Terms of Use · Cookies</value>
   </data>
   <data name="gun" xml:space="preserve">
-    <value>day</value>
+    <value>Day</value>
   </data>
   <data name="KisiBasi" xml:space="preserve">
     <value>Per person</value>
@@ -455,5 +455,137 @@
   </data>
   <data name="YuksektenDusuge" xml:space="preserve">
     <value>High to Low</value>
+  </data>
+  <data name="degerlendir" xml:space="preserve">
+    <value>Reviews</value>
+  </data>
+  <data name="Gece" xml:space="preserve">
+    <value>Night</value>
+  </data>
+  <data name="BaslangicSehri" xml:space="preserve">
+    <value>Departure City</value>
+  </data>
+  <data name="Ulasim" xml:space="preserve">
+    <value>Transportation</value>
+  </data>
+  <data name="Konaklama" xml:space="preserve">
+    <value>Accommodation</value>
+  </data>
+  <data name="RehberDili" xml:space="preserve">
+    <value>Guide Language</value>
+  </data>
+  <data name="GrupBuyukluk" xml:space="preserve">
+    <value>Group Size</value>
+  </data>
+  <data name="Vize" xml:space="preserve">
+    <value>Visa</value>
+  </data>
+  <data name="Maks" xml:space="preserve">
+    <value>Maximum</value>
+  </data>
+  <data name="Kisi" xml:space="preserve">
+    <value>person</value>
+  </data>
+  <data name="Bulusma" xml:space="preserve">
+    <value>Meeting Point</value>
+  </data>
+  <data name="MisafirYorum" xml:space="preserve">
+    <value>Customer Reviews</value>
+  </data>
+  <data name="Katildinmi" xml:space="preserve">
+    <value>Did you join this tour?</value>
+  </data>
+  <data name="DeneyimPaylas" xml:space="preserve">
+    <value>Share your experience with other travelers.</value>
+  </data>
+  <data name="TurMerak" xml:space="preserve">
+    <value>Do you have any questions about this tour?</value>
+  </data>
+  <data name="SoruYaz" xml:space="preserve">
+    <value>Type your question...</value>
+  </data>
+  <data name="SorunAlindi" xml:space="preserve">
+    <value>Your question has been received! Our team will answer shortly.</value>
+  </data>
+  <data name="Begenebilirsin" xml:space="preserve">
+    <value>You Might Also Like</value>
+  </data>
+  <data name="Vergi" xml:space="preserve">
+    <value>Taxes and specified services are included.</value>
+  </data>
+  <data name="Kontenjan" xml:space="preserve">
+    <value>Quota</value>
+  </data>
+  <data name="yasveuzeri" xml:space="preserve">
+    <value>12 years and older</value>
+  </data>
+  <data name="Yas" xml:space="preserve">
+    <value>age</value>
+  </data>
+  <data name="AraToplam" xml:space="preserve">
+    <value>Subtotal</value>
+  </data>
+  <data name="GuvenliRezervasyon" xml:space="preserve">
+    <value>Secure booking</value>
+  </data>
+  <data name="OnRezervasyon" xml:space="preserve">
+    <value>Free provisional booking</value>
+  </data>
+  <data name="GirisGerekiyor" xml:space="preserve">
+    <value>Authentication Required</value>
+  </data>
+  <data name="HesapGiris" xml:space="preserve">
+    <value>Please log in to your account or create a new account to make a reservation.</value>
+  </data>
+  <data name="Vazgec" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Yildiz" xml:space="preserve">
+    <value>star</value>
+  </data>
+  <data name="Nereye" xml:space="preserve">
+    <value>Where should we go?</value>
+  </data>
+  <data name="SorularinizIcin" xml:space="preserve">
+    <value>We Are Here For Your Questions</value>
+  </data>
+  <data name="Ofisimiz" xml:space="preserve">
+    <value>Our Office</value>
+  </data>
+  <data name="Turkiye" xml:space="preserve">
+    <value>Turkey</value>
+  </data>
+  <data name="TelefonDestek" xml:space="preserve">
+    <value>Phone Support</value>
+  </data>
+  <data name="MesajGonder" xml:space="preserve">
+    <value>Send Us a Message</value>
+  </data>
+  <data name="KonuBaslik" xml:space="preserve">
+    <value>Subject</value>
+  </data>
+  <data name="MesajKonu" xml:space="preserve">
+    <value>What is your message about?</value>
+  </data>
+  <data name="Mesajiniz" xml:space="preserve">
+    <value>Your Message</value>
+  </data>
+  <data name="BurayaMesaj" xml:space="preserve">
+    <value>You can type your message here...</value>
+  </data>
+  <data name="MesajBasarili" xml:space="preserve">
+    <value>Your message has been sent successfully!</value>
+  </data>
+  <data name="AnaSayfayaDon" xml:space="preserve">
+    <value>Back to Home</value>
+  </data>
+  <data name="TravelioHosgeldin" xml:space="preserve">
+    <value>WELCOME TO TRAVELIO</value>
+  </data>
+  <data name="TekrarHosgeldin" xml:space="preserve">
+    <value>Welcome Back</value>
+  </data>
+  <data name="Macera" xml:space="preserve">
+    <value>Your Adventure Awaits</value>
   </data>
 </root>

@@ -370,7 +370,7 @@
     <value>Gizlilik · Kullanım Koşulları · Çerezler</value>
   </data>
   <data name="gun" xml:space="preserve">
-    <value>gün</value>
+    <value>Gün</value>
   </data>
   <data name="KisiBasi" xml:space="preserve">
     <value>Kişi başı</value>
@@ -455,5 +455,137 @@
   </data>
   <data name="YuksektenDusuge" xml:space="preserve">
     <value>Yüksekten Düşüğe</value>
+  </data>
+  <data name="degerlendir" xml:space="preserve">
+    <value>Değerlendirme</value>
+  </data>
+  <data name="Gece" xml:space="preserve">
+    <value>Gece</value>
+  </data>
+  <data name="BaslangicSehri" xml:space="preserve">
+    <value>Başlangıç Şehri</value>
+  </data>
+  <data name="Ulasim" xml:space="preserve">
+    <value>Ulaşım</value>
+  </data>
+  <data name="Konaklama" xml:space="preserve">
+    <value>Konaklama</value>
+  </data>
+  <data name="RehberDili" xml:space="preserve">
+    <value>Rehber Dili</value>
+  </data>
+  <data name="GrupBuyukluk" xml:space="preserve">
+    <value>Grup Büyüklüğü</value>
+  </data>
+  <data name="Vize" xml:space="preserve">
+    <value>Vize</value>
+  </data>
+  <data name="Maks" xml:space="preserve">
+    <value>Maksimum</value>
+  </data>
+  <data name="Kisi" xml:space="preserve">
+    <value>kişi</value>
+  </data>
+  <data name="Bulusma" xml:space="preserve">
+    <value>Buluşma Noktası</value>
+  </data>
+  <data name="MisafirYorum" xml:space="preserve">
+    <value>Misafir Yorumları</value>
+  </data>
+  <data name="Katildinmi" xml:space="preserve">
+    <value>Bu Tura Katıldın mı?</value>
+  </data>
+  <data name="DeneyimPaylas" xml:space="preserve">
+    <value>Deneyimini diğer gezginlerle paylaş.</value>
+  </data>
+  <data name="TurMerak" xml:space="preserve">
+    <value>Bu tur hakkında merak ettiğin bir şey mi var?</value>
+  </data>
+  <data name="SoruYaz" xml:space="preserve">
+    <value>Sorunu yaz...</value>
+  </data>
+  <data name="SorunAlindi" xml:space="preserve">
+    <value>Sorun alındı! Ekibimiz en kısa sürede yanıtlayacak.</value>
+  </data>
+  <data name="Begenebilirsin" xml:space="preserve">
+    <value>Bunları da Beğenebilirsin</value>
+  </data>
+  <data name="Vergi" xml:space="preserve">
+    <value>Vergiler ve belirtilen hizmetler dahildir.</value>
+  </data>
+  <data name="Kontenjan" xml:space="preserve">
+    <value>Kontenjan</value>
+  </data>
+  <data name="yasveuzeri" xml:space="preserve">
+    <value>12 yaş ve üzeri</value>
+  </data>
+  <data name="Yas" xml:space="preserve">
+    <value>yaş</value>
+  </data>
+  <data name="AraToplam" xml:space="preserve">
+    <value>Ara Toplam</value>
+  </data>
+  <data name="GuvenliRezervasyon" xml:space="preserve">
+    <value>Güvenli rezervasyon</value>
+  </data>
+  <data name="OnRezervasyon" xml:space="preserve">
+    <value>Ücretsiz ön rezervasyon</value>
+  </data>
+  <data name="GirisGerekiyor" xml:space="preserve">
+    <value>Giriş Yapılması Gerekiyor</value>
+  </data>
+  <data name="HesapGiris" xml:space="preserve">
+    <value>Rezervasyon yapabilmek için lütfen hesabınıza giriş yapın ya da yeni bir hesap oluşturun.</value>
+  </data>
+  <data name="Vazgec" xml:space="preserve">
+    <value>Vazgeç</value>
+  </data>
+  <data name="Yildiz" xml:space="preserve">
+    <value>yıldız</value>
+  </data>
+  <data name="Nereye" xml:space="preserve">
+    <value>Nereye gidelim?</value>
+  </data>
+  <data name="SorularinizIcin" xml:space="preserve">
+    <value>Sorularınız İçin Buradayız</value>
+  </data>
+  <data name="Ofisimiz" xml:space="preserve">
+    <value>Ofisimiz</value>
+  </data>
+  <data name="Turkiye" xml:space="preserve">
+    <value>Türkiye</value>
+  </data>
+  <data name="TelefonDestek" xml:space="preserve">
+    <value>Telefon Destek</value>
+  </data>
+  <data name="MesajGonder" xml:space="preserve">
+    <value>Bize Mesaj Gönderin</value>
+  </data>
+  <data name="KonuBaslik" xml:space="preserve">
+    <value>Konu Başlığı</value>
+  </data>
+  <data name="MesajKonu" xml:space="preserve">
+    <value>Mesajınızın konusu nedir?</value>
+  </data>
+  <data name="Mesajiniz" xml:space="preserve">
+    <value>Mesajınız</value>
+  </data>
+  <data name="BurayaMesaj" xml:space="preserve">
+    <value>Mesajınızı buraya yazabilirsiniz...</value>
+  </data>
+  <data name="MesajBasarili" xml:space="preserve">
+    <value>Mesajınız başarıyla gönderildi!</value>
+  </data>
+  <data name="AnaSayfayaDon" xml:space="preserve">
+    <value>Anasayfaya Dön</value>
+  </data>
+  <data name="TravelioHosgeldin" xml:space="preserve">
+    <value>TRAVELIO'YA HOŞ GELDİN</value>
+  </data>
+  <data name="TekrarHosgeldin" xml:space="preserve">
+    <value>Tekrar Hoş Geldin</value>
+  </data>
+  <data name="Macera" xml:space="preserve">
+    <value>Maceran Seni Bekliyor</value>
   </data>
 </root>

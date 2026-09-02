@@ -1,4 +1,6 @@
 ﻿@model TourDetailViewModel
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Travel.Web.SharedResource> L
+
 
 <!DOCTYPE html>
 <html lang="tr">
@@ -13,7 +15,7 @@
     <div class="container">
         <!-- BREADCRUMB -->
         <div class="crumb">
-            <a href="/User/Home/Index">Ana Sayfa</a> / <a href="/User/Tour/Index">Turlar</a> / <span class="cur">@Model.Tour.Name</span>
+            <a href="/User/Home/Index">@L["AnaSayfa"]</a> / <a href="/User/Tour/Index">@L["Turlar"]</a> / <span class="cur">@Model.Tour.Name</span>
         </div>
 
         <!-- DETAIL HEADER -->
@@ -36,7 +38,7 @@
 
         <!-- SIMILAR TOURS -->
         <div class="mt-4">
-            <h2 style="font-family:'Sora';font-weight:700;font-size:1.6rem;color:var(--navy);margin-bottom:1.4rem">Bunları da Beğenebilirsin</h2>
+            <h2 style="font-family:'Sora';font-weight:700;font-size:1.6rem;color:var(--navy);margin-bottom:1.4rem">@L["Begenebilirsin"]</h2>
             <div class="row g-4" id="similarGrid"></div>
         </div>
     </div>

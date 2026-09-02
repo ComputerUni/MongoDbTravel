@@ -3,7 +3,7 @@
 
 <header class="hero">
     <div class="container hero-content">
-        <div class="eyebrow mb-3">Travelio ile keşfet</div>
+        <div class="eyebrow mb-3">@L["HeroEyebrow"]</div>
         <h1>@L["HeroBaslik"]</h1>
         <p class="lead">@L["HeroAciklama"]</p>
         <form asp-controller="Tour" asp-action="Index" method="get" class="search-box">
@@ -11,7 +11,7 @@
                 <div class="col-md-3 search-field">
                     <label>@L["Destinasyon"]</label>
                     <select class="control" name="destination">
-                        <option value="">Nereye gidelim?</option>
+                        <option value="">@L["Nereye"]</option>
                         @if (Model.Destination != null)
                         {
                             @foreach (var item in Model.Destination)
@@ -28,11 +28,11 @@
                 <div class="col-md-3 search-field">
                     <label>@L["KisiSayisi"]</label>
                     <select class="control" name="personCount">
-                        <option value="1">1 kişi</option>
-                        <option value="2" selected>2 kişi</option>
-                        <option value="3">3 kişi</option>
-                        <option value="4">4 kişi</option>
-                        <option value="5">5+ kişi</option>
+                        <option value="1">1 @L["Kisi"]</option>
+                        <option value="2" selected>2 @L["Kisi"]</option>
+                        <option value="3">3 @L["Kisi"]</option>
+                        <option value="4">4 @L["Kisi"]</option>
+                        <option value="5">5+ @L["Kisi"]</option>
                     </select>
                 </div>
                 <div class="col-md-3 p-2">
