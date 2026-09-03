@@ -1,7 +1,9 @@
 ﻿@model RegisterDto
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Travel.Web.SharedResource> L
 
 @{
     Layout = "_AuthLayout";
+    var currentCulture = System.Globalization.CultureInfo.CurrentCulture.Name;
 }
 
 <div class="auth">
@@ -9,74 +11,84 @@
 
         <!-- LEFT VISUAL -->
         <div class="auth-visual" style="background: linear-gradient(160deg,rgba(14,42,59,.72) 0%,rgba(14,42,59,.45) 45%,rgba(11,127,128,.6) 100%), url('https://images.unsplash.com/photo-1488085061387-422e29b40080?auto=format&fit=crop&w=1400&q=80') center/cover;">
-            <a class="brand" href="index.html"><span class="dot"></span>Travelio</a>
+            <a class="brand" href="/User/Home/Index"><span class="dot"></span>Travelio</a>
             <div class="visual-body">
-                <div class="eyebrow">Travelio topluluğuna katıl</div>
-                <h1>Yeni Maceraların Burada Başlıyor</h1>
-                <p>Travelio hesabını oluştur, favori rotalarını kaydet, turlarını yönet ve seyahat deneyimlerini paylaş.</p>
+                <div class="eyebrow">@L["TravelioTopluluk"]</div>
+                <h1>@L["YeniMacera"]</h1>
+                <p>@L["TravelioHesap"]</p>
                 <ul class="perks">
-                    <li><span class="pc"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z" /></svg></span>Favori turlarını kaydet</li>
-                    <li><span class="pc"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18v12H3z" /><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" /></svg></span>Rezervasyonlarını tek yerden yönet</li>
-                    <li><span class="pc"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /></svg></span>Yorum ve değerlendirmelerini paylaş</li>
+                    <li><span class="pc"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z" /></svg></span>@L["FavoriKaydet"]</li>
+                    <li><span class="pc"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18v12H3z" /><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" /></svg></span>@L["RezervasyonTek"]</li>
+                    <li><span class="pc"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /></svg></span>@L["YorumPaylas"]</li>
                 </ul>
             </div>
-            <div class="visual-foot">© 2026 Travelio · Dünyayı keşfetmeye hazır ol.</div>
+            <div class="visual-foot">© 2026 Travelio · @L["DunyaKesfet"]</div>
         </div>
 
         <!-- RIGHT FORM -->
         <div class="auth-form">
             <div class="form-top">
-                <a class="back-link" href="/Account/Index">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" /></svg>
-                    Hesabınız var mı? Giriş Yapın.
-                </a>
+
+
+                <div class="d-flex align-items-center gap-1">
+                    <a href="?culture=tr" style="display:flex;align-items:center;gap:5px;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:600;text-decoration:none;
+                        color:@(currentCulture.StartsWith("tr") ? "#fff" : "#0e2a3b");
+                        background:@(currentCulture.StartsWith("tr") ? "#0fa3a3" : "#f0f4f8");">
+                        🇹🇷 TR
+                    </a>
+                    <a href="?culture=en" style="display:flex;align-items:center;gap:5px;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:600;text-decoration:none;
+                        color:@(currentCulture.StartsWith("en") ? "#fff" : "#0e2a3b");
+                        background:@(currentCulture.StartsWith("en") ? "#0fa3a3" : "#f0f4f8");">
+                        🇬🇧 EN
+                    </a>
+                </div>
             </div>
 
             <div class="form-wrap">
                 <div class="form-inner">
-                    <a class="brand mb-4" href="index.html"><span class="dot"></span>Travelio</a>
+                    <a class="brand mb-4" href="/User/Home/Index"><span class="dot"></span>Travelio</a>
 
                     <!-- FORM VIEW -->
                     <form method="post">
                         <div id="formView">
-                            <div class="eyebrow">Travelio'ya Hoş Geldin</div>
-                            <h2>Hesabını Oluştur</h2>
-                            <p class="lead">Seyahatlerini planlamak ve yönetmek için birkaç bilgi yeterli.</p>
+                            <div class="eyebrow">@L["Travelio"]</div>
+                            <h2>@L["HesabiniOlustur"]</h2>
+                            <p class="lead">@L["SeyahatPlanlama"]</p>
                             <div class="field" style="flex:1">
-                                <label for="firstName">Kullanıcı Adı</label>
-                                <div class="input-wrap"><input type="text" asp-for="UserName" placeholder="Kullanıcı Adınız" autocomplete="given-name"></div>
+                                <label for="firstName">@L["KullaniciAdi"]</label>
+                                <div class="input-wrap"><input type="text" asp-for="UserName" placeholder="@L["KullaniciAdi"]" autocomplete="given-name"></div>
                                 <div class="err-msg" id="err-firstName">Lütfen adını gir.</div>
                             </div>
                             <div class="row g-0" style="gap:0 .8rem;flex-wrap:nowrap">
 
                                 <div class="field" style="flex:1">
-                                    <label for="firstName">Ad</label>
-                                    <div class="input-wrap"><input type="text" asp-for="FirstName" placeholder="Adınız" autocomplete="given-name"></div>
+                                    <label for="firstName">@L["Ad"]</label>
+                                    <div class="input-wrap"><input type="text" asp-for="FirstName" placeholder="@L["Adiniz"]" autocomplete="given-name"></div>
                                     <div class="err-msg" id="err-firstName">Lütfen adını gir.</div>
                                 </div>
                                 <div class="field" style="flex:1">
-                                    <label for="lastName">Soyad</label>
-                                    <div class="input-wrap"><input type="text" asp-for="LastName" placeholder="Soyadınız" autocomplete="family-name"></div>
+                                    <label for="lastName">@L["Soyad"]</label>
+                                    <div class="input-wrap"><input type="text" asp-for="LastName" placeholder="@L["Soyadiniz"]" autocomplete="family-name"></div>
                                     <div class="err-msg" id="err-lastName">Lütfen soyadını gir.</div>
                                 </div>
                             </div>
 
                             <div class="field">
-                                <label for="email">E-posta</label>
-                                <div class="input-wrap"><input type="email" asp-for="Email" placeholder="ornek@email.com" autocomplete="email"></div>
+                                <label for="email">@L["EPosta"]</label>
+                                <div class="input-wrap"><input type="email" asp-for="Email" placeholder="@L["EPosta"]" autocomplete="email"></div>
                                 <div class="err-msg" id="err-email">Geçerli bir e-posta adresi gir.</div>
                             </div>
 
                             <div class="field">
-                                <label for="phone">Telefon</label>
+                                <label for="phone">@L["Tel"]</label>
                                 <div class="input-wrap"><input type="tel" asp-for="PhoneNumber" placeholder="+90 5XX XXX XX XX" autocomplete="tel"></div>
                                 <div class="err-msg" id="err-phone">Lütfen telefon numaranı gir.</div>
                             </div>
 
                             <div class="field">
-                                <label for="password">Şifre</label>
+                                <label for="password">@L["Sifre"]</label>
                                 <div class="input-wrap">
-                                    <input type="password" asp-for="Password" placeholder="Şifrenizi oluşturun" autocomplete="new-password">
+                                    <input type="password" asp-for="Password" placeholder="@L["SifreGir"]" autocomplete="new-password">
                                     <button type="button" class="toggle-eye" data-target="password" aria-label="Şifreyi göster">
                                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z" /><circle cx="12" cy="12" r="3" /></svg>
                                     </button>
@@ -85,14 +97,13 @@
                                     <div class="strength-bars"><i></i><i></i><i></i></div>
                                     <span class="strength-label" id="strengthLabel"></span>
                                 </div>
-                                <div class="hint">En az 8 karakter, bir büyük harf ve bir rakam kullan.</div>
                                 <div class="err-msg" id="err-password">Şifren en az 8 karakter, bir büyük harf ve bir rakam içermeli.</div>
                             </div>
 
                             <div class="field">
-                                <label for="password2">Şifre Tekrar</label>
+                                <label for="password2">@L["SifreTekrar"]</label>
                                 <div class="input-wrap">
-                                    <input type="password" asp-for="ConfirmPassword" placeholder="Şifrenizi tekrar girin" autocomplete="new-password">
+                                    <input type="password" asp-for="ConfirmPassword" placeholder="@L["TekrarSifre"]" autocomplete="new-password">
                                     <button type="button" class="toggle-eye" data-target="password2" aria-label="Şifreyi göster">
                                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z" /><circle cx="12" cy="12" r="3" /></svg>
                                     </button>
@@ -102,9 +113,9 @@
 
                          
 
-                            <button class="btn-teal btn-submit" onclick="submitForm()">Hesap Oluştur</button>
+                            <button class="btn-teal btn-submit" onclick="submitForm()">@L["HesapOlustur"]</button>
 
-                            <div class="login-line">Zaten hesabın var mı? <a href="/Account/Login">Giriş Yap</a></div>
+                            <div class="login-line">@L["ZatenHesabinVarMi"] <a href="/User/Account/Login">@L["GirisYap"]</a></div>
                         </div>
 
                     </form>

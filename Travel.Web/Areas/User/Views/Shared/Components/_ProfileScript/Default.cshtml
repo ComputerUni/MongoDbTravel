@@ -1,40 +1,46 @@
 ﻿@model ProfileViewModel
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Travel.Web.SharedResource> L
+
 
 @{
+
+    var currentCulture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name;
+    var isEnglish = currentCulture.StartsWith("en", StringComparison.OrdinalIgnoreCase);
+    var cultureInfo = new System.Globalization.CultureInfo(isEnglish ? "en-US" : "tr-TR");
 
     var upcomingCount = Model.Reservations.Count(r => r.TourDate.ToLocalTime() >= DateTime.Now);
     var completedCount = Model.Reservations.Count(r => r.TourDate.ToLocalTime() < DateTime.Now);
     var favoriteCount = Model.Favorites.Count();
     var reviewCount = Model.Comments.Count();
 
-    var reservationData = Model.Reservations.Select(r => new
-    {
-        tourName = r.TourName,
-        destinationName = r.DestinationName,
-        date = r.TourDate.ToLocalTime().ToString("dd MMM yyyy", new System.Globalization.CultureInfo("tr-TR")),
-        createdAt = r.CreatedAt.ToLocalTime().ToString("dd MMM yyyy HH:mm", new System.Globalization.CultureInfo("tr-TR")),
-        adultCount = r.AdultCount,
-        childCount = r.ChildCount,
-        id = "TRV-" + r.Id.Substring(0, 8).ToUpper(),
-        status = r.Status switch
-        {
-            ReservationStatus.Onaylandı => "Onaylandı",
-            ReservationStatus.İptal => "İptal Edildi",
-            ReservationStatus.Bekliyor => "Bekliyor"
-        },
-        coverImage = r.CoverImage,
-        tourDate = r.TourDate,
-        tourId = r.TourId,
-        tourIsActive = r.TourIsActive,
-        reservationId = r.Id
-    }).ToList();
+    // var reservationData = Model.Reservations.Select(r => new
+    // {
+    //     tourName = displayTourName,
+    //     destinationName = r.DestinationName,
+    //     date = r.TourDate.ToLocalTime().ToString("dd MMM yyyy", new System.Globalization.CultureInfo("tr-TR")),
+    //     createdAt = r.CreatedAt.ToLocalTime().ToString("dd MMM yyyy HH:mm", new System.Globalization.CultureInfo("tr-TR")),
+    //     adultCount = r.AdultCount,
+    //     childCount = r.ChildCount,
+    //     id = "TRV-" + r.Id.Substring(0, 8).ToUpper(),
+    //     status = r.Status switch
+    //     {
+    //         ReservationStatus.Onaylandı => "Onaylandı",
+    //         ReservationStatus.İptal => "İptal Edildi",
+    //         ReservationStatus.Bekliyor => "Bekliyor"
+    //     },
+    //     coverImage = r.CoverImage,
+    //     tourDate = r.TourDate,
+    //     tourId = r.TourId,
+    //     tourIsActive = r.TourIsActive,
+    //     reservationId = r.Id
+    // }).ToList();
 
 
     var favoritesData = Model.Favorites.Select(f => new
     {
         title = f.TourName,
         country = f.Country,
-        dur = f.Duration + " Gün",
+        dur = f.Duration,
         rating = f.AverageRating,
         price = f.Price.ToString("N0", new System.Globalization.CultureInfo("tr-TR")),
         img = f.CoverImage,
@@ -48,7 +54,7 @@
         text = c.Content,
         title = c.TourName,
         stars = c.Rating,
-        date = c.CreatedAt.ToLocalTime().ToString("dd MMMM yyyy", new System.Globalization.CultureInfo("tr-TR")),
+        date = c.CreatedAt.ToLocalTime().ToString("dd MMMM yyyy", cultureInfo),
     }).ToList();
 
     var ratingsData = Model.Comments.Select(c => new
@@ -57,7 +63,7 @@
         country = c.Country ?? "Destinasyon",
         title = c.TourName,
         stars = c.Rating,
-        date = c.CreatedAt.ToLocalTime().ToString("dd MMMM yyyy", new System.Globalization.CultureInfo("tr-TR")),
+        date = c.CreatedAt.ToLocalTime().ToString("dd MMMM yyyy", cultureInfo),
     }).ToList();
 
 
@@ -67,7 +73,7 @@
         id = q.Id,
         tour = q.TourName,
         content = q.Content,
-        date = q.CreatedAt.ToLocalTime().ToString("dd MMMM yyyy", new System.Globalization.CultureInfo("tr-TR")),
+        date = q.CreatedAt.ToLocalTime().ToString("dd MMMM yyyy", cultureInfo),
         status = q.IsAnswered ? "answered" : "waiting",
         answer = q.Answer ?? ""
     }).ToList();
@@ -87,13 +93,13 @@
         logout: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>'
     };
     const MENU = [
-        { id: "overview", label: "Genel Bakış", ic: "overview" },
-        { id: "profile", label: "Profil Bilgilerim", ic: "profile" },
-        { id: "trips", label: "Rezervasyonlarım", ic: "trips" },
-        { id: "favorites", label: "Favorilerim", ic: "fav" },
-        { id: "reviews", label: "Yorumlarım", ic: "reviews" },
-        { id: "questions", label: "Sorularım", ic: "questions" },
-        { id: "ratings", label: "Değerlendirmelerim", ic: "ratings" }
+        { id: "overview", label: "@L["GenelBakis"]", ic: "overview" },
+        { id: "profile", label: "@L["ProfilBilgi"]", ic: "profile" },
+        { id: "trips", label: "@L["Rezervasyonlarim"]", ic: "trips" },
+        { id: "favorites", label: "@L["Favorilerim"]", ic: "fav" },
+        { id: "reviews", label: "@L["Yorumlarim"]", ic: "reviews" },
+        { id: "questions", label: "@L["Sorularim"]", ic: "questions" },
+        { id: "ratings", label: "@L["Degerlendirmelerim"]", ic: "ratings" }
     ];
 
     /* =============== DATA =============== */
@@ -126,7 +132,7 @@
     // ];
 
 
-    const rawReservations = @Html.Raw(Json.Serialize(reservationData));
+    const rawReservations = @Html.Raw(Json.Serialize(ViewBag.ReservationDatas));
     const now = new Date();
 
     const TRIPS = {
@@ -200,7 +206,7 @@
                                                                                           <div class="side-menu">
                                                                                             ${MENU.map(m => `<button class="side-link" data-pane="${m.id}" onclick="go('${m.id}')">${IC[m.ic]} ${m.label}</button>`).join("")}
                                                                                             <div class="side-sep"></div>
-                                                                                            <button class="side-link logout" data-bs-toggle="modal" data-bs-target="#logoutModal">${IC.logout} Çıkış Yap</button>
+                                                                                                <button class="side-link logout" data-bs-toggle="modal" data-bs-target="#logoutModal">${IC.logout} @L["Cikis"]</button>
                                                                                           </div>`;
     }
     document.getElementById("sidebarDesktop").innerHTML = sidebarHTML();
@@ -223,10 +229,10 @@
     const RENDER = {
         overview() {
             const stats = [
-                { ic: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18v12H3z"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>', num: @upcomingCount, lab: "Yaklaşan Tur" },
-                { ic: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>', num: @completedCount, lab: "Tamamlanan Tur" },
-                { ic: IC.fav, num: @favoriteCount, lab: "Favori Tur" },
-                { ic: IC.reviews, num: @reviewCount, lab: "Yorum" }
+                { ic: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18v12H3z"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>', num: @upcomingCount, lab: "@L["YaklasanTur"]" },
+                { ic: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>', num: @completedCount, lab: "@L["Tamamlanan"]" },
+                { ic: IC.fav, num: @favoriteCount, lab: "@L["Tamamlanan"]" },
+                { ic: IC.reviews, num: @reviewCount, lab: "@L["Yorum"]" }
             ];
             const t = TRIPS.upcoming.find(r => r.tourIsActive === "Aktif" && r.status === "Onaylandı") || TRIPS.upcoming.find(r => r.tourIsActive === "Aktif") || null;
             const tourDate = t ? new Date(t.tourDate) : null;
@@ -242,8 +248,8 @@
             return `
                                                                                             <div class="pane active">
                                                                                               <div class="pane-head">
-                                                                                                <h1>Merhaba @Model.User.FirstName 👋</h1>
-                                                                                                <p>Bir sonraki maceranın detaylarına göz atabilir, geçmiş seyahatlerini ve favorilerini yönetebilirsin.</p>
+                                                                                                    <h1>@L["Merhaba"] @Model.User.FirstName 👋</h1>
+                                                                                                    <p>@L["BirSonraki"]</p>
                                                                                               </div>
                                                                                               <div class="row g-3 mb-4">
                                                                                                 ${stats.map(s => `<div class="col-6 col-md-3"><div class="stat-card"><div class="ico">${s.ic}</div><div class="num">${s.num}</div><div class="lab">${s.lab}</div></div></div>`).join("")}
@@ -252,26 +258,26 @@
                 <div class="upcoming mb-4">
                     <img src="${t.img}" alt="${t.title}">
                     <div class="inner">
-                        <span class="up-badge">Rezervasyon ${t.res}</span>
+                            <span class="up-badge">@L["Rezervasyon"] ${t.res}</span>
                         <h3>${t.title}</h3>
                         <div class="sub">${t.country}</div>
                         <div class="up-meta">
                             <span>📅 <b>${t.date}</b></span>
-                            <span>⌛ Kalan: <b>${remainingDays} gün</b></span>
+                                    <span>⌛ @L["Kalan"]: <b>${remainingDays} @L["gun"]</b></span>
                             <span class="status-chip status-ok">● ${t.status}</span>
                         </div>
                         <div class="up-btns d-flex gap-2 flex-wrap">
                             ${isTourPassive
-                        ? `<span class="btn-white" style="opacity:0.5;pointer-events:none;cursor:not-allowed;background:#e9ecef;">Tur Pasife Alındı</span>`
-                        : `<a href="/User/Tour/Detail/${t.tourId}" class="btn-white">Tur Detayı</a>`
+                        ? `<span class="btn-white" style="opacity:0.5;pointer-events:none;cursor:not-allowed;background:#e9ecef;">@L["PasifTur"]</span>`
+                        : `<a href="/User/Tour/Detail/${t.tourId}" class="btn-white">@L["TurDetay"]</a>`
                     }
-                            <button class="btn-linewhite" onclick="go('trips')">Rezervasyonu Gör</button>
+                                <button class="btn-linewhite" onclick="go('trips')">@L["RezervasyonGor"]</button>
                         </div>
                     </div>
                 </div>` : `
                 <div class="card-soft mb-4" style="text-align:center;padding:2rem">
-                    <p style="color:var(--muted)">Yaklaşan rezervasyonun bulunmuyor.</p>
-                    <a href="/User/Tour/Index" class="btn-teal">Turları Keşfet</a>
+                        <p style="color:var(--muted)">@L["YaklasanRez"]</p>
+                        <a href="/User/Tour/Index" class="btn-teal">@L["TurKesfet"]</a>
                 </div>`}
 
             </div>`;
@@ -281,20 +287,20 @@
             return `
                                                                                             <div class="pane active">
                                                                 <div class="pane-head">
-                                                                    <h1>Profil Bilgilerim</h1>
-                                                                    <p>Kişisel bilgilerini buradan güncelleyebilirsin.</p>
+                                                                        <h1>@L["ProfilBilgilerim"]</h1>
+                                                                    <p>@L["KisiselBilgi"]</p>
                                                                 </div>
                                                                 <div class="card-soft">
                                                                     <div class="row g-3">
-                                                                        <div class="col-md-6 field"><label>Ad</label><input id="profileFirstName" value="@Model.User.FirstName"></div>
-                                                                        <div class="col-md-6 field"><label>Soyad</label><input id="profileLastName" value="@Model.User.LastName"></div>
-                                                                        <div class="col-md-6 field"><label>E-posta</label><input type="email" value="@Model.User.Email"></div>
-                                                                        <div class="col-md-6 field"><label>Telefon</label><input id="profilePhone" value="@Model.User.PhoneNumber"></div>
-                                                                        <div class="col-md-6 field"><label>Doğum Tarihi</label><input id="profileBirthDate" type="date" value="@Model.User.BirthDate"></div>
-                                                                        <div class="col-md-6 field"><label>Şehir</label><input id="profileCity" value="@Model.User.City"></div>
-                                                                        <div class="col-md-6 field"><label>Ülke</label><input id="profileCountry" value="@Model.User.Country"></div>
+                                                                            <div class="col-md-6 field"><label>@L["Ad"]</label><input id="profileFirstName" value="@Model.User.FirstName"></div>
+                                                                            <div class="col-md-6 field"><label>@L["Soyad"]</label><input id="profileLastName" value="@Model.User.LastName"></div>
+                                                                            <div class="col-md-6 field"><label>@L["EPosta"]</label><input type="email" value="@Model.User.Email"></div>
+                                                                                <div class="col-md-6 field"><label>@L["Tel"]</label><input id="profilePhone" value="@Model.User.PhoneNumber"></div>
+                                                                            <div class="col-md-6 field"><label>@L["Dogum"]</label><input id="profileBirthDate" type="date" value="@Model.User.BirthDate"></div>
+                                                                            <div class="col-md-6 field"><label>@L["Sehir"]</label><input id="profileCity" value="@Model.User.City"></div>
+                                                                            <div class="col-md-6 field"><label>@L["Ulke"]</label><input id="profileCountry" value="@Model.User.Country"></div>
                                                                     </div>
-                                                                    <button class="btn-teal mt-4" onclick="updateProfile()">Bilgileri Güncelle</button>
+                                                                        <button class="btn-teal mt-4" onclick="updateProfile()">@L["BilgiGuncelle"]</button>
                                                                 </div>
                                                             </div>`;
         },
@@ -303,32 +309,32 @@
             const card = (t) => {
                 const isTourPassive = t.tourIsActive !== "Aktif";
                 const canCancel = t.status === 'Bekliyor';
-                let guestText = `${t.adultCount} Yetişkin`;
+                let guestText = `${t.adultCount} @L["Yetiskin"]`;
                 if (t.childCount > 0) {
-                    guestText += `, ${t.childCount} Çocuk`
+                    guestText += `, ${t.childCount} @L["Cocuk"]`
                 }
                 return `<div class="trip-card">
                     <img src="${t.img}" alt="${t.title}">
                     <div class="trip-info">
                         <h4>${t.title}</h4>
-                        <div class="meta"><span>📅 <b>Tur Tarihi:</b> ${t.date}</span></div>
-                        <div class="meta"><span>👥 <b>Yolcular:</b> ${guestText}</span></div>
-                        <div class="meta"><span>📥 <b>Rezervasyon Tarihi:</b> ${t.createdAt}</span></div>
+                        <div class="meta"><span>📅 <b>@L["TurTarihi"]:</b> ${t.date}</span></div>
+                        <div class="meta"><span>👥 <b>@L["Yolcular"]:</b> ${guestText}</span></div>
+                        <div class="meta"><span>📥 <b>@L["RezTarih"]:</b> ${t.createdAt}</span></div>
                         <div class="resno">🔖 ${t.res}</div>
                     </div>
                     <div class="trip-right">
-                        <span style="font-size:.74rem;font-weight:600;padding:.3rem .7rem;border-radius:999px;
-                            background:${t.status === 'Onaylandı' ? 'rgba(15,163,163,.12)' : t.status === 'İptal Edildi' ? 'rgba(192,85,79,.12)' : 'rgba(214,158,46,.15)'};
-                            color:${t.status === 'Onaylandı' ? '#0b7f80' : t.status === 'İptal Edildi' ? '#c0554f' : '#a9741a'}">
-                            ${t.status}
+                            <span style="font-size:.74rem;font-weight:600;padding:.3rem .7rem;border-radius:999px;
+                                background:${t.status === 'Onaylandı' || t.status === 'Confirmed' ? 'rgba(15,163,163,.12)' : t.status === 'İptal Edildi' || t.status === 'Cancelled' ? 'rgba(192,85,79,.12)' : 'rgba(214,158,46,.15)'};
+                                color:${t.status === 'Onaylandı' || t.status === 'Confirmed' ? '#0f5132' : t.status === 'İptal Edildi' || t.status === 'Cancelled' ? '#c0554f' : '#a9741a'}">
+                                ${t.status}
                         </span>
                         <div class="acts">
                             ${isTourPassive
                         ? '<span class="mini-btn" style="opacity:0.5;pointer-events:none;cursor:not-allowed;background:#e9ecef;">Tur Pasife Alındı</span>'
-                        : `<a href="/User/Tour/Detail/${t.tourId}" class="mini-btn">Tur Detayı</a>`
+                        : `<a href="/User/Tour/Detail/${t.tourId}" class="mini-btn">@L["TurDetay"]</a>`
                     }
                             ${!isTourPassive && t.status === 'Tamamlandı' ? (t.reviewed ? '<button class="mini-btn" onclick="go(&quot;reviews&quot;)">Yorumunu Gör</button>' : '<button class="mini-btn solid" onclick="go(&quot;reviews&quot;)">Yorum Yap</button>') : ''}
-                            ${canCancel ? `<button class="mini-btn" style="color:#c0554f;border-color:#c0554f" onclick="cancelReservation('${t.reservationId}')">İptal Et</button>` : ''}
+                            ${canCancel ? `<button class="mini-btn" style="color:#c0554f;border-color:#c0554f" onclick="cancelReservation('${t.reservationId}')">@L["Iptal"]</button>` : ''}
                         </div>
                     </div>
                 </div>`;
@@ -336,18 +342,18 @@
 
             return `
                                                                     <div class="pane active">
-                                                                      <div class="pane-head"><h1>Rezervasyonlarım</h1><p>Yaklaşan ve tamamlanan tüm seyahatlerin.</p></div>
+                                                                      <div class="pane-head"><h1>@L["Rezervasyonlarim"]</h1><p>@L["Yaklasan"]</p></div>
                                                                       <div class="subtabs" role="tablist">
-                                                                        <button class="subtab active" onclick="tripFilter(this,'all')">Tümü</button>
-                                                                        <button class="subtab" onclick="tripFilter(this,'upcoming')">Yaklaşan</button>
-                                                                        <button class="subtab" onclick="tripFilter(this,'completed')">Tamamlanan</button>
+                                                                        <button class="subtab active" onclick="tripFilter(this,'all')">@L["Tum"]</button>
+                                                                        <button class="subtab" onclick="tripFilter(this,'upcoming')">@L["Yaklas"]</button>
+                                                                        <button class="subtab" onclick="tripFilter(this,'completed')">@L["Tamamla"]</button>
                                                                       </div>
                                                                       <div id="tripUpcoming">
-                                                                        <h3 style="font-family:'Sora';font-weight:600;font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:.9rem">Yaklaşan</h3>
+                                                                        <h3 style="font-family:'Sora';font-weight:600;font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:.9rem">@L["Yaklas"]</h3>
                                                                         ${TRIPS.upcoming.map(card).join("")}
                                                                       </div>
                                                                       <div id="tripCompleted">
-                                                                        <h3 style="font-family:'Sora';font-weight:600;font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:1.6rem 0 .9rem">Tamamlanan</h3>
+                                                                        <h3 style="font-family:'Sora';font-weight:600;font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:1.6rem 0 .9rem">@L["Tamamla"]</h3>
                                                                         ${TRIPS.completed.map(card).join("")}
                                                                       </div>
                                                                     </div>`;
@@ -355,32 +361,32 @@
 
         favorites() {
             if (FAVORITES.length === 0) {
-                return `<div class="pane active"><div class="pane-head"><h1>Favorilerim</h1><p>Daha sonra incelemek için kaydettiğin turlar.</p></div>
+                return `<div class="pane active"><div class="pane-head"><h1>@L["Favorilerim"]</h1><p>@L["DahaSonra"]</p></div>
                                                                                                 <div class="card-soft"><div class="empty">
-                                                                                                  <div class="ico">${IC.fav}</div><h3>Henüz favori turun yok.</h3><p>Yeni rotalar keşfetmeye ne dersin?</p>
-                                                                                                  <a href="/User/Tour/Index" class="btn-teal">Turları Keşfet</a>
+                                                                                                  <div class="ico">${IC.fav}</div><h3>@L["Henuz"]</h3><p>@L["YeniRota"]</p>
+                                                                                                      <a href="/User/Tour/Index" class="btn-teal">@L["TurKesfet"]</a>
                                                                                                 </div></div></div>`;
             }
             return `
                                                                                             <div class="pane active">
-                                                                                              <div class="pane-head"><h1>Favorilerim</h1><p>Daha sonra incelemek için kaydettiğin turlar.</p></div>
+                                                                                              <div class="pane-head"><h1>@L["Favorilerim"]</h1><p>@L["DahaSonra"]</p></div>
                                                                                               <div class="row g-4" id="favGrid">
                                                                                                 ${FAVORITES.map((t, i) => `
                                                                                                   <div class="col-sm-6 col-lg-4" data-fav="${i}">
                                                                                                     <article class="tour-card">
                                                                                                       <div class="tour-media">
                                                                                                         <img src="${t.img}" alt="${t.title}">
-                                                                                                        <button class="fav" title="Favoriden kaldır" onclick="removeFav(${i})">
+                                                                                                        <button class="fav" title="@L["Kaldir"]" onclick="removeFav(${i})">
                                                                                                           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
                                                                                                         </button>
                                                                                                       </div>
                                                                                                       <div class="tour-body">
                                                                                                         <div class="tour-country">${t.country}</div>
                                                                                                         <h3 class="tour-title">${t.title}</h3>
-                                                                                                        <div class="tour-meta"><span>🗓️ ${t.dur}</span><span><span style="color:#f4a92c">★</span> ${t.rating.toFixed(1)}</span></div>
+                                                                                                        <div class="tour-meta"><span>🗓️ ${t.dur} @L["gun"]</span><span><span style="color:#f4a92c">★</span> ${t.rating.toFixed(1)}</span></div>
                                                                                                         <div class="tour-foot">
-                                                                                                          <div class="price"><small>Kişi başı</small><b>${t.price} <span>TL</span></b></div>
-                                                                                                              <a href="/User/Tour/Detail/${t.tourId}" class="btn-incele">Turu İncele</a>
+                                                                                                          <div class="price"><small>@L["KisiBasi"]</small><b>${t.price} <span>TL</span></b></div>
+                                                                                                              <a href="/User/Tour/Detail/${t.tourId}" class="btn-incele">@L["TuruIncele"]</a>
                                                                                                         </div>
                                                                                                       </div>
                                                                                                     </article>
@@ -391,12 +397,12 @@
 
         reviews() {
             if (MYREVIEWS.length === 0) {
-                return `<div class="pane active"><div class="pane-head"><h1>Yorumlarım</h1></div>
-                                                                                                <div class="card-soft"><div class="empty"><div class="ico">${IC.reviews}</div><h3>Henüz yorumun yok.</h3><p>Tamamladığın turlar hakkında deneyimini paylaşabilirsin.</p><button class="btn-teal" onclick="go('trips')">Turlarıma Git</button></div></div></div>`;
+                return `<div class="pane active"><div class="pane-head"><h1>@L["Yorumlarim"]</h1></div>
+                                                                                                <div class="card-soft"><div class="empty"><div class="ico">${IC.reviews}</div><h3>@L["HenuzYorum"]</h3><p>Tamamladığın turlar hakkında deneyimini paylaşabilirsin.</p><button class="btn-teal" onclick="go('trips')">Turlarıma Git</button></div></div></div>`;
             }
             return `
                                                                                             <div class="pane active">
-                                                                                              <div class="pane-head"><h1>Yorumlarım</h1><p>Turlar hakkında paylaştığın değerlendirmeler.</p></div>
+                                                                                              <div class="pane-head"><h1>@L["Yorumlarim"]</h1><p>@L["TurlarHakkinda"]</p></div>
                                                                                               <div id="reviewList">
                                                                                                 ${MYREVIEWS.map(r => `
                                                                                                   <div class="rev-card" data-rev="${r.id}">
@@ -406,7 +412,8 @@
                                                                                                     </div>
                                                                                                     <p>${r.text}</p>
                                                                                                     <div class="rev-acts">
-                                                                                                    <button class="mini-btn" onclick="openEditReview('${r.id}', '${r.text.replace(/'/g, "\\'")}', ${r.stars})">Düzenle</button>                                                                                      <button class="mini-btn" onclick="askDeleteReview('${r.id}')">Sil</button>
+                                                                                                    <button class="mini-btn" onclick="openEditReview('${r.id}', '${r.text.replace(/'/g, "\\'")}', ${r.stars})">@L["Duzenle"]</button>                                                                                      
+                                                                                                    <button class="mini-btn" onclick="askDeleteReview('${r.id}')">@L["Sil"]</button>
                                                                                                     </div>
                                                                                                   </div>`).join("")}
                                                                                               </div>
@@ -416,7 +423,7 @@
         questions() {
             return `
                                                                                             <div class="pane active">
-                                                                                              <div class="pane-head"><h1>Sorularım</h1><p>Tur detay sayfalarında sorduğun sorular ve yanıtları.</p></div>
+                                                                                              <div class="pane-head"><h1>@L["Sorularim"]</h1><p>@L["HenuzYorum"]</p></div>
                                                                                               ${QUESTIONS.map(q => `
                                                                                                 <div class="q-card">
                                                                                                   <div class="top">
@@ -425,11 +432,11 @@
                                                                                                       <div class="q-txt">${q.content}</div>
                                                                                                       <div class="q-date">${q.date}</div>
                                                                                                     </div>
-                                                                                                    <span class="badge-soft ${q.status === 'answered' ? 'badge-ok' : 'badge-wait'}">${q.status === 'answered' ? 'Cevaplandı' : 'Cevap Bekliyor'}</span>
+                                                                                                    <span class="badge-soft ${q.status === 'answered' ? 'badge-ok' : 'badge-wait'}">${q.status === 'answered' ? '@L["Cevaplandi"]' : '@L["CevapBekliyor"]'}</span>
                                                                                                   </div>
                                                                                                   ${q.status === 'answered'
                     ? `<div class="q-answer"><span class="who">Travelio</span><span class="txt">${q.answer}</span></div>`
-                    : `<div class="q-wait-note">Ekibimiz sorunu en kısa sürede yanıtlayacak.</div>`}
+                    : `<div class="q-wait-note">@L["Ekibimiz"]</div>`}
                                                                                                 </div>`).join("")}
                                                                                             </div>`;
         },
@@ -437,7 +444,7 @@
         ratings() {
             return `
                                                                                             <div class="pane active">
-                                                                                              <div class="pane-head"><h1>Değerlendirmelerim</h1><p>Katıldığın turlara verdiğin puanlar.</p></div>
+                                                                                              <div class="pane-head"><h1>@L["Degerlendirmelerim"]</h1><p>@L["KatilTur"]</p></div>
                                                                                               <div class="row g-3" id="rateGrid">
                                                                                                 ${RATINGS.map((r, i) => `
                                                                                                   <div class="col-sm-6 col-lg-4">
@@ -447,7 +454,7 @@
                                                                                                       <div class="stars" data-stars="${i}">${starStr(r.stars)}</div>
                                                                                                       <div class="score">${r.stars} / 5</div>
                                                                                                       <div class="date">${r.date}</div>
-                                                                                                      <button class="mini-btn mt-3" data-rate="${i}">Değerlendirmeyi Güncelle</button>
+                                                                                                      <button class="mini-btn mt-3" data-rate="${i}">@L["DegerlendirmeGuncelle"]</button>
                                                                                                     </div>
                                                                                                   </div>`).join("")}
                                                                                               </div>
@@ -475,7 +482,7 @@
             if (r.ok) {
                 FAVORITES.splice(i, 1);
                 document.getElementById("contentArea").innerHTML = RENDER.favorites();
-                toast("Favorilerden kaldırıldı");
+                toast("@L["FavoriKaldir"]");
             }
         });
     }
@@ -496,12 +503,12 @@
                     MYREVIEWS = MYREVIEWS.filter(r => r.id !== pendingDelId);
                     bootstrap.Modal.getInstance(document.getElementById("delModal")).hide();
                     document.getElementById("contentArea").innerHTML = RENDER.reviews();
-                    toast("Yorum silindi.");
+                    toast("@L["YorumSilindi"]");
                 } else {
-                    alert("Yorum silinemedi.");
+                    toast("@L["Silinemedi"]");
                 }
             })
-            .catch(err => alert("Bağlantı hatası: " + err.message));
+            .catch(err => toast("@L["Baglanti"] " + err.message));
 
 
         
@@ -550,13 +557,13 @@
                     bootstrap.Modal.getInstance(document.getElementById("rateModal")).hide();
                     document.getElementById("contentArea").innerHTML = RENDER.ratings();
                     bindRatingButtons();
-                    toast("Değerlendirmen güncellendi.");
+                    toast("@L["Guncellendi"]");
 
                 } else {
-                    alert("Değerlendirme güncellenemedi.");
+                    toast("@L["Guncellenmedi"]");
                 }
             })
-            .catch(err => alert("Bağlantı hatası: " + err.message));
+            .catch(err => toast("@L["Baglanti"] " + err.message));
 
     }
 
@@ -588,7 +595,7 @@
                     return r.text().then(t => { throw new Error(t); });
                 }
             })
-            .catch(err => alert("Profil Güncellenemedi: " + err.message));
+            .catch(err => toast("@L["ProfilGuncellenmedi"] " + err.message));
     }
 
 
@@ -617,7 +624,7 @@
                 if (rev) { rev.text = document.getElementById('editReviewText').value; rev.stars = editStars; }
                 bootstrap.Modal.getInstance(document.getElementById('editReviewModal')).hide();
                 document.getElementById('contentArea').innerHTML = RENDER.reviews();
-                toast('Yorum güncellendi.');
+                toast('@L["YorumGuncellendi"]');
             }
         });
     }
@@ -647,14 +654,14 @@
             .then(r => {
                 if (r.ok) {
                     bootstrap.Modal.getInstance(document.getElementById("cancelReservationModal")).hide();
-                    toast('Rezervasyon iptal edildi.');
+                    toast('@L["RezIptal"]');
                     setTimeout(() => location.reload(), 1500);
                 } else {
                     r.text().then(errText => console.error("Hata Detayı:", errText));
-                    alert('İptal işlemi başarısız.');
+                    toast('@L["IptalIslemi"].');
                 }
             })
-            .catch(err => alert("Bağlantı hatası: " + err.message));
+            .catch(err => alert("@L["Baglanti"]" + err.message));
     }
 
 

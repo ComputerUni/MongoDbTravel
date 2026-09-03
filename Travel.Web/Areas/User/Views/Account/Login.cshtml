@@ -15,26 +15,26 @@
             <div class="visual-body">
                 <div class="eyebrow">@L["TekrarHosgeldin"]</div>
                 <h1>@L["Macera"]</h1>
-                <p>Hesabına giriş yap, rezervasyonlarını takip et ve yeni turları keşfet.</p>
+                <p>@L["HesabaGiris"]</p>
                 <ul class="perks">
                     <li>
                         <span class="pc">
                             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18" /></svg>
-                        </span>Rezervasyonlarını görüntüle
+                        </span>@L["RezervasyonGoruntule"]
                     </li>
                     <li>
                         <span class="pc">
                             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z" /></svg>
-                        </span>Favori turlarına hızlı eriş
+                        </span>@L["FavoriTur"]
                     </li>
                     <li>
                         <span class="pc">
                             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /></svg>
-                        </span>Yorum ve sorularını yönet
+                        </span>@L["YorumSoru"]
                     </li>
                 </ul>
             </div>
-            <div class="visual-foot">© 2026 Travelio · Dünyayı keşfetmeye hazır ol.</div>
+            <div class="visual-foot">© 2026 Travelio · @L["DunyaKesfet"]</div>
         </div>
 
         <!-- RIGHT FORM -->
@@ -66,8 +66,8 @@
                     <a class="brand mb-4" href="/"><span class="dot"></span>Travelio</a>
 
                     <div class="eyebrow">@L["TravelioHosgeldin"]</div>
-                    <h2>Giriş Yap</h2>
-                    <p class="lead">Hesabına erişmek için bilgilerini gir.</p>
+                    <h2>@L["GirisYap"]</h2>
+                    <p class="lead">@L["HesapGiris"]</p>
 
                     @if (!ViewData.ModelState.IsValid)
                     {
@@ -86,17 +86,17 @@
                         @Html.AntiForgeryToken()
 
                         <div class="field">
-                            <label asp-for="Email">E-posta</label>
+                            <label asp-for="Email">@L["Eposta"]</label>
                             <div class="input-wrap">
-                                <input asp-for="Email" type="email" placeholder="ornek@email.com" autocomplete="email" />
+                                <input asp-for="Email" type="email" placeholder="@L["Eposta"]" autocomplete="email" />
                             </div>
                             <span asp-validation-for="Email" class="text-danger" style="font-size:.78rem"></span>
                         </div>
 
                         <div class="field">
-                            <label asp-for="Password">Şifre</label>
+                            <label asp-for="Password">@L["Sifre"]</label>
                             <div class="input-wrap">
-                                <input asp-for="Password" type="password" id="passwordInput" placeholder="Şifrenizi girin" autocomplete="current-password" />
+                                <input asp-for="Password" type="password" id="passwordInput" placeholder="@L["SifreGir"]" autocomplete="current-password" />
                                 <button type="button" class="toggle-eye" id="toggleEye" aria-label="Şifreyi göster">
                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z" /><circle cx="12" cy="12" r="3" /></svg>
                                 </button>
@@ -107,14 +107,14 @@
                         <div class="remember-row">
                             <div class="remember">
                                 <input type="checkbox" id="rememberMe" name="rememberMe" />
-                                <label for="rememberMe">Beni hatırla</label>
+                                <label for="rememberMe">@L["BeniHatirla"]</label>
                             </div>
                         </div>
 
-                        <button type="submit" class="btn-teal btn-submit">Giriş Yap</button>
+                        <button type="submit" class="btn-teal btn-submit">@L["GirisYap"]</button>
                     </form>
 
-                    <div class="register-line">Hesabın yok mu? <a asp-action="Register" asp-controller="Account">Kayıt Ol</a></div>
+                    <div class="register-line">@L["HesabinYokMu"] <a asp-action="Register" asp-controller="Account">@L["KayitOl"]</a></div>
                 </div>
             </div>
         </div>

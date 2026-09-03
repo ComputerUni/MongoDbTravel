@@ -484,7 +484,7 @@
     <value>Maximum</value>
   </data>
   <data name="Kisi" xml:space="preserve">
-    <value>person</value>
+    <value>Person</value>
   </data>
   <data name="Bulusma" xml:space="preserve">
     <value>Meeting Point</value>
@@ -587,5 +587,350 @@
   </data>
   <data name="Macera" xml:space="preserve">
     <value>Your Adventure Awaits</value>
+  </data>
+  <data name="HesabaGiris" xml:space="preserve">
+    <value>Log in to your account, track your reservations, and discover new tours.</value>
+  </data>
+  <data name="RezervasyonGoruntule" xml:space="preserve">
+    <value>View your reservations</value>
+  </data>
+  <data name="FavoriTur" xml:space="preserve">
+    <value>Quick access to your favorite tours</value>
+  </data>
+  <data name="YorumSoru" xml:space="preserve">
+    <value>Manage your reviews and questions</value>
+  </data>
+  <data name="DunyaKesfet" xml:space="preserve">
+    <value>Get ready to explore the world.</value>
+  </data>
+  <data name="HesapErisim" xml:space="preserve">
+    <value>Enter your credentials to access your account.</value>
+  </data>
+  <data name="ornek" xml:space="preserve">
+    <value>example</value>
+  </data>
+  <data name="SifreGir" xml:space="preserve">
+    <value>Enter your password</value>
+  </data>
+  <data name="TravelioTopluluk" xml:space="preserve">
+    <value>Join the Travelio community</value>
+  </data>
+  <data name="YeniMacera" xml:space="preserve">
+    <value>Your New Adventures Begin Here</value>
+  </data>
+  <data name="TravelioHesap" xml:space="preserve">
+    <value>Create your Travelio account, save your favorite routes, manage your tours, and share your travel experiences.</value>
+  </data>
+  <data name="HesapVarmi" xml:space="preserve">
+    <value>Already have an account? Sign In.</value>
+  </data>
+  <data name="Travelio" xml:space="preserve">
+    <value>Welcome to Travelio</value>
+  </data>
+  <data name="SeyahatPlanlama" xml:space="preserve">
+    <value>Just a few details to plan and manage your travels.</value>
+  </data>
+  <data name="HesabiniOlustur" xml:space="preserve">
+    <value>Create Your Account</value>
+  </data>
+  <data name="KullaniciAdi" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="Adiniz" xml:space="preserve">
+    <value>Your First Name</value>
+  </data>
+  <data name="Soyadiniz" xml:space="preserve">
+    <value>Your Last Name</value>
+  </data>
+  <data name="Ad" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="Soyad" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="Tel" xml:space="preserve">
+    <value>Phone Number</value>
+  </data>
+  <data name="TekrarSifre" xml:space="preserve">
+    <value>Confirm Password...</value>
+  </data>
+  <data name="FavoriKaydet" xml:space="preserve">
+    <value>Save your favorite tours</value>
+  </data>
+  <data name="RezervasyonTek" xml:space="preserve">
+    <value>Manage your reservations in one place</value>
+  </data>
+  <data name="YorumPaylas" xml:space="preserve">
+    <value>Share your reviews and ratings</value>
+  </data>
+  <data name="Profilim" xml:space="preserve">
+    <value>My Profile</value>
+  </data>
+  <data name="Hesabim" xml:space="preserve">
+    <value>My Account</value>
+  </data>
+  <data name="ProfilYonetmek" xml:space="preserve">
+    <value>You can manage your travels, favorites, and Travelio experience from here.</value>
+  </data>
+  <data name="YaklasanTur" xml:space="preserve">
+    <value>Upcoming Tour</value>
+  </data>
+  <data name="Tamamlanan" xml:space="preserve">
+    <value>Completed Tour</value>
+  </data>
+  <data name="Favori" xml:space="preserve">
+    <value>Favorite Tour</value>
+  </data>
+  <data name="Yorum" xml:space="preserve">
+    <value>Review</value>
+  </data>
+  <data name="Merhaba" xml:space="preserve">
+    <value>Hello</value>
+  </data>
+  <data name="Rezervasyon" xml:space="preserve">
+    <value>Reservation</value>
+  </data>
+  <data name="Kalan" xml:space="preserve">
+    <value>Remaining</value>
+  </data>
+  <data name="TurPasifeAlindi" xml:space="preserve">
+    <value>Tur Pasife Alındı</value>
+  </data>
+  <data name="BirSonraki" xml:space="preserve">
+    <value>You can check the details of your next adventure and manage your past travels and favorites.</value>
+  </data>
+  <data name="Cikis" xml:space="preserve">
+    <value>Log Out</value>
+  </data>
+  <data name="PasifTur" xml:space="preserve">
+    <value>Tour Deactivated</value>
+  </data>
+  <data name="TurDetay" xml:space="preserve">
+    <value>Tour Detail</value>
+  </data>
+  <data name="RezervasyonGor" xml:space="preserve">
+    <value>View Reservation</value>
+  </data>
+  <data name="YaklasanRez" xml:space="preserve">
+    <value>You have no upcoming reservations.</value>
+  </data>
+  <data name="TurKesfet" xml:space="preserve">
+    <value>Explore Tours</value>
+  </data>
+  <data name="KisiselBilgi" xml:space="preserve">
+    <value>You can update your personal information here.</value>
+  </data>
+  <data name="ProfilBilgi" xml:space="preserve">
+    <value>My Profile</value>
+  </data>
+  <data name="ProfilBilgilerim" xml:space="preserve">
+    <value>My Profile Information</value>
+  </data>
+  <data name="Dogum" xml:space="preserve">
+    <value>Birth Date</value>
+  </data>
+  <data name="Sehir" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="Ulke" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="BilgiGuncelle" xml:space="preserve">
+    <value>Update Information</value>
+  </data>
+  <data name="GenelBakis" xml:space="preserve">
+    <value>Overview</value>
+  </data>
+  <data name="Rezervasyonlarim" xml:space="preserve">
+    <value>My Reservations</value>
+  </data>
+  <data name="Favorilerim" xml:space="preserve">
+    <value>My Favorites</value>
+  </data>
+  <data name="Yorumlarim" xml:space="preserve">
+    <value>My Reviews</value>
+  </data>
+  <data name="Sorularim" xml:space="preserve">
+    <value>My Questions</value>
+  </data>
+  <data name="Degerlendirmelerim" xml:space="preserve">
+    <value>My Ratings</value>
+  </data>
+  <data name="Yolcular" xml:space="preserve">
+    <value>Passengers</value>
+  </data>
+  <data name="RezTarih" xml:space="preserve">
+    <value>Reservation Date</value>
+  </data>
+  <data name="Iptal" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Yaklasan" xml:space="preserve">
+    <value>All your upcoming and completed travels.</value>
+  </data>
+  <data name="Tum" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Yaklas" xml:space="preserve">
+    <value>Upcoming</value>
+  </data>
+  <data name="Tamamla" xml:space="preserve">
+    <value>Completed</value>
+  </data>
+  <data name="DahaSonra" xml:space="preserve">
+    <value>Tours you saved to review later.</value>
+  </data>
+  <data name="Henuz" xml:space="preserve">
+    <value>You don't have any favorite tours yet.</value>
+  </data>
+  <data name="YeniRota" xml:space="preserve">
+    <value>How about discovering new routes?</value>
+  </data>
+  <data name="Kaldir" xml:space="preserve">
+    <value>Remove from favorites</value>
+  </data>
+  <data name="HenuzYorum" xml:space="preserve">
+    <value>You don't have any reviews yet.</value>
+  </data>
+  <data name="TurlarHakkinda" xml:space="preserve">
+    <value>Evaluations you shared about the tours.</value>
+  </data>
+  <data name="Duzenle" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="TurDetaySayfa" xml:space="preserve">
+    <value>Questions you asked on tour detail pages and their answers.</value>
+  </data>
+  <data name="Cevaplandi" xml:space="preserve">
+    <value>Answered</value>
+  </data>
+  <data name="CevapBekliyor" xml:space="preserve">
+    <value>Waiting for Answer</value>
+  </data>
+  <data name="Sil" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Ekibimiz" xml:space="preserve">
+    <value>Our team will answer your question as soon as possible.</value>
+  </data>
+  <data name="KatilTur" xml:space="preserve">
+    <value>Ratings you gave to the tours you participated in.</value>
+  </data>
+  <data name="DegerlendirmeGuncelle" xml:space="preserve">
+    <value>Update Rating</value>
+  </data>
+  <data name="FavoriKaldir" xml:space="preserve">
+    <value>Removed from favorites.</value>
+  </data>
+  <data name="YorumSilindi" xml:space="preserve">
+    <value>Review deleted.</value>
+  </data>
+  <data name="Silinemedi" xml:space="preserve">
+    <value>Could not delete review.</value>
+  </data>
+  <data name="Baglanti" xml:space="preserve">
+    <value>Connection error:</value>
+  </data>
+  <data name="Guncellendi" xml:space="preserve">
+    <value>Your rating has been updated.</value>
+  </data>
+  <data name="Guncellenmedi" xml:space="preserve">
+    <value>Could not update rating.</value>
+  </data>
+  <data name="ProfilGuncellenmedi" xml:space="preserve">
+    <value>Profile Could Not Be Updated</value>
+  </data>
+  <data name="YorumGuncellendi" xml:space="preserve">
+    <value>Review updated.</value>
+  </data>
+  <data name="RezIptal" xml:space="preserve">
+    <value>Reservation cancelled.</value>
+  </data>
+  <data name="IptalIslemi" xml:space="preserve">
+    <value>Cancellation failed.</value>
+  </data>
+  <data name="CikisYap" xml:space="preserve">
+    <value>Are you sure you want to log out?</value>
+  </data>
+  <data name="HesapCikis" xml:space="preserve">
+    <value>Your reservations and favorites will remain safe when you log out.</value>
+  </data>
+  <data name="DegerlendirmeGuncelleyin" xml:space="preserve">
+    <value>Update Rating</value>
+  </data>
+  <data name="Silmek" xml:space="preserve">
+    <value>Do you want to delete your review?</value>
+  </data>
+  <data name="BuGeriAlinamaz" xml:space="preserve">
+    <value>This action cannot be undone.</value>
+  </data>
+  <data name="RezIptalEt" xml:space="preserve">
+    <value>Do you want to cancel your reservation?</value>
+  </data>
+  <data name="KontenjanIade" xml:space="preserve">
+    <value>Following this action, your tour quota will be refunded and cannot be undone.</value>
+  </data>
+  <data name="EvetIptal" xml:space="preserve">
+    <value>Yes, Cancel</value>
+  </data>
+  <data name="YorumDuzenle" xml:space="preserve">
+    <value>Edit Review</value>
+  </data>
+  <data name="Kaydedildi" xml:space="preserve">
+    <value>Saved.</value>
+  </data>
+  <data name="DeneyiminiPaylas" xml:space="preserve">
+    <value>Share Your Experience</value>
+  </data>
+  <data name="Puanin" xml:space="preserve">
+    <value>Your Rating</value>
+  </data>
+  <data name="Yorumun" xml:space="preserve">
+    <value>Your Review</value>
+  </data>
+  <data name="TurPaylas" xml:space="preserve">
+    <value>Describe your tour experience in a few sentences...</value>
+  </data>
+  <data name="YorumGonder" xml:space="preserve">
+    <value>Submit Review</value>
+  </data>
+  <data name="RezervasyonOlusturuldu" xml:space="preserve">
+    <value>Your Reservation Has Been Created!</value>
+  </data>
+  <data name="SeyahatPlani" xml:space="preserve">
+    <value>Your travel plan has been successfully saved.</value>
+  </data>
+  <data name="Tur" xml:space="preserve">
+    <value>Tour:</value>
+  </data>
+  <data name="RezNumara" xml:space="preserve">
+    <value>Your Reservation Number</value>
+  </data>
+  <data name="RezGit" xml:space="preserve">
+    <value>Go to My Reservations</value>
+  </data>
+  <data name="RezOlusturulmadi" xml:space="preserve">
+    <value>Reservation could not be created</value>
+  </data>
+  <data name="Soru" xml:space="preserve">
+    <value>Question could not be sent</value>
+  </data>
+  <data name="YorumIcerigiBosBirakilamaz" xml:space="preserve">
+    <value>Review content cannot be left blank.</value>
+  </data>
+  <data name="YorumEnAz5Karakter" xml:space="preserve">
+    <value>Review must be at least 5 characters long.</value>
+  </data>
+  <data name="YorumEnFazla500Karakter" xml:space="preserve">
+    <value>Review can be at most 500 characters long.</value>
+  </data>
+  <data name="GecerliPuanSecin" xml:space="preserve">
+    <value>Please select a valid rating between 1 and 5.</value>
+  </data>
+  <data name="HesapGirisYorum" xml:space="preserve">
+    <value>You must log in to your account to leave a review.</value>
+  </data>
+  <data name="HesapGirisSoru" xml:space="preserve">
+    <value>You must log in to your account to ask a question.</value>
   </data>
 </root>

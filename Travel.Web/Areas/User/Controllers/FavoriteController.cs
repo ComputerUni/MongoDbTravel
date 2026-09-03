@@ -2,12 +2,15 @@
 using Microsoft.AspNetCore.Mvc;
 using Travel.Web.DTOs.FavoriteDtos;
 using Travel.Web.Entities;
+using Travel.Web.Services.DestinationServices;
 using Travel.Web.Services.FavoriteServices;
+using Travel.Web.Services.LocalizationServices;
+using Travel.Web.Services.TourServices;
 
 namespace Travel.Web.Areas.User.Controllers
 {
     [Area("User")]
-    public class FavoriteController(IFavoriteService _favoriteService, UserManager<AppUser> _userManager) : Controller
+    public class FavoriteController(IFavoriteService _favoriteService, ITourService _tourService ,UserManager<AppUser> _userManager, ITourLocalizationService _tourLocalizationService, IDestinationService _destinationService) : Controller
     {
         [HttpPost]
         public async Task<IActionResult> Add([FromBody] CreateFavoriteDto favoriteDto)
@@ -41,7 +44,38 @@ namespace Travel.Web.Areas.User.Controllers
             if (user == null) return Ok(new List<string>());
 
             var favorites = await _favoriteService.GetByUserIdAsync(user.Id.ToString());
-            return Ok(favorites.Select(f => f.TourId));
+
+            var currentCulture = Thread.CurrentThread.CurrentUICulture.Name;
+            var isEnglish = currentCulture.StartsWith("en", StringComparison.OrdinalIgnoreCase);
+            var langCode = isEnglish ? "en" : "tr";
+            var cultureInfo = new System.Globalization.CultureInfo(isEnglish ? "en-US" : "tr-TR");
+
+            if(isEnglish)
+            {
+                foreach(var f in favorites)
+                {
+                    var localization = await _tourLocalizationService.GetLocalizationByTourAndLangAsync(f.TourId, "en");
+                    if (localization != null && !string.IsNullOrEmpty(localization.Name))
+                    {
+                        f.TourName = localization.Name;
+                    }
+
+                    if(langCode == "en")
+                    {
+                        var tour = await _tourService.GetByIdAsync(f.TourId);
+                        if(tour != null && !string.IsNullOrEmpty(tour.DestinationId))
+                        {
+                            var destination = await _destinationService.GetByIdAsync(tour.DestinationId);
+                            if(destination != null && !string.IsNullOrEmpty(destination.CountryEn))
+                            {
+                                f.Country = destination.CountryEn;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return Ok(favorites);
         }
 
     }

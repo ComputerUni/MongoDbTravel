@@ -14,6 +14,14 @@ namespace Travel.Web.Areas.User.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateQuestionDto createQuestionDto)
         {
+            if (!ModelState.IsValid)
+            {
+                var errorMessage = string.Join(" ", ModelState.Values
+            .SelectMany(v => v.Errors)
+            .Select(e => e.ErrorMessage));
+
+                return BadRequest(errorMessage);
+            }
             var user = await _userManager.GetUserAsync(User);
             createQuestionDto.UserId = user.Id.ToString();
             await _questionService.CreateAsync(createQuestionDto);

@@ -17,9 +17,15 @@
         <form asp-action="Create" method="post">
             <div class="row g-3">
                 <div class="col-md-6">
-                    <label class="form-label fw-semibold">Başlık</label>
+                    <label class="form-label fw-semibold">Başlık (Türkçe)</label>
                     <input type="text" asp-for="Title" class="ctrl w-100" placeholder="Örn: Özenle Seçilmiş Rotalar" required />
                     <span asp-validation-for="Title" class="text-danger small"></span>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label fw-semibold">Başlık (English)</label>
+                    <input type="text" asp-for="TitleEn" class="ctrl w-100" placeholder="E.g. Handcrafted Routes" />
+                    <span asp-validation-for="TitleEn" class="text-danger small"></span>
                 </div>
 
                 <div class="col-md-6">
@@ -34,10 +40,16 @@
                     <span asp-validation-for="Icon" class="text-danger small"></span>
                 </div>
 
-                <div class="col-12">
-                    <label class="form-label fw-semibold">Açıklama</label>
+                <div class="col-md-6">
+                    <label class="form-label fw-semibold">Açıklama (Türkçe)</label>
                     <textarea asp-for="Description" class="ctrl w-100" rows="4" placeholder="Kart detay açıklamasını giriniz..." required></textarea>
                     <span asp-validation-for="Description" class="text-danger small"></span>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label fw-semibold">Açıklama (English)</label>
+                    <textarea asp-for="DescriptionEn" class="ctrl w-100" rows="4" placeholder="Enter card detail description in English..."></textarea>
+                    <span asp-validation-for="DescriptionEn" class="text-danger small"></span>
                 </div>
 
                 <div class="col-12 d-flex justify-content-end gap-2 mt-4">

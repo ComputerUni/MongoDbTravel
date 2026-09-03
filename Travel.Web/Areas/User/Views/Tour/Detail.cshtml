@@ -48,20 +48,20 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header border-0">
-                    <h5 class="modal-title" style="font-family:'Sora';font-weight:700;color:var(--navy)">Deneyimini Paylaş</h5>
+                    <h5 class="modal-title" style="font-family:'Sora';font-weight:700;color:var(--navy)">@L["DeneyiminiPaylas"]</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="book-label" style="margin-top:0">Puanın</div>
+                    <div class="book-label" style="margin-top:0">@L["Puanin"]</div>
                     <div id="starPicker" class="mb-3">
                         <span class="star-pick" data-v="1">★</span><span class="star-pick" data-v="2">★</span><span class="star-pick" data-v="3">★</span><span class="star-pick" data-v="4">★</span><span class="star-pick" data-v="5">★</span>
                     </div>
-                    <div class="book-label" style="margin-top:0">Yorumun</div>
+                    <div class="book-label" style="margin-top:0">@L["Yorumun"]</div>
                     <div id="reviewError" style="display:none; color:#c26a52; font-size:.88rem; margin-bottom:.8rem;"></div>
-                    <textarea id="reviewText" class="form-control" style="border-radius:14px;border-color:var(--line);min-height:110px" placeholder="Tur deneyimini birkaç cümleyle anlat..."></textarea>
+                    <textarea id="reviewText" class="form-control" style="border-radius:14px;border-color:var(--line);min-height:110px" placeholder="@L["TurPaylas"]"></textarea>
                 </div>
                 <div class="modal-footer border-0">
-                    <button class="btn-teal" onclick="submitReview()">Yorumu Gönder</button>
+                    <button class="btn-teal" onclick="submitReview()">@L["YorumGonder"]</button>
                 </div>
             </div>
         </div>
@@ -78,25 +78,25 @@
                         ✓
                     </div>
 
-                    <h4 style="font-family:'Sora', sans-serif; font-weight: 700; color: #0f5132; margin-bottom: 8px;">Rezervasyonunuz Oluşturuldu!</h4>
-                    <p style="color: #6c757d; font-size: 0.9rem; margin-bottom: 20px;">Seyahat planınız başarıyla kaydedildi.</p>
+                    <h4 style="font-family:'Sora', sans-serif; font-weight: 700; color: #0f5132; margin-bottom: 8px;">@L["RezervasyonOlusturuldu"]</h4>
+                    <p style="color: #6c757d; font-size: 0.9rem; margin-bottom: 20px;">@L["SeyahatPlani"]</p>
 
                     <!-- Detay Bilgi Kartı -->
                     <div style="background-color: #f1f3f5; border-radius: 12px; padding: 16px; text-align: left; margin-bottom: 20px; font-size: 0.9rem; color: #333;">
-                        <div style="margin-bottom: 6px;"><b>Tur:</b> <span id="resModalTour" style="color: #495057;"></span></div>
-                        <div style="margin-bottom: 6px;"><b>Tarih:</b> <span id="resModalDate" style="color: #495057;"></span></div>
-                        <div style="margin-bottom: 6px;"><b>Kişi:</b> <span id="resModalPerson" style="color: #495057;"></span></div>
-                        <div style="margin-bottom: 0;"><b>Toplam:</b> <span id="resModalTotal" style="color: #495057; font-weight: 600;"></span></div>
+                        <div style="margin-bottom: 6px;"><b>@L["Tur"]</b> <span id="resModalTour" style="color: #495057;"></span></div>
+                        <div style="margin-bottom: 6px;"><b>@L["Tarih"]:</b> <span id="resModalDate" style="color: #495057;"></span></div>
+                        <div style="margin-bottom: 6px;"><b>@L["Kisi"]:</b> <span id="resModalPerson" style="color: #495057;"></span></div>
+                        <div style="margin-bottom: 0;"><b>@L["Toplam"]:</b> <span id="resModalTotal" style="color: #495057; font-weight: 600;"></span></div>
                     </div>
 
                     <!-- Yeşil Rezervasyon Numarası Kutusu -->
                     <div style="background-color: #d1e7dd; border: 1px dashed #badbcc; padding: 12px; border-radius: 10px; margin-bottom: 25px;">
-                        <span style="font-size: 0.8rem; color: #0f5132; display: block; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px;">Rezervasyon Numaranız</span>
+                        <span style="font-size: 0.8rem; color: #0f5132; display: block; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px;">@L["RezNumara"]</span>
                         <b id="resModalId" style="font-size: 1.15rem; color: #0f5132; letter-spacing: 1px;">TRV-XXXXXX</b>
                     </div>
 
                     <div class="d-grid">
-                        <a href="/User/Profile/Index#trips" class="btn btn-success" style="background-color: #0f5132; border: none; padding: 12px; font-weight: 600; border-radius: 10px;">Rezervasyonlarıma Git</a>
+                        <a href="/User/Profile/Index#trips" class="btn btn-success" style="background-color: #0f5132; border: none; padding: 12px; font-weight: 600; border-radius: 10px;">@L["RezGit"]</a>
                     </div>
 
                 </div>

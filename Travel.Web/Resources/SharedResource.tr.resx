@@ -484,7 +484,7 @@
     <value>Maksimum</value>
   </data>
   <data name="Kisi" xml:space="preserve">
-    <value>kişi</value>
+    <value>Kişi</value>
   </data>
   <data name="Bulusma" xml:space="preserve">
     <value>Buluşma Noktası</value>
@@ -587,5 +587,350 @@
   </data>
   <data name="Macera" xml:space="preserve">
     <value>Maceran Seni Bekliyor</value>
+  </data>
+  <data name="HesabaGiris" xml:space="preserve">
+    <value>Hesabına giriş yap, rezervasyonlarını takip et ve yeni turları keşfet.</value>
+  </data>
+  <data name="RezervasyonGoruntule" xml:space="preserve">
+    <value>Rezervasyonlarını görüntüle</value>
+  </data>
+  <data name="FavoriTur" xml:space="preserve">
+    <value>Favori turlarına hızlı erişim</value>
+  </data>
+  <data name="YorumSoru" xml:space="preserve">
+    <value>Yorum ve sorularını yönet</value>
+  </data>
+  <data name="DunyaKesfet" xml:space="preserve">
+    <value>Dünyayı keşfetmeye hazır ol.</value>
+  </data>
+  <data name="HesapErisim" xml:space="preserve">
+    <value>Hesabına erişmek için bilgilerini gir.</value>
+  </data>
+  <data name="ornek" xml:space="preserve">
+    <value>ornek</value>
+  </data>
+  <data name="SifreGir" xml:space="preserve">
+    <value>Şifrenizi giriniz</value>
+  </data>
+  <data name="TravelioTopluluk" xml:space="preserve">
+    <value>Travelio topluluğuna katıl</value>
+  </data>
+  <data name="YeniMacera" xml:space="preserve">
+    <value>Yeni Maceraların Burada Başlıyor</value>
+  </data>
+  <data name="TravelioHesap" xml:space="preserve">
+    <value>Travelio hesabını oluştur, favori rotalarını kaydet, turlarını yönet ve seyahat deneyimlerini paylaş.</value>
+  </data>
+  <data name="HesapVarmi" xml:space="preserve">
+    <value>Hesabınız var mı? Giriş Yapın.</value>
+  </data>
+  <data name="Travelio" xml:space="preserve">
+    <value>Travelio'ya Hoş Geldin</value>
+  </data>
+  <data name="SeyahatPlanlama" xml:space="preserve">
+    <value>Seyahatlerini planlamak ve yönetmek için birkaç bilgi yeterli.</value>
+  </data>
+  <data name="HesabiniOlustur" xml:space="preserve">
+    <value>Hesabını Oluştur</value>
+  </data>
+  <data name="KullaniciAdi" xml:space="preserve">
+    <value>Kullanıcı Adı</value>
+  </data>
+  <data name="Adiniz" xml:space="preserve">
+    <value>Adınız...</value>
+  </data>
+  <data name="Soyadiniz" xml:space="preserve">
+    <value>Soyadınız...</value>
+  </data>
+  <data name="Ad" xml:space="preserve">
+    <value>Ad</value>
+  </data>
+  <data name="Soyad" xml:space="preserve">
+    <value>Soyad</value>
+  </data>
+  <data name="Tel" xml:space="preserve">
+    <value>Telefon</value>
+  </data>
+  <data name="TekrarSifre" xml:space="preserve">
+    <value>Şifrenizi tekrar giriniz...</value>
+  </data>
+  <data name="FavoriKaydet" xml:space="preserve">
+    <value>Favori turlarını kaydet</value>
+  </data>
+  <data name="RezervasyonTek" xml:space="preserve">
+    <value>Rezervasyonlarını tek yerden yönet</value>
+  </data>
+  <data name="YorumPaylas" xml:space="preserve">
+    <value>Yorum ve değerlendirmelerini paylaş</value>
+  </data>
+  <data name="Profilim" xml:space="preserve">
+    <value>Profilim</value>
+  </data>
+  <data name="Hesabim" xml:space="preserve">
+    <value>Hesabım</value>
+  </data>
+  <data name="ProfilYonetmek" xml:space="preserve">
+    <value>Seyahatlerini, favorilerini ve Travelio deneyimini buradan yönetebilirsin.</value>
+  </data>
+  <data name="YaklasanTur" xml:space="preserve">
+    <value>Yaklaşan Tur</value>
+  </data>
+  <data name="Tamamlanan" xml:space="preserve">
+    <value>Tamamlanan Tur</value>
+  </data>
+  <data name="Favori" xml:space="preserve">
+    <value>Favori Tur</value>
+  </data>
+  <data name="Yorum" xml:space="preserve">
+    <value>Yorum</value>
+  </data>
+  <data name="Merhaba" xml:space="preserve">
+    <value>Merhaba</value>
+  </data>
+  <data name="Rezervasyon" xml:space="preserve">
+    <value>Rezervasyon</value>
+  </data>
+  <data name="Kalan" xml:space="preserve">
+    <value>Kalan</value>
+  </data>
+  <data name="TurPasifeAlindi" xml:space="preserve">
+    <value>Tur Pasife Alındı</value>
+  </data>
+  <data name="BirSonraki" xml:space="preserve">
+    <value>Bir sonraki maceranın detaylarına göz atabilir, geçmiş seyahatlerini ve favorilerini yönetebilirsin.</value>
+  </data>
+  <data name="Cikis" xml:space="preserve">
+    <value>Çıkış Yap</value>
+  </data>
+  <data name="PasifTur" xml:space="preserve">
+    <value>Tur Pasife Alındı</value>
+  </data>
+  <data name="TurDetay" xml:space="preserve">
+    <value>Tur Detayı</value>
+  </data>
+  <data name="RezervasyonGor" xml:space="preserve">
+    <value>Rezervasyonu Gör</value>
+  </data>
+  <data name="YaklasanRez" xml:space="preserve">
+    <value>Yaklaşan rezervasyonun bulunmuyor.</value>
+  </data>
+  <data name="TurKesfet" xml:space="preserve">
+    <value>Turları Keşfet</value>
+  </data>
+  <data name="KisiselBilgi" xml:space="preserve">
+    <value>Kişisel bilgilerini buradan güncelleyebilirsin.</value>
+  </data>
+  <data name="ProfilBilgi" xml:space="preserve">
+    <value>Profil Bilgilerim</value>
+  </data>
+  <data name="ProfilBilgilerim" xml:space="preserve">
+    <value>Profil Bilgilerim</value>
+  </data>
+  <data name="Dogum" xml:space="preserve">
+    <value>Doğum Tarihi</value>
+  </data>
+  <data name="Sehir" xml:space="preserve">
+    <value>Şehir</value>
+  </data>
+  <data name="Ulke" xml:space="preserve">
+    <value>Ülke</value>
+  </data>
+  <data name="BilgiGuncelle" xml:space="preserve">
+    <value>Bilgileri Güncelle</value>
+  </data>
+  <data name="GenelBakis" xml:space="preserve">
+    <value>Genel Bakış</value>
+  </data>
+  <data name="Rezervasyonlarim" xml:space="preserve">
+    <value>Rezervasyonlarım</value>
+  </data>
+  <data name="Favorilerim" xml:space="preserve">
+    <value>Favorilerim</value>
+  </data>
+  <data name="Yorumlarim" xml:space="preserve">
+    <value>Yorumlarım</value>
+  </data>
+  <data name="Sorularim" xml:space="preserve">
+    <value>Sorularım</value>
+  </data>
+  <data name="Degerlendirmelerim" xml:space="preserve">
+    <value>Değerlendirmelerim</value>
+  </data>
+  <data name="Yolcular" xml:space="preserve">
+    <value>Yolcular</value>
+  </data>
+  <data name="RezTarih" xml:space="preserve">
+    <value>Rezervasyon Tarihi</value>
+  </data>
+  <data name="Iptal" xml:space="preserve">
+    <value>İptal Et</value>
+  </data>
+  <data name="Yaklasan" xml:space="preserve">
+    <value>Yaklaşan ve tamamlanan tüm seyahatlerin.</value>
+  </data>
+  <data name="Tum" xml:space="preserve">
+    <value>Tümü</value>
+  </data>
+  <data name="Yaklas" xml:space="preserve">
+    <value>Yaklaşan</value>
+  </data>
+  <data name="Tamamla" xml:space="preserve">
+    <value>Tamamlanan</value>
+  </data>
+  <data name="DahaSonra" xml:space="preserve">
+    <value>Daha sonra incelemek için kaydettiğin turlar.</value>
+  </data>
+  <data name="Henuz" xml:space="preserve">
+    <value>Henuz favori turun yok.</value>
+  </data>
+  <data name="YeniRota" xml:space="preserve">
+    <value>Yeni rotalar keşfetmeye ne dersin?</value>
+  </data>
+  <data name="Kaldir" xml:space="preserve">
+    <value>Favoriden kaldır</value>
+  </data>
+  <data name="HenuzYorum" xml:space="preserve">
+    <value>Henüz yorumun yok.</value>
+  </data>
+  <data name="TurlarHakkinda" xml:space="preserve">
+    <value>Turlar Hakkında</value>
+  </data>
+  <data name="Duzenle" xml:space="preserve">
+    <value>Düzenle</value>
+  </data>
+  <data name="TurDetaySayfa" xml:space="preserve">
+    <value>Tur detay sayfalarında sorduğun sorular ve yanıtları.</value>
+  </data>
+  <data name="Cevaplandi" xml:space="preserve">
+    <value>Cevaplandı</value>
+  </data>
+  <data name="CevapBekliyor" xml:space="preserve">
+    <value>Cevap Bekliyor</value>
+  </data>
+  <data name="Sil" xml:space="preserve">
+    <value>Sil</value>
+  </data>
+  <data name="Ekibimiz" xml:space="preserve">
+    <value>Ekibimiz sorunu en kısa sürede yanıtlayacak.</value>
+  </data>
+  <data name="KatilTur" xml:space="preserve">
+    <value>Katıldığın turlara verdiğin puanlar.</value>
+  </data>
+  <data name="DegerlendirmeGuncelle" xml:space="preserve">
+    <value>Değerlendirmeyi Güncelle</value>
+  </data>
+  <data name="FavoriKaldir" xml:space="preserve">
+    <value>Favorilerden kaldırıldı.</value>
+  </data>
+  <data name="YorumSilindi" xml:space="preserve">
+    <value>Yorum silindi.</value>
+  </data>
+  <data name="Silinemedi" xml:space="preserve">
+    <value>Yorum silinemedi.</value>
+  </data>
+  <data name="Baglanti" xml:space="preserve">
+    <value>Bağlantı hatası:</value>
+  </data>
+  <data name="Guncellendi" xml:space="preserve">
+    <value>Değerlendirmen güncellendi.</value>
+  </data>
+  <data name="Guncellenmedi" xml:space="preserve">
+    <value>Değerlendirme güncellenmedi</value>
+  </data>
+  <data name="ProfilGuncellenmedi" xml:space="preserve">
+    <value>Profil Güncellenmedi</value>
+  </data>
+  <data name="YorumGuncellendi" xml:space="preserve">
+    <value>Yorum güncellendi.</value>
+  </data>
+  <data name="RezIptal" xml:space="preserve">
+    <value>Rezervasyon iptal edildi.</value>
+  </data>
+  <data name="IptalIslemi" xml:space="preserve">
+    <value>İptal işlemi başarısız.</value>
+  </data>
+  <data name="CikisYap" xml:space="preserve">
+    <value>Çıkış yapmak istediğine emin misin?</value>
+  </data>
+  <data name="HesapCikis" xml:space="preserve">
+    <value>Hesabından çıkış yapıldığında rezervasyonların ve favorilerin güvende kalır.</value>
+  </data>
+  <data name="DegerlendirmeGuncelleyin" xml:space="preserve">
+    <value>Değerlendirmeyi Güncelle</value>
+  </data>
+  <data name="Silmek" xml:space="preserve">
+    <value>Yorumu silmek istiyor musun?</value>
+  </data>
+  <data name="BuGeriAlinamaz" xml:space="preserve">
+    <value>Bu işlem geri alınamaz.</value>
+  </data>
+  <data name="RezIptalEt" xml:space="preserve">
+    <value>Rezervasyonu iptal etmek istiyor musun?</value>
+  </data>
+  <data name="KontenjanIade" xml:space="preserve">
+    <value>Bu işlem sonrasında tur kontenjanınız iade edilecektir ve geri alınamaz.</value>
+  </data>
+  <data name="EvetIptal" xml:space="preserve">
+    <value>Evet, İptal Et</value>
+  </data>
+  <data name="YorumDuzenle" xml:space="preserve">
+    <value>Yorumu Düzenle</value>
+  </data>
+  <data name="Kaydedildi" xml:space="preserve">
+    <value>Kaydedildi.</value>
+  </data>
+  <data name="DeneyiminiPaylas" xml:space="preserve">
+    <value>Deneyimini Paylaş</value>
+  </data>
+  <data name="Puanin" xml:space="preserve">
+    <value>Puanın</value>
+  </data>
+  <data name="Yorumun" xml:space="preserve">
+    <value>Yorumun</value>
+  </data>
+  <data name="TurPaylas" xml:space="preserve">
+    <value>Tur deneyimini birkaç cümleyle anlat...</value>
+  </data>
+  <data name="YorumGonder" xml:space="preserve">
+    <value>Yorumu Gönder</value>
+  </data>
+  <data name="RezervasyonOlusturuldu" xml:space="preserve">
+    <value>Rezervasyonunuz Oluşturuldu!</value>
+  </data>
+  <data name="SeyahatPlani" xml:space="preserve">
+    <value>Seyahat planınız başarıyla kaydedildi.</value>
+  </data>
+  <data name="Tur" xml:space="preserve">
+    <value>Tur:</value>
+  </data>
+  <data name="RezNumara" xml:space="preserve">
+    <value>Rezervasyon Numaranız</value>
+  </data>
+  <data name="RezGit" xml:space="preserve">
+    <value>Rezervasyonlarıma Git</value>
+  </data>
+  <data name="RezOlusturulmadi" xml:space="preserve">
+    <value>Rezervasyon oluşturulmadı</value>
+  </data>
+  <data name="Soru" xml:space="preserve">
+    <value>Soru gönderilemedi</value>
+  </data>
+  <data name="YorumIcerigiBosBirakilamaz" xml:space="preserve">
+    <value>Yorum içeriği boş bırakılamaz</value>
+  </data>
+  <data name="YorumEnAz5Karakter" xml:space="preserve">
+    <value>Yorum en az 5 karakter olmalıdır.</value>
+  </data>
+  <data name="YorumEnFazla500Karakter" xml:space="preserve">
+    <value>Yorum en fazla 500 karakter olabilir.</value>
+  </data>
+  <data name="GecerliPuanSecin" xml:space="preserve">
+    <value>Lütfen 1 ile 5 arasında geçerli bir puan seçin.</value>
+  </data>
+  <data name="HesapGirisYorum" xml:space="preserve">
+    <value>Yorum yapabilmek için hesabınıza giriş yapmanız gerekmektedir.</value>
+  </data>
+  <data name="HesapGirisSoru" xml:space="preserve">
+    <value>Soru sorabilmek için hesabınıza giriş yapmanız gerekmektedir.</value>
   </data>
 </root>

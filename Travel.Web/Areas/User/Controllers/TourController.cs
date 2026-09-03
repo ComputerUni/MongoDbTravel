@@ -21,6 +21,7 @@ namespace Travel.Web.Areas.User.Controllers
         public async Task<IActionResult> Index(int page = 1)
         {
             var tours = await _tourService.GetActiveToursForUserAsync();
+
             var categories = await _categoryService.GetAllAsync();
             var currentCulture = Thread.CurrentThread.CurrentUICulture.Name;
             var langCode = currentCulture.StartsWith("en", StringComparison.OrdinalIgnoreCase) ? "en" : "tr";

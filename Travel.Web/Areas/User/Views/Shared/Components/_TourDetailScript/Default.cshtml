@@ -121,8 +121,8 @@
         }
         const tourDateId = document.querySelector('input[name="tourDate"]:checked')?.value;
 
-        if (!tourDateId) { alert("Lütfen bir tur tarihi seçin."); return; }
-        if (adult < 1) { alert("En az 1 yetişkin seçmelisiniz."); return; }
+        if (!tourDateId) { toast("Lütfen bir tur tarihi seçin."); return; }
+        if (adult < 1) { toast("En az 1 yetişkin seçmelisiniz."); return; }
 
         const tourId = document.getElementById("reserveBtn").dataset.tourId;
 
@@ -144,20 +144,15 @@
                 }
             })
             .then(data => {
-                const rawTitle = "@Model.Tour.Name";
-                const parser = new DOMParser();
-                const decodedTitle = parser.parseFromString(rawTitle, 'text/html').body.textContent;
-
-                document.getElementById("resModalTour").textContent = decodedTitle;
+                document.getElementById("resModalTour").textContent = data.tourName;
                 document.getElementById("resModalDate").textContent = document.querySelector(".date-opt.sel .d").textContent;
-                document.getElementById("resModalPerson").textContent = adult + " Yetişkin" + (child ? ", " + child + " Çocuk" : "");
-                document.getElementById("resModalTotal").textContent = document.getElementById("grandTotal").textContent;
+                document.getElementById("resModalPerson").textContent = adult + " @Html.Raw(L["Yetiskin"])" + (child ? ", " + child + " @Html.Raw(L["Cocuk"])" : ""); document.getElementById("resModalTotal").textContent = document.getElementById("grandTotal").textContent;
                 document.getElementById("resModalId").textContent = data.reservationId;
 
                 new bootstrap.Modal(document.getElementById("reservationModal")).show();
             })
             .catch(err => {
-                alert("Rezervasyon oluşturulamadı: " + err.message);
+                toast("@L["EvetIptal"]");
             });
     }
 
@@ -177,6 +172,12 @@
     function submitReview() {
         const txt = document.getElementById("reviewText").value.trim();
         const tourId = document.getElementById("reserveBtn").dataset.tourId;
+
+        if (!isAuthenticated) {
+            var loginModal = new bootstrap.Modal(document.getElementById('commentRequiredModal'));
+            loginModal.show();
+            return;
+        }
 
         fetch("/User/Comment/Create", {
             method: "POST",
@@ -211,6 +212,12 @@
         const v = document.getElementById("askInput").value.trim();
         if (!v) { return; }
 
+        if (!isAuthenticated) {
+            var loginModal = new bootstrap.Modal(document.getElementById('questionRequiredModal'));
+            loginModal.show();
+            return;
+        }
+
         const tourId = document.getElementById("reserveBtn").dataset.tourId;
 
         fetch("/User/Question/Create", {
@@ -230,7 +237,7 @@
             }
         })
             .catch(err => {
-                alert("Soru gönderilemedi: " + err.message);
+                toast("@L["EvetIptal"]");
             });
 
 
@@ -280,7 +287,12 @@
     function loadUserFavorites() {
         fetch('/User/Favorite/GetUserFavorites')
             .then(r => r.json())
-            .then(favoriteIds => {
+            .then(favoriteItems => {
+
+                if (!Array.isArray(favoriteItems)) return;
+
+                const favoriteIds = favoriteItems.map(f => f.tourId || f.TourId);
+
                 document.querySelectorAll('.fav[data-tour-id]').forEach(btn => {
                     if (favoriteIds.includes(btn.dataset.tourId)) {
                         btn.classList.add('on');

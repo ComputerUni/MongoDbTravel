@@ -1,4 +1,9 @@
-﻿<nav class="navbar navbar-expand-lg sticky-top">
+﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<Travel.Web.SharedResource> L
+@{
+    var currentCulture = System.Globalization.CultureInfo.CurrentCulture.Name;
+}
+
+<nav class="navbar navbar-expand-lg sticky-top">
     <div class="container">
         <a class="brand" href="/User/Home/Index"><span class="dot"></span>Travelio</a>
         <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
@@ -6,12 +11,12 @@
         </button>
         <div class="collapse navbar-collapse" id="nav">
             <ul class="navbar-nav mx-auto">
-                <li class="nav-item"><a class="nav-link" href="/User/Home/Index">Ana Sayfa</a></li>
-                <li class="nav-item"><a class="nav-link active" href="/User/Tour/Index">Turlar</a></li>
-                <li class="nav-item"><a class="nav-link" href="#destinasyonlar">Destinasyonlar</a></li>
-                <li class="nav-item"><a class="nav-link" href="#yorumlar">Yorumlar</a></li>
-                <li class="nav-item"><a class="nav-link" href="#hakkimizda">Hakkımızda</a></li>
-                <li class="nav-item"><a class="nav-link" href="#iletisim">İletişim</a></li>
+                <li class="nav-item"><a class="nav-link" href="/User/Home/Index">@L["AnaSayfa"]</a></li>
+                <li class="nav-item"><a class="nav-link active" href="/User/Tour/Index">@L["Turlar"]</a></li>
+                <li class="nav-item"><a class="nav-link" href="#destinasyonlar">@L["Destinasyonlar"]</a></li>
+                <li class="nav-item"><a class="nav-link" href="#yorumlar">@L["Yorumlar"]</a></li>
+                <li class="nav-item"><a class="nav-link" href="#hakkimizda">@L["Hakkimizda"]</a></li>
+                <li class="nav-item"><a class="nav-link" href="/User/Contact/Index">@L["Iletisim"]</a></li>
             </ul>
             @if (User.Identity.IsAuthenticated)
             {
@@ -22,8 +27,20 @@
             }
             else
             {
-                <a href="/User/Account/Login" class="btn-teal">Giriş Yap</a>
+                <a href="/User/Account/Login" class="btn-teal">@L["GirisYap"]</a>
             }
+            <div class="d-flex align-items-center gap-1 ms-3">
+                <a href="?culture=tr" style="display:flex;align-items:center;gap:5px;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:600;text-decoration:none;
+                    color:@(currentCulture.StartsWith("tr") ? "#fff" : "#0e2a3b");
+                    background:@(currentCulture.StartsWith("tr") ? "#0fa3a3" : "#f0f4f8");">
+                    🇹🇷 TR
+                </a>
+                <a href="?culture=en" style="display:flex;align-items:center;gap:5px;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:600;text-decoration:none;
+                    color:@(currentCulture.StartsWith("en") ? "#fff" : "#0e2a3b");
+                    background:@(currentCulture.StartsWith("en") ? "#0fa3a3" : "#f0f4f8");">
+                    🇬🇧 EN
+                </a>
+            </div>
         </div>
     </div>
 </nav>

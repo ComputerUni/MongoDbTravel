@@ -16,7 +16,12 @@
     function loadUserFavorites() {
         fetch('/User/Favorite/GetUserFavorites')
             .then(r => r.json())
-            .then(favoriteIds => {
+            .then(favoriteItems => {
+
+                if (!Array.isArray(favoriteItems)) return;
+
+                const favoriteIds = favoriteItems.map(f => f.tourId || f.TourId);
+
                 document.querySelectorAll('.fav[data-tour-id]').forEach(btn => {
                     if (favoriteIds.includes(btn.dataset.tourId)) {
                         btn.classList.add('on');

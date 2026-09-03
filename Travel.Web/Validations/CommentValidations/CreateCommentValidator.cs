@@ -1,19 +1,20 @@
 ﻿using FluentValidation;
+using Microsoft.Extensions.Localization;
 using Travel.Web.DTOs.CommentDtos;
 
 namespace Travel.Web.Validations.CommentValidations
 {
     public class CreateCommentValidator : AbstractValidator<CreateCommentDto>
     {
-        public CreateCommentValidator()
+        public CreateCommentValidator(IStringLocalizer<SharedResource> localizer)
         {
             RuleFor(x => x.Content)
-                .NotEmpty().WithMessage("Yorum içeriği boş bırakılamaz")
-                .MinimumLength(5).WithMessage("Yorum en az 5 karakter olmalıdır.")
-                .MaximumLength(500).WithMessage("Yorum en fazla 500 karakter olabilir.");
+                .NotEmpty().WithMessage(localizer["YorumIcerigiBosBirakilamaz"])
+                .MinimumLength(5).WithMessage(localizer["YorumEnAz5Karakter"])
+                .MaximumLength(500).WithMessage(localizer["YorumEnFazla500Karakter"]);
 
             RuleFor(x => x.Rating)
-                .InclusiveBetween(1, 5).WithMessage("Lütfen 1 ile 5 arasında geçerli bir puan seçin.");
+                .InclusiveBetween(1, 5).WithMessage(localizer["GecerliPuanSecin"]);
         }
     }
 }
